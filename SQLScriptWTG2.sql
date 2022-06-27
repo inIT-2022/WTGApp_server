@@ -4,6 +4,7 @@ CREATE TABLE user_roles(
 	title varchar(30) not null unique
 );
 
+
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
 	id bigserial PRIMARY KEY,
