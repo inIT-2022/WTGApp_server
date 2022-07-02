@@ -4,7 +4,6 @@ CREATE TABLE user_roles(
                            title varchar(30) not null unique
 );
 
-
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
                       id bigserial PRIMARY KEY,
@@ -20,47 +19,22 @@ CREATE TABLE users(
                       role_id integer REFERENCES user_roles(id)
 );
 
-DROP TABLE IF EXISTS big_locations;
-CREATE TABLE big_locations(
-                              id bigserial PRIMARY KEY,
-                              title varchar(30) not null unique,
-                              description varchar(240),
-                              created_at timestamp default current_timestamp,
-                              updated_at timestamp
-);
 
-DROP TABLE IF EXISTS location_info;
-CREATE TABLE  location_info(
-                               id bigserial PRIMARY KEY,
-                               title varchar(30) not null unique,
-                               description varchar(240),
-                               full_description varchar(540),
-                               adress varchar(120),
-                               work_time_start time,
-                               work_time_end time,
-                               link_image varchar(240),
-                               latitude DOUBLE PRECISION,
-                               longitude DOUBLE PRECISION,
-                               link_site varchar(240)
-);
-
-DROP TABLE IF EXISTS middle_locations;
-CREATE TABLE middle_locations(
-                                 id bigserial PRIMARY KEY,
-                                 created_at timestamp default current_timestamp,
-                                 updated_at timestamp,
-                                 big_location_id integer REFERENCES big_locations(id),
-                                 location_info_id integer REFERENCES location_info(id)
-);
-
-DROP TABLE IF EXISTS small_locations;
-CREATE TABLE small_locations(
-                                id bigserial PRIMARY KEY,
-                                created_at timestamp default current_timestamp,
-                                updated_at timestamp,
-                                big_location_id integer REFERENCES big_locations(id),
-                                middle_location_id integer REFERENCES middle_locations(id),
-                                location_info_id integer REFERENCES location_info(id)
+DROP TABLE IF EXISTS locations;
+CREATE TABLE  locations(
+                           id bigserial PRIMARY KEY,
+                           title varchar(30) not null unique,
+                           description varchar(240),
+                           full_description varchar(540),
+                           adress varchar(120),
+                           work_time_start time,
+                           work_time_end time,
+                           link_image varchar(240),
+                           latitude DOUBLE PRECISION,
+                           longitude DOUBLE PRECISION,
+                           created_at timestamp default current_timestamp,
+                           updated_at timestamp,
+                           link_site varchar(240)
 );
 
 DROP TABLE IF EXISTS categories_for_locations;
@@ -72,7 +46,7 @@ CREATE TABLE categories_for_locations(
 
 DROP TABLE IF EXISTS locations_categories;
 CREATE TABLE locations_categories(
-                                     location_info_id integer REFERENCES big_locations(id),
+                                     location_id integer REFERENCES locations(id),
                                      category_id integer REFERENCES categories_for_locations(id)
 );
 
@@ -85,12 +59,11 @@ CREATE TABLE events(
                        finish_datetime timestamp,
                        link_event_site varchar(240),
                        price integer,
-                       middle_location_id integer REFERENCES middle_locations(id),
-                       small_location_id integer REFERENCES small_locations(id),
+                       location_id integer REFERENCES locations(id),
                        created_at timestamp default current_timestamp,
                        updated_at timestamp,
                        is_active boolean default true,
-                       id_user_created integer REFERENCES users(id)
+                       user_created_id integer REFERENCES users(id)
 );
 
 DROP TABLE IF EXISTS categories_for_events;
@@ -128,6 +101,19 @@ CREATE TABLE categories_for_routes(
                                       description varchar(240)
 );
 
+DROP TABLE IF EXISTS categories_for_users;
+CREATE TABLE categories_for_users(
+                                     id bigserial PRIMARY KEY,
+                                     title varchar(30) not null unique,
+                                     description varchar(240)
+);
+
+DROP TABLE IF EXISTS users_categories;
+CREATE TABLE users_categories(
+                                 user_id integer REFERENCES users(id),
+                                 category_id integer REFERENCES categories_for_users(id)
+);
+
 DROP TABLE IF EXISTS routes;
 CREATE TABLE routes(
                        id bigserial PRIMARY KEY,
@@ -144,8 +130,7 @@ CREATE TABLE routes(
 DROP TABLE IF EXISTS routes_locations;
 CREATE TABLE  routes_locations(
                                   route_id bigserial REFERENCES routes(id),
-                                  middle_location_id integer REFERENCES middle_locations(id),
-                                  small_location_id integer REFERENCES small_locations(id)
+                                  location_id integer REFERENCES locations(id)
 );
 
 DROP TABLE IF EXISTS user_routes;
@@ -174,8 +159,7 @@ CREATE TABLE  offers(
                         id bigserial PRIMARY KEY,
                         user_created_id integer REFERENCES users(id),
                         event_id integer REFERENCES events(id),
-                        middle_location_id integer REFERENCES middle_locations(id),
-                        small_location_id integer REFERENCES small_locations(id),
+                        location_id integer REFERENCES locations(id),
                         user_received_id integer REFERENCES users(id),
                         title varchar(30) not null unique,
                         description varchar(240),
