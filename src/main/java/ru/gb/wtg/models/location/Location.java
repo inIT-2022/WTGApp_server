@@ -39,6 +39,12 @@ public class Location {
     @Column(name = "work_time_end")
     private LocalDateTime workTimeEnd;
 
+    @Column(name = "work_break_start")
+    private LocalDateTime workBreakStart;
+
+    @Column(name = "work_break_end")
+    private LocalDateTime workBreakEnd;
+
     @Column(name = "link_image")
     private String linkImage;
 

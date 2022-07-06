@@ -1,5 +1,7 @@
 server:
   port: 8179
+  servlet:
+    context-path: /wtg
 spring:
   datasource:
     driver-class-name: org.h2.Driver
