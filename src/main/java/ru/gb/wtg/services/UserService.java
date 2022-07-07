@@ -19,7 +19,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
 
-
     public List<User> findAll(){
         return userRepository.findAll();
     }
@@ -68,8 +67,5 @@ public class UserService {
     public void deleteUser(Long id){
         userRepository.deleteById(id);
     }
-
-
-
 
 }
