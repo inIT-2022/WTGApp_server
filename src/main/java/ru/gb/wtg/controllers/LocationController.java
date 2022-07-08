@@ -32,12 +32,12 @@ public class LocationController {
     }
 
     @GetMapping("/title")
-    public LocationDTO getLocationByTitle(@RequestParam String title){
+    public LocationDTO getLocationByTitle(@RequestParam(name = "title") String title){
         return new LocationDTO(locationService.findByTitle(title).orElseThrow(()-> new ResourceNotFoundException("Локация с данным title не найдена")));
     }
 
     @GetMapping("/category_id/{id}")
-    public List<LocationDTO> getAllLocationsByCategoryId(@PathVariable Long id){
+    public List<LocationDTO> getAllLocationsByCategory(@PathVariable Long id){
         return locationService.findAllByCategoryForLocations(id)
                 .stream()
                 .map(LocationDTO::new)
@@ -45,7 +45,7 @@ public class LocationController {
     }
 
     @GetMapping("/category_title")
-    public List<LocationDTO> getAllLocationsByCategoryTitle(@RequestParam String title){
+    public List<LocationDTO> getAllLocationsByCategory(@RequestParam(name = "title") String title){
         return locationService.findAllByCategoryForLocations(title)
                 .stream()
                 .map(LocationDTO::new)
@@ -74,7 +74,7 @@ public class LocationController {
     }
 
 
-    @DeleteMapping("deleteLocationById/{id}")
+    @DeleteMapping("/deleteLocationById/{id}")
     public void deleteLocationById(@PathVariable Long id){
         locationService.deleteLocation(id);
     }

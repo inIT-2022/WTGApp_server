@@ -96,8 +96,8 @@ CREATE TABLE  user_events_info(
                                   visited boolean default false
 );
 
-DROP TABLE IF EXISTS categories_for_routes;
-CREATE TABLE categories_for_routes(
+DROP TABLE IF EXISTS routes_categories;
+CREATE TABLE routes_categories(
                                       id bigserial PRIMARY KEY,
                                       title varchar(30) not null unique,
                                       description varchar(240)
@@ -123,7 +123,7 @@ CREATE TABLE routes(
                        description varchar(240),
                        duration time,
                        distanse bigint,
-                       routes_categories_id integer REFERENCES categories_for_routes(id),
+                       routes_categories_id integer REFERENCES routes_categories(id),
                        user_created_id integer REFERENCES users(id),
                        created_at timestamp default current_timestamp,
                        updated_at timestamp

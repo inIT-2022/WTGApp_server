@@ -29,13 +29,13 @@ public class Event {
     private String description;
 
     @Column(name = "start_datetime")
-    private LocalDateTime start_datetime;
+    private LocalDateTime startDatetime;
 
     @Column(name = "finish_datetime")
-    private LocalDateTime finish_datetime;
+    private LocalDateTime finishDatetime;
 
     @Column(name = "link_event_site")
-    private String link_event_site;
+    private String linkEventSite;
 
     @Column(name = "price")
     private Integer price;
@@ -65,6 +65,14 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<CategoryForEvent> categoryForEvents;
+
+    @ManyToMany
+    @JoinTable(
+            name="user_events",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> usersEvent;
 
 
 

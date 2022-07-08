@@ -58,6 +58,14 @@ public class Route {
     )
     private List<Location> locations;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_routes",
+            joinColumns = @JoinColumn(name = "route_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users;
+
     @OneToMany(mappedBy = "route")
     List<UserRoute> userRoutes;
 
