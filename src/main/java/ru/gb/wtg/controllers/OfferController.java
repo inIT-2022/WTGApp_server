@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/events")
+@RequestMapping("api/v1/offers")
 public class OfferController {
 
     private final OfferService offerService;
