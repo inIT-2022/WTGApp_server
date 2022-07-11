@@ -813,6 +813,7 @@ INSERT INTO offer_categories (title, description) VALUES
 ('THE_BEAUTY', '');            -- 15
 
 
+
 INSERT INTO offers (
 user_created_id,
 event_id,
