@@ -21,6 +21,9 @@ public class OfferCategory {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "offerCategory")
     private List<Offer> offers;
 
