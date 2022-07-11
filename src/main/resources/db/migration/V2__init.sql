@@ -466,7 +466,7 @@ user_created_id) VALUES
 
 'https://admkrai.krasnodar.ru/content/1131/show/642344/',
 
-null,
+1,
 
 null),
 
@@ -495,7 +495,7 @@ null,
 
 'https://admkrai.krasnodar.ru/content/1131/show/642148/',
 
-null,
+3,
 
 4),
 
@@ -559,7 +559,7 @@ INSERT INTO categories_for_events (title, description) VALUES
 ('ENTERTAINMENT', '');                -- 6
 
 
-INSERT INTO event_categories (event_id, category_id) VALUES
+INSERT INTO events_categories (event_id, category_id) VALUES
 (1, 2),                                    -- 1
 (1, 3),                                    -- 2
 (2, 4),                                    -- 3

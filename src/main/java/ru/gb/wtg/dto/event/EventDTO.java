@@ -18,7 +18,7 @@ public class EventDTO {
     private LocalDateTime finishDatetime;
     private String linkEventSite;
     private Integer price;
-    private Location location;
+    private Long location;
     private Boolean isActive;
     private Long userCreatedId;
 
@@ -30,7 +30,7 @@ public class EventDTO {
         this.finishDatetime = event.getFinishDatetime();
         this.linkEventSite = event.getLinkEventSite();
         this.price = event.getPrice();
-        this.location = event.getLocation();
+        this.location = event.getLocation().getId();
         this.isActive = event.getIsActive();
     }
 }

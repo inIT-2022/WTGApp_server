@@ -1,6 +1,8 @@
 package ru.gb.wtg.models.event;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,7 +42,7 @@ public class Event {
     @Column(name = "price")
     private Integer price;
 
-    @ManyToOne()
+    @ManyToOne()  //todo lazy in Event
     @JoinColumn(name = "location_id")
     private Location location;
 
@@ -54,7 +56,7 @@ public class Event {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //todo lazy in Event
     @JoinColumn(name = "user_created_id")
     private User userCreated;
 

@@ -1,6 +1,7 @@
 package ru.gb.wtg.models.user;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

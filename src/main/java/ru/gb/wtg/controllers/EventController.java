@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.wtg.dto.event.EventDTO;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
+import ru.gb.wtg.models.event.Event;
 import ru.gb.wtg.services.EventService;
 
 import java.util.List;
@@ -24,6 +25,21 @@ public class EventController {
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
+// todo тестовый метод (удалить в дальнейшем)
+    @GetMapping("/eventmodels")
+    public List<Event> getAllEventModels(){
+
+
+        return eventService.findAll();
+    }
+
+    // todo тестовый метод (удалить в дальнейшем)
+    @GetMapping("/model/{id}")
+    public Event getEventByIdModel(@PathVariable Long id){
+        return eventService.findById(id).get();
+    }
+
+
 
     @GetMapping("/{id}")
     public EventDTO getEventById(@PathVariable Long id){

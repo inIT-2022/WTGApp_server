@@ -75,8 +75,8 @@ CREATE TABLE  categories_for_events(
                                        description varchar(240)
 );
 
-DROP TABLE IF EXISTS event_categories;
-CREATE TABLE event_categories(
+DROP TABLE IF EXISTS events_categories;
+CREATE TABLE events_categories(
                                  event_id integer REFERENCES events(id),
                                  category_id integer REFERENCES categories_for_events(id)
 );

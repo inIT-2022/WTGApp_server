@@ -22,9 +22,9 @@ public class UserEvent {
     @JoinColumn(name = "users")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "events")
-    private Event event;
+//    @ManyToOne
+//    @JoinColumn(name = "events")
+//    private Event event;
 
     @OneToOne(mappedBy = "userEvent")
     UserEventsInfo userEventsInfo;
