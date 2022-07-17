@@ -6,14 +6,14 @@ INSERT INTO user_roles (title) VALUES
 
 INSERT INTO users (login, password, email, first_name, last_name, birthday_date, role_id) VALUES
 
-('Krolik_045', '045', 'Zaycev80@mail.ru', 'Ivan', 'Zaycev', '1980-05-05', 1),                -- 1
-('Unknown_100', '100', 'LeonKing@gmail.com', 'Леонид', 'Сергеев', '1999-11-10', 1),          -- 2
-('Badboy_321', '321', 'BorisBarinov@mail.ru', 'Boris', 'Barinov', '2005-03-25', 1),          -- 3
-('Gromoboy_333', '333', 'GromovS@yandex.ru', 'Сергей', 'Громов', '1970-01-01', 2),           -- 4
-('Pavel_100', '100', 'Pavel100@rambler.ru', 'Pavel', 'R', '2000-06-13', 3),                  -- 5
-('LadyKrusher_088', '088', 'Krusher@mail.ru', 'Anna', 'Valieva', '1988-02-28', 1),           -- 6
-('Kitty18_000', '000', 'KristinaKareva2004@mail.ru', 'Kristina', 'Kareva', '2004-12-31', 1), -- 7
-('KissKiss_222', '222', 'Murmia2005@mail.ru', 'Victoriya', 'Alekseeva','1999-06-02' , 1);    -- 8
+('Krolik_045', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'Zaycev80@mail.ru', 'Ivan', 'Zaycev', '1980-05-05', 1),                -- 1
+('Unknown_100', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'LeonKing@gmail.com', 'Леонид', 'Сергеев', '1999-11-10', 1),          -- 2
+('Badboy_321', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'BorisBarinov@mail.ru', 'Boris', 'Barinov', '2005-03-25', 1),          -- 3
+('Gromoboy_333', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'GromovS@yandex.ru', 'Сергей', 'Громов', '1970-01-01', 2),           -- 4
+('Pavel_100', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'Pavel100@rambler.ru', 'Pavel', 'R', '2000-06-13', 3),                  -- 5
+('LadyKrusher_088', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'Krusher@mail.ru', 'Anna', 'Valieva', '1988-02-28', 1),           -- 6
+('Kitty18_000', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'KristinaKareva2004@mail.ru', 'Kristina', 'Kareva', '2004-12-31', 1), -- 7
+('KissKiss_222', '$2a$10$VH3WAg6iuGwMvBAFM1CNUOqJiw8MYT5oQF3rZqsf.gAA441m91sgy', 'Murmia2005@mail.ru', 'Victoriya', 'Alekseeva','1999-06-02' , 1);    -- 8
 
 INSERT INTO locations (
 title,
