@@ -11,6 +11,7 @@ import ru.gb.wtg.services.LocationService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/locations")
