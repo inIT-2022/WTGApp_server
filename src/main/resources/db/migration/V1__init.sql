@@ -23,13 +23,15 @@ CREATE TABLE users(
 DROP TABLE IF EXISTS locations;
 CREATE TABLE  locations(
                            id bigserial PRIMARY KEY,
-                           title varchar(30) not null unique,
-                           description varchar(240),
-                           full_description varchar(540),
-                           adress varchar(120),
+                           title varchar(240) not null unique,
+                           description varchar(10000),
+                           full_description varchar(10000),
+                           address varchar(120),
                            work_time_start time,
                            work_time_end time,
-                           link_image varchar(240),
+                           work_break_start time,
+                           work_break_end time,
+                           link_image varchar(10000),
                            latitude DOUBLE PRECISION,
                            longitude DOUBLE PRECISION,
                            created_at timestamp default current_timestamp,
@@ -53,8 +55,8 @@ CREATE TABLE locations_categories(
 DROP TABLE IF EXISTS events;
 CREATE TABLE events(
                        id bigserial PRIMARY KEY,
-                       title varchar(30) not null unique,
-                       description varchar(240),
+                       title varchar(240) not null unique,
+                       description varchar(10000),
                        start_datetime timestamp,
                        finish_datetime timestamp,
                        link_event_site varchar(240),
@@ -73,8 +75,8 @@ CREATE TABLE  categories_for_events(
                                        description varchar(240)
 );
 
-DROP TABLE IF EXISTS event_categories;
-CREATE TABLE event_categories(
+DROP TABLE IF EXISTS events_categories;
+CREATE TABLE events_categories(
                                  event_id integer REFERENCES events(id),
                                  category_id integer REFERENCES categories_for_events(id)
 );
@@ -94,8 +96,8 @@ CREATE TABLE  user_events_info(
                                   visited boolean default false
 );
 
-DROP TABLE IF EXISTS categories_for_routes;
-CREATE TABLE categories_for_routes(
+DROP TABLE IF EXISTS routes_categories;
+CREATE TABLE routes_categories(
                                       id bigserial PRIMARY KEY,
                                       title varchar(30) not null unique,
                                       description varchar(240)
@@ -117,11 +119,11 @@ CREATE TABLE users_categories(
 DROP TABLE IF EXISTS routes;
 CREATE TABLE routes(
                        id bigserial PRIMARY KEY,
-                       title varchar(30) not null unique,
-                       description varchar(240),
+                       title varchar(240) not null unique,
+                       description varchar(10000),
                        duration time,
-                       distanse bigint,
-                       routes_categories_id integer REFERENCES categories_for_routes(id),
+                       distance bigint,
+                       routes_categories_id integer REFERENCES routes_categories(id),
                        user_created_id integer REFERENCES users(id),
                        created_at timestamp default current_timestamp,
                        updated_at timestamp
@@ -143,7 +145,7 @@ CREATE TABLE  user_routes(
 DROP TABLE IF EXISTS user_routes_info;
 CREATE TABLE  user_routes_info(
                                   id bigserial PRIMARY KEY,
-                                  user_routes_id integer REFERENCES user_events(id),
+                                  user_routes_id integer REFERENCES user_routes(id),
                                   favorites boolean default false,
                                   visited boolean default false
 );
@@ -151,7 +153,8 @@ CREATE TABLE  user_routes_info(
 DROP TABLE IF EXISTS offer_categories;
 CREATE TABLE  offer_categories(
                                   id bigserial PRIMARY KEY,
-                                  title varchar(30) not null unique
+                                  title varchar(240) not null unique,
+                                  description varchar(240)
 );
 
 DROP TABLE IF EXISTS offers;
@@ -161,8 +164,8 @@ CREATE TABLE  offers(
                         event_id integer REFERENCES events(id),
                         location_id integer REFERENCES locations(id),
                         user_received_id integer REFERENCES users(id),
-                        title varchar(30) not null unique,
-                        description varchar(240),
+                        title varchar(240) not null,
+                        description varchar(1500),
                         created_at timestamp default current_timestamp,
                         updated_at timestamp,
                         is_active boolean,

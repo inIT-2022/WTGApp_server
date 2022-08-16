@@ -1,6 +1,7 @@
 package ru.gb.wtg.models.user;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,7 @@ public class UserRole {
     @OneToMany(mappedBy = "userRole")
     private List<User> user;
 
+    public UserRole(String title) {
+        this.title = title;
+    }
 }

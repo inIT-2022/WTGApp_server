@@ -1,6 +1,8 @@
 package ru.gb.wtg.models.event;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,18 +31,18 @@ public class Event {
     private String description;
 
     @Column(name = "start_datetime")
-    private LocalDateTime start_datetime;
+    private LocalDateTime startDatetime;
 
     @Column(name = "finish_datetime")
-    private LocalDateTime finish_datetime;
+    private LocalDateTime finishDatetime;
 
     @Column(name = "link_event_site")
-    private String link_event_site;
+    private String linkEventSite;
 
     @Column(name = "price")
     private Integer price;
 
-    @ManyToOne()
+    @ManyToOne()  //todo lazy in Event
     @JoinColumn(name = "location_id")
     private Location location;
 
@@ -54,7 +56,7 @@ public class Event {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //todo lazy in Event
     @JoinColumn(name = "user_created_id")
     private User userCreated;
 
@@ -65,6 +67,14 @@ public class Event {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<CategoryForEvent> categoryForEvents;
+
+    @ManyToMany
+    @JoinTable(
+            name="user_events",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> usersEvent;
 
 
 

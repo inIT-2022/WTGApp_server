@@ -1,6 +1,8 @@
 package ru.gb.wtg.models.location;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,6 +40,12 @@ public class Location {
 
     @Column(name = "work_time_end")
     private LocalDateTime workTimeEnd;
+
+    @Column(name = "work_break_start")
+    private LocalDateTime workBreakStart;
+
+    @Column(name = "work_break_end")
+    private LocalDateTime workBreakEnd;
 
     @Column(name = "link_image")
     private String linkImage;
