@@ -10,6 +10,7 @@ import ru.gb.wtg.services.EventService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/events")
