@@ -44,46 +44,46 @@ LocationDTO:
 5 - localhost:8179/wtg/api/v1/locations/category_title?title=STORY      - получаем все локации по названию категории (добавить категорию в локацию)
 6 - localhost:8179/wtg/api/v1/locations/deleteLocationById/12           - удаляем локации по id
 7 - localhost:8179/wtg/api/v1/locations/createLocation?                  
-                            title=ку&
-                            description=ахаххахахаха&
-                            fullDescription=бугагагаггагагагагаг&   
-                            address=плющиха 2&
+                            title=13Локация&
+                            description=описание полное&
+                            fullDescription=описание полное&
+                            address=Плющиха, 2&
                             latitude=10.0&
-                            longitude=50.0                          - создаем локацию
+                            longitude=50.0)                             - создаем локацию
 
 
 События:
-1 - localhost:8179/wtg/api/v1/events                                                       -
-2 - localhost:8179/wtg/api/v1/events/category/{id}                                         -
-3 - localhost:8179/wtg/api/v1/events/category_title                                        -
-4 - localhost:8179/wtg/api/v1/events/eventmodels                                           -
-5 - localhost:8179/wtg/api/v1/events/model/{id}                                            -
-6 - localhost:8179/wtg/api/v1/events/title                                                 -
-7 - localhost:8179/wtg/api/v1/events/user_created/{id}                                     -
-8 - localhost:8179/wtg/api/v1/events/user_created_login                                    -
-9 - localhost:8179/wtg/api/v1/events/{id}                                                  -
+1 - localhost:8179/wtg/api/v1/events                                    -
+2 - localhost:8179/wtg/api/v1/events/category/{id}                      -
+3 - localhost:8179/wtg/api/v1/events/category_title                     -
+4 - localhost:8179/wtg/api/v1/events/eventmodels                        -
+5 - localhost:8179/wtg/api/v1/events/model/{id}                         -
+6 - localhost:8179/wtg/api/v1/events/title                              -
+7 - localhost:8179/wtg/api/v1/events/user_created/{id}                  -
+8 - localhost:8179/wtg/api/v1/events/user_created_login                 -
+9 - localhost:8179/wtg/api/v1/events/{id}                               -
 
 
 События:
-1 - localhost:8179/wtg/api/v1/offers
-2 - localhost:8179/wtg/api/v1/offers/category/{id}
-3 - localhost:8179/wtg/api/v1/offers/category_title
-4 - localhost:8179/wtg/api/v1/offers/createOffer
-5 - localhost:8179/wtg/api/v1/offers/deleteOfferById/{id}
-6 - localhost:8179/wtg/api/v1/offers/title
-7 - localhost:8179/wtg/api/v1/offers/user_created/{id}
-8 - localhost:8179/wtg/api/v1/offers/user_created_login
-9 - localhost:8179/wtg/api/v1/offers/{id}
+1 - localhost:8179/wtg/api/v1/offers                                    -
+2 - localhost:8179/wtg/api/v1/offers/category/{id}                      -
+3 - localhost:8179/wtg/api/v1/offers/category_title                     -
+4 - localhost:8179/wtg/api/v1/offers/createOffer                        -
+5 - localhost:8179/wtg/api/v1/offers/deleteOfferById/{id}               -
+6 - localhost:8179/wtg/api/v1/offers/title                              -
+7 - localhost:8179/wtg/api/v1/offers/user_created/{id}                  -
+8 - localhost:8179/wtg/api/v1/offers/user_created_login                 -
+9 - localhost:8179/wtg/api/v1/offers/{id}                               -
 
 
 Маршруты:
-1 - localhost:8179/wtg/api/v1/routes
-2 - localhost:8179/wtg/api/v1/routes/category_id/{id}
-3 - localhost:8179/wtg/api/v1/routes/category_title
-4 - localhost:8179/wtg/api/v1/routes/createRoute
-5 - localhost:8179/wtg/api/v1/routes/deleteRouteById/{id}
-6 - localhost:8179/wtg/api/v1/routes/title
-7 - localhost:8179/wtg/api/v1/routes/{id}
+1 - localhost:8179/wtg/api/v1/routes                                    -
+2 - localhost:8179/wtg/api/v1/routes/category_id/{id}                   -
+3 - localhost:8179/wtg/api/v1/routes/category_title                     -
+4 - localhost:8179/wtg/api/v1/routes/createRoute                        -
+5 - localhost:8179/wtg/api/v1/routes/deleteRouteById/{id}               -
+6 - localhost:8179/wtg/api/v1/routes/title                              -
+7 - localhost:8179/wtg/api/v1/routes/{id}                               -
 
 
 Пользователи:
