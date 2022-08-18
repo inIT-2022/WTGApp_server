@@ -1,10 +1,9 @@
 Схемы JSON
 
 LocationDTO:
-
 {
     "id": Long,
-    "title": String",
+    "title": "String",
     "description": "String",
     "fullDescription": "String",
     "address": "String",
@@ -17,6 +16,23 @@ LocationDTO:
     "latitude": Double,
     "longitude": Double
 }
+
+EventDTO:
+{
+    "id": Long,
+    "title": "String",
+    "description": "String",
+    "startDatetime": "LocalDateTime",
+    "finishDatetime": "LocalDateTime",
+    "linkEventSite": "String",
+    "price": Integer,
+    "location": Long,
+    "isActive": Boolean,
+    "userCreatedId": Long
+}
+
+
+_______________________________________________________________________________________________
 
 Пример Локации с id = 1:
 {
@@ -35,33 +51,55 @@ LocationDTO:
     "longitude": 39.030299
 }
 
+
+Пример Локации с id = 4:
+{
+    "id": 4,
+    "title": "Всероссийский праздник «Единый день фольклора»",
+    "description": "17 июля – всероссийский праздник «Единый день фольклора».\r\n
+                    Посетителей этно-комплекса в этот день ждут концертные программы
+                    от коллективов со всего Краснодарского края.\r\nНа протяжении всего
+                    фестивального дня – с 9 до 19 часов – будут работать станичная кузня,
+                    коптильня,\r\nгончарная мастерская, конный прокат, выставки-ярмарки 
+                    народных умельцев и станичный ЗАГС.
+                    \r\nДля юных посетителей предусмотрели интерактивные пространства.",
+    "startDatetime": "2022-07-17T09:00:00",
+    "finishDatetime": "2022-07-17T19:00:00",
+    "linkEventSite": "https://admkrai.krasnodar.ru/content/1131/show/642160/",
+    "price": null,
+    "location": 2,
+    "isActive": true,
+    "userCreatedId": null
+}
+
 Описание REST адресов:
 Локации:
-1 - localhost:8179/wtg/api/v1/locations                                 - получаем все локации
-2 - localhost:8179/wtg/api/v1/locations/1                               - получаем локацию по Id
-3 - localhost:8179/wtg/api/v1/locations/title?title=Скейт парк          - получаем локацию по названию 
-4 - localhost:8179/wtg/api/v1/locations/category_id/1                   - получаем все локации по id категории (добавить категорию в локацию)
-5 - localhost:8179/wtg/api/v1/locations/category_title?title=STORY      - получаем все локации по названию категории (добавить категорию в локацию)
-6 - localhost:8179/wtg/api/v1/locations/deleteLocationById/12           - удаляем локации по id
+1 - localhost:8179/wtg/api/v1/locations                                 - Получаем все локации
+2 - localhost:8179/wtg/api/v1/locations/1                               - Получаем локацию по Id
+3 - localhost:8179/wtg/api/v1/locations/title?title=Скейт парк          - Получаем локацию по названию 
+4 - localhost:8179/wtg/api/v1/locations/category_id/1                   - Получаем все локации по id категории (добавить категорию в локацию)
+5 - localhost:8179/wtg/api/v1/locations/category_title?title=STORY      - Получаем все локации по названию категории (добавить категорию в локацию)
+6 - localhost:8179/wtg/api/v1/locations/deleteLocationById/12           - Удаляем локации по id
 7 - localhost:8179/wtg/api/v1/locations/createLocation?                  
                             title=13Локация&
                             description=описание полное&
                             fullDescription=описание полное&
                             address=Плющиха, 2&
                             latitude=10.0&
-                            longitude=50.0)                             - создаем локацию
+                            longitude=50.0)                             - Создаем локацию
 
 
 События:
-1 - localhost:8179/wtg/api/v1/events                                    -
-2 - localhost:8179/wtg/api/v1/events/category/{id}                      -
+1 - localhost:8179/wtg/api/v1/events                                    - Получаем все события
+9 - localhost:8179/wtg/api/v1/events/1                                  - Получаем событие по id
+6 - localhost:8179/wtg/api/v1/events
+                /title?title=Ярмарка кубанских продуктов                - Получаем событие по названию
+2 - localhost:8179/wtg/api/v1/events/category/1                         - Получаем все события по id категории
 3 - localhost:8179/wtg/api/v1/events/category_title                     -
 4 - localhost:8179/wtg/api/v1/events/eventmodels                        -
 5 - localhost:8179/wtg/api/v1/events/model/{id}                         -
-6 - localhost:8179/wtg/api/v1/events/title                              -
 7 - localhost:8179/wtg/api/v1/events/user_created/{id}                  -
 8 - localhost:8179/wtg/api/v1/events/user_created_login                 -
-9 - localhost:8179/wtg/api/v1/events/{id}                               -
 
 
 События:
