@@ -13,10 +13,11 @@ import java.util.stream.Collectors;
 
 /**
  * LocationController
-
+ *
  * <p>
- *    (@RestController) - указывает Spring Framework что, это REST-контроллер
- *    (комбинация @Controller и @ResponseBody).
+ *    (@RestController) - указывает Spring Framework что,
+ *    это комбинация @Controller и @ResponseBody,
+ *    что позволяет сократить количество аннотаций на 1.
  * </p>
  *
  * <p>
@@ -65,15 +66,17 @@ public class LocationController {
      * Получаем все локации
      * <p>пример запроса: localhost:8179/wtg/api/v1/locations</p>
      *
-     * (@GetMapping) в методе используется запрос типа: GET.
      * (@Get/Post/Put/DeleteMapping) - аннотация для отображения запросов HTTP,
      * на определенные методы-обработчики.
      * Это составная аннотация, действует как ярлык.
      * (@RequestMapping(method) = RequestMethod.GET)
      *
+     * (@GetMapping) в методе используется запрос типа: GET.
+     *
      * @return Список<ЛокацийДТО> (List LocationDTO)
      *
-     * 1)Используем метод НайтиВсе(), СервисаЛокаций (locationService),
+     * 1)Используем метод найтиВсе() (findAll()),
+     * сервисаЛокаций (locationService),
      * возвращающего списокЛокаций (List<Location>).
      *
      * С помощью Stream API:
@@ -88,7 +91,8 @@ public class LocationController {
      */
     @GetMapping()
     public List<LocationDTO> getAllLocations(){
-        return locationService.findAll()
+        return locationService
+                .findAll()
                 .stream()
                 .map(LocationDTO::new)
                 .collect(Collectors.toList());
@@ -96,7 +100,7 @@ public class LocationController {
 
     /**
      * Получаем локацию по id
-     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/category_id/1</p>
+     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/1</p>
      *
      * (@GetMapping) в методе используется запрос типа: GET.
      *
@@ -113,19 +117,19 @@ public class LocationController {
      * в качестве параметра,
      * туда отдаем следующее лямбда выражения:
      *
-     * Используем метод НайтиПоId findById,
-     * СервисаЛокаций (locationService),
+     * Используем метод найтиПоId() (findById()),
+     * сервисаЛокаций (locationService),
      * с параметром id.
      *
      * В случае отсутствия, метод вернет исключение:
      * РесурсНеНайден (ResourceNotFoundException),
-     * с текстом: "Локация с данным id не найдена".
+     * с текстом: "Локация(Location) с данным id не найдена".
      */
-
     @GetMapping("/{id}")
     public LocationDTO getLocationById(@PathVariable Long id){
-        return new LocationDTO(locationService.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Локация с данным id не найдена")));
+        return new LocationDTO(locationService
+                .findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Локация(Location) с данным id не найдена")));
     }
 
     /**
@@ -134,11 +138,6 @@ public class LocationController {
      * <p>пример запроса: localhost:8179/wtg/api/v1/locations/title?title=Скейт парк</p>
      *
      * (@GetMapping) в методе используется запрос типа: GET.
-     *
-     * <p>Используем аннотацию @PathVariable
-     *    для извлечения шаблонной части URI,
-     *    представленной переменной {id}
-     * </p>
      *
      * <p>Используем аннотацию @RequestParam,
      *    присваиваем параметру Наименование (title) имя - title,
@@ -154,23 +153,24 @@ public class LocationController {
      * в качестве параметра,
      * туда отдаем следующее лямбда выражения:
      *
-     * Используем метод НайтиПоНазванию findByTitle,
-     * СервисаЛокаций (locationService),
+     * Используем метод найтиПоНазванию() (findByTitle()),
+     * сервисаЛокаций (locationService),
      * с параметром Наименование (title).
      *
      * В случае отсутствия, метод вернет исключение:
      * РесурсНеНайден (ResourceNotFoundException),
-     * с текстом: "Локация с данным title не найдена".
+     * с текстом: "Локация(Location) с данным наименованием (title) не найдена".
      */
     @GetMapping("/title")
     public LocationDTO getLocationByTitle(@RequestParam(name = "title") String title){
-        return new LocationDTO(locationService.findByTitle(title)
-                .orElseThrow(()-> new ResourceNotFoundException("Локация с данным title не найдена")));
+        return new LocationDTO(locationService
+                .findByTitle(title)
+                .orElseThrow(()-> new ResourceNotFoundException("Локация(Location) с данным наименованием (title) не найдена")));
     }
 
     /**
      * Получаем все локации по id категории
-     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/category_id/1</p>
+     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/category/1</p>
      *
      * (@GetMapping) в методе используется запрос типа: GET.
      *
@@ -179,11 +179,11 @@ public class LocationController {
      *    представленной переменной {id}
      * </p>
      *
-     * @param id (Long) - оно же id категории
+     * @param id (Long) - где id это категория
 
      * @return Список<ЛокацийДТО> (List LocationDTO)
      *
-     * 1)Используем метод НайтиВсеКатегорииДляЛокаций,
+     * 1)Используем метод найтиВсеКатегорииДляЛокаций() findAllByCategoryForLocations(),
      * СервисаЛокаций (locationService),
      * возвращающего списокЛокаций (List<Location>),
      * туда параметром отдаем id.
@@ -198,7 +198,7 @@ public class LocationController {
      * 4) переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
      * в Список<ЛокацийДТО> (List<LocationDTO>)
      */
-    @GetMapping("/category_id/{id}")
+    @GetMapping("/category/{id}")
     public List<LocationDTO> getAllLocationsByCategory(@PathVariable Long id){  // TODO getAllLocationsByCategoryId
         return locationService
                 .findAllByCategoryForLocations(id)
@@ -209,7 +209,7 @@ public class LocationController {
 
     /**
      * Получаем все локации по наименованию категории
-     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/category_title?title=STORY</p>
+     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/category/title?title=STORY</p>
      *
      * (@GetMapping) в методе используется запрос типа: GET.
      *
@@ -221,8 +221,8 @@ public class LocationController {
 
      * @return Список<ЛокацийДТО> (List LocationDTO)
      *
-     * 1)Используем метод НайтиВсеКатегорииДляЛокаций,
-     * СервисаЛокаций (locationService),
+     * 1)Используем метод найтиВсеКатегорииДляЛокаций() (findAllByCategoryForLocations()),
+     * сервисаЛокаций (locationService),
      * возвращающего списокЛокаций (List<Location>),
      * туда параметром отдаем Наименование (title).
      *
@@ -236,7 +236,7 @@ public class LocationController {
      * 4) переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
      * в Список<ЛокацийДТО> (List<LocationDTO>)
      */
-    @GetMapping("/category_title")
+    @GetMapping("/category/title")
     public List<LocationDTO> getAllLocationsByCategory(@RequestParam(name = "title") String title){  // TODO getAllLocationsByCategoryTitle
         return locationService
                 .findAllByCategoryForLocations(title)
@@ -247,7 +247,7 @@ public class LocationController {
 
     /**
      * Создаем локацию
-     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/createLocation?
+     * <p>пример запроса: localhost:8179/wtg/api/v1/locations/location/create?
      *         title=13Локация&
      *         description=описание полное&
      *         fullDescription=описание полное&
@@ -284,7 +284,7 @@ public class LocationController {
      *    для создания новой локации
      * </p>
      */
-    @PostMapping("/createLocation")
+    @PostMapping("/location/create")
     public void createLocation(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String description,
@@ -305,7 +305,7 @@ public class LocationController {
 
     /**
      * Удаляем локации по id:
-     *  <p>пример запроса: localhost:8179/wtg/api/v1/locations/deleteLocationById/12</p>
+     *  <p>пример запроса: localhost:8179/wtg/api/v1/locations/location/delete/12</p>
      *
      * (@DeleteMapping) в методе используется запрос типа: DELETE.
      *
@@ -324,7 +324,7 @@ public class LocationController {
      * Передаем указанный параметр,
      * для определения локации, которую хотим удалить.
      */
-    @DeleteMapping("/deleteLocationById/{id}")
+    @DeleteMapping("/location/delete/{id}")
     public void deleteLocationById(@PathVariable Long id){
         locationService.deleteLocation(id);
     }

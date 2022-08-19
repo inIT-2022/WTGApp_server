@@ -75,7 +75,8 @@ public class EventController {
      *
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод НайтиВсе(), СервисаСобытий (eventService),
+     * 1)Используем метод найтиВсе() (findAll()),
+     * сервисаСобытий (eventService),
      * возвращающего списокСобытий (List<Event>).
      *
      * С помощью Stream API:
@@ -155,7 +156,7 @@ public class EventController {
      * туда отдаем следующее лямбда выражения:
      *
      * Используем метод найтиПоНазванию() (findByTitle()),
-     * СервисаСобытий (eventService),
+     * сервисаСобытий (eventService),
      * с параметром Наименование (title).
      *
      * В случае отсутствия, метод вернет исключение:
@@ -181,7 +182,7 @@ public class EventController {
      *    представленной переменной {id}
      * </p>
      *
-     * @param id (Long) - оно же id категории
+     * @param id (Long) - где id это категория
 
      * @return Список<СобытийДТО> (List EventDTO)
      *
