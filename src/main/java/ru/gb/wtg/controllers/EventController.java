@@ -15,8 +15,9 @@ import java.util.stream.Collectors;
  * EventController
  *
  * <p>
- *    (@RestController) - указывает Spring Framework что, это REST-контроллер
- *    (комбинация @Controller и @ResponseBody).
+ *    (@RestController) - указывает Spring Framework что,
+ *    это комбинация @Controller и @ResponseBody,
+ *    что позволяет сократить количество аннотаций на 1.
  * </p>
  *
  * <p>
@@ -38,7 +39,7 @@ import java.util.stream.Collectors;
  * </p>
  * <p>
  *    С учетом того, что в application.yaml прописан префикс "/wtg",
- *    итоговый endpoint для LocationController,
+ *    итоговый endpoint для EventController,
  *    будет выглядеть так:
  *      "/wtg/api/v1/events"
  * </p
@@ -47,7 +48,7 @@ import java.util.stream.Collectors;
  *      "localhost:8179/wtg/api/v1/events"
  *    где:
  *      localhost - локальный адрес,
- *      8179      - порт прописанный в application.yaml
+ *      8179      - порт, прописанный в application.yaml
  * </p>
  */
 @RestController
@@ -62,7 +63,7 @@ public class EventController {
     private final EventService eventService;
 
     /**
-     * Получаем все локации
+     * Получаем все события
      * <p>пример запроса: localhost:8179/wtg/api/v1/events</p>
      *
      * (@Get/Post/Put/DeleteMapping) - аннотация для отображения запросов HTTP,
@@ -75,7 +76,7 @@ public class EventController {
      * @return Список<СобытийДТО> (List EventDTO)
      *
      * 1)Используем метод НайтиВсе(), СервисаСобытий (eventService),
-     * возвращающего списокЛокаций (List<Event>).
+     * возвращающего списокСобытий (List<Event>).
      *
      * С помощью Stream API:
      * 2) из Списка<Событий> (List<Event>),
@@ -89,23 +90,13 @@ public class EventController {
      */
     @GetMapping()
     public List<EventDTO> getAllEvents(){
-        return eventService.findAll()
+        return eventService
+                .findAll()
                 .stream()
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
 
-// todo тестовый метод (удалить в дальнейшем)
-    @GetMapping("/eventmodels")
-    public List<Event> getAllEventModels(){
-        return eventService.findAll();
-    }
-
-    // todo тестовый метод (удалить в дальнейшем)
-    @GetMapping("/model/{id}")
-    public Event getEventByIdModel(@PathVariable Long id){
-        return eventService.findById(id).get();
-    }
 
     /**
      * Получаем событие по id
@@ -126,7 +117,7 @@ public class EventController {
      * в качестве параметра,
      * туда отдаем следующее лямбда выражения:
      *
-     * Используем метод НайтиПоId findById,
+     * Используем метод найтиПоId() (findById()),
      * СервисаСобытий (eventService),
      * с параметром id.
      *
@@ -136,9 +127,11 @@ public class EventController {
      */
     @GetMapping("/{id}")
     public EventDTO getEventById(@PathVariable Long id){
-        return new EventDTO(eventService.findById(id)
+        return new EventDTO(eventService
+                .findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Coбытие(Event) с данным id не найдено")));
     }
+
 
     /**
      * Получаем событие по названию
@@ -150,10 +143,10 @@ public class EventController {
      * <p>Используем аннотацию @RequestParam,
      *    присваиваем параметру Наименование (title) имя - title,
      *    с помощью атрибута name,
-     *    ля его дальнейшего использования.
+     *    для его дальнейшего использования.
      * </p>
      *
-     * @param title (String) - Наименование локации
+     * @param title (String) - Наименование события
      *
      * @return СобытиеДТО (EventDTO)
      *
@@ -161,19 +154,21 @@ public class EventController {
      * в качестве параметра,
      * туда отдаем следующее лямбда выражения:
      *
-     * Используем метод НайтиПоНазванию findByTitle,
+     * Используем метод найтиПоНазванию() (findByTitle()),
      * СервисаСобытий (eventService),
      * с параметром Наименование (title).
      *
      * В случае отсутствия, метод вернет исключение:
      * РесурсНеНайден (ResourceNotFoundException),
-     * с текстом: "Событие(Event) с данным title не найдено".
+     * с текстом: "Событие(Event) с данным наименованием (title) не найдено".
      */
     @GetMapping("/title")
     public EventDTO getEventByTitle(@RequestParam(name = "title") String title){
         return new EventDTO(eventService
-                .findByTitle(title).orElseThrow(()-> new ResourceNotFoundException("Событие(Event) с данным наименованием (title) не найдено")));
+                .findByTitle(title)
+                .orElseThrow(()-> new ResourceNotFoundException("Событие(Event) с данным наименованием (title) не найдено")));
     }
+
 
     /**
      * Получаем все события по id категории
@@ -190,7 +185,7 @@ public class EventController {
 
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод НайтиВсеКатегорииДляСобытий,
+     * 1)Используем метод найтиВсеКатегорииДляСобытий (findAllByCategoryForEvents()),
      * СервисаСобытий (eventService),
      * возвращающего списокЛокаций (List<Event>),
      * туда параметром отдаем id.
@@ -207,39 +202,144 @@ public class EventController {
      */
     @GetMapping("/category/{id}")
     public List<EventDTO> getAllEventsByCategory(@PathVariable Long id){
-        return eventService.findAllByCategoryForEvents(id)
+        return eventService
+                .findAllByCategoryForEvents(id)
                 .stream()
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/category_title")
+
+    /**
+     * Получаем все события по наименованию категории
+     * <p>пример запроса: localhost:8179/wtg/api/v1/events/category/title?title=STORY</p>
+     *
+     * (@GetMapping) в методе используется запрос типа: GET.
+     *
+     * <p>Используем аннотацию @RequestParam,
+     *    присваиваем параметру Наименование (title) имя - title,
+     *    с помощью атрибута name, для его дальнейшего использования.
+     * </p>
+     * @param title (String) - Наименование, оно же - наименование категории
+
+     * @return Список<СобытийДТО> (List EventDTO)
+     *
+     * 1)Используем метод НайтиВсеКатегорииДляСобытий,
+     * СервисаЛокаций (eventService),
+     * возвращающего списокСобытий (List<Event>),
+     * туда параметром отдаем Наименование (title).
+     *
+     * С помощью Stream API:
+     * 2) из Списка<Событий> (List<Event>),
+     * получаем Стрим<Событий> (Stream<Event>).
+     *
+     * 3) пересобираем Стрим<Событий> (Stream<Event>),
+     * в Стрим<СобытийДТО> (Stream<EventDTO>).
+     *
+     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     * в Список<СобытийДТО> (List<EventDTO>)
+     */
+    @GetMapping("/category/title")
     public List<EventDTO> getAllEventsByCategory(@RequestParam(name = "title") String title){
-        return eventService.findAllByCategoryForEvents(title)
+        return eventService
+                .findAllByCategoryForEvents(title)
                 .stream()
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/user_created/{id}")
+
+    /**
+     * Получаем все события по id создавших юзеров
+     * <p>пример запроса:  localhost:8179/wtg/api/v1/events/created/user/4</p>
+     *
+     * (@GetMapping) в методе используется запрос типа: GET.
+     *
+     * <p>Используем аннотацию @PathVariable
+     *    для извлечения шаблонной части URI,
+     *    представленной переменной {id}
+     * </p>
+     *
+     * @param id (Long) - оно же id категории
+
+     * @return Список<СобытийДТО> (List EventDTO)
+     *
+     * 1)Используем метод НайтиВсеПоСоздавшемуПользователю,
+     * СервисаСобытий (eventService),
+     * возвращающего списокЛокаций (List<Event>),
+     * туда параметром отдаем id.
+     *
+     * С помощью Stream API:
+     * 2) из Списка<Событий> (List<Event>),
+     * получаем Стрим<Событий> (Stream<Event>).
+     *
+     * 3) пересобираем Стрим<Событий> (Stream<Event>),
+     * в Стрим<СобытийДТО> (Stream <EventDTO>).
+     *
+     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     * в Список<СобытийДТО> (List<EventDTO>)
+     */
+    @GetMapping("/created/user/{id}")
     public List<EventDTO> getAllEventsByUserCreated(@PathVariable Long id){
-        return eventService.findAllByUserCreated(id)
+        return eventService
+                .findAllByUserCreated(id)
                 .stream()
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/user_created_login")
+
+    /**
+     * Получаем все события по логину создавших юзеров
+     * <p>пример запроса: localhost:8179/wtg/api/v1/events/created/user/login?login=Gromoboy_333</p>
+     *
+     * (@GetMapping) в методе используется запрос типа: GET.
+     *
+     * <p>Используем аннотацию @RequestParam,
+     *    присваиваем параметру логинСоздавшегоПользователя (user_created_login) имя - login,
+     *    с помощью атрибута name, для его дальнейшего использования.
+     * </p>
+     * @param login (String) - Логин пользователя
+
+     * @return Список<СобытийДТО> (List EventDTO)
+     *
+     * 1)Используем метод НайтиВсеКатегорииДляСобытий,
+     * СервисаЛокаций (eventService),
+     * возвращающего списокСобытий (List<Event>),
+     * туда параметром отдаем Наименование (title).
+     *
+     * С помощью Stream API:
+     * 2) из Списка<Событий> (List<Event>),
+     * получаем Стрим<Событий> (Stream<Event>).
+     *
+     * 3) пересобираем Стрим<Событий> (Stream<Event>),
+     * в Стрим<СобытийДТО> (Stream<EventDTO>).
+     *
+     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     * в Список<СобытийДТО> (List<EventDTO>)
+     */
+    @GetMapping("/created/user/login")
     public List<EventDTO> getAllEventsByUserCreated(@RequestParam(name = "login") String login){
-        return eventService.findAllByUserCreated(login)
+        return eventService
+                .findAllByUserCreated(login)
                 .stream()
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
 
+    // todo: Нужен метод для создания события
 
+    // todo: Нужен метод для удаления события
 
+    // todo тестовый метод (удалить в дальнейшем)
+    @GetMapping("/eventmodels")
+    public List<Event> getAllEventModels(){
+        return eventService.findAll();
+    }
 
-
-
+    // todo тестовый метод (удалить в дальнейшем)
+    @GetMapping("/model/{id}")
+    public Event getEventByIdModel(@PathVariable Long id){
+        return eventService.findById(id).get();
+    }
 }
