@@ -37,8 +37,8 @@ EventDTO:
     "id": Long,
     "title": "String",
     "description": "String",
-    "startDatetime": "LocalDateTime",
-    "finishDatetime": "LocalDateTime",
+    "startDatetime": LocalDateTime,
+    "finishDatetime": LocalDateTime,
     "linkEventSite": "String",
     "price": Integer,
     "location": Long,
@@ -46,6 +46,30 @@ EventDTO:
     "userCreatedId": Long
 }
 
+
+UserDTO:
+{
+    "id": Long,
+    "login": "String",
+    "email": "String",
+    "password": String,
+    "firstName": "String",
+    "lastName": "String",
+    "birthdayDate": LocalDate,
+    "userRoleString": "String",
+    "enabled": Boolean,
+    "authorities": [
+        {
+            "id": Long,
+            "title": "String",
+            "authority": "String"
+        }
+    ],
+    "username": "String",
+    "accountNonExpired": Boolean,
+    "credentialsNonExpired": Boolean,
+    "accountNonLocked": Boolean
+}
 
 ==============================================================================================================================================================
 
@@ -88,10 +112,33 @@ EventDTO:
     "isActive": true,
     "userCreatedId": null
 }
+
+Пример События с id = 4:
+{
+    "id": 1,
+    "login": "Krolik_045",
+    "email": "Zaycev80@mail.ru",
+    "password": null,
+    "firstName": "Ivan",
+    "lastName": "Zaycev",
+    "birthdayDate": "1980-05-05",
+    "userRoleString": "ROLE_USER",
+    "enabled": false,
+    "authorities": [
+        {
+            "id": null,
+            "title": "ROLE_USER",
+            "authority": "ROLE_USER"
+        }
+    ],
+    "username": "Krolik_045",
+    "accountNonExpired": false,
+    "credentialsNonExpired": false,
+    "accountNonLocked": false
+}
+
 ==============================================================================================================================================================
-
 Описание REST адресов:
-
 ______________________________________________________________________________________________________________________________________________________________
 Локации:
 1 - localhost:8179/wtg/api/v1/locations                                 - Получаем все локации
@@ -99,15 +146,14 @@ ________________________________________________________________________________
 3 - localhost:8179/wtg/api/v1/locations/title?title=Скейт парк          - Получаем локацию по названию 
 4 - localhost:8179/wtg/api/v1/locations/category_id/1                   - Получаем все локации по id категории (добавить категорию в локацию)
 5 - localhost:8179/wtg/api/v1/locations/category_title?title=STORY      - Получаем все локации по названию категории (добавить категорию в локацию)
-6 - localhost:8179/wtg/api/v1/locations/deleteLocationById/12           - Удаляем локации по id
-7 - localhost:8179/wtg/api/v1/locations/createLocation?                  
+6 - localhost:8179/wtg/api/v1/locations/location/create?                  
                             title=13Локация&
                             description=описание полное&
                             fullDescription=описание полное&
                             address=Плющиха, 2&
                             latitude=10.0&
-                            longitude=50.0)                             - Создаем локацию
-
+                            longitude=50.0)                             - Создаем новую локацию
+7 - localhost:8179/wtg/api/v1/locations/location/delete/12              - Удаляем локации по id
 ______________________________________________________________________________________________________________________________________________________________
 События:
 1 - localhost:8179/wtg/api/v1/events                                    - Получаем все события
@@ -120,9 +166,19 @@ ________________________________________________________________________________
 7 - localhost:8179/wtg/api/v1/events
                 /created/user/login?login=Gromoboy_333                  - Получаем все события по логину создавших юзеров
 
-  - localhost:8179/wtg/api/v1/events/eventmodels                        - тестовый метод (можно удалить)
-  - localhost:8179/wtg/api/v1/events/model/{id}                         - тестовый метод (можно удалить)
-
+  - localhost:8179/wtg/api/v1/events/eventmodels                        - Тестовый метод (можно удалить)
+  - localhost:8179/wtg/api/v1/events/model/{id}                         - Тестовый метод (можно удалить)
+______________________________________________________________________________________________________________________________________________________________
+Пользователи:
+localhost:8179/wtg/api/v1/users                                         - Получаем всех пользователей
+localhost:8179/wtg/api/v1/users/role/1                                  - Получаем всех пользователей по id роли
+localhost:8179/wtg/api/v1/users/role/title?title=ROLE_BISNESS           - Получаем всех пользователей по наименованию роли
+localhost:8179/wtg/api/v1/users/1                                       - Получаем пользователя по id
+localhost:8179/wtg/api/v1/users/login/Krolik_045                        - Получаем пользователя по логину
+localhost:8179/wtg/api/v1/users/user/create?
+                            
+                                                                        - 
+localhost:8179/wtg/api/v1/users/user/delete/1                           - Удаляем пользователя по id
 ______________________________________________________________________________________________________________________________________________________________
 Предложения (подборки):
 1 - localhost:8179/wtg/api/v1/offers                                    -
@@ -134,7 +190,6 @@ ________________________________________________________________________________
 7 - localhost:8179/wtg/api/v1/offers/user_created/{id}                  -
 8 - localhost:8179/wtg/api/v1/offers/user_created_login                 -
 9 - localhost:8179/wtg/api/v1/offers/{id}                               -
-
 ______________________________________________________________________________________________________________________________________________________________
 Маршруты:
 1 - localhost:8179/wtg/api/v1/routes                                    -
@@ -144,23 +199,10 @@ ________________________________________________________________________________
 5 - localhost:8179/wtg/api/v1/routes/deleteRouteById/{id}               -
 6 - localhost:8179/wtg/api/v1/routes/title                              -
 7 - localhost:8179/wtg/api/v1/routes/{id}                               -
-
-______________________________________________________________________________________________________________________________________________________________
-Пользователи:
-localhost:8179/wtg/api/v1/users
-localhost:8179/wtg/api/v1/users/createUser
-localhost:8179/wtg/api/v1/users/deleteUserById/{id}
-localhost:8179/wtg/api/v1/users/login/{login}
-localhost:8179/wtg/api/v1/users/role_id/{id}
-localhost:8179/wtg/api/v1/users/role_title
-localhost:8179/wtg/api/v1/users/{id}
-
 ______________________________________________________________________________________________________________________________________________________________
 Авторизация:
-localhost:8179/wtg/login
-
+localhost:8179/wtg/login                                                -
 ______________________________________________________________________________________________________________________________________________________________
 Регистрация:
-localhost:8179/wtg/signup
-
+localhost:8179/wtg/signup                                               -
 ==============================================================================================================================================================
