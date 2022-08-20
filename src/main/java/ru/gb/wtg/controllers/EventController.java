@@ -34,8 +34,10 @@ import java.util.stream.Collectors;
  *    Порядок этих параметров совпадает с порядком появления полей в классе.
  * </p>
  * <p>
- *    (@RequestMapping) Эта аннотация позволяет нам запускать методы и фрагменты кода каждый раз,
- *    когда конечный пользователь попадает в конечную точку (endpoint) с помощью HTTP-запроса.
+ *    (@RequestMapping) Эта аннотация позволяет
+ *    запускать методы и фрагменты кода каждый раз,
+ *    когда конечный пользователь попадает
+ *    в конечную точку (endpoint) с помощью HTTP-запроса.
  * </p>
  * <p>
  *    С учетом того, что в application.yaml прописан префикс "/wtg",
@@ -75,19 +77,19 @@ public class EventController {
      *
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод найтиВсе() (findAll()),
-     * сервисаСобытий (eventService),
-     * возвращающего списокСобытий (List<Event>).
+     * 1) Используем метод найтиВсе() (findAll()),
+     *    сервисаСобытий (eventService),
+     *    возвращающего списокСобытий (List<Event>).
      *
-     * С помощью Stream API:
-     * 2) из Списка<Событий> (List<Event>),
-     * получаем Стрим<Событий> (Stream<Event>).
+     * 2) Используя StreamAPI (.stream()):
+     *    из Списка<Событий> (List<Event>),
+     *    получаем Стрим<Событий> (Stream<Event>).
      *
-     * 3) пересобираем Стрим<Событий> (Stream<Event>),
-     * в Стрим<СобытийДТО> (Stream <EventDTO>).
+     * 3) Пересобираем Стрим<Событий> (Stream<Event>),
+     *    в Стрим<СобытийДТО> (Stream <EventDTO>).
      *
-     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
-     * в Список<СобытийДТО> (List<EventDTO>)
+     * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     *    в Список<СобытийДТО> (List<EventDTO>)
      */
     @GetMapping()
     public List<EventDTO> getAllEvents(){
@@ -186,20 +188,20 @@ public class EventController {
 
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод найтиВсеКатегорииДляСобытий (findAllByCategoryForEvents()),
-     * СервисаСобытий (eventService),
-     * возвращающего списокЛокаций (List<Event>),
-     * туда параметром отдаем id.
+     * 1) Используем метод найтиВсеКатегорииДляСобытий() (findAllByCategoryForEvents()),
+     *    сервисаСобытий (eventService),
+     *    возвращающего списокЛокаций (List<Event>),
+     *    туда параметром отдаем id.
      *
-     * С помощью Stream API:
-     * 2) из Списка<Событий> (List<Event>),
-     * получаем Стрим<Событий> (Stream<Event>).
+     * 2) Используя StreamAPI (.stream()):
+     *    из Списка<Событий> (List<Event>),
+     *    получаем Стрим<Событий> (Stream<Event>).
      *
-     * 3) пересобираем Стрим<Событий> (Stream<Event>),
-     * в Стрим<СобытийДТО> (Stream <EventDTO>).
+     * 3) Пересобираем Стрим<Событий> (Stream<Event>),
+     *    в Стрим<СобытийДТО> (Stream <EventDTO>).
      *
-     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
-     * в Список<СобытийДТО> (List<EventDTO>)
+     * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     *    в Список<СобытийДТО> (List<EventDTO>)
      */
     @GetMapping("/category/{id}")
     public List<EventDTO> getAllEventsByCategory(@PathVariable Long id){
@@ -225,20 +227,20 @@ public class EventController {
 
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод НайтиВсеКатегорииДляСобытий,
-     * СервисаЛокаций (eventService),
-     * возвращающего списокСобытий (List<Event>),
-     * туда параметром отдаем Наименование (title).
+     * 1) Используем метод найтиВсеКатегорииДляСобытий() (findAllByCategoryForEvents()),
+     *    сервисаСобытий (eventService),
+     *    возвращающего списокСобытий (List<Event>),
+     *    туда параметром отдаем Наименование (title).
      *
-     * С помощью Stream API:
-     * 2) из Списка<Событий> (List<Event>),
-     * получаем Стрим<Событий> (Stream<Event>).
+     * 2) Используя StreamAPI (.stream()):
+     *    из Списка<Событий> (List<Event>),
+     *    получаем Стрим<Событий> (Stream<Event>).
      *
-     * 3) пересобираем Стрим<Событий> (Stream<Event>),
-     * в Стрим<СобытийДТО> (Stream<EventDTO>).
+     * 3) Пересобираем Стрим<Событий> (Stream<Event>),
+     *    в Стрим<СобытийДТО> (Stream<EventDTO>).
      *
-     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
-     * в Список<СобытийДТО> (List<EventDTO>)
+     * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     *    в Список<СобытийДТО> (List<EventDTO>)
      */
     @GetMapping("/category/title")
     public List<EventDTO> getAllEventsByCategory(@RequestParam(name = "title") String title){
@@ -265,20 +267,20 @@ public class EventController {
 
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод НайтиВсеПоСоздавшемуПользователю,
-     * СервисаСобытий (eventService),
-     * возвращающего списокЛокаций (List<Event>),
-     * туда параметром отдаем id.
+     * 1) Используем метод НайтиВсеПоСоздавшемуПользователю,
+     *    СервисаСобытий (eventService),
+     *    возвращающего списокСобытий (List<Event>),
+     *    туда параметром отдаем id.
      *
-     * С помощью Stream API:
-     * 2) из Списка<Событий> (List<Event>),
-     * получаем Стрим<Событий> (Stream<Event>).
+     * 2) Используя StreamAPI (.stream()):
+     *    из Списка<Событий> (List<Event>),
+     *    получаем Стрим<Событий> (Stream<Event>).
      *
-     * 3) пересобираем Стрим<Событий> (Stream<Event>),
-     * в Стрим<СобытийДТО> (Stream <EventDTO>).
+     * 3) Пересобираем Стрим<Событий> (Stream<Event>),
+     *    в Стрим<СобытийДТО> (Stream <EventDTO>).
      *
-     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
-     * в Список<СобытийДТО> (List<EventDTO>)
+     * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     *    в Список<СобытийДТО> (List<EventDTO>)
      */
     @GetMapping("/created/user/{id}")
     public List<EventDTO> getAllEventsByUserCreated(@PathVariable Long id){
@@ -304,20 +306,20 @@ public class EventController {
 
      * @return Список<СобытийДТО> (List EventDTO)
      *
-     * 1)Используем метод НайтиВсеКатегорииДляСобытий,
-     * СервисаЛокаций (eventService),
-     * возвращающего списокСобытий (List<Event>),
-     * туда параметром отдаем Наименование (title).
+     * 1) Используем метод НайтиВсеСобытияПоСоздавшемуИхЮзеру() findAllByUserCreated(),
+     *    сервисаСобытий (eventService),
+     *    возвращающего списокСобытий (List<Event>),
+     *    туда параметром отдаем Наименование (title).
      *
-     * С помощью Stream API:
-     * 2) из Списка<Событий> (List<Event>),
-     * получаем Стрим<Событий> (Stream<Event>).
+     * 2) С помощью Stream API:
+     *    из Списка<Событий> (List<Event>),
+     *    получаем Стрим<Событий> (Stream<Event>).
      *
-     * 3) пересобираем Стрим<Событий> (Stream<Event>),
-     * в Стрим<СобытийДТО> (Stream<EventDTO>).
+     * 3) Пересобираем Стрим<Событий> (Stream<Event>),
+     *    в Стрим<СобытийДТО> (Stream<EventDTO>).
      *
-     * 4) переводим Стрим<СобытийДТО> (Stream<EventDTO>),
-     * в Список<СобытийДТО> (List<EventDTO>)
+     * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
+     *    в Список<СобытийДТО> (List<EventDTO>)
      */
     @GetMapping("/created/user/login")
     public List<EventDTO> getAllEventsByUserCreated(@RequestParam(name = "login") String login){
@@ -329,8 +331,8 @@ public class EventController {
     }
 
     // todo: Нужен метод для создания события
-
     // todo: Нужен метод для удаления события
+
 
     // todo тестовый метод (удалить в дальнейшем)
     @GetMapping("/eventmodels")

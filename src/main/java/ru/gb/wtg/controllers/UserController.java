@@ -91,7 +91,7 @@ public class UserController {
      * получаем Стрим<Пользователей> (Stream<User>).
      *
      * 3) пересобираем Стрим<Пользователей> (Stream<User>),
-     * в Стрим<ПользователейДТО> (Stream <UserDTO>).
+     * в Стрим<ПользователейДТО> (Stream<UserDTO>).
      *
      * 4) переводим Стрим<ПользователейДТО> (Stream<UserDTO>),
      * в Список<ПользователейДТО> (List<UserDTO>)
@@ -120,7 +120,7 @@ public class UserController {
 
      * @return Список<ПользователейДТО> (List UserDTO)
      *
-     * 1) Используем метод найтиВсеПользователейПоРоли (findAllByUserRole()),
+     * 1) Используем метод найтиВсехПользователейПоРоли() (findAllByUserRole()),
      *    сервисаПользователей (userService),
      *    возвращающего списокПользователей (List<User>),
      *    туда параметром отдаем id.
@@ -255,7 +255,7 @@ public class UserController {
 
 
     // TODO разобраться как работает метод createUser(),
-    //  ошибка 500 при получении вновь созданного пользователя.
+    //  ошибка 500 при получении вновь созданного пользователя. Но пользователь создается.
     //  localhost:8179/wtg/api/v1/users/user/create?login&password&firstName&lastName&email
     @PostMapping("/user/create")
     public void createUser(
@@ -278,7 +278,7 @@ public class UserController {
 
     /**
      * Удаляем пользователя по id:
-     *  <p>пример запроса: localhost:8179/wtg/api/v1//user/delete/1</p>
+     *  <p>пример запроса: localhost:8179/wtg/api/v1/users/user/delete/1</p>
      *
      * (@DeleteMapping) в методе используется запрос типа: DELETE.
      *

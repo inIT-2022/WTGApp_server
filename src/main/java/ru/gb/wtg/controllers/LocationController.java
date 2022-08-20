@@ -34,11 +34,14 @@ import java.util.stream.Collectors;
  *    Порядок этих параметров совпадает с порядком появления полей в классе.
  * </p>
  * <p>
- *    (@RequestMapping) Эта аннотация позволяет нам запускать методы и фрагменты кода каждый раз,
- *    когда конечный пользователь попадает в конечную точку (endpoint) с помощью HTTP-запроса.
+ *    (@RequestMapping) Эта аннотация позволяет,
+ *    запускать методы и фрагменты кода каждый раз,
+ *    когда конечный пользователь попадает
+ *    в конечную точку (endpoint) с помощью HTTP-запроса.
  * </p>
  * <p>
- *    С учетом того, что в application.yaml прописан префикс "/wtg",
+ *    С учетом того, что в application.yaml
+ *    прописан префикс "/wtg",
  *    итоговый endpoint для LocationController,
  *    будет выглядеть так:
  *      "/wtg/api/v1/locations"
@@ -75,19 +78,19 @@ public class LocationController {
      *
      * @return Список<ЛокацийДТО> (List LocationDTO)
      *
-     * 1)Используем метод найтиВсе() (findAll()),
-     * сервисаЛокаций (locationService),
-     * возвращающего списокЛокаций (List<Location>).
+     * 1) Используем метод найтиВсе() (findAll()),
+     *    сервисаЛокаций (locationService),
+     *    возвращающего списокЛокаций (List<Location>).
      *
-     * С помощью Stream API:
-     * 2) из Списка<Локаций> (List<Location>),
-     * получаем Стрим<Локаций> (Stream<Location>).
+     * 2) С помощью Stream API:
+     *    из Списка<Локаций> (List<Location>),
+     *    получаем Стрим<Локаций> (Stream<Location>).
      *
-     * 3) пересобираем Стрим<Локаций> (Stream<Location>),
-     * в Стрим<ЛокацийДТО> (Stream <LocationDTO>).
+     * 3) Пересобираем Стрим<Локаций> (Stream<Location>),
+     *    в Стрим<ЛокацийДТО> (Stream <LocationDTO>).
      *
-     * 4) переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
-     * в Список<ЛокацийДТО> (List<LocationDTO>)
+     * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
+     *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
     @GetMapping()
     public List<LocationDTO> getAllLocations(){
@@ -183,20 +186,20 @@ public class LocationController {
 
      * @return Список<ЛокацийДТО> (List LocationDTO)
      *
-     * 1)Используем метод найтиВсеКатегорииДляЛокаций() findAllByCategoryForLocations(),
-     * СервисаЛокаций (locationService),
-     * возвращающего списокЛокаций (List<Location>),
-     * туда параметром отдаем id.
+     * 1) Используем метод найтиВсеКатегорииДляЛокаций() findAllByCategoryForLocations(),
+     *    сервисаЛокаций (locationService),
+     *    возвращающего списокЛокаций (List<Location>),
+     *    туда параметром отдаем id.
      *
-     * С помощью Stream API:
-     * 2) из Списка<Локаций> (List<Location>),
-     * получаем Стрим<Локаций> (Stream<Location>).
+     * 2) Используя StreamAPI (.stream()):
+     *    из Списка<Локаций> (List<Location>),
+     *    получаем Стрим<Локаций> (Stream<Location>).
      *
-     * 3) пересобираем Стрим<Локаций> (Stream<Location>),
-     * в Стрим<ЛокацийДТО> (Stream <LocationDTO>).
+     * 3) Пересобираем Стрим<Локаций> (Stream<Location>),
+     *    в Стрим<ЛокацийДТО> (Stream <LocationDTO>).
      *
-     * 4) переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
-     * в Список<ЛокацийДТО> (List<LocationDTO>)
+     * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
+     *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
     @GetMapping("/category/{id}")
     public List<LocationDTO> getAllLocationsByCategory(@PathVariable Long id){  // TODO getAllLocationsByCategoryId
@@ -214,27 +217,27 @@ public class LocationController {
      * (@GetMapping) в методе используется запрос типа: GET.
      *
      * <p>Используем аннотацию @RequestParam,
-     *    присваиваем параметру название категории (category_title) имя - title,
+     *    присваиваем параметру Наименование (категория) (title) имя - title,
      *    с помощью атрибута name, для его дальнейшего использования.
      * </p>
      * @param title (String) - Наименование, оно же - наименование категории
 
      * @return Список<ЛокацийДТО> (List LocationDTO)
      *
-     * 1)Используем метод найтиВсеКатегорииДляЛокаций() (findAllByCategoryForLocations()),
-     * сервисаЛокаций (locationService),
-     * возвращающего списокЛокаций (List<Location>),
-     * туда параметром отдаем Наименование (title).
+     * 1) Используем метод найтиВсеКатегорииДляЛокаций() (findAllByCategoryForLocations()),
+     *    сервисаЛокаций (locationService),
+     *    возвращающего списокЛокаций (List<Location>),
+     *    туда параметром отдаем Наименование (title).
      *
-     * С помощью Stream API:
-     * 2) из Списка<Локаций> (List<Location>),
-     * получаем Стрим<Локаций> (Stream<Location>).
+     * 2) С помощью Stream API:
+     *    из Списка<Локаций> (List<Location>),
+     *    получаем Стрим<Локаций> (Stream<Location>).
      *
-     * 3) пересобираем Стрим<Локаций> (Stream<Location>),
-     * в Стрим<ЛокацийДТО> (Stream<LocationDTO>).
+     * 3) Пересобираем Стрим<Локаций> (Stream<Location>),
+     *    в Стрим<ЛокацийДТО> (Stream<LocationDTO>).
      *
-     * 4) переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
-     * в Список<ЛокацийДТО> (List<LocationDTO>)
+     * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
+     *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
     @GetMapping("/category/title")
     public List<LocationDTO> getAllLocationsByCategory(@RequestParam(name = "title") String title){  // TODO getAllLocationsByCategoryTitle
@@ -272,11 +275,12 @@ public class LocationController {
      *    setFullDescription()   - параметром отдаем fullDescription;
      *    setAddress()           - параметром отдаем address;
      *    setLatitude()          - параметром отдаем latitude;
-     *    setLongitude()         - параметром отдаем longitude.</p>
+     *    setLongitude()         - параметром отдаем longitude.
+     * </p>
      *
      * <p>Сохраняем сформированную локацию,
      *    с помощью метода (saveLocation()),
-     *    СервисаЛокаций (LocationService),
+     *    сервисаЛокаций (locationService),
      *    куда параметром отдаем (location).
      * </p>
      *
@@ -317,12 +321,13 @@ public class LocationController {
      * <p>Получаем данные с помощью метода,
      *    удалитьЛокацию() (deleteLocation()),
      *    с параметром (id)
-     *    из СервисаЛокаций (LocationService)
+     *    из сервисаЛокаций (locationService)
      * </p>
      *
      * @param id (Long)
      * Передаем указанный параметр,
-     * для определения локации, которую хотим удалить.
+     * для определения локации,
+     * которую хотим удалить.
      */
     @DeleteMapping("/location/delete/{id}")
     public void deleteLocationById(@PathVariable Long id){
