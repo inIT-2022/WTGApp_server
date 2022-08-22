@@ -46,7 +46,6 @@
     "userCreatedId": Long
 }
 
-
 3) UserDTO:
 {
     "id": Long,
@@ -81,6 +80,20 @@
     "routeCategoryId": Long,
     "userCreatedId": Long
 }
+
+5) OfferDTO:
+{
+    "id": Long,
+    "title": "String",
+    "description": "String",
+    "userCreatedId": Long,
+    "userReceivedId": Long,
+    "eventId": "String",
+    "locationId": "String",
+    "offerCategoryId": "String"
+}
+
+6) Authentication
 
 
 
@@ -170,6 +183,18 @@
 }
 
 
+Пример предложения с id = 2:
+{
+    "id": 2,
+    "title": "Музей истории СК ЖД",
+    "description": "",
+    "userCreatedId": 4,
+    "userReceivedId": 1,
+    "eventId": "Поход-экспедиция юных поисковиков по местам боевой славы",
+    "locationId": "Музей истории СК ЖД",
+    "offerCategoryId": "STORY"
+}
+
 ==============================================================================================================================================================
 Описание REST адресов:
 ______________________________________________________________________________________________________________________________________________________________
@@ -180,28 +205,26 @@ ________________________________________________________________________________
 4 - localhost:8179/wtg/api/v1/locations/category_id/1                    - Получаем все локации по id категории (добавить категорию в локацию)
 5 - localhost:8179/wtg/api/v1/locations/category_title?title=STORY       - Получаем все локации по названию категории (добавить категорию в локацию)
 6 - localhost:8179/wtg/api/v1/locations/location/create?                  
-                            title=13Локация&
-                            description=описание полное&
-                            fullDescription=описание полное&
-                            address=Плющиха, 2&
-                            latitude=10.0&
-                            longitude=50.0)                              - Создаем новую локацию
+                                  title=13Локация&
+                                  description=описание полное&
+                                  fullDescription=описание полное&
+                                  address=Плющиха, 2&
+                                  latitude=10.0&
+                                  longitude=50.0)                        - Создаем новую локацию
 7 - localhost:8179/wtg/api/v1/locations/location/delete/12               - Удаляем локации по id
 ______________________________________________________________________________________________________________________________________________________________
 События:
 1 - localhost:8179/wtg/api/v1/events                                     - Получаем все события
 2 - localhost:8179/wtg/api/v1/events/1                                   - Получаем событие по id
-3 - localhost:8179/wtg/api/v1/events
-                /title?title=Ярмарка кубанских продуктов                 - Получаем событие по наименованию
+3 - localhost:8179/wtg/api/v1/events/title?
+                                  title=Ярмарка кубанских продуктов      - Получаем событие по наименованию
 4 - localhost:8179/wtg/api/v1/events/category/1                          - Получаем все события по id категории
 5 - localhost:8179/wtg/api/v1/events/category/title?title=STORY          - Получаем все события по наименованию категории
-6 - localhost:8179/wtg/api/v1/events/created/user/4                      - Получаем все события по id создавших юзеров
-7 - localhost:8179/wtg/api/v1/events
-                /created/user/login?login=Gromoboy_333                   - Получаем все события по логину создавших юзеров
-
-   - localhost:8179/wtg/api/v1/events/eventmodels                        - Тестовый метод (можно удалить)
-   - localhost:8179/wtg/api/v1/events/model/{id}                         - Тестовый метод (можно удалить)
-  
+6 - localhost:8179/wtg/api/v1/events/created/user/4                      - Получаем все события по id создавшего юзера
+7 - localhost:8179/wtg/api/v1/events/created/user/login?
+                                  login=Gromoboy_333                     - Получаем все события по логину создавшего юзера
+   - localhost:8179/wtg/api/v1/events/eventmodels                        - Тестовый метод (нужно удалить)
+   - localhost:8179/wtg/api/v1/events/model/{id}                         - Тестовый метод (нужно удалить)
 8 -                                                                      - todo: Нужен метод для создания события
 9 -                                                                      - todo: Нужен метод для удаления события
 ______________________________________________________________________________________________________________________________________________________________
@@ -212,8 +235,8 @@ ________________________________________________________________________________
 4 - localhost:8179/wtg/api/v1/users/1                                    - Получаем пользователя по id
 5 - localhost:8179/wtg/api/v1/users/login/Krolik_045                     - Получаем пользователя по логину
 6 - localhost:8179/wtg/api/v1/users/user/create?
-                            
-                                                                         - 
+                                  |
+                                  |                                      - 
 7 - localhost:8179/wtg/api/v1/users/user/delete/1                        - Удаляем пользователя по id
 ______________________________________________________________________________________________________________________________________________________________
 Маршруты:
@@ -229,19 +252,22 @@ ________________________________________________________________________________
  7 - localhost:8179/wtg/api/v1/routes/route/delete/1                     - Удаляем маршрут по id
 ______________________________________________________________________________________________________________________________________________________________
 Предложения (подборки):
-1 - localhost:8179/wtg/api/v1/offers                                     -
-2 - localhost:8179/wtg/api/v1/offers/category/{id}                       -
-3 - localhost:8179/wtg/api/v1/offers/category_title                      -
-4 - localhost:8179/wtg/api/v1/offers/createOffer                         -
-5 - localhost:8179/wtg/api/v1/offers/deleteOfferById/{id}                -
-6 - localhost:8179/wtg/api/v1/offers/title                               -
-7 - localhost:8179/wtg/api/v1/offers/user_created/{id}                   -
-8 - localhost:8179/wtg/api/v1/offers/user_created_login                  -
-9 - localhost:8179/wtg/api/v1/offers/{id}                                -
+1 - localhost:8179/wtg/api/v1/offers                                     - Получаем все предложения
+2 - localhost:8179/wtg/api/v1/offers/2                                   - Получаем предложение по id
+3 - localhost:8179/wtg/api/v1/offers/title?title=Музей истории СК ЖД     - Получаем предложение по наименованию
+4 - localhost:8179/wtg/api/v1/offers/category/1                          - Получаем все предложения по id категории
+5 - localhost:8179/wtg/api/v1/offers/category/title?title=STORY          - Получаем все предложения по наименованию категории
+6 - localhost:8179/wtg/api/v1/offers/created/user/4                      - Получаем все предложения по id создавшего юзера
+7 - localhost:8179/wtg/api/v1/offers/created/user/login?
+                                  login=Gromoboy_333                      - Получаем все предложения по наименованию создавшего юзера
+8 - localhost:8179/wtg/api/v1/offers/offer/create?
+                                  title=Новое предложение&
+                                  description=описание предложения       - Создаем новое предложение
+9 - localhost:8179/wtg/api/v1/offers/offer/delete/1                      - Удаляем предложение по id
 ______________________________________________________________________________________________________________________________________________________________
 Авторизация:
-localhost:8179/wtg/login                                                 -
+1 - localhost:8179/wtg/login                                             -
 ______________________________________________________________________________________________________________________________________________________________
 Регистрация:
-localhost:8179/wtg/signup                                                -
+1 - localhost:8179/wtg/signup                                            -
 ==============================================================================================================================================================
