@@ -101,6 +101,7 @@ public class LocationController {
                 .collect(Collectors.toList());
     }
 
+    
     /**
      * Получаем локацию по id
      * <p>пример запроса: localhost:8179/wtg/api/v1/locations/1</p>
