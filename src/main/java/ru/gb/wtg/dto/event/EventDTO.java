@@ -32,5 +32,6 @@ public class EventDTO {
         this.price = event.getPrice();
         this.location = event.getLocation().getId();
         this.isActive = event.getIsActive();
+        // TODO включить в ДТО userCreatedId: (в таблице отображается инфо: userCreatedId - null)
     }
 }
