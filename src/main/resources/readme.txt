@@ -202,8 +202,8 @@ ________________________________________________________________________________
 1 - localhost:8179/wtg/api/v1/locations                                  - ѕолучаем все локации
 2 - localhost:8179/wtg/api/v1/locations/1                                - ѕолучаем локацию по Id
 3 - localhost:8179/wtg/api/v1/locations/title?title=—кейт парк           - ѕолучаем локацию по наименованию
-4 - localhost:8179/wtg/api/v1/locations/category_id/1                    - ѕолучаем все локации по id категории (добавить категорию в локацию)
-5 - localhost:8179/wtg/api/v1/locations/category_title?title=STORY       - ѕолучаем все локации по названию категории (добавить категорию в локацию)
+4 - localhost:8179/wtg/api/v1/locations/category/1                       - ѕолучаем все локации по id категории (добавить категорию в локацию)
+5 - localhost:8179/wtg/api/v1/locations/category/title?title=STORY       - ѕолучаем все локации по названию категории (добавить категорию в локацию)
 6 - localhost:8179/wtg/api/v1/locations/location/create?                  
                                   title=13Ћокаци€&
                                   description=описание полное&
