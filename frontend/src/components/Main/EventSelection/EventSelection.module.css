@@ -1,0 +1,27 @@
+.line {
+    border-top: 3px solid #EEEEEE;
+    opacity: 0.5;
+    margin-top: 80px;
+}
+
+.text {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 51px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 209px;
+    color: #000;
+    max-width: 730px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 31px;
+    margin-right: 0;
+    margin-bottom: 209px;
+    text-align: right;
+    padding-right: 20%;
+}

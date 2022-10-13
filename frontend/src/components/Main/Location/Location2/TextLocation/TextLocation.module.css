@@ -1,0 +1,50 @@
+.raiting {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 82px;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 70px;
+}
+
+.list {
+    display: flex;
+    margin-left: 24px;
+    margin-bottom: 70px;
+}
+
+.star {
+    margin-right: 8px;
+    margin-top: 9px;
+}
+
+.star:last-child {
+    margin-right: 0;
+}
+
+.assesment {
+    font-weight: 400;
+    font-size: 43px;
+    line-height: 58px;
+    margin-left: 68px;
+    margin-right: 24px;
+}
+
+.score {
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 58px;
+    margin-right: 78px;
+}
+
+.favorites {
+    margin-right: 36px;
+}
