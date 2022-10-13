@@ -1,0 +1,48 @@
+.img {
+  max-width: 100%;
+  border-radius: 5px;
+  position: relative;
+  margin-top: 100px;
+}
+
+.search {
+  width: 714px;
+  height: 60px;
+  border: 1px solid #cdcdcd;
+  border-radius: 16px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  background-color: #fcf4f4d3;
+  margin-top: 23px;
+  padding: 2%;
+}
+
+.title {
+  font-size: 80px;
+  line-height: 109px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 400;
+  margin-left: 100px;
+}
+
+.wrapperH3 {
+  background-color: #EEC3FD;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.svgSearch {
+  position: absolute;
+  right: 10%;
+  top: 18%;
+}
+
+.img {
+  max-width: 100%;
+  border-radius: 5px;
+  position: relative;
+  margin-top: 0;
+}
+

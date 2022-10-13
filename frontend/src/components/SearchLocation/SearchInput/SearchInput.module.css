@@ -1,0 +1,15 @@
+.search {
+    width: 814px;
+    height: 60px;
+    border: 1px solid #CDCDCD;
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    padding-left: 41px;
+    padding-right: 54px;
+    background-color: #F1EAEA;
+    position: absolute;
+    top: 141px;
+    left: 80px;
+}

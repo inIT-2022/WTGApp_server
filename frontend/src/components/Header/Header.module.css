@@ -1,0 +1,27 @@
+.header {
+  background-color: var(--color-header-main);
+  background: var(--color-accent);
+  padding: 30px;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 80px 0;
+}
+
+.header__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo__item {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+.logo__item_text {
+  display: block;
+  margin-left: 8px;
+}
