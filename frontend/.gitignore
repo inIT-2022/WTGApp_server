@@ -39,6 +39,7 @@ build/
 SQLScriptWTG2.sql
 
 # dependencies
+/node_modules
 /.pnp
 .pnp.js
 
