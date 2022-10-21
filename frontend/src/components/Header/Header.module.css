@@ -1,9 +1,15 @@
 .header {
-  background-color: var(--color-header-main);
-  background: var(--color-accent);
+  background-image: url('/public/BlockHeader.png');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+  height: 340px;
+
   padding: 30px;
 }
-.container {
+.header__wrapper {
+  background-position: left;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: space-between;

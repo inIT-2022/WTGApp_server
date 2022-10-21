@@ -7,13 +7,12 @@
 .navigation__list {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
-  gap: 60px;
+  gap: 50px;
+  padding: 100px 0 55px 0;
 }
 
 .navigation__link {
-  margin-right: 25px;
-  font-size: 35px;
+  font-size: 40px;
   transition: border var(--transition-short);
   border-bottom: 2px solid transparent;
 }

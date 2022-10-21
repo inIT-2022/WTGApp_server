@@ -1,9 +1,11 @@
 .img {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .line {
-    border-top: 3px solid #EEEEEE;
-    opacity: 0.5;
-    margin-bottom: 50px;
+  border-top: 3px solid #eeeeee;
+  opacity: 0.5;
+  margin-bottom: 50px;
 }

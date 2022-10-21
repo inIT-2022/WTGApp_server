@@ -5,8 +5,8 @@ import { ReactComponent as TelegramIcon } from './img/telegram-icon.svg';
 import { ReactComponent as TwitterIcon } from './img/twitter-icon.svg';
 import { ReactComponent as MailIcon } from './img/mail-icon.svg';
 import { ReactComponent as PhoneIcon } from './img/phone-icon.svg';
-import Container from './../Container/Container';
 import { Link } from 'react-router-dom';
+import { Layout } from '../../Layouts/Layout/Layout';
 
 const MENU = [
   { value: 'Главная', link: '' },
@@ -20,7 +20,7 @@ const MENU = [
 export const Footer = () => {
   return (
     <footer className={style.footer}>
-      <Container>
+      <Layout>
         <div className={style.footer__columns}>
           <div className={style.footer__colum}>
             <div className={style.logo__item}>
@@ -86,7 +86,7 @@ export const Footer = () => {
           </div>
         </div>
         <p className={style.footer__copyright}>© City Events, 2022</p>
-      </Container>
+      </Layout>
     </footer>
   );
 };

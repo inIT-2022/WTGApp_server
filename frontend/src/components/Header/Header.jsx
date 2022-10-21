@@ -1,19 +1,17 @@
 import style from './Header.module.css';
 import { Logo } from './Logo/Logo';
 import { Auth } from './Auth/Auth';
-import Container from '../Container/Container';
-import Tabs from './Tabs';
+import { Layout } from '../../Layouts/Layout/Layout';
 
 export const Header = () => {
   return (
     <header className={style.header} id='header'>
-      <Container>
-        <div className={style.container}>
+      <Layout>
+        <div className={style.header__wrapper}>
           <Logo />
           <Auth />
-          <Tabs />
         </div>
-      </Container>
+      </Layout>
     </header>
   );
 };
