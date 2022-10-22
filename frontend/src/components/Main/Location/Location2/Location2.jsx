@@ -1,10 +1,8 @@
 import style from './Location2.module.css';
 import { ReactComponent as SearchSvg } from '../img/search.svg';
 import { TextLocation } from './TextLocation/TextLocation';
-import { useNavigate } from 'react-router-dom';
 
 export const Location2 = () => {
-  const navigate = useNavigate();
 
   return (
     <div className={style.overlay}>
