@@ -8,8 +8,8 @@
 }
 
 .title {
-    font-weight: 400;
-    font-size: 82px;
+    font-size: 60px;
+    line-height: 71px;
     text-align: center;
     margin-bottom: 50px;
     margin-top: 70px;
@@ -24,6 +24,8 @@
 .star {
     margin-right: 8px;
     margin-top: 9px;
+    width: 42px;
+    height: 42px;
 }
 
 .star:last-child {
@@ -32,16 +34,15 @@
 
 .assesment {
     font-weight: 400;
-    font-size: 43px;
-    line-height: 58px;
+    font-size: 40px;
+    line-height: 45px;
     margin-left: 68px;
-    margin-right: 24px;
+    margin-right: 14px;
 }
 
 .score {
     font-weight: 700;
-    font-size: 43px;
-    line-height: 58px;
+    font-size: 40px;
     margin-right: 78px;
 }
 

@@ -33,6 +33,10 @@
     gap: 10px;
 }
 
+.footer__list:last-child {
+    margin-bottom: 20px;
+}
+
 .footer__title {
     font-weight: 700;
     margin-bottom: 15px;

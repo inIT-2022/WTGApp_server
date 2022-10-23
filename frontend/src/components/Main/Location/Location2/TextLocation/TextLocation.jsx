@@ -4,10 +4,11 @@ import { ReactComponent as ThirdStar} from '../img/ThirdStar.svg';
 import { ReactComponent as Favorites} from '../img/Favorites.svg';
 import { ReactComponent as Share} from '../img/Share.svg';
 import { CardLocation } from '../CardLocation/CardLocation';
+import Container from '../../../../Container/Container';
 
 export const TextLocation = () => {
   return (
-    <>
+    <Container>
       <h2 className={style.title}>Скейт парк в парке Галицкого</h2>
       <div className={style.raiting}>
         <div className={style.wrapper}>
@@ -29,6 +30,6 @@ export const TextLocation = () => {
         </div>
       </div>
       <CardLocation />
-    </>
+    </Container>
   );
 };

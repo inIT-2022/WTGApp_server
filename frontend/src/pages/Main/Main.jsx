@@ -4,7 +4,7 @@ import Events from '../../components/Main/Events';
 import Tabs from '../../components/Header/Tabs';
 import { Layout } from '../../Layouts/Layout/Layout';
 import Location from '../../components/Main/Location/';
-import Routes from '../../components/Routes/Routes';
+import Routespage from '../../components/Routespage/Routespage';
 
 const Main = ({ searchValue, setSearchValue }) => {
   return (
@@ -13,7 +13,7 @@ const Main = ({ searchValue, setSearchValue }) => {
       <Events />
       <Layout>
         <Location searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Routes searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
         <EventSelection />
       </Layout>
     </main>

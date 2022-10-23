@@ -17,17 +17,17 @@
   font-size: 48px;
   line-height: 54px;
   position: absolute;
-  left: 205px;
-  top: 270px;
+  left: 405px;
+  top: 340px;
 }
 
 .text {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 22px;
   line-height: 18px;
   position: absolute;
-  left: 205px;
-  top: 325px;
+  left: 405px;
+  top: 385px;
 }
 
 .wrapper {
