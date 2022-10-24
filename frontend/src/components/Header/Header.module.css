@@ -1,0 +1,33 @@
+.header {
+  background-image: url('/public/BlockHeader.png');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+  height: 340px;
+
+  padding: 30px;
+}
+.header__wrapper {
+  background-position: left;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 80px 0;
+}
+
+.header__box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo__item {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+.logo__item_text {
+  display: block;
+  margin-left: 8px;
+}

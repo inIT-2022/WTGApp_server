@@ -1,0 +1,35 @@
+.events {
+  position: relative;
+}
+
+.img {
+  margin-bottom: 50px;
+}
+
+.line {
+  border-top: 3px solid #EEEEEE;
+  opacity: 0.5;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 54px;
+  position: absolute;
+  left: 405px;
+  top: 340px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 18px;
+  position: absolute;
+  left: 405px;
+  top: 385px;
+}
+
+.wrapper {
+  color: #FFFFFF;
+}
