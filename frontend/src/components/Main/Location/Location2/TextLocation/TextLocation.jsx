@@ -1,10 +1,9 @@
 import style from './TextLocation.module.css';
-import { ReactComponent as FirstStar} from '../img/FirstStar.svg';
-import { ReactComponent as ThirdStar} from '../img/ThirdStar.svg';
 import { ReactComponent as Favorites} from '../img/Favorites.svg';
 import { ReactComponent as Share} from '../img/Share.svg';
 import { CardLocation } from '../CardLocation/CardLocation';
 import Container from '../../../../Container/Container';
+import { Raiting } from '../../../../Raiting/Raiting';
 
 export const TextLocation = () => {
   return (
@@ -14,13 +13,7 @@ export const TextLocation = () => {
         <div className={style.wrapper}>
           <p className={style.assesment}>Оценка</p>
           <p className={style.score}>4,9</p>
-          <ul className={style.list}>
-          <li className={style.star}><FirstStar width={38} height={38}/></li>
-          <li className={style.star}><ThirdStar width={38} height={38}/></li>
-          <li className={style.star}><ThirdStar width={38} height={38}/></li>
-          <li className={style.star}><ThirdStar width={38} height={38}/></li>
-          <li className={style.star}><ThirdStar width={38} height={38}/></li>
-        </ul>
+          <Raiting />
         </div>
         <div className={style.wrapper}>
           <Favorites className={style.favorites} />

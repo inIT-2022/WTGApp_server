@@ -5,6 +5,8 @@
 
 .wrapper {
     display: flex;
+    margin-bottom: 40px;
+    align-items: center;
 }
 
 .title {
@@ -34,18 +36,19 @@
 
 .assesment {
     font-weight: 400;
-    font-size: 40px;
+    font-size: 36px;
     line-height: 45px;
-    margin-left: 68px;
+    margin-left: 48px;
     margin-right: 14px;
 }
 
 .score {
     font-weight: 700;
-    font-size: 40px;
-    margin-right: 78px;
+    font-size: 36px;
+    margin-right: 58px;
 }
 
 .favorites {
-    margin-right: 36px;
+    margin-right: 6px;
+    width: 60px;
 }

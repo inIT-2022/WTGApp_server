@@ -22,7 +22,7 @@ const Routes = ({ searchValue, setSearchValue }) => {
         <ul className={style.gallery}>
           
           <li className={style.img_wrapper}>
-            <Link to='/routespages//1'>
+            <Link to='/routespages/1'>
               <h3>Пеший</h3>
                 <img
                   className={style.img}
@@ -44,7 +44,7 @@ const Routes = ({ searchValue, setSearchValue }) => {
           </li>
           
           <li className={style.img_wrapper}>
-            <Link to='/routespages/3'>
+            <Link to='routespages/3'>
               <h3>Авто</h3>
                 <img
                   className={style.img}

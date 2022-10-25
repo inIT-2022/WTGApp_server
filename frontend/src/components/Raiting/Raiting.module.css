@@ -1,0 +1,38 @@
+.fullstars {
+    text-align: center;
+    margin-right: 60px;
+}
+
+.fullstars .ratinggroup {
+    display: inline-flex;
+}
+
+.fullstars input {
+    position: absolute;
+    left: -9999px;
+}
+
+.fullstars label {
+    margin: 0;
+    cursor: pointer;
+}
+
+.fullstars label svg {
+    margin: 2px;
+    height: 40px;
+    width: 40px;
+    fill: #E1BF0B;
+    transition: fill 0.3s;
+}
+
+.fullstars input:checked~label svg {
+    fill: #dbd5b2;
+}
+
+.fullstars .ratinggroup:hover label svg {
+    fill: #E1BF0B;
+}
+
+.fullstars .ratinggroup input:hover~label svg {
+    fill: #d8d4be;
+}
