@@ -9,50 +9,39 @@ import SearchRoutes from './SearchRoutes';
 import Line from '../Line';
 
 const Routes = ({ searchValue, setSearchValue }) => {
-
   return (
     <>
       <Line />
       <Container>
-        <div className={style.wrapper}>
-          <Shortcut className={style.svg} width={85} height={85}/>
+        <div className={style.wrapper} id='routes'>
+          <Shortcut className={style.svg} width={85} height={85} />
           <h2 className={style.title}>яркие маршруты</h2>
         </div>
-        <SearchRoutes searchValue={searchValue} setSearchValue={setSearchValue} />
+        <SearchRoutes
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
         <ul className={style.gallery}>
-          
           <li className={style.img_wrapper}>
             <Link to='/routespages/1'>
               <h3>Пеший</h3>
-                <img
-                  className={style.img}
-                  src={slide_1}
-                  alt='Пеший'
-                ></img>
+              <img className={style.img} src={slide_1} alt='Пеший'></img>
             </Link>
           </li>
-          
+
           <li className={style.img_wrapper}>
             <Link to='/routespages/2'>
               <h3>Вело</h3>
-                <img
-                  className={style.img}
-                  src={slide_2}
-                  alt='Вело'
-                ></img>{' '}
+              <img className={style.img} src={slide_2} alt='Вело'></img>{' '}
             </Link>
           </li>
-          
+
           <li className={style.img_wrapper}>
             <Link to='routespages/3'>
               <h3>Авто</h3>
-                <img
-                  className={style.img}
-                  src={slide_3}
-                  alt='Авто'
-                ></img>{' '}
+              <img className={style.img} src={slide_3} alt='Авто'></img>{' '}
             </Link>
-          </li>  
+          </li>
         </ul>
       </Container>
     </>

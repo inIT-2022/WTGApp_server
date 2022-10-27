@@ -1,0 +1,10 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navText {
+  font-size: 28px;
+  color: #000000;
+}

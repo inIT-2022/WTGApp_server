@@ -9,15 +9,17 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Shortcut } from './img/shortcut.svg';
 
 export const Location = ({ searchValue, setSearchValue }) => {
-
   return (
     <>
       <Container>
-        <div className={style.wrapper}>
-          <Shortcut className={style.svg} width={85} height={85}/>
+        <div className={style.wrapper} id='locations'>
+          <Shortcut className={style.svg} width={85} height={85} />
           <h2 className={style.title}>рекомендуемые локации</h2>
         </div>
-        <SearchLocation searchValue={searchValue} setSearchValue={setSearchValue} />
+        <SearchLocation
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
         <ul className={style.locations__gallery}>
           <li className={style.locations__img_wrapper}>
             <Link to='/locations/1'>
@@ -28,13 +30,12 @@ export const Location = ({ searchValue, setSearchValue }) => {
                   alt='Плато Лаго'
                 ></img>
               </div>
-              <div className={style.blocText}> 
+              <div className={style.blocText}>
                 <div className={style.text}>
                   <p className={style.description}>Плато Лаго</p>
                 </div>
               </div>
             </Link>
-            
           </li>
           <li className={style.locations__img_wrapper}>
             <Link to='/locations/2'>
@@ -45,7 +46,7 @@ export const Location = ({ searchValue, setSearchValue }) => {
                   alt='Парк Галицкого'
                 ></img>{' '}
               </div>
-              <div className={style.blocText}> 
+              <div className={style.blocText}>
                 <div className={style.text}>
                   <p className={style.description}>Парк Галицкого</p>
                 </div>
@@ -54,16 +55,18 @@ export const Location = ({ searchValue, setSearchValue }) => {
           </li>
           <li className={style.locations__img_wrapper}>
             <Link to='/locations/3'>
-              <div className={style.blocImg}> 
+              <div className={style.blocImg}>
                 <img
                   className={style.locations__img}
                   src={slide_3}
                   alt='Национальный Академический театр оперы и балета'
                 ></img>{' '}
               </div>
-              <div className={style.blocText}> 
+              <div className={style.blocText}>
                 <div className={style.text}>
-                  <p className={style.description}>Национальный Академический театр оперы и балета</p>
+                  <p className={style.description}>
+                    Национальный Академический театр оперы и балета
+                  </p>
                 </div>
               </div>
             </Link>
@@ -77,18 +80,15 @@ export const Location = ({ searchValue, setSearchValue }) => {
                   alt='Скала-Парус'
                 ></img>{' '}
               </div>
-              <div className={style.blocText}> 
+              <div className={style.blocText}>
                 <div className={style.text}>
                   <p className={style.description}>Скала-Парус</p>
                 </div>
               </div>
             </Link>
           </li>
-          
         </ul>
       </Container>
     </>
   );
 };
-
-
