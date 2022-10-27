@@ -1,6 +1,5 @@
 import style from './CardLocation.module.css';
 import FotoLocation from '../img/FotoLocation.jpg';
-import Accordion from './../../../../Accordion/index';
 
 export const CardLocation = () => (
     <>
@@ -15,7 +14,6 @@ export const CardLocation = () => (
             <a className={style.link} href="/">Источник</a>
             <div className={style.reviewsScope}>
               <p className={style.reviews}>Крутая скейт площадка!!!</p>
-              <Accordion />
             </div>
             <p className={style.reviews}>График работы: не указан</p>
             <p className={style.reviews}>Возрастные ограничения: Без возрастных ограничений</p>
