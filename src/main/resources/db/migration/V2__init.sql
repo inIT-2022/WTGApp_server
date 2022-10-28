@@ -833,3 +833,6 @@ offer_categories_id) VALUES
 
 
 
+CREATE TABLE mynewdb
+(
+);
