@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom';
 import { Layout } from '../../Layouts/Layout/Layout';
 import style from './EventFullPage.module.css';
 import imgPage from '../../img/eventPage.png';
+import { API_URI } from '../../assets/const';
+import axios from 'axios';
 
 export const EventFullPage = () => {
   const [eventPage, setEventPage] = React.useState([]);
   const { id } = useParams();
   React.useEffect(() => {
     const fetchEventPage = async (page) => {
-      const res = await fetch(
-        `http://localhost:8179/wtg/api/v1/events/${page}`,
-      );
-      const data = await res.json();
+      const { data } = await axios(`${API_URI}/events/${page}`);
       setEventPage(data);
     };
     fetchEventPage(id);

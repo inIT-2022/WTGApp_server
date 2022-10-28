@@ -10,7 +10,7 @@ import { ReactComponent as Shortcut } from './img/shortcut.svg';
 
 export const Location = ({ searchValue, setSearchValue }) => {
   return (
-    <>
+    <section className={style.location}>
       <Container>
         <div className={style.wrapper} id='locations'>
           <Shortcut className={style.svg} width={85} height={85} />
@@ -89,6 +89,6 @@ export const Location = ({ searchValue, setSearchValue }) => {
           </li>
         </ul>
       </Container>
-    </>
+    </section>
   );
 };

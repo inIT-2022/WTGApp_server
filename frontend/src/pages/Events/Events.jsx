@@ -3,21 +3,20 @@ import { Link } from 'react-router-dom';
 import { Event } from '../../components/Event/Event';
 import { Layout } from '../../Layouts/Layout/Layout';
 import style from './Events.module.css';
-// import { API_URI } from '../../assets/const';
-// import axios from 'axios';
+import { API_URI } from '../../assets/const';
+import axios from 'axios';
+import Spinner from '../../components/Spinner/Spinner';
 
 export const Events = () => {
   const [events, getEvents] = React.useState([]);
   React.useEffect(() => {
     const fetchEvents = async () => {
-      const res = await fetch('http://localhost:8179/wtg/api/v1/events');
-      const data = await res.json();
+      const { data } = await axios(`${API_URI}/events`);
       getEvents(data);
     };
     fetchEvents();
   }, []);
 
-  console.log(events);
   return (
     <Layout>
       <div className={style.nav}>
@@ -38,7 +37,7 @@ export const Events = () => {
 
         <h2 className={style.navText}>/ Top events /</h2>
       </div>
-      {events &&
+      {events.length > 0 ? (
         events.map((event) => (
           <Event
             key={event.id}
@@ -48,7 +47,10 @@ export const Events = () => {
             source={event.linkEventSite}
             id={event.id}
           />
-        ))}
+        ))
+      ) : (
+        <Spinner />
+      )}
     </Layout>
   );
 };

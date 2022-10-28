@@ -1,6 +1,6 @@
 import style from './TextLocation.module.css';
-import { ReactComponent as Favorites} from '../img/Favorites.svg';
-import { ReactComponent as Share} from '../img/Share.svg';
+import { ReactComponent as Favorites } from '../img/Favorites.svg';
+import { ReactComponent as Share } from '../img/Share.svg';
 import { CardLocation } from '../CardLocation/CardLocation';
 import Container from '../../../../Container/Container';
 import { Raiting } from '../../../../Raiting/Raiting';
