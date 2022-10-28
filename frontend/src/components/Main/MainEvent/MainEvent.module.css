@@ -1,0 +1,25 @@
+.events {
+  position: relative;
+  height: 600px;
+  background-image: url('./img/Events.jpg');
+  padding-top: 450px;
+  padding-left: 400px;
+}
+
+.line {
+  border-top: 3px solid #eeeeee;
+  opacity: 0.5;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 48px;
+  color: #ffffff;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 22px;
+  color: #ffffff;
+}
