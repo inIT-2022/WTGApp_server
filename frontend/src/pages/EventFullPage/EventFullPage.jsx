@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Layout } from '../../Layouts/Layout/Layout';
 import style from './EventFullPage.module.css';
-import imgPage from '../../img/eventPage.png';
 import { API_URI } from '../../assets/const';
 import axios from 'axios';
 
@@ -16,7 +15,7 @@ export const EventFullPage = () => {
     };
     fetchEventPage(id);
   }, [id]);
-  const { description, linkEventSite, startDatetime, title, price } = eventPage;
+  const { description, linkImage, startDatetime, title, price } = eventPage;
 
   const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
   return (
@@ -26,7 +25,7 @@ export const EventFullPage = () => {
         <div className={style.leftContent}>
           <p className={style.distance}>Расстояние 25,7 км</p>
           <img
-            src={imgPage}
+            src={linkImage ? linkImage.split('|')[0] : null}
             alt={`изображение ${title}`}
             width={540}
             height={418}

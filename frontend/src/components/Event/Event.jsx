@@ -1,16 +1,16 @@
 import style from './Event.module.css';
-import eventImg from '../../img/image 28.png';
 import { Link } from 'react-router-dom';
 
-export const Event = ({ source, description, id, date, title }) => {
+export const Event = ({ source, description, id, date, title, img }) => {
   const shortSource = source.slice(8, 28);
 
+  const imgLinks = img.split('|');
   return (
     <Link to={`${id}`} className={style.wrapper}>
       <div className={style.imgWrapper}>
         <img
           className={style.img}
-          src={eventImg}
+          src={imgLinks[0]}
           alt='изображение события'
           width={288}
           height={172}

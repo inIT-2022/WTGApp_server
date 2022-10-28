@@ -46,6 +46,7 @@ export const Events = () => {
             date={event.startDatetime}
             source={event.linkEventSite}
             id={event.id}
+            img={event.linkImage}
           />
         ))
       ) : (
