@@ -30,6 +30,9 @@ public class Event {
     @Column(name = "description")
     private String description;
 
+    @Column(name= "link_image")
+    private String linkImage;
+
     @Column(name = "start_datetime")
     private LocalDateTime startDatetime;
 
