@@ -184,3 +184,4 @@ CREATE TABLE  offers(
     is_active boolean,
     offer_categories_id integer REFERENCES offer_categories(id)
 );
+
