@@ -12,7 +12,6 @@ export const Routespages = () => {
   return (
     <Container>
       <div className={style.modal}> 
-        <h2 className={style.titlePages}>маршрут</h2>
         <div className={style.routes}>
           <h2 className={style.title}>Исторический Краснодар (пеший)</h2>
           <div className={style.raiting}>

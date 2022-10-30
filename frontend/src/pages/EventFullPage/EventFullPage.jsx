@@ -32,7 +32,7 @@ export const EventFullPage = () => {
           />
           <div className={style.enter}>
             <p className={style.date}>{startDatetime}</p>
-            <p className={style.censure}>Без возростных ограничений</p>
+            <p className={style.censure}>Без возрaстных ограничений</p>
             <p className={style.price}>{cost}</p>
           </div>
         </div>

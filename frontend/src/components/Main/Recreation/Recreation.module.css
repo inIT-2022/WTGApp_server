@@ -1,0 +1,128 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.description {
+    font-size: 20px;
+    margin-left: 0;
+}
+
+.resptab {
+    padding: 9%;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 62px;
+    line-height: 107px;
+}
+
+td {
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.tableText {
+    padding-right: 80px;
+    font-size: 29px;
+    padding-left: 50px;
+    padding-top: 12px;
+}
+
+.btn {
+    margin-top: 22px;
+    width: 350px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%), 0px 4px 12px rgb(0 0 0 / 15%);
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    color: #A09999;
+    border: 1px solid #A09999;
+    border-radius: 50px;
+}
+
+.data {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #A09999;
+    border-radius: 50px;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    color: #A09999;
+    width: 200px;
+    height: 40px;
+}
+
+.input {
+    border: none;
+    margin-left: 50px;
+}
+
+.inputTime {
+    background: #FFFFFF;
+    border: 1px solid #A09999;
+    border-radius: 50px;
+    width: 126px;
+    height: 40px;
+    margin-left: 60px;
+    padding: 10%;
+}
+
+.sozTable {
+    padding: 13%;
+    padding-top: 0;
+    padding-bottom: 80px;
+}
+
+.textSoz {
+    font-size: 29px;
+    padding-right: 100px;
+}
+
+.button {
+    margin-left: 285px;
+    margin-bottom: 100px;
+    width: 540px;
+    height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 100px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+}
+
+@media (max-width: 960px) {
+    .wrapper {
+            margin-top: 50px;
+        }
+    
+        .description {
+            font-size: 18px;
+        }
+
+    .button {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 360px) {
+    .wrapper {
+        margin-top: 50px;
+    }
+
+    .description {
+        font-size: 18px;
+    }
+
+    .button {
+        margin-bottom: 50px;
+    }
+}
