@@ -14,6 +14,7 @@ public class EventDTO {
     private Long id;
     private String title;
     private String description;
+    private String linkImage;
     private LocalDateTime startDatetime;
     private LocalDateTime finishDatetime;
     private String linkEventSite;
@@ -26,6 +27,7 @@ public class EventDTO {
         this.id = event.getId();
         this.title = event.getTitle();
         this.description = event.getDescription();
+        this.linkImage = event.getLinkImage();
         this.startDatetime = event.getStartDatetime();
         this.finishDatetime = event.getFinishDatetime();
         this.linkEventSite = event.getLinkEventSite();
