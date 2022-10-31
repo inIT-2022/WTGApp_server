@@ -44,11 +44,13 @@
   font-size: 20px;
 }
 .review {
-  font-size: 20px;
+  font-size: 32px;
+  padding-left: 95px;
+  align-self: flex-end;
 }
 .rightHeader {
   display: flex;
-  gap: 10px;
+  gap: 30px;
   margin: 10px 0;
 }
 .adress {
