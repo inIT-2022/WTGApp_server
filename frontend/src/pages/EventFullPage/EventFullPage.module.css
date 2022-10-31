@@ -1,7 +1,19 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.navText {
+  font-size: 28px;
+  color: #000000;
+}
+
 .title {
   font-size: 48px;
   text-align: center;
-  margin: 4px;
+  padding: 25px 0;
 }
 .leftContent {
   flex: 1 0 540px;
@@ -16,13 +28,11 @@
 .cart {
   display: flex;
   gap: 20px;
-  background-color: #bd7272;
   padding-bottom: 20px;
 }
 
 .enter {
   margin-top: 20px;
-  background-color: #d2c7c7;
 }
 .date,
 .censure {
@@ -43,12 +53,17 @@
 }
 .adress {
   font-size: 20px;
-  background-color: #d2c7c7;
   line-height: 2;
   margin-bottom: 20px;
+}
+.source {
+  display: block;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: right;
+  padding: 20px 115px 33px 0;
 }
 
 .description {
   font-size: 16px;
-  background-color: #d2c7c7;
 }

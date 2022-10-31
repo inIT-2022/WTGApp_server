@@ -8,11 +8,11 @@ import axios from 'axios';
 import Spinner from '../../components/Spinner/Spinner';
 
 export const Events = () => {
-  const [events, getEvents] = React.useState([]);
+  const [events, setEvents] = React.useState([]);
   React.useEffect(() => {
     const fetchEvents = async () => {
       const { data } = await axios(`${API_URI}/events`);
-      getEvents(data);
+      setEvents(data);
     };
     fetchEvents();
   }, []);

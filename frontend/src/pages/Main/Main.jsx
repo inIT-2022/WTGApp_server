@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './Main.module.css';
 import EventSelection from '../../components/Main/EventSelection';
 import MainEvent from '../../components/Main/MainEvent';
