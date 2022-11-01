@@ -21,7 +21,7 @@
 }
 
 .locations__img {
-  max-width: 250px;
+  max-width: 233px;
   border-radius: 5px;
   transition: transform var(--transition-short);
   gap: 30px;
@@ -32,8 +32,8 @@
 .blocImg {
   background: #000;
   overflow: hidden;
-  height: 320px;
-  width: 245px;
+  height: 300px;
+  width: 233px;
   border-radius: 10px;
   gap: 30px;
 }

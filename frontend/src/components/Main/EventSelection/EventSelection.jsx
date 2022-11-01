@@ -2,7 +2,6 @@ import style from './EventSelection.module.css';
 import Line from './../../Line';
 import Container from '../../Container/Container';
 import { ReactComponent as Shortcut } from './img/shortcut.svg';
-import { Button } from '../../Button/Button';
 
 export const EventSelection = () => (
   <Container>
@@ -20,7 +19,7 @@ export const EventSelection = () => (
         волнуйтесь!
       </p>
       <p className={style.titleText}>Мы сделаем это за Вас!</p>
-      <Button />
+       <button className={style.button}>Подобрать</button>
     </div>
   </Container>
 );

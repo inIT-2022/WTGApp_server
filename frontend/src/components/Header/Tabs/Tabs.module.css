@@ -7,12 +7,12 @@
 .navigation__list {
   display: flex;
   justify-content: space-between;
-  gap: 50px;
+  gap: 30px;
   padding: 100px 0 55px 0;
 }
 
 .navigation__link {
-  font-size: 40px;
+  font-size: 37px;
   transition: border var(--transition-short);
   border-bottom: 2px solid transparent;
 }
@@ -43,4 +43,16 @@
 
 .options__list_item:last-child {
   margin-right: 0;
+}
+
+@media (min-width: 776px) {
+    .navigation__list {
+      display: flex;
+      gap: 20px;
+      padding: 5%;
+    }
+  
+    .navigation__link {
+      font-size: 32px;
+    }
 }

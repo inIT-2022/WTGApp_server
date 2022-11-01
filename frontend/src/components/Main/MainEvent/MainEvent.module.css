@@ -2,8 +2,6 @@
   position: relative;
   height: 600px;
   background-image: url('./img/Events.jpg');
-  padding-top: 450px;
-  padding-left: 400px;
 }
 
 .line {
@@ -13,13 +11,29 @@
 }
 
 .title {
-  font-weight: 400;
-  font-size: 48px;
+  font-size: 54px;
   color: #ffffff;
+  margin-top: -100px;
 }
 
 .text {
-  font-weight: 400;
-  font-size: 22px;
+  font-size: 26px;
   color: #ffffff;
+  margin-top: -20px;
+}
+
+@media (min-width: 776px) {
+  .events {
+      padding-top: 400px;
+      padding-left: 20%;
+    }
+  
+    .title {
+      font-size: 44px;
+      line-height: 50px;
+    }
+  
+    .text {
+      margin-top: 20px;
+    }
 }

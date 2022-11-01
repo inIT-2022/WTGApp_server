@@ -11,10 +11,10 @@
 
 .resptab {
     padding: 9%;
+    padding-bottom: 5%;
 }
 
 h2 {
-    font-weight: 400;
     font-size: 62px;
     line-height: 107px;
 }
@@ -32,7 +32,7 @@ td {
 }
 
 .btn {
-    margin-top: 22px;
+    margin-top: 9px;
     width: 350px;
     height: 40px;
     background: #FFFFFF;
@@ -70,7 +70,7 @@ td {
     border-radius: 50px;
     width: 126px;
     height: 40px;
-    margin-left: 60px;
+    margin-left: 68px;
     padding: 10%;
 }
 
@@ -101,28 +101,40 @@ td {
 
 @media (max-width: 960px) {
     .wrapper {
-            margin-top: 50px;
+            margin-top: 80px;
+            min-width: 700px;
         }
+
+    h2 {
+        font-size: 48px;
+        line-height: 60px;
+    }
     
-        .description {
-            font-size: 18px;
-        }
-
-    .button {
-        margin-bottom: 50px;
-    }
-}
-
-@media (max-width: 360px) {
-    .wrapper {
-        margin-top: 50px;
-    }
-
     .description {
-        font-size: 18px;
+        font-size: 27px;
+        line-height: 35px;
+        padding: 2%;
+        width: 800px;
     }
 
     .button {
-        margin-bottom: 50px;
+        margin-bottom: 100px;
+    }
+
+    .sozTable {
+        padding: 13%;
+        padding-top: 0;
+        padding-bottom: 80px;
+    }
+
+    .textSoz {
+        font-size: 35px;
+        line-height: 40px;
+
+    }
+
+    .svg {
+        width: 30px;
+        height: 30px;
     }
 }

@@ -28,7 +28,7 @@ export const Routespages = () => {
             </div>
             <div className={style.wrapper}>
               <Favorites className={style.favorites} />
-              <Share />
+              <Share className={style.favorites1} />
               <p className={style.assesment}>Отзывы</p>
               <p className={style.score}>78</p>
             </div>

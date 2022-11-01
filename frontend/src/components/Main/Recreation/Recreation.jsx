@@ -79,7 +79,7 @@ export const Recreation = () => {
           <tr>
               <td className={style.textSoz}>поделиться геолокацией</td>
               <td className={style.tableWrapper}>
-                <svg width="78" height="78" viewBox="0 0 105 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className={style.svg} width="78" height="78" viewBox="0 0 105 104" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g filter="url(#filter0_dd_14765_4995)">
                   <rect x="12.9668" y="8" width="80" height="80" rx="40" fill="white"/>
                   <rect x="14.4668" y="9.5" width="77" height="77" rx="38.5" stroke="black" stroke-opacity="0.2" stroke-width="3"/>
@@ -110,7 +110,7 @@ export const Recreation = () => {
           <tr>
               <td className={style.textSoz}>пригласить на мероприятие</td>
               <td className={style.tableWrapper}>
-                <svg width="78" height="78" viewBox="0 0 105 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className={style.svg} width="78" height="78" viewBox="0 0 105 104" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_dd_14765_4999)">
                     <rect x="12.9668" y="8" width="80" height="80" rx="40" fill="white"/>
                     <rect x="14.4668" y="9.5" width="77" height="77" rx="38.5" stroke="black" stroke-opacity="0.2" stroke-width="3"/>
@@ -141,7 +141,7 @@ export const Recreation = () => {
           <tr>
               <td className={style.textSoz}>поиск арендного транспорта</td>
               <td className={style.tableWrapper}>
-                <svg width="78" height="78" viewBox="0 0 105 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className={style.svg} width="78" height="78" viewBox="0 0 105 104" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_dd_14765_5004)">
                     <rect x="12.9668" y="8" width="80" height="80" rx="40" fill="white"/>
                     <rect x="14.4668" y="9.5" width="77" height="77" rx="38.5" stroke="black" stroke-opacity="0.2" stroke-width="3"/>
