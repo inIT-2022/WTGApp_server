@@ -19,6 +19,7 @@ export const Header = () => {
                 <p className={style.subtitle}>
                   отдых, который подойдет именно Вам
                 </p>
+                <span className={style.city}>Краснодар</span>
               </>
             )}
 
@@ -40,9 +41,15 @@ export const Header = () => {
               </>
             )}
 
-            {location.pathname === '/' && (
-              <span className={style.city}>Краснодар</span>
+            {location.pathname === `/locations/${id}` && (
+              <>
+                <p className={style.events}>лОКация</p>
+                <p className={style.subtitleEvents}>
+                  место, куда вам захочется вернуться :)
+                </p>
+              </>
             )}
+
             <Search />
           </div>
           <div className={style.iconWrapper}>

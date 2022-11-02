@@ -2,6 +2,8 @@
   position: relative;
   height: 600px;
   background-image: url('./img/Events.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 450px;
   padding-left: 400px;
 }

@@ -1,10 +1,10 @@
 export const getDateParameters = (fullDate) => {
   if (!fullDate)
     return {
-      startTime: 0,
-      day: 0,
-      year: 0,
-      month: 0,
+      startTime: '',
+      day: '',
+      year: '',
+      month: '',
     };
   const startTime = fullDate.split('T')[1].slice(0, 5);
 

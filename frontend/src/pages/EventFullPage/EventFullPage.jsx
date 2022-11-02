@@ -5,6 +5,7 @@ import style from './EventFullPage.module.css';
 import { API_URI } from '../../assets/const';
 import { getDateParameters } from '../../utils/getDateParameters';
 import { monthes } from '../../assets/const';
+import Slider from '../../components/Slider/Slider';
 import axios from 'axios';
 
 export const EventFullPage = () => {
@@ -25,6 +26,8 @@ export const EventFullPage = () => {
   const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
 
   const { startTime, day, year, month } = getDateParameters(startDatetime);
+
+  const images = linkImage ? linkImage.split('|') : [];
 
   return (
     <Layout>
@@ -52,13 +55,8 @@ export const EventFullPage = () => {
       <h4 className={style.title}>{title}</h4>
       <div className={style.cart}>
         <div className={style.leftContent}>
-          <p className={style.distance}>Расстояние 25,7 км</p>
-          <img
-            src={linkImage ? linkImage.split('|')[0] : null}
-            alt={`изображение ${title}`}
-            width={540}
-            height={418}
-          />
+          <p className={style.distance}>Расстояние 25,7 км</p>{' '}
+          {<Slider items={images} height={500} />}
           <div className={style.enter}>
             <p className={style.date}>
               {' '}

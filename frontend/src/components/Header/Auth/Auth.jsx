@@ -5,17 +5,24 @@ import { RegistrationForm } from '../../RegistrationForm/RegistrationForm';
 import { useState } from 'react';
 
 export const Auth = () => {
-  const [showModalForm,  setShowModalForm] = useState(false);
+  const [showModalForm, setShowModalForm] = useState(false);
 
   return (
-    <div>
-      <button className={style.auth__button} onClick={() => setShowModalForm(!showModalForm)}>
-        <AuthIcon/>
+    <div className={style.wrapper}>
+      <button
+        className={style.auth__button}
+        onClick={() => setShowModalForm(!showModalForm)}
+      >
+        <AuthIcon />
       </button>
-      <CSSTransition classNames='alert' in={showModalForm} timeout={800} unmountOnExit>
-          <RegistrationForm />
+      <CSSTransition
+        classNames='alert'
+        in={showModalForm}
+        timeout={800}
+        unmountOnExit
+      >
+        <RegistrationForm />
       </CSSTransition>
     </div>
-  )
+  );
 };
-
