@@ -35,6 +35,7 @@ body {
   line-height: 1.2;
   color: #18171a;
   background: #eee;
+  min-width: 1072px;
 }
 
 h1,
@@ -105,13 +106,13 @@ svg {
 
 .main-container,
 .container {
-  max-width: 1920px;
+  max-width: 1072px;
   margin: 0 auto;
 }
 .container {
-  max-width: 1920px;
+  max-width: 1072px;
   margin: 0 auto;
-  padding: 0 72px;
+  padding: 0 20px;
 }
 
 .section__title {
