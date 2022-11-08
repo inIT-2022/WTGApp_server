@@ -2,6 +2,7 @@
     background-color: #18171A;
     padding: 60px 0 30px 0;
     color: #fff;
+    font-size: 16px;
 }
 
 .logo__item {
@@ -90,5 +91,9 @@
 
 .social__link:hover {
     color: #cdf478;
+}
+
+.contacts__link_text {
+    font-size: 16px;
 }
 
