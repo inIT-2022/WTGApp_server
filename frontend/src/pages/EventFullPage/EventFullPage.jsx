@@ -56,7 +56,7 @@ export const EventFullPage = () => {
       <div className={style.cart}>
         <div className={style.leftContent}>
           <p className={style.distance}>Расстояние 25,7 км</p>{' '}
-          {<Slider items={images} height={500} />}
+          {<Slider items={images} height={'500px'} />}
           <div className={style.enter}>
             <p className={style.date}>
               {' '}
