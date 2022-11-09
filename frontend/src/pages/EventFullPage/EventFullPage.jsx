@@ -61,11 +61,8 @@ export const EventFullPage = () => {
           <p className={style.distance}>Расстояние 25,7 км</p>{' '}
           {<Slider items={images} height={'500px'} />}
           <div className={style.enter}>
-            <p className={style.date}>
-              {' '}
-              {day} {monthes[month]} {year} Начало в {startTime}
-            </p>
-            <p className={style.censure}>Без возростных ограничений</p>
+            <p className={style.date}>{startDatetime}</p>
+            <p className={style.censure}>Без возрaстных ограничений</p>
             <p className={style.price}>{cost}</p>
           </div>
         </div>
