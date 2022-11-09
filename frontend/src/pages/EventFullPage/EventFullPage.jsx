@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import { Layout } from '../../Layouts/Layout/Layout';
-import style from './EventFullPage.module.css';
-import { API_URI } from '../../assets/const';
-import { getDateParameters } from '../../utils/getDateParameters';
-import { monthes } from '../../assets/const';
 import Slider from '../../components/Slider/Slider';
+
+import { API_URI } from '../../assets/const';
+import { monthes } from '../../assets/const';
+import { getDateParameters } from '../../utils/getDateParameters';
 import axios from 'axios';
+
+import style from './EventFullPage.module.css';
 
 export const EventFullPage = () => {
   const [eventPage, setEventPage] = React.useState([]);
@@ -56,7 +59,7 @@ export const EventFullPage = () => {
       <div className={style.cart}>
         <div className={style.leftContent}>
           <p className={style.distance}>Расстояние 25,7 км</p>{' '}
-          {<Slider items={images} height={500} />}
+          {<Slider items={images} height={'500px'} />}
           <div className={style.enter}>
             <p className={style.date}>
               {' '}
