@@ -22,6 +22,7 @@ export const EventFullPage = () => {
     };
     fetchEventPage(id);
   }, [id]);
+  console.log(id);
 
   const { description, linkImage, startDatetime, title, price, linkEventSite } =
     eventPage;
