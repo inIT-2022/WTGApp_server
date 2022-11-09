@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import { Layout } from '../../Layouts/Layout/Layout';
-import style from './EventFullPage.module.css';
-import { API_URI } from '../../assets/const';
-import { getDateParameters } from '../../utils/getDateParameters';
-import { monthes } from '../../assets/const';
 import Slider from '../../components/Slider/Slider';
+
+import { API_URI } from '../../assets/const';
+import { monthes } from '../../assets/const';
+import { getDateParameters } from '../../utils/getDateParameters';
 import axios from 'axios';
+
+import style from './EventFullPage.module.css';
 
 export const EventFullPage = () => {
   const [eventPage, setEventPage] = React.useState([]);
