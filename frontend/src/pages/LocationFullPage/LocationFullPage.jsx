@@ -22,7 +22,6 @@ export const LocationFullPage = () => {
     };
     fetchEventPage(id);
   }, [id]);
-  console.log('locationPage: ', locationPage);
 
   const {
     address,
