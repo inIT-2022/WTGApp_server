@@ -195,7 +195,6 @@ button,
 textarea,
 label {
   font: inherit;
-  font-family: 'Inter', sans-serif;
 }
 
 button:hover,

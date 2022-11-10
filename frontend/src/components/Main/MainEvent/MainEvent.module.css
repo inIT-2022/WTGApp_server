@@ -4,24 +4,24 @@
   background-image: url('./img/Events.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 450px;
-  padding-left: 400px;
+  padding-top: 430px;
 }
 
-.line {
-  border-top: 3px solid #eeeeee;
-  opacity: 0.5;
-  margin-bottom: 50px;
+.wrapper {
+  max-width: 870px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 40px;
 }
 
 .title {
   font-weight: 400;
   font-size: 48px;
-  color: #ffffff;
+  line-height: 1.2;
 }
 
 .text {
   font-weight: 400;
   font-size: 22px;
-  color: #ffffff;
 }
