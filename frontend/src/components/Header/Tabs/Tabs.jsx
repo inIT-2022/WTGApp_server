@@ -1,4 +1,6 @@
+import React from 'react';
 import { Layout } from '../../../Layouts/Layout/Layout';
+import { WarningMessage } from '../WarningMessage/WarningMessage';
 import { assignId } from '../../../utils/generateRandomID';
 import style from './Tabs.module.css';
 
@@ -10,19 +12,24 @@ const MENU = [
 ].map(assignId);
 
 export const Tabs = () => {
+  const [close, setClose] = React.useState(true);
+
   return (
     <Layout>
-      <nav className={style.header__navigation}>
-        <ul className={style.navigation__list}>
-          {MENU.map(({ value, id, link }) => {
-            return (
-              <li key={id} className={style.navigation__link}>
-                <a href={`#${link}`}>{value}</a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      <div className={style.tabs}>
+        {close && <WarningMessage setClose={setClose} />}
+        <nav className={style.header__navigation}>
+          <ul className={style.navigation__list}>
+            {MENU.map(({ value, id, link }) => {
+              return (
+                <li key={id} className={style.navigation__link}>
+                  <a href={`#${link}`}>{value}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
     </Layout>
   );
 };
