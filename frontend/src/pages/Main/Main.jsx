@@ -6,6 +6,7 @@ import Tabs from '../../components/Header/Tabs';
 import { Layout } from '../../Layouts/Layout/Layout';
 import Location from '../../components/Main/Location/';
 import Routespage from '../../components/Routespage/Routespage';
+import Recreation from '../../components/Main/Recreation';
 
 const Main = ({ searchValue, setSearchValue }) => {
   return (
@@ -15,6 +16,7 @@ const Main = ({ searchValue, setSearchValue }) => {
       <Layout>
         <Location searchValue={searchValue} setSearchValue={setSearchValue} />
         <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Recreation />
         <EventSelection />
       </Layout>
     </main>
