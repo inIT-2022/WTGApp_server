@@ -1,94 +1,62 @@
-import style from './Location.module.css';
-import slide_1 from './img/slide_1.jpg';
-import slide_2 from './img/slide_2.jpg';
-import slide_3 from './img/slide_3.jpg';
-import slide_4 from './img/slide_4.jpg';
-import { SearchLocation } from './SearchLocation/SearchLocation';
-import Container from '../../Container/Container';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { SearchLocation } from './SearchLocation/SearchLocation';
 import { ReactComponent as Shortcut } from './img/shortcut.svg';
+import Spinner from '../../../components/Spinner/Spinner';
+
+import { API_URI } from '../../../assets/const';
+import axios from 'axios';
+
+import style from './Location.module.css';
 
 export const Location = ({ searchValue, setSearchValue }) => {
+  const [location, setLocation] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchEvents = async () => {
+      const { data } = await axios(`${API_URI}/locations`);
+      setLocation(data);
+    };
+    fetchEvents();
+  }, []);
+
+  const mainLocations = location.slice(0, 4);
+
   return (
     <section className={style.location}>
-      <Container>
-        <div className={style.wrapper} id='locations'>
-          <Shortcut className={style.svg} width={85} height={85} />
-          <h2 className={style.title}>рекомендуемые локации</h2>
-        </div>
-        <SearchLocation
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
-        <ul className={style.locations__gallery}>
-          <li className={style.locations__img_wrapper}>
-            <Link to='/locations/1'>
-              <div className={style.blocImg}>
-                <img
-                  className={style.locations__img}
-                  src={slide_1}
-                  alt='Плато Лаго'
-                ></img>
-              </div>
-              <div className={style.blocText}>
-                <div className={style.text}>
-                  <p className={style.description}>Плато Лаго</p>
+      <div className={style.wrapper} id='locations'>
+        <Shortcut className={style.svg} width={85} height={85} />
+        <h2 className={style.title}>рекомендуемые локации</h2>
+      </div>
+      <SearchLocation
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+      <ul className={style.locations__gallery}>
+        {mainLocations.length ? (
+          mainLocations.map((loc) => (
+            <li key={loc.id} className={style.locations__img_wrapper}>
+              <Link to={`/locations/${loc.id}`}>
+                <div className={style.blocImg}>
+                  <img
+                    className={style.locations__img}
+                    src={loc.linkImage.split('|')[0]}
+                    alt={loc.title}
+                  ></img>
                 </div>
-              </div>
-            </Link>
-          </li>
-          <li className={style.locations__img_wrapper}>
-            <Link to='/locations/2'>
-              <div className={style.blocImg}>
-                <img
-                  className={style.locations__img}
-                  src={slide_2}
-                  alt='Парк Галицкого'
-                ></img>{' '}
-              </div>
-              <div className={style.blocText}>
-                <div className={style.text}>
-                  <p className={style.description}>Парк Галицкого</p>
+                <div className={style.blocText}>
+                  <div className={style.text}>
+                    <p className={style.description}>{loc.title}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </li>
-          <li className={style.locations__img_wrapper}>
-            <Link to='/locations/3'>
-              <div className={style.blocImg}>
-                <img
-                  className={style.locations__img}
-                  src={slide_3}
-                  alt='Национальный Академический театр оперы и балета'
-                ></img>{' '}
-              </div>
-              <div className={style.blocText}>
-                <div className={style.text}>
-                  <p className={style.description}>
-                    Национальный Академический театр оперы и балета
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </li>
-          <li className={style.locations__img_wrapper}>
-            <Link to='/locations/4'>
-              <div className={style.blocImg}>
-                <img
-                  className={style.locations__img}
-                  src={slide_4}
-                  alt='Скала-Парус'
-                ></img>{' '}
-              </div>
-              <div className={style.blocText}>
-                <div className={style.text}>
-                  <p className={style.description}>Скала-Парус</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-        </ul>
-      </Container>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <Spinner />
+        )}
+      </ul>
     </section>
   );
 };

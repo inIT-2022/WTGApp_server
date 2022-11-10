@@ -6,6 +6,18 @@
   font-weight: 400;
   src: url(./fonts/Comfortaa-Regular.woff2) format('woff2');
 }
+@font-face {
+  font-family: 'Comfortaa-Bold';
+  font-weight: 700;
+  font-style: normal;
+  src: url(./fonts/Comfortaa-Bold.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Comfortaa-Light';
+  font-weight: 300;
+  font-style: normal;
+  src: url(./fonts//Comfortaa-Light.woff2) format('woff2');
+}
 
 * {
   box-sizing: border-box;
@@ -29,7 +41,7 @@ html {
 body {
   position: relative;
   margin: 0;
-  font-family: 'Comfortaa-Regular', sans-serif;
+  font-family: 'Comfortaa-Regular', cursive;
   font-size: 48px;
   font-weight: 400;
   line-height: 1.2;
@@ -142,9 +154,9 @@ html {
 body {
   position: relative;
   margin: 0;
-  font-family: 'Comfortaa-Regular', sans-serif;
+  font-family: 'Comfortaa-Regular', cursive;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   color: #18171a;
   background: #eee;

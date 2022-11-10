@@ -1,0 +1,84 @@
+.slider {
+  overflow: hidden;
+  position: relative;
+
+  & .slide-list {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+
+    & .slide {
+      flex: 1 0 100%;
+      position: relative;
+
+      & .slide-image {
+        display: flex;
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      & .slide-title {
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+  }
+  & .arrows {
+    color: white;
+    display: flex;
+    font-size: 30px;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    z-index: 1;
+
+    & .arrow {
+      height: 64px;
+      width: 64px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.left {
+        background-image: url(./Controls/icons/arrow-right.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-left: 5px;
+        transform: rotate(180deg);
+      }
+
+      &.right {
+        background-image: url(./Controls/icons/arrow-right.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-right: 5px;
+      }
+    }
+  }
+  & .dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1;
+
+    & .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: aliceblue;
+      cursor: pointer;
+    }
+    & .selected {
+      background-color: black;
+    }
+  }
+}
