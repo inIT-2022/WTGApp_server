@@ -1,17 +1,36 @@
 import style from './Routespages.module.css';
-import { ReactComponent as FirstStar } from '../../components/Main/Location/Location2/img/FirstStar.svg';
+import Container from '../../components/Container/Container';
+import Cloud1 from './img/cloud1.png';
+import Cloud2 from './img/cloud2.png';
+import Cloud3 from './img/cloud3.png';
+import Cloud4 from './img/cloud4.png';
+
+
+{/* import { ReactComponent as FirstStar } from '../../components/Main/Location/Location2/img/FirstStar.svg';
 import { ReactComponent as ThirdStar } from '../../components/Main/Location/Location2/img/ThirdStar.svg';
 import { ReactComponent as Favorites } from '../../components/Main/Location/Location2/img/Favorites.svg';
 import { ReactComponent as Del } from './img/Del.svg';
-import { ReactComponent as Plus } from './img/Plus.svg';
-import { ReactComponent as Share} from '../../components/Main/Location/Location2/img/Share.svg';
-import Container from '../../components/Container/Container';
 import Map from './img/map.jpg';
+import { ReactComponent as Plus } from './img/Plus.svg';
+import { ReactComponent as Share} from '../../components/Main/Location/Location2/img/Share.svg'; */}
+
 
 export const Routespages = () => {
+
   return (
+    <> 
+    <div className={style.cloud}>
+        <div className={style.cloudcontent}>
+            Страница в разработке 
+        </div>
+        <img src={Cloud1} alt="cloud" className={style.cloud1} />
+        <img src={Cloud2} alt="cloud" className={style.cloud2} />
+        <img src={Cloud3} alt="cloud" className={style.cloud3} />
+        <img src={Cloud4} alt="cloud" className={style.cloud4} />
+    </div>
+
     <Container>
-        <div className={style.modal}> 
+        {/* <div className={style.modal}> 
           <div className={style.routes}>
             <h2 className={style.title}>Исторический Краснодар (пеший)</h2>
             <div className={style.raiting}>
@@ -120,7 +139,8 @@ export const Routespages = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
     </Container>
+    </>
   );
 };
