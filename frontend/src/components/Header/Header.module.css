@@ -31,7 +31,7 @@
 .search {
   display: flex;
   gap: 29px;
-  margin-top: 43px;
+  margin-top: 23px;
 }
 
 .city {
@@ -42,4 +42,26 @@
   background: #f1f9fb;
   border-radius: 50px;
   padding: 0 40px;
+}
+
+.header__burger {
+  margin-left: 48px;
+  cursor: pointer;
+  position: relative;
+}
+
+.header__burger_menu {
+  height: 212px;
+  width: 56px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50px;
+  position: absolute;
+  right: 376px;
+  padding-top: 70px;
+}
+
+.header__burger_svg {
+  margin: 0 auto;
+  margin-bottom: 15px;
+  cursor: pointer;
 }

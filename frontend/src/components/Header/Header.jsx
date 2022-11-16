@@ -1,9 +1,15 @@
 import style from './Header.module.css';
 import { Auth } from './Auth/Auth';
 import { Layout } from '../../Layouts/Layout/Layout';
-import { Search } from '../Search/Search';
+import { ReactComponent as BurgerSvg } from './img/burger_menu.svg';
+import { ReactComponent as Notification } from './img/notification.svg';
+import { ReactComponent as Collection } from './img/collection.svg';
+import { ReactComponent as Chat } from './img/chat.svg';
+import { useState } from 'react';
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className={style.header} id='header'>
       <Layout>
@@ -13,10 +19,21 @@ export const Header = () => {
             <p className={style.subtitle}>отдых, который подойдет именно Вам</p>
             <div className={style.search}>
               <span className={style.city}>Краснодар</span>
-              <Search />
             </div>
           </div>
-          <Auth />
+          <div className={style.header__wrapper}>
+            <Auth />
+            {
+              isOpen && (
+                <div className={style.header__burger_menu} >
+                    <Collection className={style.header__burger_svg} />
+                    <Chat className={style.header__burger_svg} />
+                    <Notification className={style.header__burger_svg} />
+                </div>
+              )
+            }
+            <BurgerSvg className={style.header__burger} onClick={() => setIsOpen(!isOpen)} />
+          </div>
         </div>
       </Layout>
     </header>
