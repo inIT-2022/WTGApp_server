@@ -9,9 +9,12 @@
   border-radius: 10px;
 }
 .imgWrapper {
-  flex: 0 0 288px;
   border-radius: 10px;
   overflow: hidden;
+}
+.wrapper img {
+  flex: 0 0 288px;
+  border-radius: 10px;
 }
 .content {
   flex: 0 1 auto;

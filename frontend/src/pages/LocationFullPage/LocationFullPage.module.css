@@ -1,0 +1,112 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.navText {
+  font-size: 28px;
+  color: #000000;
+}
+
+.title {
+  font-size: 48px;
+  text-align: center;
+  padding: 25px 0;
+}
+.leftContent {
+  flex: 1 0 540px;
+}
+
+.distance {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cart {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.enter {
+  margin-top: 20px;
+}
+.date,
+.censure {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.price {
+  font-size: 20px;
+}
+.review {
+  font-size: 32px;
+  padding-left: 95px;
+  align-self: flex-end;
+}
+.rightHeader {
+  display: flex;
+  gap: 30px;
+  margin: 10px 0;
+}
+.adress {
+  padding-top: 20px;
+  font-size: 20px;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+.source {
+  display: block;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: right;
+  padding: 20px 115px 33px 0;
+}
+
+.description {
+  font-size: 16px;
+  white-space: pre-line;
+}
+
+.moreInfo {
+  display: block;
+  max-width: 190px;
+  font-size: 16px;
+  text-decoration: underline;
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.raiting {
+  display: flex;
+  gap: 20px;
+}
+.wrapper {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  gap: 30px;
+}
+
+.assesment {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 45px;
+  margin-right: 14px;
+}
+
+.score {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.favorites {
+  margin-right: 6px;
+  width: 60px;
+}

@@ -2,15 +2,24 @@
   position: relative;
   height: 600px;
   background-image: url('./img/Events.jpg');
+<<<<<<< HEAD
+=======
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 430px;
+>>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
 }
 
-.line {
-  border-top: 3px solid #eeeeee;
-  opacity: 0.5;
-  margin-bottom: 50px;
+.wrapper {
+  max-width: 870px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 40px;
 }
 
 .title {
+<<<<<<< HEAD
   font-size: 54px;
   color: #ffffff;
   margin-top: -100px;
@@ -36,4 +45,14 @@
     .text {
       margin-top: 20px;
     }
+=======
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 22px;
+>>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
 }

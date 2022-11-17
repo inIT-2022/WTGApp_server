@@ -7,18 +7,16 @@ export const Event = ({ source, description, id, date, title, img }) => {
   const imgLinks = img.split('|');
   return (
     <Link to={`${id}`} className={style.wrapper}>
-      <div className={style.imgWrapper}>
-        <img
-          className={style.img}
-          src={imgLinks[0]}
-          alt='изображение события'
-          width={288}
-          height={172}
-        />
-      </div>
+      <img
+        className={style.img}
+        src={imgLinks[0]}
+        alt='изображение события'
+        width={288}
+        height={172}
+      />
       <div className={style.content}>
         <h3 className={style.title}>{title}</h3>
-        <p className={style.date}>{date.replace('T', ' ')}</p>
+        <p className={style.date}>{date.slice(0, 10)}</p>
         <p className={style.descr}>{description}</p>
         <span className={style.source}>Источник: </span>
         <span className={style.sourceName}>{shortSource}</span>

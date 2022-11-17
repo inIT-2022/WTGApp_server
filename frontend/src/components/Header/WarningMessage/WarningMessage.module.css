@@ -1,0 +1,27 @@
+.wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f5bd;
+  border: 1px solid #d0caca;
+  border-radius: 10px;
+  padding: 22px 15px 22px 40px;
+}
+
+.descr {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+.registrationBtn {
+  color: #2420e8;
+}
+
+.closeBtn {
+  width: 40px;
+  height: 40px;
+}
