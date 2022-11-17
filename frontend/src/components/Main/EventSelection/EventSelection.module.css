@@ -1,5 +1,4 @@
 .text {
-    font-weight: 400;
     font-size: 36px;
     line-height: 51px;
     margin: 0 auto;
@@ -18,7 +17,6 @@
 }
 
 h2 {
-    font-weight: 400;
     font-size: 62px;
     line-height: 107px;
 }
@@ -35,4 +33,94 @@ h2 {
 
 .wrapperText {
     margin-top: 100px;
+}
+
+.button {
+    margin-left: 285px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+    width: 540px;
+    height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 100px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 36px;
+    text-align: center;
+}
+
+@media (max-width: 960px) {
+    .text {
+        width: 760px;
+        margin-bottom: 40px;
+        text-align: left;
+        margin-left: 40px;
+    }
+    .titleText {
+        width: 850px;
+    }
+
+    .description {
+        font-size: 30px;
+        line-height: 39px;
+        min-width: 730px;
+        padding: 3%;
+    }
+    .wrapperText {
+        margin-top: 50px;
+    }
+
+    .button {
+        margin-left: 155px;
+        margin-bottom: 150px;
+        margin-top: 80px;
+    }
+
+    .wrapper {
+        margin-top: 100px;
+        min-width: 700px;
+    }
+}
+
+@media (max-width: 360px) {
+    .text {
+        font-size: 68px;
+        line-height: 79px;
+        width: 760px;
+        margin-bottom: 50px;
+    }
+    
+    .titleText { 
+        font-size: 53px;
+        line-height: 65px;
+        width: 700px;
+    }
+
+   .wrapper {
+       margin-top: 100px;
+       min-width: 700px;
+   }
+
+   h2 {
+       font-size: 67px;
+       line-height: 70px;
+   }
+
+   .description {
+       font-size: 40px;
+       line-height: 49px;
+       min-width: 730px;
+       padding: 8%;
+   }
+
+    .button {
+        margin-left: 155px;
+        margin-bottom: 150px;
+        width: 640px;
+        height: 120px;
+        font-size: 42px;
+        line-height: 46px;
+        margin-top: 80px;
+    }
 }

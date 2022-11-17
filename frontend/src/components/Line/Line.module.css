@@ -6,3 +6,9 @@
     margin-top: 73px;
     margin-bottom: 70px;
 }
+
+@media (max-width: 960px) {
+    .line {
+        display: none;
+    }
+}

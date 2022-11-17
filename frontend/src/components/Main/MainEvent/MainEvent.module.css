@@ -2,9 +2,12 @@
   position: relative;
   height: 600px;
   background-image: url('./img/Events.jpg');
+<<<<<<< HEAD
+=======
   background-repeat: no-repeat;
   background-size: cover;
   padding-top: 430px;
+>>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
 }
 
 .wrapper {
@@ -16,6 +19,33 @@
 }
 
 .title {
+<<<<<<< HEAD
+  font-size: 54px;
+  color: #ffffff;
+  margin-top: -100px;
+}
+
+.text {
+  font-size: 26px;
+  color: #ffffff;
+  margin-top: -20px;
+}
+
+@media (min-width: 776px) {
+  .events {
+      padding-top: 400px;
+      padding-left: 20%;
+    }
+  
+    .title {
+      font-size: 44px;
+      line-height: 50px;
+    }
+  
+    .text {
+      margin-top: 20px;
+    }
+=======
   font-weight: 400;
   font-size: 48px;
   line-height: 1.2;
@@ -24,4 +54,5 @@
 .text {
   font-weight: 400;
   font-size: 22px;
+>>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
 }

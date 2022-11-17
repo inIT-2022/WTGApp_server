@@ -1,18 +1,50 @@
 import style from './Header.module.css';
 import { Auth } from './Auth/Auth';
 import { Layout } from '../../Layouts/Layout/Layout';
+<<<<<<< HEAD
+import { ReactComponent as BurgerSvg } from './img/burger_menu.svg';
+import { ReactComponent as Notification } from './img/notification.svg';
+import { ReactComponent as Collection } from './img/collection.svg';
+import { ReactComponent as Chat } from './img/chat.svg';
+import { useState } from 'react';
+
+export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+=======
 import { Search } from '../Search/Search';
 import { useLocation, useParams } from 'react-router-dom';
 
 export const Header = () => {
   const location = useLocation();
   const { id } = useParams();
+>>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
 
   return (
     <header className={style.header} id='header'>
       <Layout>
         <div className={style.header__wrapper}>
           <div>
+<<<<<<< HEAD
+            <h1 className={style.title}>КУДА СХОДИТЬ?</h1>
+            <p className={style.subtitle}>отдых, который подойдет именно Вам</p>
+            <div className={style.search}>
+              <span className={style.city}>Краснодар</span>
+            </div>
+          </div>
+          <div className={style.header__wrapper}>
+            <Auth />
+            {
+              isOpen && (
+                <div className={style.header__burger_menu} >
+                    <Collection className={style.header__burger_svg} />
+                    <Chat className={style.header__burger_svg} />
+                    <Notification className={style.header__burger_svg} />
+                </div>
+              )
+            }
+            <BurgerSvg className={style.header__burger} onClick={() => setIsOpen(!isOpen)} />
+          </div>
+=======
             {location.pathname === '/' && (
               <>
                 <h1 className={style.title}>КУДА СХОДИТЬ?</h1>
@@ -108,6 +140,7 @@ export const Header = () => {
 
             <Auth />
           </div>
+>>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
         </div>
       </Layout>
     </header>
