@@ -41,6 +41,15 @@ export const Header = () => {
               </>
             )}
 
+            {location.pathname === '/locations' && (
+              <>
+                <p className={style.events}>Топ локаций</p>
+                <p className={style.subtitleEvents}>
+                  место, куда вам захочется вернуться :)
+                </p>
+              </>
+            )}
+
             {location.pathname === `/locations/${id}` && (
               <>
                 <p className={style.events}>лОКация</p>

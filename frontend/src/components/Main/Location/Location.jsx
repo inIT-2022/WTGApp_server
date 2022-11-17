@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { SearchLocation } from './SearchLocation/SearchLocation';
 import { ReactComponent as Shortcut } from './img/shortcut.svg';
@@ -7,11 +6,21 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 import { API_URI } from '../../../assets/const';
 import axios from 'axios';
+import Slider from 'react-slick';
 
 import style from './Location.module.css';
 
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+
+import './slick.css';
+import './slick-theme.css';
+import { Link } from 'react-router-dom';
+import { CardMore } from '../../CardMore/CardMore';
+
 export const Location = ({ searchValue, setSearchValue }) => {
   const [location, setLocation] = React.useState([]);
+  console.log('location: ', location);
 
   React.useEffect(() => {
     const fetchEvents = async () => {
@@ -21,7 +30,13 @@ export const Location = ({ searchValue, setSearchValue }) => {
     fetchEvents();
   }, []);
 
-  const mainLocations = location.slice(0, 4);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
 
   return (
     <section className={style.location}>
@@ -33,30 +48,28 @@ export const Location = ({ searchValue, setSearchValue }) => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <ul className={style.locations__gallery}>
-        {mainLocations.length ? (
-          mainLocations.map((loc) => (
-            <li key={loc.id} className={style.locations__img_wrapper}>
-              <Link to={`/locations/${loc.id}`}>
-                <div className={style.blocImg}>
-                  <img
-                    className={style.locations__img}
-                    src={loc.linkImage.split('|')[0]}
-                    alt={loc.title}
-                  ></img>
-                </div>
-                <div className={style.blocText}>
-                  <div className={style.text}>
-                    <p className={style.description}>{loc.title}</p>
-                  </div>
-                </div>
+      <div className={style.slider}>
+        <Slider {...settings}>
+          {location.length ? (
+            location.slice(0, 7).map((loc) => (
+              <Link
+                to={`locations/${loc.id}`}
+                key={loc.id}
+                className={style.locWrap}
+              >
+                <img
+                  src={loc.linkImage.split('|')[0]}
+                  alt='123'
+                  className={style.locImg}
+                />
               </Link>
-            </li>
-          ))
-        ) : (
-          <Spinner />
-        )}
-      </ul>
+            ))
+          ) : (
+            <Spinner />
+          )}
+          <CardMore />
+        </Slider>
+      </div>
     </section>
   );
 };

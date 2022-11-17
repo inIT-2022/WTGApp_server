@@ -7,6 +7,7 @@ import { Routespages } from './pages/Routespages/Routespages';
 import { Events } from './pages/Events/Events';
 import { EventFullPage } from './pages/EventFullPage/EventFullPage';
 import { LocationFullPage } from './pages/LocationFullPage/LocationFullPage';
+import { Locations } from './pages/Locations/Locations';
 
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -23,6 +24,7 @@ const App = () => {
           />
           <Route path='events' element={<Events />} />
           <Route path='events/:id' element={<EventFullPage />} />
+          <Route path='locations' element={<Locations />} />
           <Route path='locations/:id' element={<LocationFullPage />} />
           <Route path='routespages/:id' element={<Routespages />} />
           <Route path='*' element={<NotFound />} />
