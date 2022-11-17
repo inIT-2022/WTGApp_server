@@ -15,9 +15,9 @@ const Main = ({ searchValue, setSearchValue }) => {
       <MainEvent />
       <Layout>
         <Location searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Recreation />
-        <EventSelection />
+        {/* <Routespage searchValue={searchValue} setSearchValue={setSearchValue} /> */}
+        {/* <Recreation /> */}
+        {/* <EventSelection /> */}
       </Layout>
     </main>
   );
