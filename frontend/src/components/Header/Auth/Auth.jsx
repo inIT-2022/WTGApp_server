@@ -6,15 +6,26 @@ import { useState } from 'react';
 
 export const Auth = () => {
   const [showModalForm, setShowModalForm] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={style.wrapper}>
+    <div>
+      {isOpen && (
+        <div className={style.auth__text}>
+          <p className={style.auth__user_name}>Добро пожаловать, Павел!</p>
+        </div>
+      )}
+
       <button
         className={style.auth__button}
         onClick={() => setShowModalForm(!showModalForm)}
       >
-        <AuthIcon />
+        <AuthIcon
+          className={style.auth__icon}
+          onClick={() => setIsOpen(!isOpen)}
+        />
       </button>
+
       <CSSTransition
         classNames='alert'
         in={showModalForm}

@@ -5,28 +5,31 @@ import Cloud2 from './img/cloud2.png';
 import Cloud3 from './img/cloud3.png';
 import Cloud4 from './img/cloud4.png';
 
-{
-  /* import { ReactComponent as FirstStar } from '../../components/Main/Location/Location2/img/FirstStar.svg';
+
+{/* import { ReactComponent as FirstStar } from '../../components/Main/Location/Location2/img/FirstStar.svg';
 import { ReactComponent as ThirdStar } from '../../components/Main/Location/Location2/img/ThirdStar.svg';
 import { ReactComponent as Favorites } from '../../components/Main/Location/Location2/img/Favorites.svg';
 import { ReactComponent as Del } from './img/Del.svg';
 import Map from './img/map.jpg';
 import { ReactComponent as Plus } from './img/Plus.svg';
-import { ReactComponent as Share} from '../../components/Main/Location/Location2/img/Share.svg'; */
-}
+import { ReactComponent as Share} from '../../components/Main/Location/Location2/img/Share.svg'; */}
+
 
 export const Routespages = () => {
-  return (
-    <>
-      <div className={style.cloud}>
-        <div className={style.cloudcontent}>Страница в разработке</div>
-        <img src={Cloud1} alt='cloud' className={style.cloud1} />
-        <img src={Cloud2} alt='cloud' className={style.cloud2} />
-        <img src={Cloud3} alt='cloud' className={style.cloud3} />
-        <img src={Cloud4} alt='cloud' className={style.cloud4} />
-      </div>
 
-      <Container>
+  return (
+    <> 
+    <div className={style.cloud}>
+        <div className={style.cloudcontent}>
+            Страница в разработке 
+        </div>
+        <img src={Cloud1} alt="cloud" className={style.cloud1} />
+        <img src={Cloud2} alt="cloud" className={style.cloud2} />
+        <img src={Cloud3} alt="cloud" className={style.cloud3} />
+        <img src={Cloud4} alt="cloud" className={style.cloud4} />
+    </div>
+
+    <Container>
         {/* <div className={style.modal}> 
           <div className={style.routes}>
             <h2 className={style.title}>Исторический Краснодар (пеший)</h2>
@@ -52,6 +55,7 @@ export const Routespages = () => {
           </div>
           <div className={style.mapWrapper}>
             <img src={Map} alt='Карта' className={style.map} />
+
             <div className={style.content}>
               <h3 className={style.contentTitle}>Описание маршрута</h3>
               <div className={style.category}>
@@ -66,6 +70,7 @@ export const Routespages = () => {
                 <span>Старт от: </span>
                 <p className={style.contentStart}>На Пушкинской площади</p>
               </div>
+
               <table className={style.resptab}>
                 <tbody>
                   <tr>
@@ -82,6 +87,7 @@ export const Routespages = () => {
                         <Del className={style.svg} />
                       </td>
                   </tr>
+
                   <tr>
                       <td>Фонтан «Старый Екатеринодар»</td>
                       <td className={style.svgWrapper}>
@@ -126,6 +132,7 @@ export const Routespages = () => {
                   </tr>
                 </tbody>
               </table>
+
               <div className={style.start}>
                 <span>Окончание маршрута: </span>
                 <p className={style.contentStart}>На площади</p>
@@ -133,7 +140,7 @@ export const Routespages = () => {
             </div>
           </div>
         </div> */}
-      </Container>
+    </Container>
     </>
   );
 };

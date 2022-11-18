@@ -1,3 +1,91 @@
+.cloud {
+    height: 500px;
+    background-color: #056cc5;
+    background-size: cover;
+}
+
+.cloudcontent {
+    padding: 100px;
+    color: #000;
+    font-weight: bold;
+}
+
+.cloud img {
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+@-webkit-keyframes animCloud {
+    from {
+        -webkit-transform: translateX(100%)
+    }
+
+    to {
+        -webkit-transform: translateX(-100%)
+    }
+}
+
+@-moz-keyframes animCloud {
+    from {
+        -moz-transform: translateX(100%)
+    }
+
+    to {
+        -moz-transform: translateX(-100%)
+    }
+}
+
+@keyframes animCloud {
+    from {
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        transform: translateX(100%)
+    }
+
+    to {
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform: translateX(-100%)
+    }
+}
+
+.cloud1 {
+    -webkit-animation: animCloud 20s infinite linear;
+    -moz-animation: animCloud 20s infinite linear;
+    animation: animCloud 20s infinite linear
+}
+
+.cloud2 {
+    -webkit-animation: animCloud 40s infinite linear;
+    -moz-animation: animCloud 40s infinite linear;
+    animation: animCloud 40s infinite linear
+}
+
+.cloud3 {
+    -webkit-animation: animCloud 60s infinite linear;
+    -moz-animation: animCloud 60s infinite linear;
+    animation: animCloud 60s infinite linear
+}
+
+.cloud4 {
+    -webkit-animation: animCloud 80s infinite linear;
+    -moz-animation: animCloud 80s infinite linear;
+    animation: animCloud 80s infinite linear
+}
+
+
+
 .modal {
     position: relative;
 }
@@ -15,7 +103,6 @@
 
 .raiting {
     display: flex;
-    justify-content: space-between;
 }
 
 .wrapper {
@@ -26,13 +113,14 @@
     font-size: 52px;
     line-height: 61px;
     text-align: center;
-    margin-bottom: 50px;
-    margin-top: 70px;
+    margin-bottom: 70px;
+    margin-top: 80px;
 }
 
 .list {
     display: flex;
     margin-left: 24px;
+    margin-right: 24px;
     margin-bottom: 70px;
 }
 
@@ -48,21 +136,25 @@
 }
 
 .assesment {
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 45px;
-    margin-left: 68px;
+    font-size: 37px;
+    margin-left: 5px;
     margin-right: 14px;
 }
 
 .score {
     font-weight: 700;
-    font-size: 40px;
-    margin-right: 78px;
+    font-size: 37px;
 }
 
 .favorites {
-    margin-right: 36px;
+    margin-right: 20px;
+    margin-top: -60px;
+    margin-left: 50px;
+}
+
+.favorites1 {
+    margin-right: 60px;
+    margin-top: -60px;
 }
 
 .map {
@@ -117,10 +209,12 @@ span {
 .svg {
     margin-right: 10px;
     cursor: pointer;
+    width: 26px;
+    height: 26px;
 }
 
 .svg:last-child {
-    margin-right: 10px;
+    margin-right: 0px;
     cursor: pointer;
 }
 
@@ -132,6 +226,7 @@ span {
 .resptab th, .resptab td {
     margin-bottom: 10px;
     margin-right: 5px;
+    font-size: 20px;
 }
 
 .resptab th {

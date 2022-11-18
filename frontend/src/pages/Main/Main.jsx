@@ -18,7 +18,7 @@ const Main = ({ searchValue, setSearchValue }) => {
           searchValue={searchValue}
           setSearchValue={setSearchValue}
         />
-        {/* <Routespage searchValue={searchValue} setSearchValue={setSearchValue} /> */}
+        <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
         {/* <Recreation /> */}
         {/* <EventSelection /> */}
       </Layout>
