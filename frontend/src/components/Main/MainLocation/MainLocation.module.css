@@ -109,18 +109,3 @@ li:hover .text {
 .slider {
   padding: 100px 0;
 }
-
-.locWrap {
-  width: 245px;
-  height: 320px;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 0 10px;
-}
-
-.locImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-}

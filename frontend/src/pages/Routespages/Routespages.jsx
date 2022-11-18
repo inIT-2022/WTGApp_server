@@ -1,17 +1,17 @@
 import style from './Routespages.module.css';
-import { ReactComponent as FirstStar } from '../../components/Main/Location/Location2/img/FirstStar.svg';
-import { ReactComponent as ThirdStar } from '../../components/Main/Location/Location2/img/ThirdStar.svg';
-import { ReactComponent as Favorites } from '../../components/Main/Location/Location2/img/Favorites.svg';
+import { ReactComponent as FirstStar } from '../../components/Main/MainLocation/Location2/img/FirstStar.svg';
+import { ReactComponent as ThirdStar } from '../../components/Main/MainLocation/Location2/img/ThirdStar.svg';
+import { ReactComponent as Favorites } from '../../components/Main/MainLocation/Location2/img/Favorites.svg';
 import { ReactComponent as Del } from './img/Del.svg';
 import { ReactComponent as Plus } from './img/Plus.svg';
-import { ReactComponent as Share} from '../../components/Main/Location/Location2/img/Share.svg';
+import { ReactComponent as Share } from '../../components/Main/MainLocation/Location2/img/Share.svg';
 import Container from '../../components/Container/Container';
 import Map from './img/map.jpg';
 
 export const Routespages = () => {
   return (
     <Container>
-      <div className={style.modal}> 
+      <div className={style.modal}>
         <div className={style.routes}>
           <h2 className={style.title}>Исторический Краснодар (пеший)</h2>
           <div className={style.raiting}>
@@ -19,12 +19,22 @@ export const Routespages = () => {
               <p className={style.assesment}>Оценка</p>
               <p className={style.score}>4,9</p>
               <ul className={style.list}>
-              <li className={style.star}><FirstStar width={38} height={38}/></li>
-              <li className={style.star}><ThirdStar width={38} height={38}/></li>
-              <li className={style.star}><ThirdStar width={38} height={38}/></li>
-              <li className={style.star}><ThirdStar width={38} height={38}/></li>
-              <li className={style.star}><ThirdStar width={38} height={38}/></li>
-            </ul>
+                <li className={style.star}>
+                  <FirstStar width={38} height={38} />
+                </li>
+                <li className={style.star}>
+                  <ThirdStar width={38} height={38} />
+                </li>
+                <li className={style.star}>
+                  <ThirdStar width={38} height={38} />
+                </li>
+                <li className={style.star}>
+                  <ThirdStar width={38} height={38} />
+                </li>
+                <li className={style.star}>
+                  <ThirdStar width={38} height={38} />
+                </li>
+              </ul>
             </div>
             <div className={style.wrapper}>
               <Favorites className={style.favorites} />
@@ -55,61 +65,61 @@ export const Routespages = () => {
             <table className={style.resptab}>
               <tbody>
                 <tr>
-                    <td>Памятник Екатерине II</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Памятник Екатерине II</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
                 <tr>
-                    <td>Памятник «Собачкина столица»</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Памятник «Собачкина столица»</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
 
                 <tr>
-                    <td>Фонтан «Старый Екатеринодар»</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Фонтан «Старый Екатеринодар»</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
                 <tr>
-                    <td>Театральная площадь</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Театральная площадь</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
                 <tr>
-                    <td>Памятник Шурику и Лидочке</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Памятник Шурику и Лидочке</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
                 <tr>
-                    <td>Театральная площадь</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Театральная площадь</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
                 <tr>
-                    <td>Шуховская башня</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Шуховская башня</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
                 <tr>
-                    <td>Парк «Краснодар»</td>
-                    <td className={style.svgWrapper}>
-                      <Plus className={style.svg} />
-                      <Del className={style.svg} />
-                    </td>
+                  <td>Парк «Краснодар»</td>
+                  <td className={style.svgWrapper}>
+                    <Plus className={style.svg} />
+                    <Del className={style.svg} />
+                  </td>
                 </tr>
               </tbody>
             </table>

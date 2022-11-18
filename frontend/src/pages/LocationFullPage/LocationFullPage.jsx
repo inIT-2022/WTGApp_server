@@ -35,7 +35,7 @@ export const LocationFullPage = () => {
 
   const cost = price ? `${price} рублей` : 'бесплатно';
 
-  const images = linkImage ? linkImage.split('|') : [];
+  const images = linkImage ? linkImage.split('|').slice(0, 5) : [];
 
   const handleShowFullDescr = () => {
     setShowFullDescr(!showFullDescr);

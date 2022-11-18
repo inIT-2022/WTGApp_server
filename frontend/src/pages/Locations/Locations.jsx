@@ -5,11 +5,10 @@ import style from './Locations.module.css';
 import { API_URI } from '../../assets/const';
 import axios from 'axios';
 import Spinner from '../../components/Spinner/Spinner';
-import CardLocation from '../../components/Location';
+import CardLocation from '../../components/CardLocation';
 
 export const Locations = () => {
   const [locations, setLocations] = React.useState([]);
-  console.log('locations: ', locations);
   React.useEffect(() => {
     const fetchLocations = async () => {
       const { data } = await axios(`${API_URI}/locations`);
