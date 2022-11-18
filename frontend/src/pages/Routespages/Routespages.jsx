@@ -1,10 +1,10 @@
 import style from './Routespages.module.css';
-import { ReactComponent as FirstStar } from '../../components/Main/MainLocation/Location2/img/FirstStar.svg';
-import { ReactComponent as ThirdStar } from '../../components/Main/MainLocation/Location2/img/ThirdStar.svg';
-import { ReactComponent as Favorites } from '../../components/Main/MainLocation/Location2/img/Favorites.svg';
+import { ReactComponent as FirstStar } from '../../components/Main/Location/Location2/img/FirstStar.svg';
+import { ReactComponent as ThirdStar } from '../../components/Main/Location/Location2/img/ThirdStar.svg';
+import { ReactComponent as Favorites } from '../../components/Main/Location/Location2/img/Favorites.svg';
 import { ReactComponent as Del } from './img/Del.svg';
 import { ReactComponent as Plus } from './img/Plus.svg';
-import { ReactComponent as Share } from '../../components/Main/MainLocation/Location2/img/Share.svg';
+import { ReactComponent as Share } from '../../components/Main/Location/Location2/img/Share.svg';
 import Container from '../../components/Container/Container';
 import Map from './img/map.jpg';
 
