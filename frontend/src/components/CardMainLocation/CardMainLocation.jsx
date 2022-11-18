@@ -9,7 +9,7 @@ export const CardMainLocation = ({ loc }) => {
         src={loc.linkImage.split('|')[0]}
         alt='123'
         width={278}
-        height={330}
+        height={320}
       />
       <p className={style.locTitle}>{loc.title}</p>
     </Link>
