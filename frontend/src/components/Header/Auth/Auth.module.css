@@ -1,5 +1,4 @@
 .auth__button {
-<<<<<<< HEAD
     cursor: pointer;
     position: relative;
 }
@@ -19,11 +18,4 @@
     text-align: center;
     position: absolute;
     right: 480px;
-=======
-  cursor: pointer;
-}
-.wrapper {
-  width: 48px;
-  height: 48px;
->>>>>>> 7b123ef08944d603adc269b322c9dc2a6df63b4a
 }
