@@ -92,6 +92,7 @@ public class LocationController {
      * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
      *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping()
     public List<LocationDTO> getAllLocations(){
         return locationService
@@ -129,6 +130,8 @@ public class LocationController {
      * РесурсНеНайден (ResourceNotFoundException),
      * с текстом: "Локация(Location) с данным id не найдена".
      */
+    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/{id}")
     public LocationDTO getLocationById(@PathVariable Long id){
         return new LocationDTO(locationService

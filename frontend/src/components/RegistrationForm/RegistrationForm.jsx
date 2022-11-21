@@ -106,7 +106,7 @@ export const RegistrationForm = () => {
           >
             <button
               onClick={handleCloseModal}
-              class={style.close}
+              className={style.close}
               type='button'
               data-close
             >

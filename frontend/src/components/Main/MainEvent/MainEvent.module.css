@@ -1,41 +1,24 @@
 .events {
-  position: relative;
+  display: block;
   height: 600px;
+  padding-top: 400px;
+
   background-image: url('./img/Events.jpg');
 }
 
 .wrapper {
-  max-width: 870px;
+  max-width: 970px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
-  padding: 20px;
   border-radius: 40px;
 }
 
 .title {
   font-size: 54px;
   color: #ffffff;
-  margin-top: -100px;
 }
 
 .text {
   font-size: 26px;
   color: #ffffff;
-  margin-top: -20px;
-}
-
-@media (min-width: 776px) {
-  .events {
-      padding-top: 400px;
-      padding-left: 20%;
-    }
-  
-    .title {
-      font-size: 44px;
-      line-height: 50px;
-    }
-  
-    .text {
-      margin-top: 20px;
-    }
 }

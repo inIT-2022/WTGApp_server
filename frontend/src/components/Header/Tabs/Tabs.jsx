@@ -12,21 +12,23 @@ const MENU = [
 ].map(assignId);
 
 export const Tabs = () => {
-  const [close, setClose] = React.useState(true);
+  const [isClose, setIsClose] = React.useState(false);
+
+  const setClose = () => {
+    setIsClose(!isClose);
+  };
 
   return (
     <Layout>
       <div className={style.tabs}>
-        {close && <WarningMessage setClose={setClose} />}
+        {!isClose && <WarningMessage setClose={setClose} />}
         <nav className={style.header__navigation}>
           <ul className={style.navigation__list}>
-            {MENU.map(({ value, id, link }) => {
-              return (
-                <li key={id} className={style.navigation__link}>
-                  <a href={`#${link}`}>{value}</a>
-                </li>
-              );
-            })}
+            {MENU.map(({ value, id, link }) => (
+              <li key={id} className={style.navigation__link}>
+                <a href={`#${link}`}>{value}</a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

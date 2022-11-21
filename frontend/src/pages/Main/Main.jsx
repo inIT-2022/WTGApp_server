@@ -1,12 +1,12 @@
 import React from 'react';
 import style from './Main.module.css';
-import EventSelection from '../../components/Main/EventSelection';
+// import EventSelection from '../../components/Main/EventSelection';
 import MainEvent from '../../components/Main/MainEvent';
 import Tabs from '../../components/Header/Tabs';
 import { Layout } from '../../Layouts/Layout/Layout';
-import Location from '../../components/Main/Location/';
+import MainLocation from '../../components/Main/MainLocation/';
 import Routespage from '../../components/Routespage/Routespage';
-import Recreation from '../../components/Main/Recreation';
+// import Recreation from '../../components/Main/Recreation';
 
 const Main = ({ searchValue, setSearchValue }) => {
   return (
@@ -14,10 +14,13 @@ const Main = ({ searchValue, setSearchValue }) => {
       <Tabs />
       <MainEvent />
       <Layout>
-        <Location searchValue={searchValue} setSearchValue={setSearchValue} />
+        <MainLocation
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
         <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Recreation />
-        <EventSelection />
+        {/* <Recreation />
+        <EventSelection /> */}
       </Layout>
     </main>
   );

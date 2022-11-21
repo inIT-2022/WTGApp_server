@@ -91,6 +91,7 @@ public class EventController {
      * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
      *    в Список<СобытийДТО> (List<EventDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping()
     public List<EventDTO> getAllEvents(){
         return eventService
@@ -128,6 +129,7 @@ public class EventController {
      * РесурсНеНайден (ResourceNotFoundException),
      * с текстом: "Событие(Event) с данным id не найдено".
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public EventDTO getEventById(@PathVariable Long id){
         return new EventDTO(eventService
