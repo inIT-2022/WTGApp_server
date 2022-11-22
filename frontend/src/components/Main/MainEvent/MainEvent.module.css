@@ -2,6 +2,9 @@
   position: relative;
   height: 600px;
   background-image: url('./img/Events.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 430px;
 }
 
 .wrapper {
@@ -13,29 +16,12 @@
 }
 
 .title {
-  font-size: 54px;
-  color: #ffffff;
-  margin-top: -100px;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.2;
 }
 
 .text {
-  font-size: 26px;
-  color: #ffffff;
-  margin-top: -20px;
-}
-
-@media (min-width: 776px) {
-  .events {
-      padding-top: 400px;
-      padding-left: 20%;
-    }
-  
-    .title {
-      font-size: 44px;
-      line-height: 50px;
-    }
-  
-    .text {
-      margin-top: 20px;
-    }
+  font-weight: 400;
+  font-size: 22px;
 }

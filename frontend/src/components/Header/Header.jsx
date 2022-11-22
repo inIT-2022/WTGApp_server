@@ -19,24 +19,72 @@ export const Header = () => {
       <Layout>
         <div className={style.header__wrapper}>
           <div>
-            <h1 className={style.title}>КУДА СХОДИТЬ?</h1>
-            <p className={style.subtitle}>отдых, который подойдет именно Вам</p>
-            <div className={style.search}>
-              <span className={style.city}>Краснодар</span>
-            </div>
+            {location.pathname === '/' && (
+              <>
+                <h1 className={style.title}>КУДА СХОДИТЬ?</h1>
+                <p className={style.subtitle}>
+                  отдых, который подойдет именно Вам
+                </p>
+                <span className={style.city}>Краснодар</span>
+              </>
+            )}
+
+            {location.pathname === '/events' && (
+              <>
+                <p className={style.events}>Топ событий этой недели</p>
+                <p className={style.subtitleEvents}>
+                  все значимые события города и края
+                </p>
+                <Search />
+              </>
+            )}
+
+            {location.pathname === `/events/${id}` && (
+              <>
+                <p className={style.events}>Cобытие</p>
+                <p className={style.subtitleEvents}>
+                  место, куда вам захочется вернуться :)
+                </p>
+              </>
+            )}
+
+            {location.pathname === '/locations' && (
+              <>
+                <p className={style.events}>Топ локаций</p>
+                <p className={style.subtitleEvents}>
+                  место, куда вам захочется вернуться :)
+                </p>
+                <Search />
+              </>
+            )}
+
+            {location.pathname === `/locations/${id}` && (
+              <>
+                <p className={style.events}>лОКация</p>
+                <p className={style.subtitleEvents}>
+                  место, куда вам захочется вернуться :)
+                </p>
+              </>
+            )}
+            {location.pathname === `/routespages/${id}` && (
+              <>
+                <p className={style.events}>Страница в разработке</p>
+              </>
+            )}
           </div>
           <div className={style.header__wrapper}>
             <Auth />
-            {
-              isOpen && (
-                <div className={style.header__burger_menu} >
-                    <Collection className={style.header__burger_svg} />
-                    <Chat className={style.header__burger_svg} />
-                    <Notification className={style.header__burger_svg} />
-                </div>
-              )
-            }
-            <BurgerSvg className={style.header__burger} onClick={() => setIsOpen(!isOpen)} />
+            {isOpen && (
+              <div className={style.header__burger_menu}>
+                <Collection className={style.header__burger_svg} />
+                <Chat className={style.header__burger_svg} />
+                <Notification className={style.header__burger_svg} />
+              </div>
+            )}
+            <BurgerSvg
+              className={style.header__burger}
+              onClick={() => setIsOpen(!isOpen)}
+            />
           </div>
         </div>
       </Layout>

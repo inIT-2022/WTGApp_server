@@ -8,7 +8,7 @@ const MENU = [
   { value: 'События', link: 'events' },
   { value: 'Локации', link: 'locations' },
   { value: 'Маршруты', link: 'routes' },
-  { value: 'Отдых', link: 'rest' },
+  // { value: 'Отдых', link: 'rest' },
 ].map(assignId);
 
 export const Tabs = () => {

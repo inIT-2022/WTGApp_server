@@ -27,10 +27,6 @@
   border-color: var(--color-black);
 }
 
-.navigation__link:last-child {
-  margin-right: 0;
-}
-
 .options__list {
   display: flex;
 }
@@ -47,16 +43,4 @@
 
 .options__list_item:last-child {
   margin-right: 0;
-}
-
-@media (min-width: 776px) {
-    .navigation__list {
-      display: flex;
-      gap: 20px;
-      padding: 5%;
-    }
-  
-    .navigation__link {
-      font-size: 32px;
-    }
 }
