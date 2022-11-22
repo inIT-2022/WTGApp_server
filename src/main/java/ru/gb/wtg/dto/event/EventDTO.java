@@ -3,6 +3,7 @@ package ru.gb.wtg.dto.event;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.gb.wtg.dto.location.LocationDTO;
 import ru.gb.wtg.models.event.Event;
 import ru.gb.wtg.models.location.Location;
 import java.time.LocalDateTime;
@@ -18,7 +19,8 @@ public class EventDTO {
     private LocalDateTime finishDatetime;
     private String linkEventSite;
     private Integer price;
-    private Long location;
+    //private Long location;
+    private LocationDTO location;
     private Boolean isActive;
     private Long userCreatedId;
 
@@ -30,7 +32,8 @@ public class EventDTO {
         this.finishDatetime = event.getFinishDatetime();
         this.linkEventSite = event.getLinkEventSite();
         this.price = event.getPrice();
-        this.location = event.getLocation().getId();
+        //this.location = event.getLocation().getId();
+        this.location = new LocationDTO(event.getLocation());
         this.isActive = event.getIsActive();
     }
 }
