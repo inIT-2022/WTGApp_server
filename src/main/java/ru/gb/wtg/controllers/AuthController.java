@@ -41,7 +41,7 @@ public class AuthController {
 
         UserDTO userDTO = userService.loadUserByLoginAndPassword(jwtRequestDTO.getLogin(), jwtRequestDTO.getPassword());
         String token = jwtTokenGenerate.generateToken(userDTO);
-        return ResponseEntity.ok(new JwtResponseDTO(token));
+        return ResponseEntity.ok(new JwtResponseDTO(token, userDTO.getFirstName(), userDTO.getLastName(), userDTO.getLogin(), userDTO.getEmail()));
     }
 
     @PostMapping("/signup")
