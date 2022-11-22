@@ -1,0 +1,40 @@
+.locWrap {
+  position: relative;
+  display: block;
+  height: 370px;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px 10px;
+}
+
+.locImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+}
+
+.locTitle {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 30px 20px;
+  color: #fff;
+  font-size: 30px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  clip-path: inset(20px 10px round 20px);
+}
+
+.locWrap:hover .locTitle {
+  opacity: 1;
+}
+.locWrap:hover .locImg,
+.locTitle {
+  transform: scale(1.05);
+}

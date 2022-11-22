@@ -91,6 +91,7 @@ public class EventController {
      * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
      *    в Список<СобытийДТО> (List<EventDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping()
     public List<EventDTO> getAllEvents(){
         return eventService
@@ -128,6 +129,7 @@ public class EventController {
      * РесурсНеНайден (ResourceNotFoundException),
      * с текстом: "Событие(Event) с данным id не найдено".
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public EventDTO getEventById(@PathVariable Long id){
         return new EventDTO(eventService
@@ -165,6 +167,7 @@ public class EventController {
      * РесурсНеНайден (ResourceNotFoundException),
      * с текстом: "Событие(Event) с данным наименованием (title) не найдено".
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/title")
     public EventDTO getEventByTitle(@RequestParam(name = "title") String title){
         return new EventDTO(eventService
@@ -203,6 +206,7 @@ public class EventController {
      * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
      *    в Список<СобытийДТО> (List<EventDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/category/{id}")
     public List<EventDTO> getAllEventsByCategory(@PathVariable Long id){
         return eventService
@@ -242,6 +246,7 @@ public class EventController {
      * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
      *    в Список<СобытийДТО> (List<EventDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/category/title")
     public List<EventDTO> getAllEventsByCategory(@RequestParam(name = "title") String title){
         return eventService
@@ -282,6 +287,7 @@ public class EventController {
      * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
      *    в Список<СобытийДТО> (List<EventDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/created/user/{id}")
     public List<EventDTO> getAllEventsByUserCreated(@PathVariable Long id){
         return eventService
@@ -321,6 +327,7 @@ public class EventController {
      * 4) Переводим Стрим<СобытийДТО> (Stream<EventDTO>),
      *    в Список<СобытийДТО> (List<EventDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/created/user/login")
     public List<EventDTO> getAllEventsByUserCreated(@RequestParam(name = "login") String login){
         return eventService

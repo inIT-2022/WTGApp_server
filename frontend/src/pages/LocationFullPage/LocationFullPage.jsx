@@ -35,7 +35,7 @@ export const LocationFullPage = () => {
 
   const cost = price ? `${price} рублей` : 'бесплатно';
 
-  const images = linkImage ? linkImage.split('|') : [];
+  const images = linkImage ? linkImage.split('|').slice(0, 5) : [];
 
   const handleShowFullDescr = () => {
     setShowFullDescr(!showFullDescr);
@@ -63,7 +63,7 @@ export const LocationFullPage = () => {
         <p className={style.navText}> location</p>
       </div>
       <h4 className={style.title}>{title}</h4>
-      <div className={style.raiting}>
+      {/* <div className={style.raiting}>
         <div className={style.wrapper}>
           <p className={style.assesment}>Оценка</p>
           <p className={style.score}>4,9</p>
@@ -75,7 +75,7 @@ export const LocationFullPage = () => {
           <p className={style.assesment}>Отзывы</p>
           <p className={style.score}>999</p>
         </div>
-      </div>
+      </div> */}
       <div className={style.cart}>
         <div className={style.leftContent}>
           <p className={style.distance}>Расстояние 15,3 км</p>{' '}

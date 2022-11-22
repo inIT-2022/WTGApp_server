@@ -92,6 +92,7 @@ public class LocationController {
      * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
      *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping()
     public List<LocationDTO> getAllLocations(){
         return locationService
@@ -129,6 +130,7 @@ public class LocationController {
      * РесурсНеНайден (ResourceNotFoundException),
      * с текстом: "Локация(Location) с данным id не найдена".
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public LocationDTO getLocationById(@PathVariable Long id){
         return new LocationDTO(locationService
@@ -165,6 +167,7 @@ public class LocationController {
      * РесурсНеНайден (ResourceNotFoundException),
      * с текстом: "Локация(Location) с данным наименованием (title) не найдена".
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/title")
     public LocationDTO getLocationByTitle(@RequestParam(name = "title") String title){
         return new LocationDTO(locationService
@@ -202,6 +205,7 @@ public class LocationController {
      * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
      *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/category/{id}")
     public List<LocationDTO> getAllLocationsByCategory(@PathVariable Long id){  // TODO getAllLocationsByCategoryId
         return locationService
@@ -240,6 +244,7 @@ public class LocationController {
      * 4) Переводим Стрим<ЛокацийДТО> (Stream<LocationDTO>),
      *    в Список<ЛокацийДТО> (List<LocationDTO>)
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/category/title")
     public List<LocationDTO> getAllLocationsByCategory(@RequestParam(name = "title") String title){  // TODO getAllLocationsByCategoryTitle
         return locationService
@@ -289,6 +294,7 @@ public class LocationController {
      *    для создания новой локации
      * </p>
      */
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/location/create")
     public void createLocation(
             @RequestParam(name = "title") String title,

@@ -7,6 +7,7 @@
   padding: 40px;
 }
 .header__wrapper {
+  position: relative;
   background-position: left;
   background-size: cover;
   display: flex;
@@ -80,7 +81,7 @@
   background: rgba(255, 255, 255, 0.4);
   border-radius: 50px;
   position: absolute;
-  right: 376px;
+  right: 0px;
   padding-top: 70px;
 }
 
