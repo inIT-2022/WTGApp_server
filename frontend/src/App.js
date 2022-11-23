@@ -8,6 +8,7 @@ import { Events } from './pages/Events/Events';
 import { EventFullPage } from './pages/EventFullPage/EventFullPage';
 import { LocationFullPage } from './pages/LocationFullPage/LocationFullPage';
 import { Locations } from './pages/Locations/Locations';
+import { Modal } from './components/Modal/Modal';
 
 const App = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='locations' element={<Locations />} />
           <Route path='locations/:id' element={<LocationFullPage />} />
           <Route path='routespages/:id' element={<Routespages />} />
+          <Route path='authorisation' element={<Modal />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>
