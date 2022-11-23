@@ -7,7 +7,6 @@ import { Layout } from '../../Layouts/Layout/Layout';
 import MainLocation from '../../components/Main/MainLocation';
 import Routespage from '../../components/Routespage/Routespage';
 import Recreation from '../../components/Main/Recreation';
-import { Form } from '../../components/Form/Form';
 
 const Main = ({ searchValue, setSearchValue }) => {
   return (
@@ -20,8 +19,6 @@ const Main = ({ searchValue, setSearchValue }) => {
           setSearchValue={setSearchValue}
         />
         <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Form />
-
         {/* <Recreation /> */}
         {/* <EventSelection /> */}
       </Layout>

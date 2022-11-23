@@ -1,39 +1,35 @@
 import style from './Auth.module.css';
 import { ReactComponent as AuthIcon } from './img/auth.svg';
-import { CSSTransition } from 'react-transition-group';
-import { RegistrationForm } from '../../RegistrationForm/RegistrationForm';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
-  const [showModalForm, setShowModalForm] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleClickAuth = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOpenModal = () => {
+    navigate('authorisation', { state: location.pathname });
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div>
-      {isOpen && (
+      {!isOpen && (
         <div className={style.auth__text}>
-          <p className={style.auth__user_name}>Добро пожаловать, Павел!</p>
+          <button className={style.auth__user_name} onClick={handleOpenModal}>
+            Авторизация
+          </button>
         </div>
       )}
 
-      <button
-        className={style.auth__button}
-        onClick={() => setShowModalForm(!showModalForm)}
-      >
-        <AuthIcon
-          className={style.auth__icon}
-          onClick={() => setIsOpen(!isOpen)}
-        />
+      <button className={style.auth__button} onClick={handleClickAuth}>
+        <AuthIcon className={style.auth__icon} />
       </button>
-
-      <CSSTransition
-        classNames='alert'
-        in={showModalForm}
-        timeout={10000}
-        unmountOnExit
-      >
-        <RegistrationForm />
-      </CSSTransition>
     </div>
   );
 };

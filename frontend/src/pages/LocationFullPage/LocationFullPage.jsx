@@ -59,7 +59,9 @@ export const LocationFullPage = () => {
           </svg>
         </Link>
 
-        <p className={style.navText}>/ Top locations /</p>
+        <Link to='/locations' className={style.navText}>
+          / Top locations /
+        </Link>
         <p className={style.navText}> location</p>
       </div>
       <h4 className={style.title}>{title}</h4>

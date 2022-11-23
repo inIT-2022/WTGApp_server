@@ -51,17 +51,6 @@ export const Form = () => {
       return;
     }
     console.log({ login, email, password, save });
-    setEmail('');
-    setLogin('');
-    setPassword('');
-    setEmailError(false);
-    setLoginError(false);
-    setPasswordError(false);
-    setLoginDirty(false);
-    setEmailDirty(false);
-    setPasswordDirty(false);
-    setSave(false);
-    setCheckErrorForm(false);
   };
 
   return (
@@ -126,8 +115,13 @@ export const Form = () => {
       </div>
 
       <div className={style.nav}>
-        <Link className={style.navLink}> Зарегистрироваться</Link>
-        <Link className={style.navLink}>Восстановить пароль</Link>
+        <Link className={style.navLink} to='/authorisation'>
+          {' '}
+          Зарегистрироваться
+        </Link>
+        <Link className={style.navLink} to='/authorisation'>
+          Восстановить пароль
+        </Link>
 
         <div className={style.wrapCheckbox}>
           <input

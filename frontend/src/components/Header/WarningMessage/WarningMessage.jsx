@@ -1,13 +1,23 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import style from './WarningMessage.module.css';
 
 export const WarningMessage = ({ setClose }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleOpenModal = () => {
+    navigate('authorisation', { state: location.pathname });
+  };
+
   return (
     <div className={style.wrapper}>
       <span className={style.descr}>
         Чтобы получить расширенный функкционал{' '}
-        <button className={style.registrationBtn}>зарегистрируйтесь</button> в
-        приложении WTG
+        <button className={style.registrationBtn} onClick={handleOpenModal}>
+          зарегистрируйтесь
+        </button>{' '}
+        в приложении WTG
       </span>
       <button className={style.closeBtn} onClick={() => setClose()}>
         <svg
