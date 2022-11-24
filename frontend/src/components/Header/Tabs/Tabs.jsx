@@ -3,6 +3,7 @@ import { Layout } from '../../../Layouts/Layout/Layout';
 import { WarningMessage } from '../WarningMessage/WarningMessage';
 import { assignId } from '../../../utils/generateRandomID';
 import style from './Tabs.module.css';
+import { useSelector } from 'react-redux';
 
 const MENU = [
   { value: 'События', link: 'events' },
@@ -13,11 +14,12 @@ const MENU = [
 
 export const Tabs = () => {
   const [close, setClose] = React.useState(true);
+  const authData = useSelector((state) => state.auth.data);
 
   return (
     <Layout>
       <div className={style.tabs}>
-        {close && <WarningMessage setClose={setClose} />}
+        {!authData.login && close && <WarningMessage setClose={setClose} />}
         <nav className={style.header__navigation}>
           <ul className={style.navigation__list}>
             {MENU.map(({ value, id, link }) => {

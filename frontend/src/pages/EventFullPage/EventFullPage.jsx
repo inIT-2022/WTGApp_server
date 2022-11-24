@@ -13,6 +13,7 @@ import style from './EventFullPage.module.css';
 
 export const EventFullPage = () => {
   const [eventPage, setEventPage] = React.useState([]);
+  console.log('eventPage: ', eventPage);
   const { id } = useParams();
 
   React.useEffect(() => {
@@ -23,8 +24,15 @@ export const EventFullPage = () => {
     fetchEventPage(id);
   }, [id]);
 
-  const { description, linkImage, startDatetime, title, price, linkEventSite } =
-    eventPage;
+  const {
+    description,
+    linkImage,
+    startDatetime,
+    title,
+    price,
+    linkEventSite,
+    location,
+  } = eventPage;
 
   const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
 
@@ -32,6 +40,7 @@ export const EventFullPage = () => {
 
   const images = linkImage ? linkImage.split('|') : [];
 
+  const adress = location?.address || '';
   return (
     <Layout>
       <div className={style.nav}>
@@ -116,11 +125,7 @@ export const EventFullPage = () => {
 
             <span className={style.review}>Отзывы 999</span>
           </div>
-          <p className={style.adress}>
-            ​Горная, 1 <br />
-            ДНП Предгорье, х. Молькин, Горячий Ключ городской округ,
-            Краснодарский край
-          </p>
+          <p className={style.adress}>​{adress}</p>
           <a
             href={linkEventSite}
             className={style.source}

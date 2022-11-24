@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './FormRegistration.module.css';
+import { useDispatch } from 'react-redux';
+import { authregistration } from '../../store/auth/authSlice';
 
 export const FormRegistration = ({ closeModal, switchToLogIn }) => {
+  const dispatch = useDispatch();
+
   const [login, setLogin] = useState('');
   const [loginError, setLoginError] = useState(false);
   const [loginDirty, setLoginDirty] = useState(false);
@@ -50,6 +54,7 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
       setCheckErrorForm(true);
       return;
     }
+    dispatch(authregistration({ login, email, password, save }));
     console.log({ login, email, password, save });
     closeModal();
   };
