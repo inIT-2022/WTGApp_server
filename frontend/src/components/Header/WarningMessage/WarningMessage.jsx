@@ -1,13 +1,13 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Modal } from '../../Modal/Modal';
 import style from './WarningMessage.module.css';
 
 export const WarningMessage = ({ setClose }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => {
-    navigate('authorisation', { state: location.pathname });
+    setShowModal(true);
   };
 
   return (
@@ -36,6 +36,7 @@ export const WarningMessage = ({ setClose }) => {
           />
         </svg>
       </button>
+      {showModal && <Modal closeModal={() => setShowModal(false)} />}
     </div>
   );
 };
