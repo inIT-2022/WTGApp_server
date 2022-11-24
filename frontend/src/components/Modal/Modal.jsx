@@ -1,29 +1,31 @@
+import { useState } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { FormLogIn } from '../FormLogIn/FormLogIn';
 
-import { Form } from '../Form/Form';
+import { FormRegistration } from '../FormRegistration/FormRegistration';
 
 import style from './Modal.module.css';
 
-export const Modal = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+export const Modal = ({ closeModal }) => {
   const overlayRef = useRef(null);
+  const [showLogIn, setShowLogIn] = useState(true);
+  const [showRegistration, setShowRegistration] = useState(false);
+  const [showRestorePassword, setShowRestorePassword] = useState(false);
 
   const handleClickOverlay = (e) => {
     const target = e.target;
     if (target === overlayRef.current) {
-      navigate(`${location.state}`);
+      closeModal();
     }
   };
 
   const handleClickClose = useCallback(() => {
-    navigate(`${location.state}`);
+    closeModal();
   }, []);
 
   const handleEscape = useCallback((event) => {
     if (event.key === 'Escape') {
-      navigate(`${location.state}`);
+      closeModal();
     }
   }, []);
 
@@ -37,11 +39,38 @@ export const Modal = () => {
     };
   }, []);
 
+  const switchToLogIn = () => {
+    setShowRegistration(false);
+    setShowLogIn(true);
+    setShowRestorePassword(false);
+  };
+  const switchToRegistration = () => {
+    setShowRegistration(true);
+    setShowLogIn(false);
+    setShowRestorePassword(false);
+  };
+
   return (
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        <p className={style.title}>Вход</p>
-        <Form />
+        {showLogIn && (
+          <>
+            <p className={style.title}>Вход</p>
+            <FormLogIn
+              closeModal={closeModal}
+              switchToRegistration={switchToRegistration}
+            />
+          </>
+        )}
+        {showRegistration && (
+          <>
+            <p className={style.title}>Регистрация</p>
+            <FormRegistration
+              closeModal={closeModal}
+              switchToLogIn={switchToLogIn}
+            />
+          </>
+        )}
         <button onClick={handleClickClose} className={style.close}>
           &times;
         </button>

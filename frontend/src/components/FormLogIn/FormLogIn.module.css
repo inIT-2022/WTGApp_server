@@ -59,6 +59,7 @@
 
 .navLink {
   font-size: 10px;
+  cursor: pointer;
 }
 .wrapCheckbox {
   display: flex;

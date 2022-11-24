@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import style from './Form.module.css';
+import style from './FormLogIn.module.css';
 
-export const Form = () => {
+export const FormLogIn = ({ closeModal, switchToRegistration }) => {
   const [login, setLogin] = useState('');
   const [loginError, setLoginError] = useState(false);
   const [loginDirty, setLoginDirty] = useState(false);
-
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState(false);
-  const [emailDirty, setEmailDirty] = useState(false);
 
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
@@ -22,9 +18,7 @@ export const Form = () => {
   const validLogin = (value) => {
     setLoginError(value.length > 3);
   };
-  const validEmail = (value) => {
-    setEmailError(/^.+@.+\..+$/.test(value));
-  };
+
   const validPassword = (value) => {
     setPasswordError(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}/.test(value));
   };
@@ -33,10 +27,7 @@ export const Form = () => {
     setLogin(target.value);
     validLogin(target.value);
   };
-  const handleEmail = ({ target }) => {
-    setEmail(target.value);
-    validEmail(target.value);
-  };
+
   const handlePassword = ({ target }) => {
     setPassword(target.value);
     validPassword(target.value);
@@ -46,11 +37,12 @@ export const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!loginError || !emailError || !passwordError) {
+    if (!loginError || !passwordError) {
       setCheckErrorForm(true);
       return;
     }
-    console.log({ login, email, password, save });
+    console.log({ login, password, save });
+    closeModal();
   };
 
   return (
@@ -71,25 +63,6 @@ export const Form = () => {
         />
         {!loginError && loginDirty && (
           <p className={style.error}>login слишком короткий</p>
-        )}
-      </div>
-
-      <div className={style.wrap}>
-        <label className={style.label} htmlFor='email'>
-          Email
-        </label>
-        <input
-          className={style.input}
-          type='text'
-          id='email'
-          name='email'
-          placeholder='email'
-          value={email}
-          onChange={handleEmail}
-          onBlur={() => setEmailDirty(true)}
-        />
-        {!emailError && emailDirty && (
-          <p className={style.error}>введите корректный email</p>
         )}
       </div>
 
@@ -115,13 +88,11 @@ export const Form = () => {
       </div>
 
       <div className={style.nav}>
-        <Link className={style.navLink} to='/authorisation'>
+        <p className={style.navLink} onClick={() => switchToRegistration()}>
           {' '}
           Зарегистрироваться
-        </Link>
-        <Link className={style.navLink} to='/authorisation'>
-          Восстановить пароль
-        </Link>
+        </p>
+        <p className={style.navLink}>Восстановить пароль</p>
 
         <div className={style.wrapCheckbox}>
           <input
@@ -141,7 +112,7 @@ export const Form = () => {
       <button className={style.submit} type='submit'>
         Подтвердить
       </button>
-      {checkErrorForm && (!passwordError || !loginError || !emailError) && (
+      {checkErrorForm && (!passwordError || !loginError) && (
         <p className={style.errorSubmit}>
           Проверьте правильность заполнения данных
         </p>
