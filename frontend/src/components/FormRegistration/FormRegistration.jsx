@@ -1,61 +1,40 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authregistration } from '../../store/auth/authSlice';
+
 import style from './FormRegistration.module.css';
+import { useState } from 'react';
+import { useRef } from 'react';
 
 export const FormRegistration = ({ closeModal, switchToLogIn }) => {
-  const [login, setLogin] = useState('');
-  const [loginError, setLoginError] = useState(false);
-  const [loginDirty, setLoginDirty] = useState(false);
+  const dispatch = useDispatch();
+  const [agree, setAgree] = useState(false);
+  const [show, setShow] = useState(false);
+  const checkRef = useRef(null);
 
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState(false);
-  const [emailDirty, setEmailDirty] = useState(false);
+  const handleAgree = ({ target }) => setAgree(target.checked);
 
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const [save, setSave] = useState(false);
+  console.log(checkRef?.current?.checked);
 
-  const [checkErrorForm, setCheckErrorForm] = useState(false);
-
-  const validLogin = (value) => {
-    setLoginError(value.length > 3);
-  };
-  const validEmail = (value) => {
-    setEmailError(/^.+@.+\..+$/.test(value));
-  };
-  const validPassword = (value) => {
-    setPasswordError(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}/.test(value));
-  };
-
-  const handleLogin = ({ target }) => {
-    setLogin(target.value);
-    validLogin(target.value);
-  };
-  const handleEmail = ({ target }) => {
-    setEmail(target.value);
-    validEmail(target.value);
-  };
-  const handlePassword = ({ target }) => {
-    setPassword(target.value);
-    validPassword(target.value);
-  };
-
-  const handleSave = ({ target }) => setSave(target.checked);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!loginError || !emailError || !passwordError) {
-      setCheckErrorForm(true);
+  const onSubmit = (data) => {
+    if (!checkRef?.current?.checked) {
+      setShow(true);
       return;
     }
-    console.log({ login, email, password, save });
-    closeModal();
+    data.birthdayDate = '2022-07-08';
+    dispatch(authregistration(data));
   };
 
   return (
-    <form className={style.form} onSubmit={handleSubmit}>
+    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={style.wrap}>
         <label className={style.label} htmlFor='login'>
           Login
@@ -64,15 +43,63 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
           className={style.input}
           type='text'
           id='login'
-          name='login'
           placeholder='логин'
-          value={login}
-          onChange={handleLogin}
-          onBlur={() => setLoginDirty(true)}
+          aria-invalid={!!errors.login}
+          {...register('login', {
+            required: {
+              value: true,
+              message: 'Заполните поле',
+            },
+            pattern: {
+              value: /.{3,}/,
+              message: 'Слишком короткий login',
+            },
+          })}
         />
-        {!loginError && loginDirty && (
-          <p className={style.error}>login слишком короткий</p>
-        )}
+
+        <p className={style.error}>{errors.login?.message || ''}</p>
+      </div>
+
+      <div className={style.wrap}>
+        <label className={style.label} htmlFor='firstName'>
+          Имя
+        </label>
+        <input
+          className={style.input}
+          type='text'
+          id='firstName'
+          placeholder='Имя'
+          aria-invalid={!!errors.firstName}
+          {...register('firstName', {
+            required: {
+              value: true,
+              message: 'Заполните поле',
+            },
+          })}
+        />
+
+        <p className={style.error}>{errors.firstName?.message || ''}</p>
+      </div>
+
+      <div className={style.wrap}>
+        <label className={style.label} htmlFor='lastName'>
+          Login
+        </label>
+        <input
+          className={style.input}
+          type='text'
+          id='lastName'
+          placeholder='Фамилия'
+          aria-invalid={!!errors.lastName}
+          {...register('lastName', {
+            required: {
+              value: true,
+              message: 'Заполните поле',
+            },
+          })}
+        />
+
+        <p className={style.error}>{errors.lastName?.message || ''}</p>
       </div>
 
       <div className={style.wrap}>
@@ -83,15 +110,35 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
           className={style.input}
           type='text'
           id='email'
-          name='email'
           placeholder='email'
-          value={email}
-          onChange={handleEmail}
-          onBlur={() => setEmailDirty(true)}
+          aria-invalid={!!errors.email}
+          {...register('email', {
+            required: {
+              value: true,
+              message: 'Заполните поле',
+            },
+            pattern: {
+              value: /^.+@.+\..+$/,
+              message: 'введите корректный email',
+            },
+          })}
         />
-        {!emailError && emailDirty && (
-          <p className={style.error}>введите корректный email</p>
-        )}
+        <p className={style.error}>{errors.email?.message || ''}</p>
+      </div>
+
+      <div className={style.wrapHidden}>
+        <label className={style.label} htmlFor='userRoleString'>
+          userRoleString
+        </label>
+        <input
+          className={style.input}
+          type='text'
+          id='userRoleString'
+          placeholder='userRoleString'
+          value='ROLE_USER'
+          {...register('userRoleString')}
+        />
+        <p className={style.error}>введите корректный email</p>
       </div>
 
       <div className={style.wrap}>
@@ -102,17 +149,20 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
           className={style.input}
           type='password'
           id='password'
-          name='password'
           placeholder='пароль'
-          value={password}
-          onChange={handlePassword}
-          onBlur={() => setPasswordDirty(true)}
+          aria-invalid={!!errors.password}
+          {...register('password', {
+            required: {
+              value: true,
+              message: 'Заполните поле',
+            },
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}/,
+              message: 'минимум 6 символов: строчная, прописная буква и цифра',
+            },
+          })}
         />
-        {!passwordError && passwordDirty && (
-          <p className={style.errorPassword}>
-            минимум 6 символов: строчная, прописная буква и цифра
-          </p>
-        )}
+        <p className={style.errorPassword}>{errors.password?.message || ''}</p>
       </div>
 
       <div className={style.nav}>
@@ -125,26 +175,26 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
         <div className={style.wrapCheckbox}>
           <input
             className={style.checkbox}
+            ref={checkRef}
             type='checkbox'
-            id='save'
-            name='save'
-            checked={save}
-            onChange={handleSave}
+            id='policy'
+            checked={agree}
+            onChange={handleAgree}
           />
-          <label className={style.labelCheckbox} htmlFor='save'>
+          <label className={style.labelCheckbox} htmlFor='policy'>
             Ознакомлен c{' '}
             <Link className={style.policy}>политикой безопасности</Link>
           </label>
         </div>
       </div>
+      <p className={style.errorSubmit}>
+        {show && !agree ? 'Ознакомтесь с политикой безопасности' : ''}
+      </p>
+
       <button className={style.submit} type='submit'>
         Подтвердить
       </button>
-      {checkErrorForm && (!passwordError || !loginError || !emailError) && (
-        <p className={style.errorSubmit}>
-          Проверьте правильность заполнения данных
-        </p>
-      )}
+      <p className={style.errorPassword}>{errors.policy?.message || ''}</p>
     </form>
   );
 };

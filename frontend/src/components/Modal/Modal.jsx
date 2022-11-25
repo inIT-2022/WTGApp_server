@@ -6,7 +6,7 @@ import { FormRegistration } from '../FormRegistration/FormRegistration';
 
 import style from './Modal.module.css';
 
-export const Modal = ({ closeModal }) => {
+export const Modal = ({ active, closeModal }) => {
   const overlayRef = useRef(null);
   const [showLogIn, setShowLogIn] = useState(true);
   const [showRegistration, setShowRegistration] = useState(false);
@@ -51,8 +51,11 @@ export const Modal = ({ closeModal }) => {
   };
 
   return (
-    <div className={style.overlay} ref={overlayRef}>
-      <div className={style.modal}>
+    <div
+      className={!active ? style.overlay : style.overlayActive}
+      ref={overlayRef}
+    >
+      <div className={!active ? style.modal : style.modalActive}>
         {showLogIn && (
           <>
             <p className={style.title}>Вход</p>
@@ -62,6 +65,7 @@ export const Modal = ({ closeModal }) => {
             />
           </>
         )}
+
         {showRegistration && (
           <>
             <p className={style.title}>Регистрация</p>
@@ -71,6 +75,7 @@ export const Modal = ({ closeModal }) => {
             />
           </>
         )}
+
         <button onClick={handleClickClose} className={style.close}>
           &times;
         </button>

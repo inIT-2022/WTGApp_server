@@ -36,7 +36,8 @@ export const WarningMessage = ({ setClose }) => {
           />
         </svg>
       </button>
-      {showModal && <Modal closeModal={() => setShowModal(false)} />}
+
+      <Modal active={showModal} closeModal={() => setShowModal(false)} />
     </div>
   );
 };
