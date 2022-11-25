@@ -14,9 +14,15 @@
 
 .label {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 45px;
+  left: 20px;
   font-size: 18px;
+  transition: 0.3s;
+}
+
+.wrap :is(input:focus, input:valid) ~ label {
+  top: 0px;
+  left: 0px;
 }
 
 .input {

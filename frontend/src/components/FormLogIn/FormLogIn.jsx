@@ -48,38 +48,38 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
   return (
     <form className={style.form} onSubmit={handleSubmit}>
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='login'>
-          Login
-        </label>
         <input
           className={style.input}
+          required
           type='text'
           id='login'
           name='login'
-          placeholder='логин'
           value={login}
           onChange={handleLogin}
           onBlur={() => setLoginDirty(true)}
         />
+        <label className={style.label} htmlFor='login'>
+          Login
+        </label>
         {!loginError && loginDirty && (
           <p className={style.error}>login слишком короткий</p>
         )}
       </div>
 
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='password'>
-          Пароль
-        </label>
         <input
           className={style.input}
+          required
           type='password'
           id='password'
           name='password'
-          placeholder='пароль'
           value={password}
           onChange={handlePassword}
           onBlur={() => setPasswordDirty(true)}
         />
+        <label className={style.label} htmlFor='password'>
+          Пароль
+        </label>
         {!passwordError && passwordDirty && (
           <p className={style.errorPassword}>
             минимум 6 символов: строчная, прописная буква и цифра

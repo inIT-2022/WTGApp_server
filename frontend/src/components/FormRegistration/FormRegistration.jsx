@@ -36,14 +36,11 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='login'>
-          Login
-        </label>
         <input
           className={style.input}
           type='text'
+          required
           id='login'
-          placeholder='логин'
           aria-invalid={!!errors.login}
           {...register('login', {
             required: {
@@ -56,19 +53,18 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
             },
           })}
         />
-
+        <label className={style.label} htmlFor='login'>
+          Login
+        </label>
         <p className={style.error}>{errors.login?.message || ''}</p>
       </div>
 
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='firstName'>
-          Имя
-        </label>
         <input
           className={style.input}
           type='text'
           id='firstName'
-          placeholder='Имя'
+          required
           aria-invalid={!!errors.firstName}
           {...register('firstName', {
             required: {
@@ -77,19 +73,18 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
             },
           })}
         />
-
+        <label className={style.label} htmlFor='firstName'>
+          Имя
+        </label>
         <p className={style.error}>{errors.firstName?.message || ''}</p>
       </div>
 
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='lastName'>
-          Login
-        </label>
         <input
           className={style.input}
           type='text'
           id='lastName'
-          placeholder='Фамилия'
+          required
           aria-invalid={!!errors.lastName}
           {...register('lastName', {
             required: {
@@ -98,19 +93,18 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
             },
           })}
         />
-
+        <label className={style.label} htmlFor='lastName'>
+          Login
+        </label>
         <p className={style.error}>{errors.lastName?.message || ''}</p>
       </div>
 
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='email'>
-          Email
-        </label>
         <input
           className={style.input}
           type='text'
           id='email'
-          placeholder='email'
+          required
           aria-invalid={!!errors.email}
           {...register('email', {
             required: {
@@ -123,33 +117,33 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
             },
           })}
         />
+        <label className={style.label} htmlFor='email'>
+          Email
+        </label>
         <p className={style.error}>{errors.email?.message || ''}</p>
       </div>
 
       <div className={style.wrapHidden}>
-        <label className={style.label} htmlFor='userRoleString'>
-          userRoleString
-        </label>
         <input
           className={style.input}
           type='text'
           id='userRoleString'
-          placeholder='userRoleString'
+          placeholder='Роль'
           value='ROLE_USER'
           {...register('userRoleString')}
         />
+        <label className={style.label} htmlFor='userRoleString'>
+          Роль
+        </label>
         <p className={style.error}>введите корректный email</p>
       </div>
 
       <div className={style.wrap}>
-        <label className={style.label} htmlFor='password'>
-          Пароль
-        </label>
         <input
           className={style.input}
           type='password'
           id='password'
-          placeholder='пароль'
+          required
           aria-invalid={!!errors.password}
           {...register('password', {
             required: {
@@ -162,6 +156,9 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
             },
           })}
         />
+        <label className={style.label} htmlFor='password'>
+          Пароль
+        </label>
         <p className={style.errorPassword}>{errors.password?.message || ''}</p>
       </div>
 
