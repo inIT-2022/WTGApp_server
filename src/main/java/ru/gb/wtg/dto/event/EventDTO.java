@@ -15,7 +15,6 @@ public class EventDTO {
     private Long id;
     private String title;
     private String description;
-    private String linkImage;
     private LocalDateTime startDatetime;
     private LocalDateTime finishDatetime;
     private String linkEventSite;
@@ -29,7 +28,6 @@ public class EventDTO {
         this.id = event.getId();
         this.title = event.getTitle();
         this.description = event.getDescription();
-        this.linkImage = event.getLinkImage();
         this.startDatetime = event.getStartDatetime();
         this.finishDatetime = event.getFinishDatetime();
         this.linkEventSite = event.getLinkEventSite();
@@ -37,6 +35,5 @@ public class EventDTO {
         //this.location = event.getLocation().getId();
         this.location = new LocationDTO(event.getLocation());
         this.isActive = event.getIsActive();
-        // TODO включить в ДТО userCreatedId: (в таблице отображается инфо: userCreatedId - null)
     }
 }

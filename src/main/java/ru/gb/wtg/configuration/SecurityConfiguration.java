@@ -1,11 +1,7 @@
 package ru.gb.wtg.configuration;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,8 +9,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-
 import ru.gb.wtg.authorization.JwtRequestFilter;
+
+import java.util.List;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -24,12 +21,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        corsConfiguration.setAllowedOrigins(List.of("*"));
-        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+
+         http
+                 .cors()
+                 .configurationSource(
+                       request -> {
+                             var cors = new CorsConfiguration();
+                             cors.setAllowedOrigins(
+                                   List.of("http://localhost:8179/wtg", "*"));
+                             cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                             cors.setAllowedHeaders(List.of("*", "x-requested-with"));
+                             cors.setMaxAge(3600L);
+                             return cors;
+                       }).and();
+
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -46,7 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 
 //    @Bean
 //    public AuthenticationManager authenticationManagerBean() throws Exception {
