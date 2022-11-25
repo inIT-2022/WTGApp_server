@@ -22,7 +22,6 @@
 
 .modal,
 .modalActive {
-  height: 720px;
   width: 600px;
   background: #ffffff;
   border-radius: 10px;

@@ -13,7 +13,6 @@ import style from './EventFullPage.module.css';
 
 export const EventFullPage = () => {
   const [eventPage, setEventPage] = React.useState([]);
-  console.log('eventPage: ', eventPage);
   const { id } = useParams();
 
   React.useEffect(() => {
@@ -24,21 +23,14 @@ export const EventFullPage = () => {
     fetchEventPage(id);
   }, [id]);
 
-  const {
-    description,
-    linkImage,
-    startDatetime,
-    title,
-    price,
-    linkEventSite,
-    location,
-  } = eventPage;
+  const { description, startDatetime, title, price, linkEventSite, location } =
+    eventPage;
 
   const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
 
   const { startTime, day, year, month } = getDateParameters(startDatetime);
 
-  const images = linkImage ? linkImage.split('|') : [];
+  const images = location?.linkImage ? location.linkImage.split('|') : [];
 
   const adress = location?.address || '';
   return (

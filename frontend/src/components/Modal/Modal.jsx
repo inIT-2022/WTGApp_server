@@ -65,6 +65,7 @@ export const Modal = ({ active, closeModal }) => {
             />
           </>
         )}
+
         {showRegistration && (
           <>
             <p className={style.title}>Регистрация</p>
@@ -74,6 +75,7 @@ export const Modal = ({ active, closeModal }) => {
             />
           </>
         )}
+
         <button onClick={handleClickClose} className={style.close}>
           &times;
         </button>
