@@ -1,13 +1,23 @@
 import React from 'react';
+import { useState } from 'react';
+import { Modal } from '../../Modal/Modal';
 import style from './WarningMessage.module.css';
 
 export const WarningMessage = ({ setClose }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className={style.wrapper}>
       <span className={style.descr}>
         Чтобы получить расширенный функкционал{' '}
-        <button className={style.registrationBtn}>зарегистрируйтесь</button> в
-        приложении WTG
+        <button className={style.registrationBtn} onClick={handleOpenModal}>
+          зарегистрируйтесь
+        </button>{' '}
+        в приложении WTG
       </span>
       <button className={style.closeBtn} onClick={() => setClose()}>
         <svg
@@ -26,6 +36,8 @@ export const WarningMessage = ({ setClose }) => {
           />
         </svg>
       </button>
+
+      <Modal active={showModal} closeModal={() => setShowModal(false)} />
     </div>
   );
 };

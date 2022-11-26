@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS user_roles;
 CREATE TABLE user_roles(
-                      id bigserial PRIMARY KEY,
-                      title varchar(30) not null unique
+                           id bigserial PRIMARY KEY,
+                           title varchar(30) not null unique
 );
 
 DROP TABLE IF EXISTS users;
@@ -22,34 +22,34 @@ CREATE TABLE users(
 
 DROP TABLE IF EXISTS locations;
 CREATE TABLE  locations(
-                      id bigserial PRIMARY KEY,
-                      title varchar(240) not null unique,
-                      description varchar(10000),
-                      full_description varchar(10000),
-                      address varchar(120),
-                      work_time_start time,
-                      work_time_end time,
-                      work_break_start time,
-                      work_break_end time,
-                      link_image varchar(10000),
-                      latitude DOUBLE PRECISION,
-                      longitude DOUBLE PRECISION,
-                      created_at timestamp default current_timestamp,
-                      updated_at timestamp,
-                      link_site varchar(240)
+                           id bigserial PRIMARY KEY,
+                           title varchar(240) not null unique,
+                           description varchar(10000),
+                           full_description varchar(10000),
+                           address varchar(120),
+                           work_time_start time,
+                           work_time_end time,
+                           work_break_start time,
+                           work_break_end time,
+                           link_image varchar(10000),
+                           latitude DOUBLE PRECISION,
+                           longitude DOUBLE PRECISION,
+                           created_at timestamp default current_timestamp,
+                           updated_at timestamp,
+                           link_site varchar(240)
 );
 
 DROP TABLE IF EXISTS categories_for_locations;
 CREATE TABLE categories_for_locations(
-                      id bigserial PRIMARY KEY,
-                      title varchar(30) not null unique,
-                      description varchar(240)
+                                         id bigserial PRIMARY KEY,
+                                         title varchar(30) not null unique,
+                                         description varchar(240)
 );
 
 DROP TABLE IF EXISTS locations_categories;
 CREATE TABLE locations_categories(
-                      location_id integer REFERENCES locations(id),
-                      category_id integer REFERENCES categories_for_locations(id)
+                                     location_id integer REFERENCES locations(id),
+                                     category_id integer REFERENCES categories_for_locations(id)
 );
 
 DROP TABLE IF EXISTS events;
@@ -57,7 +57,6 @@ CREATE TABLE events(
                        id bigserial PRIMARY KEY,
                        title varchar(240) not null unique,
                        description varchar(10000),
-                       link_image varchar(10000),
                        start_datetime timestamp,
                        finish_datetime timestamp,
                        link_event_site varchar(240),
@@ -71,50 +70,50 @@ CREATE TABLE events(
 
 DROP TABLE IF EXISTS categories_for_events;
 CREATE TABLE  categories_for_events(
-                       id bigserial PRIMARY KEY,
-                       title varchar(30) not null unique,
-                       description varchar(240)
+                                       id bigserial PRIMARY KEY,
+                                       title varchar(30) not null unique,
+                                       description varchar(240)
 );
 
 DROP TABLE IF EXISTS events_categories;
 CREATE TABLE events_categories(
-                       event_id integer REFERENCES events(id),
-                       category_id integer REFERENCES categories_for_events(id)
+                                 event_id integer REFERENCES events(id),
+                                 category_id integer REFERENCES categories_for_events(id)
 );
 
 DROP TABLE IF EXISTS user_events;
 CREATE TABLE  user_events(
-                       id bigserial PRIMARY KEY,
-                       user_id integer REFERENCES users(id),
-                       event_id integer REFERENCES events(id)
+                             id bigserial PRIMARY KEY,
+                             user_id integer REFERENCES users(id),
+                             event_id integer REFERENCES events(id)
 );
 
 DROP TABLE IF EXISTS user_events_info;
 CREATE TABLE  user_events_info(
-                       id bigserial PRIMARY KEY,
-                       user_events_id integer REFERENCES user_events(id),
-                       favorites boolean default false,
-                       visited boolean default false
+                                  id bigserial PRIMARY KEY,
+                                  user_events_id integer REFERENCES user_events(id),
+                                  favorites boolean default false,
+                                  visited boolean default false
 );
 
 DROP TABLE IF EXISTS routes_categories;
 CREATE TABLE routes_categories(
-                       id bigserial PRIMARY KEY,
-                       title varchar(30) not null unique,
-                       description varchar(240)
+                                      id bigserial PRIMARY KEY,
+                                      title varchar(30) not null unique,
+                                      description varchar(240)
 );
 
 DROP TABLE IF EXISTS categories_for_users;
 CREATE TABLE categories_for_users(
-                       id bigserial PRIMARY KEY,
-                       title varchar(30) not null unique,
-                       description varchar(240)
+                                     id bigserial PRIMARY KEY,
+                                     title varchar(30) not null unique,
+                                     description varchar(240)
 );
 
 DROP TABLE IF EXISTS users_categories;
 CREATE TABLE users_categories(
-                       user_id integer REFERENCES users(id),
-                       category_id integer REFERENCES categories_for_users(id)
+                                 user_id integer REFERENCES users(id),
+                                 category_id integer REFERENCES categories_for_users(id)
 );
 
 DROP TABLE IF EXISTS routes;
@@ -132,30 +131,30 @@ CREATE TABLE routes(
 
 DROP TABLE IF EXISTS routes_locations;
 CREATE TABLE  routes_locations(
-                       route_id bigserial REFERENCES routes(id),
-                       location_id integer REFERENCES locations(id)
+                                  route_id bigserial REFERENCES routes(id),
+                                  location_id integer REFERENCES locations(id)
 );
 
 DROP TABLE IF EXISTS user_routes;
 CREATE TABLE  user_routes(
-                       id bigserial PRIMARY KEY,
-                       user_id integer REFERENCES users(id),
-                       route_id integer REFERENCES routes(id)
+                             id bigserial PRIMARY KEY,
+                             user_id integer REFERENCES users(id),
+                             route_id integer REFERENCES routes(id)
 );
 
 DROP TABLE IF EXISTS user_routes_info;
 CREATE TABLE  user_routes_info(
-                       id bigserial PRIMARY KEY,
-                       user_routes_id integer REFERENCES user_routes(id),
-                       favorites boolean default false,
-                       visited boolean default false
+                                  id bigserial PRIMARY KEY,
+                                  user_routes_id integer REFERENCES user_routes(id),
+                                  favorites boolean default false,
+                                  visited boolean default false
 );
 
 DROP TABLE IF EXISTS offer_categories;
 CREATE TABLE  offer_categories(
-                       id bigserial PRIMARY KEY,
-                       title varchar(240) not null unique,
-                       description varchar(240)
+                                  id bigserial PRIMARY KEY,
+                                  title varchar(240) not null unique,
+                                  description varchar(240)
 );
 
 DROP TABLE IF EXISTS offers;
