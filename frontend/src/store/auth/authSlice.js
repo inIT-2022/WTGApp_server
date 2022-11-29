@@ -4,15 +4,6 @@ import { fetchAuthData } from './authAction';
 const initialState = {
   loading: false,
   data: {},
-  // data: {
-  //   login: 'User',
-  //   email: 'ddd@mmm.ru',
-  //   password: 'AAAaaa123',
-  //   firstName: '',
-  //   lastName: '',
-  //   birthdayDate: '',
-  //   userRoleString: '',
-  // },
   error: '',
 };
 
@@ -20,11 +11,8 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    authLogout: (state) => {
-      state.data = [];
-    },
-    authregistration: (state, action) => {
-      state.data = action.payload;
+    clearAuth: (state) => {
+      state.data = {};
     },
   },
   extraReducers: (builder) => {
@@ -47,6 +35,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { authLogout, authregistration } = authSlice.actions;
+export const { clearAuth } = authSlice.actions;
 
 export default authSlice.reducer;

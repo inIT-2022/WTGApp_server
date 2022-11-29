@@ -1,6 +1,10 @@
-.auth__button {
-  cursor: pointer;
+.auth__button,
+.auth__buttonLogged {
   position: relative;
+}
+
+.auth__buttonLogged {
+  cursor: default;
 }
 
 .auth__icon {

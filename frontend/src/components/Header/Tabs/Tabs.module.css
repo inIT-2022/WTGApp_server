@@ -20,6 +20,12 @@
   transition: border var(--transition-short);
   border-bottom: 2px solid transparent;
 }
+.auth {
+  color: gray;
+}
+.auth:hover {
+  border: none;
+}
 
 .navigation__link:hover,
 .navigation__link:focus,

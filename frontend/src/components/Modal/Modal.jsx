@@ -16,16 +16,22 @@ export const Modal = ({ active, closeModal }) => {
     const target = e.target;
     if (target === overlayRef.current) {
       closeModal();
+      setShowLogIn(true);
+      setShowRegistration(false);
     }
   };
 
   const handleClickClose = useCallback(() => {
     closeModal();
+    setShowLogIn(true);
+    setShowRegistration(false);
   }, []);
 
   const handleEscape = useCallback((event) => {
     if (event.key === 'Escape') {
       closeModal();
+      setShowLogIn(true);
+      setShowRegistration(false);
     }
   }, []);
 
@@ -39,11 +45,6 @@ export const Modal = ({ active, closeModal }) => {
     };
   }, []);
 
-  const switchToLogIn = () => {
-    setShowRegistration(false);
-    setShowLogIn(true);
-    setShowRestorePassword(false);
-  };
   const switchToRegistration = () => {
     setShowRegistration(true);
     setShowLogIn(false);
@@ -69,10 +70,7 @@ export const Modal = ({ active, closeModal }) => {
         {showRegistration && (
           <>
             <p className={style.title}>Регистрация</p>
-            <FormRegistration
-              closeModal={closeModal}
-              switchToLogIn={switchToLogIn}
-            />
+            <FormRegistration closeModal={closeModal} />
           </>
         )}
 

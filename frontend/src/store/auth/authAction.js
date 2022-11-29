@@ -3,13 +3,13 @@ import axios from 'axios';
 
 export const fetchAuthData = createAsyncThunk(
   'auth/fetchAuthData',
-  (_, { rejectWithValue }) => {
-    const token = localStorage.getItem('bearer');
-
-    if (!token) return;
-    return axios(`https://api.unsplash.com/me`, {
+  ({ login, password }, { rejectWithValue }) => {
+    return axios({
+      method: 'post',
+      url: 'http://localhost:8179/wtg/login',
+      data: { login, password },
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
     })
       .then(({ data }) => data)
