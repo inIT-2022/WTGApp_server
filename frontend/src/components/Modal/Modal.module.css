@@ -23,6 +23,7 @@
 .modal,
 .modalActive {
   width: 600px;
+  min-height: 723px;
   background: #ffffff;
   border-radius: 10px;
   overflow-y: auto;

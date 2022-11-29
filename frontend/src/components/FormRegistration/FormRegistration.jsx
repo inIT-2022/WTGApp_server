@@ -1,18 +1,18 @@
 import { useForm } from 'react-hook-form';
-
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { authregistration } from '../../store/auth/authSlice';
-
-import style from './FormRegistration.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { fetchSignupData } from '../../store/signup/signupAction';
 
-export const FormRegistration = ({ closeModal, switchToLogIn }) => {
+import style from './FormRegistration.module.css';
+
+export const FormRegistration = ({ closeModal }) => {
   const dispatch = useDispatch();
   const [agree, setAgree] = useState(false);
-  const [show, setShow] = useState(false);
+  const [showPolicyError, setShowPolicyError] = useState(false);
   const checkRef = useRef(null);
+  const signupData = useSelector((state) => state.signup.data);
 
   const handleAgree = ({ target }) => setAgree(target.checked);
 
@@ -22,15 +22,12 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
     formState: { errors },
   } = useForm();
 
-  console.log(checkRef?.current?.checked);
-
-  const onSubmit = (data) => {
+  const onSubmit = (values) => {
     if (!checkRef?.current?.checked) {
-      setShow(true);
+      setShowPolicyError(true);
       return;
     }
-    data.birthdayDate = '2022-07-08';
-    dispatch(authregistration(data));
+    dispatch(fetchSignupData(values));
   };
 
   return (
@@ -94,9 +91,31 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
           })}
         />
         <label className={style.label} htmlFor='lastName'>
-          Login
+          Фамилия
         </label>
         <p className={style.error}>{errors.lastName?.message || ''}</p>
+      </div>
+
+      <div className={style.wrap}>
+        <input
+          className={style.inputDate}
+          type='date'
+          id='birthdayDate'
+          required
+          min='1945-01-01'
+          max='2002-01-01'
+          aria-invalid={!!errors.birthdayDate}
+          {...register('birthdayDate', {
+            required: {
+              value: true,
+              message: 'Заполните поле',
+            },
+          })}
+        />
+        <label className={style.label} htmlFor='birthdayDate'>
+          Дата рождения
+        </label>
+        <p className={style.error}>{errors.birthdayDate?.message || ''}</p>
       </div>
 
       <div className={style.wrap}>
@@ -162,30 +181,26 @@ export const FormRegistration = ({ closeModal, switchToLogIn }) => {
         <p className={style.errorPassword}>{errors.password?.message || ''}</p>
       </div>
 
-      <div className={style.nav}>
-        <p className={style.navLink} onClick={() => switchToLogIn()}>
-          {' '}
-          Войти в аккаунт
-        </p>
-        <p className={style.navLink}>Восстановить пароль</p>
-
-        <div className={style.wrapCheckbox}>
-          <input
-            className={style.checkbox}
-            ref={checkRef}
-            type='checkbox'
-            id='policy'
-            checked={agree}
-            onChange={handleAgree}
-          />
-          <label className={style.labelCheckbox} htmlFor='policy'>
-            Ознакомлен c{' '}
-            <Link className={style.policy}>политикой безопасности</Link>
-          </label>
-        </div>
+      <div className={style.wrapCheckbox}>
+        <input
+          className={style.checkbox}
+          ref={checkRef}
+          type='checkbox'
+          id='policy'
+          checked={agree}
+          onChange={handleAgree}
+        />
+        <label className={style.labelCheckbox} htmlFor='policy'>
+          Ознакомлен c{' '}
+          <Link className={style.policy}>политикой безопасности</Link>
+        </label>
       </div>
+
       <p className={style.errorSubmit}>
-        {show && !agree ? 'Ознакомтесь с политикой безопасности' : ''}
+        {showPolicyError && !agree
+          ? 'Ознакомтесь с политикой безопасности'
+          : ''}
+        {signupData?.message ? `${signupData.message}` : ''}
       </p>
 
       <button className={style.submit} type='submit'>

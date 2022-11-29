@@ -1,8 +1,14 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
+import { fetchAuthData } from '../../store/auth/authAction';
 import style from './FormLogIn.module.css';
 
 export const FormLogIn = ({ closeModal, switchToRegistration }) => {
+  const dispatch = useDispatch();
+  const authData = useSelector((state) => state.auth.data);
+
   const [login, setLogin] = useState('');
   const [loginError, setLoginError] = useState(false);
   const [loginDirty, setLoginDirty] = useState(false);
@@ -11,7 +17,8 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordDirty, setPasswordDirty] = useState(false);
 
-  const [save, setSave] = useState(false);
+  const [agreePolicy, setAgreePolicy] = useState(false);
+  const [policyError, setPolicyError] = useState(false);
 
   const [checkErrorForm, setCheckErrorForm] = useState(false);
 
@@ -33,16 +40,17 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
     validPassword(target.value);
   };
 
-  const handleSave = ({ target }) => setSave(target.checked);
+  const handleAgreePolicy = ({ target }) => setAgreePolicy(target.checked);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!loginError || !passwordError) {
+    if (!loginError || !passwordError || !agreePolicy) {
       setCheckErrorForm(true);
+      setPolicyError(true);
       return;
     }
-    console.log({ login, password, save });
-    closeModal();
+
+    dispatch(fetchAuthData({ login, password }));
   };
 
   return (
@@ -99,9 +107,8 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
             className={style.checkbox}
             type='checkbox'
             id='save'
-            name='save'
-            checked={save}
-            onChange={handleSave}
+            checked={agreePolicy}
+            onChange={handleAgreePolicy}
           />
           <label className={style.labelCheckbox} htmlFor='save'>
             Ознакомлен c{' '}
@@ -109,6 +116,14 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
           </label>
         </div>
       </div>
+
+      <p className={style.errorSubmit}>
+        {!agreePolicy && policyError
+          ? 'Ознакомтесь с политикой безопасности'
+          : ''}
+        {Array.isArray(authData) ? 'Неверный логин или пароль' : ''}
+      </p>
+
       <button className={style.submit} type='submit'>
         Подтвердить
       </button>

@@ -8,11 +8,23 @@ import { ReactComponent as Chat } from './img/chat.svg';
 import { useState } from 'react';
 import { Search } from '../Search/Search';
 import { useLocation, useParams } from 'react-router-dom';
+import { Modal } from '../Modal/Modal';
+import { WarningMessage } from './WarningMessage/WarningMessage';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenBurger, setIsOpenBurger] = useState(false);
+  const [showWarning, setShowWarning] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+
   const location = useLocation();
   const { id } = useParams();
+
+  const authData = useSelector((state) => state.auth.data);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
 
   return (
     <header className={style.header} id='header'>
@@ -26,6 +38,9 @@ export const Header = () => {
                   отдых, который подойдет именно Вам
                 </p>
                 <span className={style.city}>Краснодар</span>
+                {!authData.login && showWarning && (
+                  <WarningMessage setClose={() => setShowWarning(false)} />
+                )}
               </>
             )}
 
@@ -73,8 +88,13 @@ export const Header = () => {
             )}
           </div>
           <div className={style.header__wrapper}>
-            <Auth />
-            {isOpen && (
+            {authData?.login && (
+              <div className={style.header__authText}>
+                Добро пожаловать, {authData?.login}!
+              </div>
+            )}
+            <Auth openModal={() => handleOpenModal()} />
+            {isOpenBurger && (
               <div className={style.header__burger_menu}>
                 <Collection className={style.header__burger_svg} />
                 <Chat className={style.header__burger_svg} />
@@ -83,10 +103,14 @@ export const Header = () => {
             )}
             <BurgerSvg
               className={style.header__burger}
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => setIsOpenBurger(!isOpenBurger)}
             />
           </div>
         </div>
+
+        {!authData?.login && (
+          <Modal active={showModal} closeModal={() => setShowModal(false)} />
+        )}
       </Layout>
     </header>
   );

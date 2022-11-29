@@ -1,11 +1,8 @@
-import Container from '../../Container/Container';
-import Line from '../../Line';
 import style from './Recreation.module.css';
 
 export const Recreation = () => {
   return (
-    <Container>
-      <Line />
+    <>
       <div className={style.wrapper}>
         <svg
           width='38'
@@ -372,6 +369,6 @@ export const Recreation = () => {
         </tbody>
       </table>
       <button className={style.button}>Подобрать</button>
-    </Container>
+    </>
   );
 };
