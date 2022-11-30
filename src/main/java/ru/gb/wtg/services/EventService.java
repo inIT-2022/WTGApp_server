@@ -104,6 +104,18 @@ public class EventService {
         return eventRepository.findAllByUsersEvent(usersEvent);
     }
 
+    public List<Event> findAllByDateLater(LocalDateTime dateStart){
+        return eventRepository.findAllByDateLater(dateStart);
+    }
+
+    public List<Event> findAllByDateBetween(LocalDateTime dateStart, LocalDateTime dateEnd){
+        return eventRepository.findAllByDateBetween(dateStart, dateEnd);
+    }
+
+    public List<Event> findAllByManualTitle(String manualTitle){
+        return eventRepository.findAllByManualTitle(manualTitle);
+    }
+
     public void deleteEvent(Long id){
         eventRepository.deleteById(id);
     }
