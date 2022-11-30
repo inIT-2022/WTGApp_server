@@ -7,6 +7,10 @@ import ru.gb.wtg.exceptions.ResourceNotFoundException;
 import ru.gb.wtg.models.event.Event;
 import ru.gb.wtg.services.EventService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +20,7 @@ import java.util.stream.Collectors;
 public class EventController {
 
     private final EventService eventService;
-
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     @GetMapping()
     public List<EventDTO> getAllEvents(){
@@ -83,7 +87,38 @@ public class EventController {
                 .collect(Collectors.toList());
     }
 
+    //отдает события начиная от передаваемой даты до послейней хранящейся в БД
+    //ожидаемый формат даты - 2022-07-10T08:00:00
+    @GetMapping("/dateStart")
+    public List<EventDTO> getAllEventsDateLater(@RequestParam(name = "dateStart") String dateStartString){
+           LocalDateTime dateStart = LocalDateTime.parse(dateStartString, dateTimeFormatter);
 
+        return eventService.findAllByDateLater(dateStart)
+                .stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    //отдает события по диапазону дат "от" и "до"
+    //ожидаемый формат даты - 2022-07-10T08:00:00
+    @GetMapping("/dateBetween")
+    public List<EventDTO> getAllEventsDateBetween(@RequestParam(name = "dateStart") String dateStartString,
+                                                  @RequestParam(name = "dateEnd") String dateEndString){
+        LocalDateTime dateStart = LocalDateTime.parse(dateStartString,dateTimeFormatter);
+        LocalDateTime dateEnd = LocalDateTime.parse(dateEndString,dateTimeFormatter);
+        return eventService.findAllByDateBetween(dateStart,dateEnd)
+                .stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/manualTitle")
+    public List<EventDTO> getAllEventsByManualTitle(@RequestParam(name = "manualTitle") String manualTitle){
+        return eventService.findAllByManualTitle(manualTitle)
+                .stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
+    }
 
 
 

@@ -70,6 +70,11 @@ public class LocationService {
         return locationRepository.findAllByCategoryForLocations(categoryForLocation);
     }
 
+    public List<Location> findAllByManualTitle(String manualTitle){
+        return locationRepository.findAllByManualTitle(manualTitle);
+    }
+
+
     public Location saveLocation(Location location){
        return locationRepository.save(location);
     }

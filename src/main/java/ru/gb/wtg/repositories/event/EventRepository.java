@@ -2,6 +2,8 @@ package ru.gb.wtg.repositories.event;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.gb.wtg.models.event.CategoryForEvent;
 import ru.gb.wtg.models.event.Event;
@@ -25,5 +27,15 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findAllByUserCreated(User userCreated);
     List<Event> findAllByCategoryForEvents(CategoryForEvent categoryForEvent);
     List<Event> findAllByUsersEvent(User usersEvent);
+
+    @Query("SELECT e FROM Event e   where e.startDatetime >= :dateStart")
+    List<Event> findAllByDateLater(@Param("dateStart") LocalDateTime dateStart);
+
+    @Query("SELECT e FROM Event e   where e.startDatetime between :dateStart and :dateEnd")
+    List<Event> findAllByDateBetween(@Param("dateStart") LocalDateTime dateStart,
+                                     @Param("dateEnd") LocalDateTime dateEnd);
+
+    @Query("SELECT e FROM Event e   where e.title like %:manualTitle%")
+    List<Event> findAllByManualTitle(@Param("manualTitle") String manualTitle);
 
 }
