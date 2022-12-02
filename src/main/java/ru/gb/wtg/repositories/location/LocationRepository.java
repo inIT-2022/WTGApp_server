@@ -27,7 +27,7 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
 
     List<Location> findAllByCategoryForLocations(CategoryForLocation categoryForLocation);
 
-    @Query("SELECT l FROM Location l   where l.title like %:manualTitle%")
+    @Query(value = "SELECT * FROM locations  where title ilike %?1%", nativeQuery = true)
     List<Location> findAllByManualTitle(@Param("manualTitle") String manualTitle);
 
 
