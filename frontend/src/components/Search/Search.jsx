@@ -1,10 +1,12 @@
 import React from 'react';
 import style from './Search.module.css';
-import {
-  setSearchLocation,
-  setSearchEvent,
-} from '../../store/search/searchSlice';
+
 import { useDispatch } from 'react-redux';
+import {
+  fetchSearchEvents,
+  fetchSearchLocations,
+} from '../../store/search/searchAction';
+import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
 
 export const Search = ({ searchType }) => {
   const [search, setSearch] = React.useState('');
@@ -12,12 +14,17 @@ export const Search = ({ searchType }) => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    dispatch(setSearchValue(search));
     searchType === 'events'
-      ? dispatch(setSearchEvent(search))
-      : dispatch(setSearchLocation(search));
-
-    // setSearch('');
+      ? dispatch(fetchSearchEvents(search))
+      : dispatch(fetchSearchLocations(search));
   };
+
+  const handleClickClose = () => {
+    setSearch('');
+    dispatch(clearSearch());
+  };
+
   return (
     <form className={style.form} onSubmit={handlerSubmit}>
       <input
@@ -27,6 +34,16 @@ export const Search = ({ searchType }) => {
         value={search}
         placeholder='поиск'
       />
+      {search && (
+        <button
+          className={style.buttonClose}
+          type='button'
+          onClick={handleClickClose}
+        >
+          &#10008;
+        </button>
+      )}
+
       <button className={style.button} type='submit'>
         <svg
           className={style.svg}

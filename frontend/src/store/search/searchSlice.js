@@ -1,28 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchSearchEvents, fetchSearchLocations } from './searchAction';
 
 const initialState = {
-  searchEvent: '',
-  searchLocation: '',
+  searchValue: '',
+  searchEvents: [],
+  searchLocations: [],
 };
 
 export const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    setSearchLocation: (state, action) => {
-      state.searchLocation = action.payload;
+    setSearchValue: (state, action) => {
+      state.searchValue = action.payload;
     },
-    setSearchEvent: (state, action) => {
-      state.searchEvent = action.payload;
+    clearSearch: (state) => {
+      state.searchEvents = [];
+      state.searchLocations = [];
+      state.searchValue = '';
     },
-    clearSearch: (state, action) => {
-      state.searchEvent = '';
-      state.searchLocation = '';
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchSearchEvents.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    });
+
+    builder.addCase(fetchSearchEvents.fulfilled, (state, action) => {
+      state.searchEvents = action.payload;
+      state.loading = false;
+      state.error = '';
+    });
+
+    builder.addCase(fetchSearchEvents.rejected, (state, action) => {
+      state.searchEvents = [];
+      state.loading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(fetchSearchLocations.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    });
+
+    builder.addCase(fetchSearchLocations.fulfilled, (state, action) => {
+      state.searchLocations = action.payload;
+      state.loading = false;
+      state.error = '';
+    });
+
+    builder.addCase(fetchSearchLocations.rejected, (state, action) => {
+      state.searchLocations = [];
+      state.loading = false;
+      state.error = action.payload;
+    });
   },
 });
 
-export const { setSearchLocation, setSearchEvent, clearSearch } =
-  searchSlice.actions;
+export const { clearSearch, setSearchValue } = searchSlice.actions;
 
 export default searchSlice.reducer;

@@ -4,7 +4,7 @@ import style from './CardMore.module.css';
 export const CardMore = () => {
   return (
     <Link to='/locations' className={style.card}>
-      <p className={style.text}>Смотерть </p>
+      <p className={style.text}>Смотреть </p>
       <p className={style.text}> все</p>
     </Link>
   );

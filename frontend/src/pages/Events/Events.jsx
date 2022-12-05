@@ -12,21 +12,21 @@ import { Layout } from '../../Layouts/Layout/Layout';
 import style from './Events.module.css';
 
 export const Events = () => {
-  const search = useSelector((state) => state.search.searchEvent);
-  const events = useSelector((state) => state.events.data);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const searchEvents = useSelector((state) => state.search.searchEvents);
+  const searchValue = useSelector((state) => state.search.searchValue);
+
+  const events = useSelector((state) => state.events.data);
+  const loading = useSelector((state) => state.events.loading);
 
   React.useEffect(() => {
     dispatch(fetchEvents());
   }, []);
 
-  const filteredEvents = events.filter((obj) =>
-    (obj?.title?.toLowerCase() + obj?.description?.toLowerCase()).includes(
-      search.toLowerCase(),
-    ),
-  );
+  const filteredEvents =
+    searchEvents.length || searchValue ? searchEvents : events;
 
   const handleClickHome = () => {
     navigate('/');
@@ -53,6 +53,8 @@ export const Events = () => {
 
         <h2 className={style.navText}>/ Top events /</h2>
       </div>
+      {loading ? <Spinner /> : null}
+
       {filteredEvents.length > 0 ? (
         filteredEvents.map((event) => (
           <Event
@@ -68,7 +70,6 @@ export const Events = () => {
       ) : (
         <>
           <span>Ничего не найдено</span>
-          <Spinner />
         </>
       )}
     </Layout>

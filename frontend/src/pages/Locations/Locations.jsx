@@ -16,18 +16,17 @@ export const Locations = () => {
   const navigate = useNavigate();
 
   const locations = useSelector((state) => state.locations.data);
+  const loading = useSelector((state) => state.locations.loading);
 
-  const search = useSelector((state) => state.search.searchLocation);
+  const searchLocations = useSelector((state) => state.search.searchLocations);
+  const searchValue = useSelector((state) => state.search.searchValue);
 
   React.useEffect(() => {
     dispatch(fetchLocations());
   }, []);
 
-  const filteredLocations = locations.filter((obj) =>
-    (obj?.title?.toLowerCase() + obj?.description?.toLowerCase()).includes(
-      search.toLowerCase(),
-    ),
-  );
+  const filteredLocations =
+    searchLocations.length || searchValue ? searchLocations : locations;
 
   const handleClickHome = () => {
     navigate('/');
@@ -54,6 +53,8 @@ export const Locations = () => {
 
         <h2 className={style.navText}>/ Top locations</h2>
       </div>
+      {loading ? <Spinner /> : null}
+
       {filteredLocations.length > 0 ? (
         filteredLocations.map((location) => (
           <CardLocation
@@ -69,7 +70,6 @@ export const Locations = () => {
       ) : (
         <>
           <span>Ничего не найдено</span>
-          <Spinner />
         </>
       )}
     </Layout>
