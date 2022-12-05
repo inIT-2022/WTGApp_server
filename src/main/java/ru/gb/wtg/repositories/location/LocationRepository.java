@@ -1,6 +1,8 @@
 package ru.gb.wtg.repositories.location;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.gb.wtg.models.location.CategoryForLocation;
 import ru.gb.wtg.models.location.Location;
@@ -24,6 +26,9 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
     List<Location> findAllByLatitudeAndLongitude(Double latitude, Double longitude);
 
     List<Location> findAllByCategoryForLocations(CategoryForLocation categoryForLocation);
+
+    @Query(value = "SELECT * FROM locations  where title ilike %?1%", nativeQuery = true)
+    List<Location> findAllByManualTitle(@Param("manualTitle") String manualTitle);
 
 
 }

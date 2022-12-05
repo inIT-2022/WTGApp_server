@@ -73,6 +73,14 @@ public class LocationController {
         locationService.saveLocation(location);
     }
 
+    @GetMapping("/manualTitle")
+    public List<LocationDTO> getAllLocationsByManualTitle(@RequestParam(name = "manualTitle") String manualTitle){
+        return locationService.findAllByManualTitle(manualTitle)
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
+
 
     @DeleteMapping("/deleteLocationById/{id}")
     public void deleteLocationById(@PathVariable Long id){
