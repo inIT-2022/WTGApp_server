@@ -6,6 +6,8 @@ import { clearSearch } from '../../store/search/searchSlice';
 import { fetchEvents } from '../../store/events/eventsAction';
 
 import Spinner from '../../components/Spinner/Spinner';
+import Skeleton from '../../components/Skeleton/Skeleton';
+
 import { Event } from '../../components/Event/Event';
 import { Layout } from '../../Layouts/Layout/Layout';
 
@@ -53,7 +55,13 @@ export const Events = () => {
 
         <h2 className={style.navText}>/ Top events /</h2>
       </div>
-      {loading ? <Spinner /> : null}
+      {loading ? (
+        <>
+          {[...new Array(4)].map((_, index) => (
+            <Skeleton key={index} />
+          ))}
+        </>
+      ) : null}
 
       {filteredEvents.length > 0 ? (
         filteredEvents.map((event) => (

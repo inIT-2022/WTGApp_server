@@ -7,6 +7,7 @@
 .gallery {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 100px;
 }
 
 .img_wrapper {
@@ -47,7 +48,7 @@ h3 {
   top: 0;
   z-index: 1;
   width: 1110px;
-  height: 650px;
+  height: 670px;
   border-radius: 20px;
   backdrop-filter: blur(3px);
   background-color: rgba(0, 0, 0, 0.2);

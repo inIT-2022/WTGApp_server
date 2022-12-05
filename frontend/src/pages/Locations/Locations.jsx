@@ -6,6 +6,7 @@ import { fetchLocations } from '../../store/locations/locationsAction';
 import { clearSearch } from '../../store/search/searchSlice';
 
 import { Layout } from '../../Layouts/Layout/Layout';
+import Skeleton from '../../components/Skeleton/Skeleton';
 import Spinner from '../../components/Spinner/Spinner';
 import CardLocation from '../../components/CardLocation';
 
@@ -53,7 +54,13 @@ export const Locations = () => {
 
         <h2 className={style.navText}>/ Top locations</h2>
       </div>
-      {loading ? <Spinner /> : null}
+      {loading ? (
+        <>
+          {[...new Array(4)].map((_, index) => (
+            <Skeleton key={index} />
+          ))}
+        </>
+      ) : null}
 
       {filteredLocations.length > 0 ? (
         filteredLocations.map((location) => (

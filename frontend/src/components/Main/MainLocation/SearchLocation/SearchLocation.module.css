@@ -31,9 +31,9 @@
 
 .svgClose {
   position: absolute;
-  width: 26px;
-  height: 26px;
-  right: 17%;
+  width: 24px;
+  height: 24px;
+  right: 258px;
   top: 7px;
   opacity: 0.3;
   cursor: pointer;
