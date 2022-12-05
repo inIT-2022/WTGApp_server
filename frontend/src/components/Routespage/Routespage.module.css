@@ -47,7 +47,19 @@ h3 {
   top: 0;
   z-index: 1;
   width: 1110px;
-  height: 630px;
+  height: 650px;
+  border-radius: 20px;
   backdrop-filter: blur(3px);
-  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.message {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 40px;
+  padding: 10px;
+  color: aliceblue;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55);
+
+  /* background-color: aliceblue; */
 }

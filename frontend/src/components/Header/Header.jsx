@@ -50,7 +50,7 @@ export const Header = () => {
                 <p className={style.subtitleEvents}>
                   все значимые события города и края
                 </p>
-                <Search />
+                <Search searchType={'events'} />
               </>
             )}
 
@@ -69,7 +69,7 @@ export const Header = () => {
                 <p className={style.subtitleEvents}>
                   место, куда вам захочется вернуться :)
                 </p>
-                <Search />
+                <Search searchType={'locations'} />
               </>
             )}
 
@@ -90,7 +90,8 @@ export const Header = () => {
           <div className={style.header__wrapper}>
             {authData?.login && (
               <div className={style.header__authText}>
-                Добро пожаловать, {authData?.login}!
+                Добро пожаловать,{' '}
+                <span className={style.login}>{authData?.login} !</span>
               </div>
             )}
             <Auth openModal={() => handleOpenModal()} />

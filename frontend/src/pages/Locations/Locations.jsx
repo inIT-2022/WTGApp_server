@@ -1,26 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchLocations } from '../../store/locations/locationsAction';
+import { clearSearch } from '../../store/search/searchSlice';
+
 import { Layout } from '../../Layouts/Layout/Layout';
-import style from './Locations.module.css';
-import { API_URI } from '../../assets/const';
-import axios from 'axios';
 import Spinner from '../../components/Spinner/Spinner';
 import CardLocation from '../../components/CardLocation';
 
+import style from './Locations.module.css';
+
 export const Locations = () => {
-  const [locations, setLocations] = React.useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const locations = useSelector((state) => state.locations.data);
+
+  const search = useSelector((state) => state.search.searchLocation);
+
   React.useEffect(() => {
-    const fetchLocations = async () => {
-      const { data } = await axios(`${API_URI}/locations`);
-      setLocations(data);
-    };
-    fetchLocations();
+    dispatch(fetchLocations());
   }, []);
+
+  const filteredLocations = locations.filter((obj) =>
+    (obj?.title?.toLowerCase() + obj?.description?.toLowerCase()).includes(
+      search.toLowerCase(),
+    ),
+  );
+
+  const handleClickHome = () => {
+    navigate('/');
+    dispatch(clearSearch());
+  };
 
   return (
     <Layout>
       <div className={style.nav}>
-        <Link to='/'>
+        <button onClick={handleClickHome}>
           <svg
             width='36'
             height='36'
@@ -33,12 +50,12 @@ export const Locations = () => {
               fill='black'
             />
           </svg>
-        </Link>
+        </button>
 
         <h2 className={style.navText}>/ Top locations</h2>
       </div>
-      {locations.length > 0 ? (
-        locations.map((location) => (
+      {filteredLocations.length > 0 ? (
+        filteredLocations.map((location) => (
           <CardLocation
             key={location.id}
             title={location.title}
@@ -50,7 +67,10 @@ export const Locations = () => {
           />
         ))
       ) : (
-        <Spinner />
+        <>
+          <span>Ничего не найдено</span>
+          <Spinner />
+        </>
       )}
     </Layout>
   );

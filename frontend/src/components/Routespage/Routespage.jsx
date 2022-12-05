@@ -6,14 +6,29 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Shortcut } from './img/shortcut.svg';
 import SearchRoutes from './SearchRoutes';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const Routes = ({ searchValue, setSearchValue }) => {
   const authData = useSelector((state) => state.auth.data);
+  const [isShowMessage, setIsShowMessage] = useState(false);
+
+  const showMessage = () => {
+    setIsShowMessage(!isShowMessage);
+    setTimeout(() => {
+      setIsShowMessage(false);
+    }, 1500);
+  };
 
   return (
     <>
       <div className={style.wrapper} id='routes'>
-        {!authData?.login ? <div className={style.authBlure}></div> : null}
+        {!authData?.login ? (
+          <div className={style.authBlure} onClick={showMessage}>
+            {isShowMessage ? (
+              <p className={style.message}>Необходимо авторизоваться </p>
+            ) : null}
+          </div>
+        ) : null}
         <Shortcut className={style.svg} width={85} height={85} />
         <h2 className={style.title}>яркие маршруты</h2>
       </div>

@@ -1,26 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { clearSearch } from '../../store/search/searchSlice';
+import { fetchEvents } from '../../store/events/eventsAction';
+
+import Spinner from '../../components/Spinner/Spinner';
 import { Event } from '../../components/Event/Event';
 import { Layout } from '../../Layouts/Layout/Layout';
+
 import style from './Events.module.css';
-import { API_URI } from '../../assets/const';
-import axios from 'axios';
-import Spinner from '../../components/Spinner/Spinner';
 
 export const Events = () => {
-  const [events, setEvents] = React.useState([]);
+  const search = useSelector((state) => state.search.searchEvent);
+  const events = useSelector((state) => state.events.data);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   React.useEffect(() => {
-    const fetchEvents = async () => {
-      const { data } = await axios(`${API_URI}/events`);
-      setEvents(data);
-    };
-    fetchEvents();
+    dispatch(fetchEvents());
   }, []);
+
+  const filteredEvents = events.filter((obj) =>
+    (obj?.title?.toLowerCase() + obj?.description?.toLowerCase()).includes(
+      search.toLowerCase(),
+    ),
+  );
+
+  const handleClickHome = () => {
+    navigate('/');
+    dispatch(clearSearch());
+  };
 
   return (
     <Layout>
       <div className={style.nav}>
-        <Link to='/'>
+        <button onClick={handleClickHome}>
           <svg
             width='36'
             height='36'
@@ -33,12 +49,12 @@ export const Events = () => {
               fill='black'
             />
           </svg>
-        </Link>
+        </button>
 
         <h2 className={style.navText}>/ Top events /</h2>
       </div>
-      {events.length > 0 ? (
-        events.map((event) => (
+      {filteredEvents.length > 0 ? (
+        filteredEvents.map((event) => (
           <Event
             key={event.id}
             title={event.title}
@@ -50,7 +66,10 @@ export const Events = () => {
           />
         ))
       ) : (
-        <Spinner />
+        <>
+          <span>Ничего не найдено</span>
+          <Spinner />
+        </>
       )}
     </Layout>
   );

@@ -1,12 +1,22 @@
 import React from 'react';
 import style from './Search.module.css';
+import {
+  setSearchLocation,
+  setSearchEvent,
+} from '../../store/search/searchSlice';
+import { useDispatch } from 'react-redux';
 
-export const Search = (props) => {
+export const Search = ({ searchType }) => {
   const [search, setSearch] = React.useState('');
+  const dispatch = useDispatch();
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    setSearch('');
+    searchType === 'events'
+      ? dispatch(setSearchEvent(search))
+      : dispatch(setSearchLocation(search));
+
+    // setSearch('');
   };
   return (
     <form className={style.form} onSubmit={handlerSubmit}>

@@ -7,6 +7,7 @@ import { Layout } from '../../Layouts/Layout/Layout';
 import MainLocation from '../../components/Main/MainLocation';
 import Routespage from '../../components/Routespage/Routespage';
 import Recreation from '../../components/Main/Recreation';
+import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
 
 const Main = ({ searchValue, setSearchValue }) => {
   return (
@@ -21,6 +22,7 @@ const Main = ({ searchValue, setSearchValue }) => {
         <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
         {/* <Recreation /> */}
         {/* <EventSelection /> */}
+        <ScrollTop />
       </Layout>
     </main>
   );

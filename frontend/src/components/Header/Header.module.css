@@ -114,3 +114,8 @@
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
 }
+
+.login {
+  font-size: 20px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.45);
+}
