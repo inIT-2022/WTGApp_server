@@ -13,7 +13,7 @@ export const WarningMessage = ({ setClose }) => {
   return (
     <div className={style.wrapper}>
       <span className={style.descr}>
-        Чтобы получить расширенный функкционал{' '}
+        Чтобы получить расширенный функционал{' '}
         <button className={style.registrationBtn} onClick={handleOpenModal}>
           зарегистрируйтесь
         </button>{' '}
