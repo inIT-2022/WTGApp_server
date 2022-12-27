@@ -9,7 +9,7 @@ export const fetchSignupData = createAsyncThunk(
     Object.assign(data, values);
     return axios({
       method: 'post',
-      url: 'http://localhost:8179/wtg/signup',
+      url: 'http://95.163.237.3:8179/wtg/signup',
       data,
       headers: {
         'Content-Type': 'application/json',
