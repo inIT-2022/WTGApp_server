@@ -82,6 +82,32 @@ public class LocationController {
     }
 
 
+    @GetMapping("/locations-by-sector")
+    public List<LocationDTO> getAllBySector(
+            @RequestParam(name = "latitudeMin") Double latitudeMin,
+            @RequestParam(name = "latitudeMax") Double latitudeMax,
+            @RequestParam(name = "longitudeMin") Double longitudeMin,
+            @RequestParam(name = "longitudeMax") Double longitudeMax){
+        return locationService.findAllBySector(latitudeMin,latitudeMax,longitudeMin,longitudeMax)
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/locations-with-events-by-sector")
+    public List<LocationDTO> getAllBySectorWithEvents(
+            @RequestParam(name = "latitudeMin") Double latitudeMin,
+            @RequestParam(name = "latitudeMax") Double latitudeMax,
+            @RequestParam(name = "longitudeMin") Double longitudeMin,
+            @RequestParam(name = "longitudeMax") Double longitudeMax
+    ){
+        return locationService.findAllByLatitudeWithEvents(latitudeMin, latitudeMax, longitudeMin, longitudeMax)
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
     @DeleteMapping("/deleteLocationById/{id}")
     public void deleteLocationById(@PathVariable Long id){
         locationService.deleteLocation(id);

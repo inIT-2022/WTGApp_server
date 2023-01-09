@@ -4,17 +4,26 @@ server:
     context-path: /wtg
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL;
-    # url: jdbc:h2:file:E:/WTG_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE;
-    #    url: jdbc:h2:file:./src/main/resources/db/WTG_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE;
-    username: wtg
-    password:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL;
+#    # url: jdbc:h2:file:E:/WTG_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+#    #    url: jdbc:h2:file:./src/main/resources/db/WTG_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+#    username: wtg
+#    password:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/WTG
+    username: postgres
+    password: 1917
   jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+    database: POSTGRESQL
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
+        dialect: org.hibernate.dialect.PostgreSQL82Dialect
   h2:
     console:
       enabled: true
