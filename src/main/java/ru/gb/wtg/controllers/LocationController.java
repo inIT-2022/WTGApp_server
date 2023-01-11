@@ -2,21 +2,44 @@ package ru.gb.wtg.controllers;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.wtg.dto.location.LocationDTO;
+import ru.gb.wtg.dto.route.MapsDTO;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
+import ru.gb.wtg.mapAPI.MapAPIInterface;
+import ru.gb.wtg.mapAPI.Yandex.MapAPIYandex;
 import ru.gb.wtg.models.location.Location;
+import ru.gb.wtg.routes.Sector;
 import ru.gb.wtg.services.LocationService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping("api/v1/locations")
 public class LocationController {
 
     private final LocationService locationService;
+    private final MapAPIInterface mapAPIService;
+    private final Sector sector;
+
+    @Autowired
+    public LocationController(LocationService locationService, @Qualifier("mapAPIYandex") MapAPIInterface mapAPIInterface, Sector sector) {
+        this.locationService = locationService;
+        this.mapAPIService = mapAPIInterface;
+        this.sector = sector;
+    }
+
+    //todo only test
+    @GetMapping("test")
+    public List<Double> getCoordinateByAddress(String address){
+        return mapAPIService.getCoordinateByAddress(address);
+    }
+
+
 
     @GetMapping()
     public List<LocationDTO> getAllLocations(){
@@ -82,17 +105,49 @@ public class LocationController {
     }
 
 
+    //Метод принимает 2 параметра - адрес и радиус в метрах, а возвращает все локации, которые попали в заданную точку и координаты введенного адреса
     @GetMapping("/locations-by-sector")
-    public List<LocationDTO> getAllBySector(
+    public MapsDTO getAllBySector(
+//            @RequestParam(name = "latitude") Double latitude,
+//            @RequestParam(name = "longitude") Double longitude,
+            @RequestParam(name = "address") String address,
+            @RequestParam(name = "radius") int radius
+    ){
+        List<Double> coordinate = getCoordinateByAddress(address);
+        System.out.println("long = " + coordinate.get(0) + " lat = " + coordinate.get(1));
+        //double [][] sc = sector.getSectorByRadius(longitude,latitude,radius);
+        double [][] sc = sector.getSectorByRadius(coordinate.get(0),coordinate.get(1),radius);
+        System.out.println("sc[0][0] = " + sc[0][0] + " sc[0][1] = " + sc[0][1] );
+        System.out.println("sc[1][0] = " + sc[1][0] + " sc[1][1] = " + sc[1][1] );
+
+                                                                    //  latitudeMin,latitudeMax,longitudeMin,longitudeMax
+        List<LocationDTO> locationDTOList = locationService.findAllBySector(sc[1][1],sc[0][1],sc[0][0],sc[1][0])
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+
+                                            //  latitudeMin,latitudeMax,longitudeMin,longitudeMax
+        return new MapsDTO(coordinate.get(0),coordinate.get(1), locationDTOList);
+    }
+
+    //todo only test
+    @GetMapping("/locations-by-sector-test")
+    public List<LocationDTO> getAllBySectorTest(
             @RequestParam(name = "latitudeMin") Double latitudeMin,
             @RequestParam(name = "latitudeMax") Double latitudeMax,
             @RequestParam(name = "longitudeMin") Double longitudeMin,
-            @RequestParam(name = "longitudeMax") Double longitudeMax){
+            @RequestParam(name = "longitudeMax") Double longitudeMax
+
+    ){
+        //  latitudeMin,latitudeMax,longitudeMin,longitudeMax
         return locationService.findAllBySector(latitudeMin,latitudeMax,longitudeMin,longitudeMax)
                 .stream()
                 .map(LocationDTO::new)
                 .collect(Collectors.toList());
     }
+
+
+
 
     @GetMapping("/locations-with-events-by-sector")
     public List<LocationDTO> getAllBySectorWithEvents(

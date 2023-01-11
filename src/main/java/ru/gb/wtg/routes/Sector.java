@@ -34,14 +34,14 @@ public class Sector {
     sector[1][1]- широта правой нижней точки
      PS возвращаем квадрат, который описывает окружность с заданный радиусом
      */
-    public float[][] getSectorByRadius(float centerLongitude, float centerLatitude, int radius ){
-        float [][] sector = new float[2][2];
+    public double[][] getSectorByRadius(double centerLongitude, double centerLatitude, int radius ){
+        double [][] sector = new double[2][2];
 
-        sector[0][0] = centerLongitude - ((float) radius)/longitudeArray[(int)centerLatitude];
-        sector[0][1] = centerLatitude + ((float) radius)/latitudeArray[(int)centerLatitude];
+        sector[0][0] = centerLongitude - ((double) radius)/longitudeArray[(int)centerLatitude];
+        sector[0][1] = centerLatitude + ((double) radius)/latitudeArray[(int)centerLatitude];
 
-        sector[1][0] = centerLongitude + ((float) radius)/longitudeArray[(int)centerLatitude];
-        sector[1][1] = centerLatitude - ((float) radius)/latitudeArray[(int)centerLatitude];
+        sector[1][0] = centerLongitude + ((double) radius)/longitudeArray[(int)centerLatitude];
+        sector[1][1] = centerLatitude - ((double) radius)/latitudeArray[(int)centerLatitude];
 
         return sector;
     }
