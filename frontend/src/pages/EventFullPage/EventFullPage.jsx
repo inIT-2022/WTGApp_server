@@ -119,9 +119,17 @@ export const EventFullPage = () => {
             <span className={style.review}>Отзывы 999</span> */}
           </div>
           <p className={style.adress}>​{adress}</p>
+          {location && (
+            <Link
+              to={`/locations/${location.id}`}
+              className={style.locationLink}
+            >
+              Локация
+            </Link>
+          )}
           <a
             href={linkEventSite}
-            className={style.source}
+            className={style.sourceLink}
             rel='noreferrer'
             target='_blank'
           >
