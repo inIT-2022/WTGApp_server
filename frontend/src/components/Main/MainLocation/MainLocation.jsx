@@ -3,8 +3,6 @@ import React from 'react';
 import { ReactComponent as Shortcut } from './img/shortcut.svg';
 import Spinner from '../../Spinner/Spinner';
 
-import { API_URI } from '../../../assets/const';
-import axios from 'axios';
 import Slider from 'react-slick';
 
 import { SearchLocation } from './SearchLocation/SearchLocation';
@@ -14,16 +12,15 @@ import { CardMainLocation } from '../../CardMainLocation/CardMainLocation';
 import style from './MainLocation.module.css';
 import './slick.css';
 import './slick-theme.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchLocations } from '../../../store/locations/locationsAction';
 
 export const MainLocation = ({ searchValue, setSearchValue }) => {
-  const [locations, setLocations] = React.useState([]);
+  const dispatch = useDispatch();
+  const locations = useSelector((state) => state.locations.data);
 
   React.useEffect(() => {
-    const fetchEvents = async () => {
-      const { data } = await axios(`${API_URI}/locations`);
-      setLocations(data);
-    };
-    fetchEvents();
+    dispatch(fetchLocations());
   }, []);
 
   const settings = {

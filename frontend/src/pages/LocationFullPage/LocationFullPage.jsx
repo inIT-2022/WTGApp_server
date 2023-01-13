@@ -102,10 +102,16 @@ export const LocationFullPage = () => {
             Источник
           </a>
 
-          <p className={style.description}>{description}</p>
-          <span className={style.moreInfo} onClick={handleShowFullDescr}>
-            {showFullDescr ? 'Свернуть' : 'Больше информации'}
-          </span>
+          <p className={style.description}>
+            {description ? description : fullDescription}
+          </p>
+          {description ? (
+            <div className={style.moreInfoWrapper}>
+              <button className={style.moreInfo} onClick={handleShowFullDescr}>
+                {showFullDescr ? 'Свернуть' : 'Больше информации'}
+              </button>
+            </div>
+          ) : null}
           {showFullDescr && (
             <p className={style.description}>{fullDescription}</p>
           )}

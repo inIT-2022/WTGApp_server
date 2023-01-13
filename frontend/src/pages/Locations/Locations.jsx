@@ -7,7 +7,6 @@ import { clearSearch } from '../../store/search/searchSlice';
 
 import { Layout } from '../../Layouts/Layout/Layout';
 import Skeleton from '../../components/Skeleton/Skeleton';
-import Spinner from '../../components/Spinner/Spinner';
 import CardLocation from '../../components/CardLocation';
 
 import style from './Locations.module.css';
@@ -68,6 +67,7 @@ export const Locations = () => {
             key={location.id}
             title={location.title}
             description={location.description}
+            fullDescription={location.fullDescription}
             date={location.workTimeStart}
             source={location.linkSite}
             id={location.id}

@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Search.module.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchSearchEvents,
   fetchSearchLocations,
@@ -9,19 +9,17 @@ import {
 import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
 
 export const Search = ({ searchType }) => {
-  const [search, setSearch] = React.useState('');
+  const searchValue = useSelector((state) => state.search.searchValue);
   const dispatch = useDispatch();
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    dispatch(setSearchValue(search));
     searchType === 'events'
-      ? dispatch(fetchSearchEvents(search))
-      : dispatch(fetchSearchLocations(search));
+      ? dispatch(fetchSearchEvents(searchValue))
+      : dispatch(fetchSearchLocations(searchValue));
   };
 
   const handleClickClose = () => {
-    setSearch('');
     dispatch(clearSearch());
   };
 
@@ -30,11 +28,11 @@ export const Search = ({ searchType }) => {
       <input
         className={style.search}
         type='search'
-        onChange={(e) => setSearch(e.target.value)}
-        value={search}
+        onChange={(e) => dispatch(setSearchValue(e.target.value))}
+        value={searchValue}
         placeholder='поиск'
       />
-      {search && (
+      {searchValue && (
         <button
           className={style.buttonClose}
           type='button'

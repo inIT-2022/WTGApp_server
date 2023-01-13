@@ -27,7 +27,8 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
   };
 
   const validPassword = (value) => {
-    setPasswordError(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}/.test(value));
+    // setPasswordError(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}/.test(value));
+    setPasswordError(value.length >= 3);
   };
 
   const handleLogin = ({ target }) => {

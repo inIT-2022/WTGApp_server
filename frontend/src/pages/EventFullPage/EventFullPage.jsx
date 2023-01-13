@@ -63,7 +63,8 @@ export const EventFullPage = () => {
           {<Slider items={images} height={'500px'} />}
           <div className={style.enter}>
             <p className={style.date}>
-              {day} {monthes[month]} {year} Начало в {startTime}
+              {day || ''} {monthes[month] || ''} {year || ''}
+              {startTime ? <span> Начало в {startTime}</span> : null}
             </p>
             <p className={style.censure}>Без возростных ограничений</p>
             <p className={style.price}>{cost}</p>
@@ -71,7 +72,7 @@ export const EventFullPage = () => {
         </div>
         <div className={style.rightContent}>
           <div className={style.rightHeader}>
-            <svg
+            {/* <svg
               width='65'
               height='65'
               viewBox='0 0 65 65'
@@ -115,7 +116,7 @@ export const EventFullPage = () => {
               />
             </svg>
 
-            <span className={style.review}>Отзывы 999</span>
+            <span className={style.review}>Отзывы 999</span> */}
           </div>
           <p className={style.adress}>​{adress}</p>
           <a
