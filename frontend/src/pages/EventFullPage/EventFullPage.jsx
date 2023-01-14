@@ -8,6 +8,7 @@ import { API_URI } from '../../assets/const';
 import { monthes } from '../../assets/const';
 import { getDateParameters } from '../../utils/getDateParameters';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 import style from './EventFullPage.module.css';
 
@@ -136,7 +137,9 @@ export const EventFullPage = () => {
             Источник
           </a>
 
-          <p className={style.description}>{description}</p>
+          <p className={style.description}>
+            <ReactMarkdown children={description} />
+          </p>
         </div>
       </div>
     </Layout>

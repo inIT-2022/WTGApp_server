@@ -12,6 +12,7 @@ import { ReactComponent as Favorites } from '../../img/Favorites.svg';
 import { ReactComponent as Share } from '../../img/Share.svg';
 import { fetchEvents } from '../../store/events/eventsAction.js';
 import { LocEventsCard } from '../../components/LocEventsCard/LocEventsCard';
+import ReactMarkdown from 'react-markdown';
 
 export const LocationFullPage = () => {
   const dispatch = useDispatch();
@@ -115,7 +116,9 @@ export const LocationFullPage = () => {
           </a>
 
           <p className={style.description}>
-            {description ? description : fullDescription}
+            <ReactMarkdown
+              children={description ? description : fullDescription}
+            />
           </p>
           {description ? (
             <div className={style.moreInfoWrapper}>
@@ -125,7 +128,9 @@ export const LocationFullPage = () => {
             </div>
           ) : null}
           {showFullDescr && (
-            <p className={style.description}>{fullDescription}</p>
+            <p className={style.description}>
+              <ReactMarkdown children={fullDescription} />
+            </p>
           )}
           {locationsEvents.length ? (
             <>

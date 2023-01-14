@@ -1,6 +1,8 @@
-import style from './CardLocation.module.css';
 import { Link } from 'react-router-dom';
 import noPhoto from '../../img/nophoto.jpg';
+import ReactMarkdown from 'react-markdown';
+
+import style from './CardLocation.module.css';
 
 export const CardLocation = ({
   source,
@@ -27,7 +29,9 @@ export const CardLocation = ({
         <h3 className={style.title}>{title}</h3>
         <p className={style.date}>{date ? date.slice(0, 10) : ''}</p>
         <p className={style.descr}>
-          {description ? description : fullDescription}
+          <ReactMarkdown
+            children={description ? description : fullDescription}
+          />
         </p>
         <span className={style.source}>Источник: </span>
         <span className={style.sourceName}>{shortSource}</span>
