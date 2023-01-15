@@ -8,6 +8,7 @@ import { API_URI } from '../../assets/const';
 import { monthes } from '../../assets/const';
 import { getDateParameters } from '../../utils/getDateParameters';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 import style from './EventFullPage.module.css';
 
@@ -63,7 +64,8 @@ export const EventFullPage = () => {
           {<Slider items={images} height={'500px'} />}
           <div className={style.enter}>
             <p className={style.date}>
-              {day} {monthes[month]} {year} Начало в {startTime}
+              {day || ''} {monthes[month] || ''} {year || ''}
+              {startTime ? <span> Начало в {startTime}</span> : null}
             </p>
             <p className={style.censure}>Без возростных ограничений</p>
             <p className={style.price}>{cost}</p>
@@ -71,7 +73,7 @@ export const EventFullPage = () => {
         </div>
         <div className={style.rightContent}>
           <div className={style.rightHeader}>
-            <svg
+            {/* <svg
               width='65'
               height='65'
               viewBox='0 0 65 65'
@@ -115,19 +117,29 @@ export const EventFullPage = () => {
               />
             </svg>
 
-            <span className={style.review}>Отзывы 999</span>
+            <span className={style.review}>Отзывы 999</span> */}
           </div>
           <p className={style.adress}>​{adress}</p>
+          {location && (
+            <Link
+              to={`/locations/${location.id}`}
+              className={style.locationLink}
+            >
+              Локация
+            </Link>
+          )}
           <a
             href={linkEventSite}
-            className={style.source}
+            className={style.sourceLink}
             rel='noreferrer'
             target='_blank'
           >
             Источник
           </a>
 
-          <p className={style.description}>{description}</p>
+          <p className={style.description}>
+            <ReactMarkdown children={description} />
+          </p>
         </div>
       </div>
     </Layout>

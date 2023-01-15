@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearSearch } from '../../store/search/searchSlice';
 import { fetchEvents } from '../../store/events/eventsAction';
 
-import Spinner from '../../components/Spinner/Spinner';
 import Skeleton from '../../components/Skeleton/Skeleton';
 
 import { Event } from '../../components/Event/Event';
@@ -72,7 +71,7 @@ export const Events = () => {
             date={event.startDatetime}
             source={event.linkEventSite}
             id={event.id}
-            img={event.location.linkImage}
+            img={event.location?.linkImage}
           />
         ))
       ) : (

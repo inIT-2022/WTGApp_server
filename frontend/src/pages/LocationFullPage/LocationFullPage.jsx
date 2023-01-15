@@ -4,16 +4,27 @@ import { Layout } from '../../Layouts/Layout/Layout';
 import { API_URI } from '../../assets/const';
 import Slider from '../../components/Slider/Slider';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './LocationFullPage.module.css';
 import { Raiting } from '../../components/Raiting/Raiting';
 import { ReactComponent as Favorites } from '../../img/Favorites.svg';
 import { ReactComponent as Share } from '../../img/Share.svg';
+import { fetchEvents } from '../../store/events/eventsAction.js';
+import { LocEventsCard } from '../../components/LocEventsCard/LocEventsCard';
+import ReactMarkdown from 'react-markdown';
 
 export const LocationFullPage = () => {
+  const dispatch = useDispatch();
+  const allEvents = useSelector((state) => state.events.data);
   const [locationPage, setLocationPage] = React.useState([]);
   const [showFullDescr, setShowFullDescr] = React.useState(false);
   const { id } = useParams();
+
+  React.useEffect(() => {
+    if (allEvents.length) return;
+    dispatch(fetchEvents());
+  }, []);
 
   React.useEffect(() => {
     const fetchEventPage = async (page) => {
@@ -22,6 +33,8 @@ export const LocationFullPage = () => {
     };
     fetchEventPage(id);
   }, [id]);
+
+  const locationsEvents = allEvents.filter((obj) => obj.location.id === +id);
 
   const {
     address,
@@ -102,13 +115,33 @@ export const LocationFullPage = () => {
             Источник
           </a>
 
-          <p className={style.description}>{description}</p>
-          <span className={style.moreInfo} onClick={handleShowFullDescr}>
-            {showFullDescr ? 'Свернуть' : 'Больше информации'}
-          </span>
+          <p className={style.description}>
+            <ReactMarkdown
+              children={description ? description : fullDescription}
+            />
+          </p>
+          {description ? (
+            <div className={style.moreInfoWrapper}>
+              <button className={style.moreInfo} onClick={handleShowFullDescr}>
+                {showFullDescr ? 'Свернуть' : 'Больше информации'}
+              </button>
+            </div>
+          ) : null}
           {showFullDescr && (
-            <p className={style.description}>{fullDescription}</p>
+            <p className={style.description}>
+              <ReactMarkdown children={fullDescription} />
+            </p>
           )}
+          {locationsEvents.length ? (
+            <>
+              <span>События в данной локации</span>
+              <div className={style.locEventsWrapper}>
+                {locationsEvents.map((item) => (
+                  <LocEventsCard key={item.id} event={item} />
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </Layout>

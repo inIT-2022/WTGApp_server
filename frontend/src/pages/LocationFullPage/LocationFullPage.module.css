@@ -70,16 +70,16 @@
 .description {
   font-size: 16px;
   white-space: pre-line;
+  margin-bottom: 10px;
 }
-
+.moreInfoWrapper {
+  text-align: right;
+}
 .moreInfo {
-  display: block;
+  display: inine-block;
   max-width: 190px;
   font-size: 16px;
   text-decoration: underline;
-  margin-left: auto;
-  margin-right: 0;
-  text-align: right;
   cursor: pointer;
   opacity: 0.6;
 }
@@ -109,4 +109,12 @@
 .favorites {
   margin-right: 6px;
   width: 60px;
+}
+
+.locEventsWrapper {
+  display: flex;
+  align-items: center;
+  max-height: 150px;
+  gap: 20px;
+  margin-top: 20px;
 }
