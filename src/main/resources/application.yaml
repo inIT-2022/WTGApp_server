@@ -11,9 +11,12 @@ spring:
 #    username: wtg
 #    password:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/WTG
-    username: postgres
-    password: 1917
+#    url: jdbc:postgresql://localhost:5432/WTG
+#    username: postgres
+#    password: 1917
+    url: jdbc:postgresql://95.163.237.3:5432/wtg_db?currentSchema=public
+    username: wtg
+    password: wtg
   jpa:
 #    show-sql: true
 #    properties:
