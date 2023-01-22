@@ -1,94 +1,217 @@
 .footer {
-    background-color: #18171A;
-    padding: 60px 0 30px 0;
-    color: #fff;
+  background-color: #18171a;
+  padding: 60px 0 30px 0;
+  color: #fff;
 }
 
-.logo__item {
-    display: flex;
-    cursor: pointer;
-    align-items: center;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    'logo address contacts'
+    'copyright . .';
+  gap: 20px;
 }
 
-.logo__item_text {
-    display: block;
-    margin-left: 8px;
+.logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  align-self: flex-start;
 }
 
-.footer__logo {
-    widows: 160px;
-    margin-bottom: 40px;
+.logoIcon {
+  width: 65px;
+  height: 65px;
 }
 
-.footer__columns {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 18px;
+.logoText {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 27px;
+}
+.address {
+  grid-area: address;
+  text-align: left;
+}
+.addressTitle {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 27px;
+  margin-bottom: 8px;
+}
+.addressDescription {
+  font-weight: 400;
+  max-width: 180px;
+  font-size: 24px;
+  line-height: 1.3;
 }
 
-.footer__list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.contacts {
+  grid-area: contacts;
 }
 
-.footer__list:last-child {
-    margin-bottom: 20px;
+.contactsTitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 27px;
+  margin-bottom: 8px;
 }
 
-.footer__title {
-    font-weight: 700;
-    margin-bottom: 15px;
+.contactsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 24px;
 }
 
-.footer__link_social {
-    color: #B8FF20;
+.contactsItem {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
-.contacts__list_footer {
-    gap: 10px;
-    margin-bottom: 20px;
+.contactsLink {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 27px;
 }
 
-.footer__link_box {
-    margin-bottom: 20px;
+.contactsSocial {
+  display: flex;
+  align-items: start;
+  gap: 30px;
 }
 
-.contacts__link {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    gap: 5px;
-    transition: color 0.8s ease-in-out;
+.copyright {
+  grid-area: copyright;
+  font-size: 24px;
+  line-height: 27px;
 }
 
-.contacts__link svg {
-    color: #B8FF20;
-    transition: color 0.8s ease-in-out;
+@media (max-width: 992px) {
+  .iconSocial,
+  .iconContacts,
+  .logoIcon {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (max-width: 900px) {
+  /* .logoIcon {
+    width: 50px;
+    height: 50px;
+  } */
+
+  .logoText {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .addressTitle {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .addressDescription {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .contactsTitle {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .contactsLink {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .contactsItem {
+    gap: 18px;
+  }
+
+  .iconSocial,
+  .iconContacts {
+    width: 36px;
+    height: 36px;
+  }
+  .copyright {
+    font-size: 18px;
+    line-height: 1.2;
+  }
 }
 
-.contacts__link:hover,
-.contacts__link:hover svg {
-    color: #cdf478;
-}
+@media (max-width: 640px) {
+  .footer {
+    padding: 40px 0;
+  }
+  .logo {
+    gap: 24px;
+  }
 
-.contacts__social {
-    display: flex;
+  .logoIcon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logoText {
+    font-size: 12px;
+  }
+
+  .addressTitle {
+    font-size: 12px;
+  }
+  .addressDescription {
+    font-size: 12px;
+  }
+
+  .contactsTitle {
+    font-size: 12px;
+  }
+
+  .contactsLink {
+    font-size: 12px;
+  }
+
+  .contactsItem {
+    gap: 8px;
+  }
+
+  .iconContacts {
+    width: 14px;
+    height: 14px;
+  }
+
+  .contactsSocial {
     gap: 20px;
+  }
+  .iconSocial {
+    width: 28px;
+    height: 28px;
+  }
+  .copyright {
+    font-size: 12px;
+  }
 }
 
-.social {
-    display: flex;
-    gap: 30px;
-}
+@media (max-width: 520px) {
+  .footer {
+    padding: 30px 0;
+  }
 
-.social__link {
-    color: #B8FF20;
-    transition: color 0.8s ease-in-out;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'logo  contacts'
+      'address contacts'
+      'copyright . ';
+    gap: 20px;
+  }
 }
-
-.social__link:hover {
-    color: #cdf478;
-}
-

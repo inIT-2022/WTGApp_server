@@ -19,3 +19,22 @@
 .card:hover {
   transform: scale(1.05);
 }
+
+@media (max-width: 870px) {
+  .card {
+    width: 176px;
+    height: 228px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .card {
+    width: 130px;
+    height: 160px;
+    border-radius: 20px;
+  }
+  .text {
+    font-size: 18px;
+  }
+}

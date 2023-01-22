@@ -1,20 +1,19 @@
 .header {
-  background-image: url('/public/BlockHeader.png');
+  background-image: url('/public/BlockHeaderNew.png');
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: center;
   background-size: cover;
   height: 280px;
-  padding: 40px;
+  padding: 40px 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.header__wrapper {
+
+.wrapper {
   position: relative;
-  background-position: left;
-  background-size: cover;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 80px 0;
+  gap: 15px;
 }
 
 .title {
@@ -31,7 +30,6 @@
 }
 .subtitleEvents {
   margin-top: 35px;
-  margin-bottom: 35px;
 }
 
 .search {
@@ -54,12 +52,11 @@
 }
 
 .iconWrapper {
+  flex-shrink: 0;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 24px;
-  background-color: rgba(255, 255, 255, 0.6);
-  padding: 10px 20px;
-  border-radius: 30px;
+  gap: 38px;
 }
 
 .events {
@@ -69,19 +66,20 @@
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.header__burger {
-  margin-left: 48px;
-  cursor: pointer;
+.burgerBtn {
   position: relative;
+  width: 56px;
+  height: 56px;
 }
 
-.header__burger_menu {
+.header__burgerMenu {
+  position: absolute;
+  right: 0px;
+  top: 0;
   height: 212px;
   width: 56px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 50px;
-  position: absolute;
-  right: 0px;
   padding-top: 70px;
 }
 
@@ -94,6 +92,7 @@
 .header__authText {
   position: absolute;
   right: 170px;
+  top: 0;
   width: 240px;
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.6);
@@ -118,4 +117,142 @@
 .login {
   font-size: 20px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.45);
+  margin-right: 0;
+}
+
+@media (max-width: 992px) {
+  .title {
+    font-size: 44px;
+    line-height: 52px;
+  }
+  .subtitle,
+  .subtitleEvents {
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .header__authText {
+    top: -10px;
+    right: 140px;
+    width: 240px;
+  }
+
+  .header__burgerMenu {
+    width: 50px;
+  }
+
+  .iconWrapper {
+    gap: 20px;
+  }
+  .burgerBtn {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header__authText {
+    width: 180px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+  .login {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 800px) {
+  .authText {
+    display: none;
+  }
+  .header__authText {
+    top: -30px;
+    right: 70px;
+    width: 140px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .header__authText::after {
+    top: 24px;
+    right: 7px;
+    border-left: 8px solid transparent;
+    border-top: 10px solid rgba(255, 255, 255, 0.6);
+    border-bottom: none;
+    border-right: 8px solid transparent;
+  }
+
+  .login {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    height: 198px;
+    padding-bottom: 30px;
+    background-image: url('/public/BlockHeader640.jpg');
+  }
+
+  .title,
+  .events {
+    font-size: 32px;
+    line-height: 36px;
+  }
+  .events {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .subtitle,
+  .subtitleEvents {
+    font-size: 13px;
+    line-height: 14px;
+    margin-top: 8px;
+  }
+
+  .city {
+    font-size: 10px;
+    line-height: 20px;
+    height: 20px;
+    padding: 0 8px;
+  }
+  .burgerBtn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .header__authText {
+    right: 50px;
+    width: 140px;
+  }
+  .header__burgerMenu {
+    height: 156px;
+    width: 32px;
+    padding-top: 45px;
+  }
+  .header__burgerMenu svg {
+    width: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .title,
+  .events {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .subtitle,
+  .subtitleEvents {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .title,
+  .events {
+    font-size: 18px;
+    line-height: 1.2;
+  }
 }

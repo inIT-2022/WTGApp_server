@@ -29,8 +29,8 @@ export const Header = () => {
   return (
     <header className={style.header} id='header'>
       <Layout>
-        <div className={style.header__wrapper}>
-          <div>
+        <div className={style.wrapper}>
+          <div className={style.content}>
             {location.pathname === '/' && (
               <>
                 <h1 className={style.title}>КУДА СХОДИТЬ?</h1>
@@ -87,25 +87,27 @@ export const Header = () => {
               </>
             )}
           </div>
-          <div className={style.header__wrapper}>
+          <div className={style.iconWrapper}>
             {authData?.login && (
               <div className={style.header__authText}>
-                Добро пожаловать,{' '}
-                <span className={style.login}>{authData?.login} !</span>
+                <p className={style.authText}>Добро пожаловать,</p>
+                <p className={style.login}>{authData?.login} !</p>
               </div>
             )}
             <Auth openModal={() => handleOpenModal()} />
             {isOpenBurger && (
-              <div className={style.header__burger_menu}>
+              <div className={style.header__burgerMenu}>
                 <Collection className={style.header__burger_svg} />
                 <Chat className={style.header__burger_svg} />
                 <Notification className={style.header__burger_svg} />
               </div>
             )}
-            <BurgerSvg
-              className={style.header__burger}
+            <button
+              className={style.burgerBtn}
               onClick={() => setIsOpenBurger(!isOpenBurger)}
-            />
+            >
+              <BurgerSvg />
+            </button>
           </div>
         </div>
 

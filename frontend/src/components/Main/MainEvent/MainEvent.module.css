@@ -4,6 +4,7 @@
   background-image: url('./img/Events.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   padding-top: 430px;
 }
 
@@ -17,10 +18,10 @@
 }
 
 .wrapper {
-  max-width: 870px;
+  display: inline-block;
   background-color: rgba(0, 0, 0, 0.5);
-  color: #ffffff;
-  padding: 20px;
+  color: var(--back-color);
+  padding: 20px 30px;
   border-radius: 40px;
 }
 
@@ -33,4 +34,70 @@
 .text {
   font-weight: 400;
   font-size: 22px;
+}
+
+@media (max-width: 1440px) {
+  .events {
+    background-image: url('./img/mainEvent992.jpg');
+  }
+}
+@media (max-width: 930px) {
+  .wrapper {
+    max-width: 870px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--back-color);
+    padding: 20px;
+    border-radius: 40px;
+  }
+  .title {
+    font-size: 36px;
+    margin-bottom: 18px;
+  }
+  .text {
+    font-weight: 400;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 710px) {
+  .events {
+    background-image: url('./img/mainEvent640.jpg');
+    height: 390px;
+    padding-top: 280px;
+  }
+  .title {
+    font-size: 24px;
+    line-height: 27px;
+    margin-bottom: 8px;
+  }
+  .text {
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+@media (max-width: 500px) {
+  .events {
+    background-image: url('./img/mainEvent640.jpg');
+    height: 290px;
+    padding-top: 180px;
+  }
+  .wrapper {
+    padding: 10px 20px;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 380px) {
+  .wrapper {
+    padding: 10px 10px;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.2;
+  }
 }

@@ -3,10 +3,11 @@ import slide_1 from './img/slide_1.jpg';
 import slide_2 from './img/slide_2.jpg';
 import slide_3 from './img/slide_3.jpg';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Shortcut } from './img/shortcut.svg';
-import SearchRoutes from './SearchRoutes';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import Layout from '../../Layouts/Layout';
+import SectionTitle from '../SectionTitle';
+import SectionSearch from '../SectionSearch';
 
 const Routes = ({ searchValue, setSearchValue }) => {
   const authData = useSelector((state) => state.auth.data);
@@ -20,8 +21,8 @@ const Routes = ({ searchValue, setSearchValue }) => {
   };
 
   return (
-    <>
-      <div className={style.wrapper} id='routes'>
+    <section className={style.routes} id='routes'>
+      <Layout>
         {!authData?.login ? (
           <div className={style.authBlure} onClick={showMessage}>
             {isShowMessage ? (
@@ -29,33 +30,36 @@ const Routes = ({ searchValue, setSearchValue }) => {
             ) : null}
           </div>
         ) : null}
-        <Shortcut className={style.svg} width={85} height={85} />
-        <h2 className={style.title}>яркие маршруты</h2>
-      </div>
-      <SearchRoutes searchValue={searchValue} setSearchValue={setSearchValue} />
-      <ul className={style.gallery}>
-        <li className={style.img_wrapper}>
-          <Link to='/routespages/1'>
-            <h3>Пеший</h3>
-            <img className={style.img} src={slide_1} alt='Пеший'></img>
-          </Link>
-        </li>
+        <SectionTitle text={'яркие маршруты'} />
+        <SectionSearch
+          text={'которые стоит пройти'}
+          section={'routes'}
+          placeholder={'отыщи свой путь'}
+        />
+        <ul className={style.gallery}>
+          <li className={style.img_wrapper}>
+            <Link to='/routespages/1'>
+              <h3>Пеший</h3>
+              <img className={style.img} src={slide_1} alt='Пеший'></img>
+            </Link>
+          </li>
 
-        <li className={style.img_wrapper}>
-          <Link to='/routespages/2'>
-            <h3>Вело</h3>
-            <img className={style.img} src={slide_2} alt='Вело'></img>{' '}
-          </Link>
-        </li>
+          <li className={style.img_wrapper}>
+            <Link to='/routespages/2'>
+              <h3>Вело</h3>
+              <img className={style.img} src={slide_2} alt='Вело'></img>{' '}
+            </Link>
+          </li>
 
-        <li className={style.img_wrapper}>
-          <Link to='routespages/3'>
-            <h3>Авто</h3>
-            <img className={style.img} src={slide_3} alt='Авто'></img>{' '}
-          </Link>
-        </li>
-      </ul>
-    </>
+          <li className={style.img_wrapper}>
+            <Link to='routespages/3'>
+              <h3>Авто</h3>
+              <img className={style.img} src={slide_3} alt='Авто'></img>{' '}
+            </Link>
+          </li>
+        </ul>
+      </Layout>
+    </section>
   );
 };
 

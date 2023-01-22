@@ -1,7 +1,5 @@
 /* Slider */
 .slick-slider {
-  position: relative;
-
   display: block;
   box-sizing: border-box;
 
@@ -99,4 +97,10 @@
 }
 .slick-arrow.slick-hidden {
   display: none;
+}
+
+.regular.slider {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
