@@ -37,23 +37,23 @@ const Routes = ({ searchValue, setSearchValue }) => {
           placeholder={'отыщи свой путь'}
         />
         <ul className={style.gallery}>
-          <li className={style.img_wrapper}>
-            <Link to='/routespages/1'>
-              <h3>Пеший</h3>
+          <li>
+            <h3 className={style.text}>Пеший</h3>
+            <Link className={style.link} to='/routespages/1'>
               <img className={style.img} src={slide_1} alt='Пеший'></img>
             </Link>
           </li>
 
-          <li className={style.img_wrapper}>
-            <Link to='/routespages/2'>
-              <h3>Вело</h3>
+          <li>
+            <h3 className={style.text}>Вело</h3>
+            <Link className={style.link} to='/routespages/2'>
               <img className={style.img} src={slide_2} alt='Вело'></img>{' '}
             </Link>
           </li>
 
-          <li className={style.img_wrapper}>
-            <Link to='routespages/3'>
-              <h3>Авто</h3>
+          <li>
+            <h3 className={style.text}>Авто</h3>
+            <Link className={style.link} to='routespages/3'>
               <img className={style.img} src={slide_3} alt='Авто'></img>{' '}
             </Link>
           </li>
