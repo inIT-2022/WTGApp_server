@@ -6,7 +6,7 @@ const Skeleton = () => (
   <div className={style.wrapper}>
     <ContentLoader
       speed={2}
-      width={1110}
+      max-width={1110}
       height={345}
       viewBox='0 0 1110 345'
       backgroundColor='#d2d0d0'

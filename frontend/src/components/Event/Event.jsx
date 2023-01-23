@@ -10,21 +10,18 @@ export const Event = ({ source, description, id, date, title, img }) => {
   const imgLinks = img ? img.split('|') : [];
   return (
     <Link to={`${id}`} className={style.wrapper}>
-      <img
-        className={style.img}
-        src={imgLinks.length ? imgLinks[0] : noPhoto}
-        alt='изображение события'
-        width={288}
-        height={172}
-      />
+      <div className={style.imgWrapper}>
+        <img src={imgLinks.length ? imgLinks[0] : noPhoto} alt={title} />
+      </div>
+
       <div className={style.content}>
         <h3 className={style.title}>{title}</h3>
         <p className={style.date}>{date ? date.slice(0, 10) : ''}</p>
         <p className={style.descr}>
           <ReactMarkdown children={description} />
         </p>
-        <span className={style.source}>Источник: </span>
-        <span className={style.sourceName}>{shortSource}</span>
+        <div className={style.source}>Источник: </div>
+        <div className={style.sourceName}>{shortSource}</div>
       </div>
     </Link>
   );
