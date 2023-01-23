@@ -24,11 +24,11 @@ export const CardLocation = ({
       <div className={style.content}>
         <h3 className={style.title}>{title}</h3>
         <p className={style.date}>{date ? date.slice(0, 10) : ''}</p>
-        <p className={style.descr}>
+        <div className={style.descr}>
           <ReactMarkdown
             children={description ? description : fullDescription}
           />
-        </p>
+        </div>
         <div className={style.source}>Источник: </div>
         <div className={style.sourceName}>{shortSource}</div>
       </div>

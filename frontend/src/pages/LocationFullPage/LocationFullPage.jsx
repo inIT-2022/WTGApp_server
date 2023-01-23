@@ -48,7 +48,11 @@ export const LocationFullPage = () => {
 
   const cost = price ? `${price} рублей` : 'бесплатно';
 
-  const images = linkImage ? linkImage.split('|').slice(0, 5) : [];
+  const images = linkImage
+    ? linkImage.split('|').slice(0, 5)
+    : [
+        'https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=',
+      ];
 
   const handleShowFullDescr = () => {
     setShowFullDescr(!showFullDescr);
@@ -108,11 +112,11 @@ export const LocationFullPage = () => {
               Источник
             </a>
 
-            <p className={style.description}>
+            <div className={style.description}>
               <ReactMarkdown
                 children={description ? description : fullDescription}
               />
-            </p>
+            </div>
             {description ? (
               <div className={style.moreInfoWrapper}>
                 <button
@@ -124,9 +128,9 @@ export const LocationFullPage = () => {
               </div>
             ) : null}
             {showFullDescr && (
-              <p className={style.description}>
+              <div className={style.description}>
                 <ReactMarkdown children={fullDescription} />
-              </p>
+              </div>
             )}
             {locationsEvents.length ? (
               <div className={style.locEvents}>

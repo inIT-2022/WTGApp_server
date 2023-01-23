@@ -71,7 +71,7 @@ export const Events = () => {
               date={event.startDatetime}
               source={event.linkEventSite}
               id={event.id}
-              img={event.location?.linkImage}
+              img={event.linkImage}
             />
           ))
         ) : (

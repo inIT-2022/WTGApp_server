@@ -24,14 +24,25 @@ export const EventFullPage = () => {
     fetchEventPage(id);
   }, [id]);
 
-  const { description, startDatetime, title, price, linkEventSite, location } =
-    eventPage;
+  const {
+    description,
+    startDatetime,
+    title,
+    price,
+    linkEventSite,
+    linkImage,
+    location,
+  } = eventPage;
 
   const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
 
   const { startTime, day, year, month } = getDateParameters(startDatetime);
 
-  const images = location?.linkImage ? location.linkImage.split('|') : [];
+  const images = linkImage
+    ? location.linkImage.split('|')
+    : [
+        'https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=',
+      ];
 
   const adress = location?.address || '';
   return (
@@ -96,9 +107,9 @@ export const EventFullPage = () => {
               </a>
             </div>
 
-            <p className={style.description}>
+            <div className={style.description}>
               <ReactMarkdown children={description} />
-            </p>
+            </div>
           </div>
         </div>
       </Layout>
