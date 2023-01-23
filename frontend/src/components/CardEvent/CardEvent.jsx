@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import noPhoto from '../../img/nophoto.jpg';
 import ReactMarkdown from 'react-markdown';
 
-import style from './Event.module.css';
+import style from './CardEvent.module.css';
 
-export const Event = ({ source, description, id, date, title, img }) => {
+export const CardEvent = ({ source, description, id, date, title, img }) => {
   const shortSource = source ? source.slice(8, 28) : '';
 
   const imgLinks = img ? img.split('|') : [];

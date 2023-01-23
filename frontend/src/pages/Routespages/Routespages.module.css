@@ -1,3 +1,6 @@
+.routespages {
+  padding-top: 10px;
+}
 .cloud {
   height: 500px;
   background-color: #056cc5;
@@ -187,13 +190,6 @@
   align-items: center;
 }
 
-span {
-  margin-right: 7px;
-  font-weight: 700;
-  font-size: 23px;
-  line-height: 38px;
-}
-
 .route {
   display: flex;
   align-items: center;
@@ -239,5 +235,4 @@ span {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-top: 12px;
 }

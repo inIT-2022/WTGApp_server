@@ -1,8 +1,11 @@
+.event {
+  padding-top: 10px;
+}
+
 .nav {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-top: 12px;
 }
 
 .navText {
@@ -10,13 +13,25 @@
   color: #000000;
 }
 
+.homeBtn {
+  width: 36px;
+  height: 36px;
+}
+
 .title {
   font-size: 48px;
   text-align: center;
   padding: 25px 0;
 }
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 60px;
+}
+
 .leftContent {
-  flex: 1 0 540px;
+  flex-basis: 50%;
 }
 
 .distance {
@@ -24,10 +39,8 @@
   text-align: center;
 }
 
-.cart {
-  display: flex;
-  gap: 20px;
-  padding-bottom: 20px;
+.sliderWrapper {
+  aspect-ratio: 1/1;
 }
 
 .enter {
@@ -38,40 +51,102 @@
   font-size: 20px;
   margin: 20px 0;
 }
+.date span {
+  font-size: 24px;
+  font-weight: 700;
+}
 
 .price {
   font-size: 20px;
 }
-.review {
-  font-size: 32px;
-  padding-left: 95px;
-  align-self: flex-end;
+
+.rightContent {
+  flex-basis: 50%;
+  padding-top: 10px;
 }
-.rightHeader {
-  display: flex;
-  gap: 30px;
-  margin: 10px 0;
-}
+
 .adress {
   font-size: 20px;
   line-height: 2;
   margin-bottom: 20px;
 }
-.sourceLink {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 20px;
-  text-align: right;
-  padding: 20px 115px 33px 50px;
+
+.linksWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 20px;
 }
-.locationLink {
-  display: inline-block;
+.link {
   font-weight: 700;
   font-size: 20px;
-  text-align: right;
-  padding: 20px 115px 33px 50px;
 }
 
 .description {
   font-size: 16px;
+  line-height: 1.3;
+}
+
+@media (max-width: 1050px) {
+  .title {
+    font-size: 32px;
+    padding: 20px 0;
+  }
+}
+@media (max-width: 992px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .leftContent {
+    display: flex;
+    flex-direction: column;
+  }
+  .sliderWrapper {
+    align-self: center;
+    width: 90%;
+    aspect-ratio: 2/1;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrapper {
+    gap: 10px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .enter {
+    margin-top: 10px;
+  }
+  .date,
+  .censure {
+    font-size: 16px;
+    margin: 0 0 10px;
+  }
+  .date span {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .price {
+    font-size: 16px;
+  }
+  .adress {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 520px) {
+  .homeBtn {
+    width: 24px;
+    height: 24px;
+  }
+  .navText {
+    font-size: 20px;
+  }
 }

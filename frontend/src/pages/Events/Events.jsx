@@ -6,9 +6,8 @@ import { clearSearch } from '../../store/search/searchSlice';
 import { fetchEvents } from '../../store/events/eventsAction';
 
 import Skeleton from '../../components/Skeleton/Skeleton';
-
-import { Event } from '../../components/Event/Event';
-import { Layout } from '../../Layouts/Layout/Layout';
+import CardEvent from '../../components/CardEvent';
+import Layout from '../../Layouts/Layout';
 
 import style from './Events.module.css';
 
@@ -65,7 +64,7 @@ export const Events = () => {
 
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
-            <Event
+            <CardEvent
               key={event.id}
               title={event.title}
               description={event.description}
