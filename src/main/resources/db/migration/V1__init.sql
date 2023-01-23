@@ -23,7 +23,7 @@ CREATE TABLE users(
 DROP TABLE IF EXISTS locations;
 CREATE TABLE  locations(
                            id bigserial PRIMARY KEY,
-                           title varchar(240) not null unique,
+                           title varchar(240) not null,
                            description varchar(10000),
                            full_description varchar(10000),
                            address varchar(120),
@@ -60,6 +60,7 @@ CREATE TABLE events(
                        start_datetime timestamp,
                        finish_datetime timestamp,
                        link_event_site varchar(240),
+                       link_image varchar(10000),
                        price integer,
                        location_id integer REFERENCES locations(id),
                        created_at timestamp default current_timestamp,

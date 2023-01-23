@@ -18,6 +18,7 @@ public class EventDTO {
     private LocalDateTime startDatetime;
     private LocalDateTime finishDatetime;
     private String linkEventSite;
+    private String linkImage;
     private Integer price;
     //private Long location;
     private LocationDTO location;
@@ -31,6 +32,7 @@ public class EventDTO {
         this.startDatetime = event.getStartDatetime();
         this.finishDatetime = event.getFinishDatetime();
         this.linkEventSite = event.getLinkEventSite();
+        this.linkImage = event.getLinkImage();
         this.price = event.getPrice();
         //this.location = event.getLocation().getId();
         this.location = new LocationDTO(event.getLocation());

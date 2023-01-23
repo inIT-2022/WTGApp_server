@@ -74,6 +74,13 @@ public class LocationService {
         return locationRepository.findAllByManualTitle(manualTitle);
     }
 
+    public List<Location> findAllBySector(Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax){
+        return locationRepository.findAllByLatitudeGreaterThanAndLatitudeLessThanAndLongitudeGreaterThanAndLongitudeLessThan(latitudeMin,latitudeMax,longitudeMin,longitudeMax);
+    }
+
+    public List<Location> findAllByLatitudeWithEvents(Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax){
+        return locationRepository.findAllByLatitudeWithEvents(latitudeMin, latitudeMax, longitudeMin, longitudeMax);
+    }
 
     public Location saveLocation(Location location){
        return locationRepository.save(location);

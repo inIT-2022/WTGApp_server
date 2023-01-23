@@ -39,6 +39,9 @@ public class Event {
     @Column(name = "link_event_site")
     private String linkEventSite;
 
+    @Column(name = "link_image")
+    private String linkImage;
+
     @Column(name = "price")
     private Integer price;
 

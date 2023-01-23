@@ -30,5 +30,21 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
     @Query(value = "SELECT * FROM locations  where title ilike %?1%", nativeQuery = true)
     List<Location> findAllByManualTitle(@Param("manualTitle") String manualTitle);
 
+    //выборка локаций попадаюхих в диапазоны долготы и широты
+    List<Location> findAllByLatitudeGreaterThanAndLatitudeLessThanAndLongitudeGreaterThanAndLongitudeLessThan(
+            Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax
+    );
+
+    @Query("select l from Location l " +
+            "right join Event e " +
+            "on l.id = e.location " +
+            "where l.latitude >= :latitudeMin and l.latitude <= :latitudeMax " +
+            "and l.longitude >= :longitudeMin and l.longitude <= :longitudeMax")
+    List<Location> findAllByLatitudeWithEvents(
+            Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax
+    );
+
+
+
 
 }
