@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import ru.gb.wtg.models.event.Event;
 import ru.gb.wtg.models.route.Route;
 
 import javax.persistence.*;
@@ -82,6 +83,8 @@ public class Location {
     )
     private List<Route> routes;
 
+    @OneToMany(mappedBy = "location")
+    List<Event> events;
 
 
 }
