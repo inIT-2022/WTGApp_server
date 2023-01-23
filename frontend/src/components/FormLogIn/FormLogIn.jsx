@@ -91,7 +91,8 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
         </label>
         {!passwordError && passwordDirty && (
           <p className={style.errorPassword}>
-            минимум 6 символов: строчная, прописная буква и цифра
+            {/* минимум 6 символов: строчная, прописная буква и цифра */}
+            минимум 3 символa
           </p>
         )}
       </div>

@@ -154,7 +154,7 @@ export const FormRegistration = ({ closeModal }) => {
         <label className={style.label} htmlFor='userRoleString'>
           Роль
         </label>
-        <p className={style.error}>введите корректный email</p>
+        <p className={style.error}>некорректный email</p>
       </div>
 
       <div className={style.wrap}>

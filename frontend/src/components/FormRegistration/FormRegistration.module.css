@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  width: 390px;
+  max-width: 390px;
+  width: 100%;
   margin: 0 auto;
   margin-top: -10px;
   background: #ffffff;
@@ -68,14 +69,14 @@
 .error,
 .errorPassword {
   position: absolute;
-  top: 5px;
+  top: 3px;
   right: 0;
   max-width: 300px;
   font-size: 16px;
   color: tomato;
 }
 .errorPassword {
-  top: -12px;
+  /* top: -12px; */
   text-align: end;
 }
 
@@ -125,4 +126,39 @@
   font-size: 14px;
   margin-top: -20px;
   align-self: center;
+}
+
+@media (max-width: 520px) {
+  .form {
+    padding: 0 20px;
+    gap: 12px;
+  }
+  .input,
+  .inputDate {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 20px;
+    font-size: 18px;
+  }
+
+  .inputDate {
+    padding-left: 220px;
+    font-size: 0;
+  }
+  .input::placeholder {
+    font-size: 16px;
+  }
+  .wrap :is(.inputDate:focus, .inputDate:valid) {
+    padding-left: 20px;
+    font-size: 16px;
+  }
+  .label {
+    top: 36px;
+    font-size: 16px;
+  }
+  .error,
+  .errorPassword {
+    font-size: 12px;
+  }
 }
