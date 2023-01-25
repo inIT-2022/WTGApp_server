@@ -41,13 +41,24 @@ public class LocationController {
 
 
 
+//    @GetMapping()
+//    public List<LocationDTO> getAllLocations(){
+//        return locationService.findAll()
+//                .stream()
+//                .map(LocationDTO::new)
+//                .collect(Collectors.toList());
+//    }
+
     @GetMapping()
-    public List<LocationDTO> getAllLocations(){
-        return locationService.findAll()
+    public List<LocationDTO> getAllLocations(@RequestParam(name = "page") int page,
+                                             @RequestParam(name = "pageSize") int pageSize){
+        return locationService.findAllWithPage(page,pageSize)
                 .stream()
                 .map(LocationDTO::new)
                 .collect(Collectors.toList());
     }
+
+
 
     @GetMapping("/{id}")
     public LocationDTO getLocationById(@PathVariable Long id){

@@ -63,7 +63,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean()
-    @Qualifier("mapAPIYandex")
     public MapAPIYandex mapAPIYandex(){
         return new MapAPIYandex();
     }
