@@ -2,6 +2,8 @@ package ru.gb.wtg.services;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
 import ru.gb.wtg.models.location.CategoryForLocation;
@@ -22,6 +24,10 @@ public class LocationService {
 
     public List<Location> findAll(){
         return locationRepository.findAll();
+    }
+
+    public Page<Location> findAllWithPage(int page, int pageSize){
+        return locationRepository.findAll( PageRequest.of(page-1,pageSize));
     }
 
     public Optional<Location> findById(Long id){
