@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { fetchAuthData } from '../auth/authAction';
+import { API_URI } from '../../assets/const';
 
 export const fetchSignupData = createAsyncThunk(
   'signup/fetchSignupData',
@@ -9,7 +10,7 @@ export const fetchSignupData = createAsyncThunk(
     Object.assign(data, values);
     return axios({
       method: 'post',
-      url: 'http://95.163.237.3:8179/wtg/signup',
+      url: `${API_URI}/signup`,
       data,
       headers: {
         'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ import { fetchLocations } from '../../../store/locations/locationsAction';
 export const MainLocation = () => {
   const dispatch = useDispatch();
   const locations = useSelector((state) => state.locations.data);
-
+  const loading = useSelector((state) => state.locations.loading);
   React.useEffect(() => {
     dispatch(fetchLocations());
   }, []);
@@ -65,7 +65,7 @@ export const MainLocation = () => {
         <div className={style.sliderWrapper}>
           <div className={style.slider}>
             <Slider {...settings}>
-              {locations.length ? (
+              {!loading ? (
                 locations
                   .slice(0, 5)
                   .map((location) => (
@@ -74,7 +74,7 @@ export const MainLocation = () => {
               ) : (
                 <Spinner />
               )}
-              <CardMore />
+              {!loading ? <CardMore /> : null}
             </Slider>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import { Layout } from '../../Layouts/Layout/Layout';
 import Slider from '../../components/Slider/Slider';
@@ -11,14 +11,19 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 
 import style from './EventFullPage.module.css';
+import { clearSearch } from '../../store/search/searchSlice';
+import { useDispatch } from 'react-redux';
 
 export const EventFullPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [eventPage, setEventPage] = React.useState([]);
   const { id } = useParams();
 
   React.useEffect(() => {
     const fetchEventPage = async (page) => {
-      const { data } = await axios(`${API_URI}/events/${page}`);
+      const { data } = await axios(`${API_URI}/api/v1/events/${page}`);
       setEventPage(data);
     };
     fetchEventPage(id);
@@ -44,12 +49,17 @@ export const EventFullPage = () => {
         'https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=',
       ];
 
+  const handleClickHome = () => {
+    navigate('/');
+    dispatch(clearSearch());
+  };
+
   const adress = location?.address || '';
   return (
     <section className={style.event}>
       <Layout>
         <div className={style.nav}>
-          <Link className={style.homeBtn} to='/'>
+          <button className={style.homeBtn} onClick={handleClickHome}>
             <svg
               width='36'
               height='36'
@@ -62,7 +72,7 @@ export const EventFullPage = () => {
                 fill='black'
               />
             </svg>
-          </Link>
+          </button>
 
           <Link to='/events' className={style.navText}>
             / Top events /

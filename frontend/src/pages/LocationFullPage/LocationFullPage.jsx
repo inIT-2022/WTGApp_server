@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Layout } from '../../Layouts/Layout/Layout';
 import { API_URI } from '../../assets/const';
 import Slider from '../../components/Slider/Slider';
@@ -13,9 +13,12 @@ import { ReactComponent as Share } from '../../img/Share.svg';
 import { fetchEvents } from '../../store/events/eventsAction.js';
 import { LocEventsCard } from '../../components/LocEventsCard/LocEventsCard';
 import ReactMarkdown from 'react-markdown';
+import { clearSearch } from '../../store/search/searchSlice';
 
 export const LocationFullPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const allEvents = useSelector((state) => state.events.data);
   const [locationPage, setLocationPage] = React.useState([]);
   const [showFullDescr, setShowFullDescr] = React.useState(false);
@@ -28,7 +31,7 @@ export const LocationFullPage = () => {
 
   React.useEffect(() => {
     const fetchEventPage = async (page) => {
-      const { data } = await axios(`${API_URI}/locations/${page}`);
+      const { data } = await axios(`${API_URI}/api/v1/locations/${page}`);
       setLocationPage(data);
     };
     fetchEventPage(id);
@@ -58,11 +61,16 @@ export const LocationFullPage = () => {
     setShowFullDescr(!showFullDescr);
   };
 
+  const handleClickHome = () => {
+    navigate('/');
+    dispatch(clearSearch());
+  };
+
   return (
     <section className={style.location}>
       <Layout>
         <div className={style.nav}>
-          <Link className={style.homeBtn} to='/'>
+          <button className={style.homeBtn} onClick={handleClickHome}>
             <svg
               width='36'
               height='36'
@@ -75,7 +83,7 @@ export const LocationFullPage = () => {
                 fill='black'
               />
             </svg>
-          </Link>
+          </button>
 
           <Link to='/locations' className={style.navText}>
             / Top locations /

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchLocations } from './locationsAction';
 
 const initialState = {
-  loading: false,
+  loading: true,
   data: [],
   error: '',
 };
@@ -25,7 +25,7 @@ export const locationsSlice = createSlice({
 
     builder.addCase(fetchLocations.rejected, (state, action) => {
       state.data = [];
-      state.loading = false;
+      state.loading = true;
       state.error = action.payload;
     });
   },

@@ -21,6 +21,7 @@
   height: 100%;
   width: 100%;
   padding-left: 30px;
+  padding-right: 80px;
   border: 1px solid #000000;
   border-radius: 50px;
   font-size: 16px;
@@ -33,6 +34,18 @@
   right: 22px;
   top: 50%;
   transform: translateY(-50%);
+}
+.buttonClose {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: 0;
+  right: 55px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.36s ease-in-out;
 }
 
 @media (max-width: 768px) {
