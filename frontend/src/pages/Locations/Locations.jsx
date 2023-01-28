@@ -8,6 +8,7 @@ import { clearSearch } from '../../store/search/searchSlice';
 import { Layout } from '../../Layouts/Layout/Layout';
 import Skeleton from '../../components/Skeleton/Skeleton';
 import CardLocation from '../../components/CardLocation';
+import Spinner from '../../components/Spinner/Spinner';
 
 import style from './Locations.module.css';
 
@@ -17,6 +18,7 @@ export const Locations = () => {
 
   const locations = useSelector((state) => state.locations.data);
   const loading = useSelector((state) => state.locations.loading);
+  const loadingSearch = useSelector((state) => state.search.loading);
 
   const searchLocations = useSelector((state) => state.search.searchLocations);
   const searchValue = useSelector((state) => state.search.searchValue);
@@ -75,6 +77,8 @@ export const Locations = () => {
               img={location.linkImage}
             />
           ))
+        ) : searchValue && loadingSearch ? (
+          <Spinner />
         ) : (
           <>
             <span>Ничего не найдено</span>

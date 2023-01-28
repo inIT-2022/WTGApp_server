@@ -10,17 +10,29 @@ import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
 
 export const Search = ({ searchType }) => {
   const searchValue = useSelector((state) => state.search.searchValue);
+
+  const [search, setSearch] = React.useState(searchValue);
   const dispatch = useDispatch();
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    searchType === 'events'
-      ? dispatch(fetchSearchEvents(searchValue))
-      : dispatch(fetchSearchLocations(searchValue));
+    if (searchType === 'events') {
+      dispatch(fetchSearchEvents(search));
+      dispatch(setSearchValue(search));
+    }
+    if (searchType === 'locations') {
+      dispatch(fetchSearchLocations(search));
+      dispatch(setSearchValue(search));
+    }
   };
 
   const handleClickClose = () => {
     dispatch(clearSearch());
+    setSearch('');
+  };
+
+  const handlerChangeInput = (e) => {
+    setSearch(e.target.value);
   };
 
   return (
@@ -28,11 +40,11 @@ export const Search = ({ searchType }) => {
       <input
         className={style.search}
         type='search'
-        onChange={(e) => dispatch(setSearchValue(e.target.value))}
-        value={searchValue}
+        onChange={handlerChangeInput}
+        value={search}
         placeholder='поиск'
       />
-      {searchValue && (
+      {search && (
         <button
           className={style.buttonClose}
           type='button'
