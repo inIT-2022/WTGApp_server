@@ -7,7 +7,7 @@ export const CardMainLocation = ({ loc }) => {
     <Link to={`locations/${loc.id}`} className={style.locWrap}>
       <img
         className={style.locImg}
-        src={loc.linkImage ? loc.linkImage.split('|')[0] : noPhoto}
+        src={loc?.linkImage ? loc?.linkImage.split('|')[0] : noPhoto}
         alt={loc.title}
         width={278}
         height={330}
