@@ -5,7 +5,7 @@ import MainEvent from '../../components/Main/MainEvent';
 import Navigation from '../../components/Main/Navigation';
 import { Layout } from '../../Layouts/Layout/Layout';
 import MainLocation from '../../components/Main/MainLocation';
-import Routespage from '../../components/Routespage/Routespage';
+import Routespage from '../../components/Main/Routespage/Routespage';
 // import Recreation from '../../components/Main/Recreation';
 import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
 

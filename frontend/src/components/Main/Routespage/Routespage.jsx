@@ -5,11 +5,11 @@ import slide_3 from './img/slide_3.jpg';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import Layout from '../../Layouts/Layout';
-import SectionTitle from '../SectionTitle';
-import SectionSearch from '../SectionSearch';
+import Layout from '../../../Layouts/Layout';
+import SectionTitle from '../../SectionTitle';
+import SectionSearch from '../../SectionSearch';
 
-const Routes = ({ searchValue, setSearchValue }) => {
+const Routes = () => {
   const authData = useSelector((state) => state.auth.data);
   const [isShowMessage, setIsShowMessage] = useState(false);
 

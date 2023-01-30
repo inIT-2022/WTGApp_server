@@ -18,6 +18,7 @@ const App = () => {
           <Route path='events/:id' element={<EventFullPage />} />
           <Route path='locations' element={<Locations />} />
           <Route path='locations/:id' element={<LocationFullPage />} />
+          <Route path='routes' element={<Routes />} />
           <Route path='routespages/:id' element={<Routespages />} />
           <Route path='*' element={<NotFound />} />
         </Route>
