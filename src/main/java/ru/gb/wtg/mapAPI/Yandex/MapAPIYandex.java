@@ -55,7 +55,7 @@ public class MapAPIYandex implements MapAPIInterface {
 
         return Arrays.stream((response.body().toString()
                         .substring(response.body().toString().indexOf("coordinate") +14,
-                                response.body().toString().lastIndexOf("]},")))
+                                response.body().toString().lastIndexOf("]},", response.body().toString().indexOf("coordinate") +14 + 21 )))
                         .split(","))
                 .map( s -> {
                     return Double.parseDouble(s);
