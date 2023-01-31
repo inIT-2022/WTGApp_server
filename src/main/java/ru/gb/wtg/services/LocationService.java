@@ -30,6 +30,16 @@ public class LocationService {
         return locationRepository.findAll( PageRequest.of(page-1,pageSize));
     }
 
+    public List<CategoryForLocation> findAllCategories(){
+        return categoryForLocationRepository.findAll();
+    }
+
+    public List<Location> findAllByLocationsCategoryAndSector (Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
+                                                               long cat1, long cat2, long cat3, long cat4){
+        return locationRepository.findAllByLocationsCategoriesAndSector(latitudeMin, latitudeMax, longitudeMin, longitudeMax,
+                cat1, cat2, cat3, cat4);
+    }
+
     public Optional<Location> findById(Long id){
         return locationRepository.findById(id);
     }
