@@ -38,4 +38,15 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query(value = "SELECT * FROM events  where title ilike %?1%", nativeQuery = true)
     List<Event> findAllByManualTitle(@Param("manualTitle") String manualTitle);
 
+    //выборка событий по категориям, которые находятся в заданном секторе
+    @Query(value = "select e from Event e \n" +
+            "left join Location l on l.id = e.location \n"+
+            "left join e.categoryForEvents cfe \n" +
+            "where (l.latitude >= :latitudeMin and l.latitude<= :latitudeMax) and (l.longitude >= :longitudeMin and l.longitude <=:longitudeMax) and cfe.id in (:cat1,:cat2,:cat3,:cat4)")
+    List<Event> findAllByEventsCategoryAndSector(Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
+                                                 long cat1, long cat2, long cat3, long cat4);
+
+
+
+
 }

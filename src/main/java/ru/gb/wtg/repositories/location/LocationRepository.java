@@ -35,6 +35,7 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
             Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax
     );
 
+    //выборка локаций с событиями попадаюхих в диапазоны долготы и широты
     @Query("select l from Location l " +
             "right join Event e " +
             "on l.id = e.location " +

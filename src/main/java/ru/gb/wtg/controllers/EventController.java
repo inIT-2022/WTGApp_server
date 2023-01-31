@@ -1,10 +1,15 @@
 package ru.gb.wtg.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.wtg.dto.event.CategoryForEventDTO;
 import ru.gb.wtg.dto.event.EventDTO;
+import ru.gb.wtg.dto.event.EventInSector;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
+import ru.gb.wtg.mapAPI.MapAPIInterface;
 import ru.gb.wtg.models.event.Event;
+import ru.gb.wtg.routes.Sector;
 import ru.gb.wtg.services.EventService;
 
 import java.time.LocalDate;
@@ -15,12 +20,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping("api/v1/events")
 public class EventController {
 
     private final EventService eventService;
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
+    private final MapAPIInterface mapAPIService;
+    private final Sector sector;
+
+    public EventController(EventService eventService, @Qualifier("mapAPIYandex") MapAPIInterface mapAPIService, Sector sector) {
+        this.eventService = eventService;
+        this.mapAPIService = mapAPIService;
+        this.sector = sector;
+    }
 
     @GetMapping()
     public List<EventDTO> getAllEvents(){
@@ -119,6 +133,35 @@ public class EventController {
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/by-categories-and-sector")
+    public List<EventDTO> getAllByEventsCategoryAndSector(
+            @RequestBody EventInSector eventInSector
+//            @RequestParam(name = "address") String address,
+//            @RequestParam(name = "radius") int radius,
+//            @RequestParam(name = "categories") int categories
+    ){
+
+        List<Double> coordinate = mapAPIService.getCoordinateByAddress(eventInSector.getAddress());
+        System.out.println("long = " + coordinate.get(0) + " lat = " + coordinate.get(1));
+        //double [][] sc = sector.getSectorByRadius(longitude,latitude,radius);
+        double [][] sc = sector.getSectorByRadius(coordinate.get(0),coordinate.get(1),eventInSector.getRadius());
+        System.out.println("sc[0][0] = " + sc[0][0] + " sc[0][1] = " + sc[0][1] );
+        System.out.println("sc[1][0] = " + sc[1][0] + " sc[1][1] = " + sc[1][1] );
+                                                //  latitudeMin,latitudeMax,longitudeMin,longitudeMax
+        return eventService.findAllByEventsCategoryAndSector(sc[1][1],sc[0][1],sc[0][0],sc[1][0],
+        eventInSector.getCategories()[0], eventInSector.getCategories()[1], eventInSector.getCategories()[2], eventInSector.getCategories()[3])
+                .stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/get-events-categories")
+    public List<CategoryForEventDTO> getAllCategories(){
+        return eventService.findAllCategories().stream().map(CategoryForEventDTO::new).collect(Collectors.toList());
+    }
+
+
 
 
 

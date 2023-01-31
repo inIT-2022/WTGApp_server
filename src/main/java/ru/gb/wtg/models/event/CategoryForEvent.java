@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,5 +23,8 @@ public class CategoryForEvent {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToMany(mappedBy = "categoryForEvents")
+    private List<Event> events;
 
 }

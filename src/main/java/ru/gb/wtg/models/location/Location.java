@@ -83,7 +83,7 @@ public class Location {
     )
     private List<Route> routes;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
     List<Event> events;
 
 
