@@ -1,16 +1,18 @@
-import style from './Header.module.css';
-import { Auth } from './Auth/Auth';
-import { Layout } from '../../Layouts/Layout/Layout';
+import { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import Auth from './Auth';
+import Layout from '../../Layouts/Layout';
+import Search from '../Search';
+import ModalAuth from '../ModalAuth';
+import WarningMessage from './WarningMessage';
 import { ReactComponent as BurgerSvg } from './img/burger_menu.svg';
 import { ReactComponent as Notification } from './img/notification.svg';
 import { ReactComponent as Collection } from './img/collection.svg';
 import { ReactComponent as Chat } from './img/chat.svg';
-import { useState } from 'react';
-import { Search } from '../Search/Search';
-import { useLocation, useParams } from 'react-router-dom';
-import { Modal } from '../Modal/Modal';
-import { WarningMessage } from './WarningMessage/WarningMessage';
-import { useSelector } from 'react-redux';
+
+import style from './Header.module.css';
 
 export const Header = () => {
   const [isOpenBurger, setIsOpenBurger] = useState(false);
@@ -39,7 +41,10 @@ export const Header = () => {
                 </p>
                 <span className={style.city}>Краснодар</span>
                 {!authData.login && showWarning && (
-                  <WarningMessage setClose={() => setShowWarning(false)} />
+                  <WarningMessage
+                    openModal={() => setShowModal(true)}
+                    setClose={() => setShowWarning(false)}
+                  />
                 )}
               </>
             )}
@@ -112,7 +117,10 @@ export const Header = () => {
         </div>
 
         {!authData?.login && (
-          <Modal active={showModal} closeModal={() => setShowModal(false)} />
+          <ModalAuth
+            active={showModal}
+            closeModal={() => setShowModal(false)}
+          />
         )}
       </Layout>
     </header>

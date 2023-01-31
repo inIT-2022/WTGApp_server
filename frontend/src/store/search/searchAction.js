@@ -28,6 +28,7 @@ export const fetchSearchRoutes = createAsyncThunk(
   (search, { rejectWithValue }) => {
     const token = useSelector((state) => state.auth.data.token);
     if (!token) return;
+
     return axios(`${API_URI}/api/v1/routes/manualTitle?manualTitle=${search}`, {
       headers: {
         Authorization: token,

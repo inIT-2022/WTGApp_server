@@ -156,10 +156,6 @@
   }
 }
 @media (max-width: 520px) {
-  .homeBtn {
-    width: 24px;
-    height: 24px;
-  }
   .navText {
     font-size: 20px;
   }

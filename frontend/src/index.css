@@ -22,6 +22,7 @@
 :root {
   --text-color: rgb(24, 23, 26);
   --back-color: rgb(255, 255, 255);
+  --style-color: #eec3fd;
 }
 
 html {

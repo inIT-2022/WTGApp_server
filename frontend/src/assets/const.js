@@ -16,3 +16,9 @@ export const monthes = [
   'ноября',
   'декабря',
 ];
+
+export const radiuses = {
+  Walk: 100,
+  Bicycle: 200,
+  Car: 300,
+};
