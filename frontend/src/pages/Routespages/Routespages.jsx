@@ -18,7 +18,7 @@ import { ReactComponent as Share} from '../../components/Main/Location/Location2
 
 export const Routespages = () => {
   return (
-    <>
+    <section className={style.routespages}>
       <Layout>
         <div className={style.nav}>
           <Link to='/'>
@@ -157,6 +157,6 @@ export const Routespages = () => {
             </div>
           </div>
         </div> */}
-    </>
+    </section>
   );
 };

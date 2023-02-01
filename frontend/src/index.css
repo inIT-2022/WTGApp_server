@@ -1,22 +1,27 @@
 @import '~normalize.css';
 
 @font-face {
-  font-family: 'Comfortaa-Regular';
+  font-family: 'Comfortaa';
   font-style: normal;
   font-weight: 400;
   src: url(./fonts/Comfortaa-Regular.woff2) format('woff2');
 }
 @font-face {
-  font-family: 'Comfortaa-Bold';
+  font-family: 'Comfortaa';
   font-weight: 700;
   font-style: normal;
   src: url(./fonts/Comfortaa-Bold.woff2) format('woff2');
 }
 @font-face {
-  font-family: 'Comfortaa-Light';
+  font-family: 'Comfortaa';
   font-weight: 300;
   font-style: normal;
   src: url(./fonts//Comfortaa-Light.woff2) format('woff2');
+}
+
+:root {
+  --text-color: rgb(24, 23, 26);
+  --back-color: rgb(255, 255, 255);
 }
 
 html {
@@ -25,45 +30,38 @@ html {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-* {
-  margin: 0px;
-  padding: 0px;
-}
 
 *,
 *::after,
 *::before {
+  margin: 0px;
+  padding: 0px;
   box-sizing: inherit;
 }
 
 body {
-  position: relative;
+  min-width: 320px;
   margin: 0;
-  font-family: 'Comfortaa-Regular', cursive;
+  font-family: 'Comfortaa', cursive;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
-  color: #18171a;
-  background: #eee;
+  color: var(--text-color);
+  background: var(--back-color);
 }
 
 h1,
 h2,
 h3,
+h4,
 p,
-ul {
+span {
   margin: 0;
-}
-
-section {
-  font-size: 2rem;
-  padding-top: var(--gap-medium);
-  padding-bottom: var(--gap-large);
-  border-top: 10px solid #eee;
 }
 
 ul {
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
@@ -72,43 +70,11 @@ button {
   cursor: pointer;
   background-color: transparent;
   border: none;
-  font: inherit;
-}
-
-button:hover,
-button:focus,
-select:hover,
-select:focus,
-input:hover,
-input:focus {
-  box-shadow: var(--box-shadow-accent-small);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-.main-container {
-  background: var(--color-white);
-}
-
-.main-container,
-.container {
-  max-width: 1920px;
-  margin: 0 auto;
-}
-.container {
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 72px;
-}
-
-.section__title {
-  padding-left: 25px;
-  margin-bottom: 20px;
-  border-left: 25px solid var(--color-accent);
-  border-radius: 50px;
 }
 
 input,

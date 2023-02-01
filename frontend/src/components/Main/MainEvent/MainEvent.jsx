@@ -3,7 +3,7 @@ import { Layout } from '../../../Layouts/Layout/Layout';
 import style from './MainEvent.module.css';
 
 export const MainEvent = () => (
-  <div className={style.events}>
+  <section className={style.events}>
     <Link to='/events' className={style.link} />
     <Layout>
       <div className={style.wrapper}>
@@ -11,5 +11,5 @@ export const MainEvent = () => (
         <p className={style.text}>все значимые события города и края</p>
       </div>
     </Layout>
-  </div>
+  </section>
 );

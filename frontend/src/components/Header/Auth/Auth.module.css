@@ -1,13 +1,13 @@
-.auth__button,
-.auth__buttonLogged {
+.button,
+.buttonLogged {
   position: relative;
 }
 
-.auth__buttonLogged {
+.buttonLogged {
   cursor: default;
 }
 
-.auth__icon {
+.icon {
   width: 56px;
   height: 56px;
 }
@@ -28,4 +28,17 @@
 .auth__user_name {
   font-size: 20px;
   white-space: nowrap;
+}
+
+@media (max-width: 992px) {
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (max-width: 640px) {
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
 }

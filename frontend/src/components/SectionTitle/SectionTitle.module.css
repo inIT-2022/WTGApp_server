@@ -1,0 +1,60 @@
+.title {
+  position: relative;
+  display: block;
+  padding-left: 42px;
+  font-size: 48px;
+  line-height: 54px;
+  margin-bottom: 16px;
+}
+
+.title:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 72px;
+  background-image: url('./img/shortcut.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .title {
+    padding-left: 23px;
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .title:before {
+    width: 23px;
+    height: 40px;
+    background-image: url('./img/shortcut768.svg');
+  }
+}
+@media (max-width: 540px) {
+  .title {
+    padding-left: 18px;
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .title:before {
+    width: 18px;
+    height: 36px;
+    background-image: url('./img/shortcut768.svg');
+  }
+}
+@media (max-width: 380px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .title:before {
+    width: 16px;
+    height: 30px;
+    background-image: url('./img/shortcut768.svg');
+  }
+}

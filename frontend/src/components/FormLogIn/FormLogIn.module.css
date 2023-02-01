@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 390px;
+  max-width: 390px;
+  width: 100%;
   margin: 0 auto;
   background: #ffffff;
 }
@@ -51,16 +52,16 @@
   font-size: 16px;
   color: tomato;
 }
-.errorPassword {
+/* .errorPassword {
   top: -12px;
   text-align: end;
-}
+} */
 
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 15px 64px;
+  gap: 15px 20px;
 }
 
 .navLink {
@@ -102,4 +103,43 @@
   font-size: 14px;
   margin-top: -30px;
   align-self: center;
+}
+
+@media (max-width: 520px) {
+  .form {
+    padding: 0 20px;
+    gap: 12px;
+  }
+  .input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 20px;
+    font-size: 18px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
+  }
+
+  .label {
+    top: 36px;
+    left: 20px;
+    color: #4f4444;
+    font-size: 16px;
+  }
+  .error,
+  .errorPassword {
+    font-size: 12px;
+  }
+  .submit {
+    height: 36px;
+    font-size: 16px;
+  }
+  .errorSubmit {
+    color: tomato;
+    font-size: 10px;
+    margin-top: 0px;
+    align-self: center;
+  }
 }

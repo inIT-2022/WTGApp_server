@@ -1,6 +1,9 @@
 .form {
-  position: relative;
-  width: 496px;
+  position: absolute;
+  left: 0;
+  top: 170px;
+  max-width: 496px;
+  width: 100%;
   height: 40px;
   font-family: 'Comfortaa', sans-serif;
 }
@@ -48,4 +51,10 @@
 .buttonClose {
   right: 40px;
   color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 640px) {
+  .form {
+    top: 108px;
+  }
 }
