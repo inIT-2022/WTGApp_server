@@ -43,13 +43,13 @@ public class LocationController {
 
 
 
-//    @GetMapping()
-//    public List<LocationDTO> getAllLocations(){
-//        return locationService.findAll()
-//                .stream()
-//                .map(LocationDTO::new)
-//                .collect(Collectors.toList());
-//    }
+    @GetMapping("/deprecated")
+    public List<LocationDTO> getAllLocations(){
+        return locationService.findAll()
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
 
     @GetMapping()
     public List<LocationDTO> getAllLocations(@RequestParam(name = "page") int page,
