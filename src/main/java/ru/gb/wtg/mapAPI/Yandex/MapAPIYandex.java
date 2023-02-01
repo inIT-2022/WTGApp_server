@@ -9,8 +9,11 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -53,13 +56,31 @@ public class MapAPIYandex implements MapAPIInterface {
             e.printStackTrace();
         }
 
-        return Arrays.stream((response.body().toString()
-                        .substring(response.body().toString().indexOf("coordinate") +14,
-                                response.body().toString().lastIndexOf("]},", response.body().toString().indexOf("coordinate") +14 + 21 )))
-                        .split(","))
-                .map( s -> {
-                    return Double.parseDouble(s);
-                }).collect(Collectors.toList());
+        List<Double> coordinateList = new ArrayList<>();
+        Pattern p1 = Pattern.compile("(\\\"coordinates\\\")([:][\\[])([0-9.,]*)([\\]][\\}])");
+        Matcher m1 = p1.matcher(response.body().toString());
+            m1.find();
+        String strCoordinate = m1.group();
+
+        Pattern p2 = Pattern.compile("[0-9.]+");
+        Matcher m2 = p2.matcher(strCoordinate);
+            m2.find();
+            coordinateList.add(Double.valueOf(m2.group()));
+
+            m2.find();
+            coordinateList.add(Double.valueOf(m2.group()));
+
+        System.out.println(coordinateList.toString());
+
+        return coordinateList;
+
+//        return Arrays.stream((response.body().toString()
+//                        .substring(response.body().toString().indexOf("coordinate") +14,
+//                                response.body().toString().lastIndexOf("]},", response.body().toString().indexOf("coordinate") +14 + 21 )))
+//                        .split(","))
+//                .map( s -> {
+//                    return Double.parseDouble(s);
+//                }).collect(Collectors.toList());
     }
 
     @Override
