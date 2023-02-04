@@ -40,6 +40,12 @@ public class EventService {
         return eventRepository.findAllByLocation(location);
     }
 
+    public List<Event> findAllByEventsCategoryAndSector(Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
+                                                        long cat1, long cat2, long cat3, long cat4){
+        return eventRepository.findAllByEventsCategoryAndSector(latitudeMin, latitudeMax, longitudeMin, longitudeMax,
+        cat1, cat2, cat3, cat4);
+    }
+
     public List<Event> findAllByLocation(Long id){
         Location location = locationService.findById(id).orElseThrow(()-> new ResourceNotFoundException("локация с данным id не найдена"));
         return eventRepository.findAllByLocation(location);
@@ -114,6 +120,10 @@ public class EventService {
 
     public List<Event> findAllByManualTitle(String manualTitle){
         return eventRepository.findAllByManualTitle(manualTitle);
+    }
+
+    public List<CategoryForEvent> findAllCategories(){
+        return categoryForEventRepository.findAll();
     }
 
     public void deleteEvent(Long id){

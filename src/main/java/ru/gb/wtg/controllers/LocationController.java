@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.wtg.dto.location.CategoryForLocationDTO;
 import ru.gb.wtg.dto.location.LocationDTO;
+import ru.gb.wtg.dto.location.LocationInSector;
 import ru.gb.wtg.dto.route.MapsDTO;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
 import ru.gb.wtg.mapAPI.MapAPIInterface;
@@ -41,13 +43,13 @@ public class LocationController {
 
 
 
-//    @GetMapping()
-//    public List<LocationDTO> getAllLocations(){
-//        return locationService.findAll()
-//                .stream()
-//                .map(LocationDTO::new)
-//                .collect(Collectors.toList());
-//    }
+    @GetMapping("/deprecated")
+    public List<LocationDTO> getAllLocations(){
+        return locationService.findAll()
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
 
     @GetMapping()
     public List<LocationDTO> getAllLocations(@RequestParam(name = "page") int page,
@@ -85,6 +87,26 @@ public class LocationController {
                 .map(LocationDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/get-locations-categories")
+    public List<CategoryForLocationDTO> getAllCategories(){
+        return locationService.findAllCategories().stream().map(CategoryForLocationDTO::new).collect(Collectors.toList());
+    }
+
+
+    @GetMapping("/by-categories-and-sector")
+    public List<LocationDTO> getAllByLocationsCategoriesAndSector(@RequestBody LocationInSector locationInSector){
+
+        List<Double> coordinate = mapAPIService.getCoordinateByAddress(locationInSector.getAddress());
+        double [][] sc = sector.getSectorByRadius(coordinate.get(0),coordinate.get(1), locationInSector.getRadius());
+                                                        //  latitudeMin,latitudeMax,longitudeMin,longitudeMax
+        return locationService.findAllByLocationsCategoryAndSector(sc[1][1],sc[0][1],sc[0][0],sc[1][0],
+                locationInSector.getCategories()[0],locationInSector.getCategories()[1],locationInSector.getCategories()[2],locationInSector.getCategories()[3])
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
+
 
     @PostMapping("/createLocation")
     public void createLocation(

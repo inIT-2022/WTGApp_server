@@ -23,12 +23,15 @@ public class CategoryForLocation {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
-    @JoinTable(
-            name = "locations_categories",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "location_id")
-    )
+//    @ManyToMany
+//    @JoinTable(
+//            name = "locations_categories",
+//            joinColumns = @JoinColumn(name = "category_id"),
+//            inverseJoinColumns = @JoinColumn(name = "location_id")
+//    )
+//    private List<Location> locations;
+
+    @ManyToMany(mappedBy = "categoryForLocations")
     private List<Location> locations;
 
 }
