@@ -35,6 +35,7 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
             Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax
     );
 
+    //выборка локаций с событиями попадаюхих в диапазоны долготы и широты
     @Query("select l from Location l " +
             "right join Event e " +
             "on l.id = e.location " +
@@ -42,6 +43,30 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
             "and l.longitude >= :longitudeMin and l.longitude <= :longitudeMax")
     List<Location> findAllByLatitudeWithEvents(
             Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax
+    );
+
+    //выборка локаций по категориям в заданном секторе
+    // todo не прошел..
+/*    @Query("select l from Location l " +
+            "inner join CategoryForLocation cfl on l.categoryForLocations = cfl.locations \n" +
+            "where (l.latitude >= :latitudeMin and l.latitude <= :latitudeMax) " +
+            "and (l.longitude >= :longitudeMin and l.longitude <= :longitudeMax) " +
+            "and  (cfl.id in (:cat1,:cat2,:cat3,:cat4))")
+    List<Location> findAllByLocationsCategoriesAndSector(
+            Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
+            long cat1, long cat2, long cat3, long cat4
+    );*/
+
+    //выборка локаций по категориям в заданном секторе
+    @Query(value = "select * from locations l " +
+            "right join locations_categories lc on l.id = lc.location_id " +
+            "left join categories_for_locations cfl on lc.location_id = cfl.id \n" +
+            "where (l.latitude >= :latitudeMin and l.latitude <= :latitudeMax) " +
+            "and (l.longitude >= :longitudeMin and l.longitude <= :longitudeMax) " +
+            "and  (cfl.id in (:cat1,:cat2,:cat3,:cat4))",nativeQuery = true)
+    List<Location> findAllByLocationsCategoriesAndSector(
+            Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
+            long cat1, long cat2, long cat3, long cat4
     );
 
 
