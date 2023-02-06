@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import Auth from './Auth';
 import Layout from '../../Layouts/Layout';
@@ -22,7 +21,7 @@ export const Header = () => {
   const location = useLocation();
   const { id } = useParams();
 
-  const authData = useSelector((state) => state.auth.data);
+  const login = localStorage.getItem('login');
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -40,7 +39,7 @@ export const Header = () => {
                   отдых, который подойдет именно Вам
                 </p>
                 <span className={style.city}>Краснодар</span>
-                {!authData.login && showWarning && (
+                {!login && showWarning && (
                   <WarningMessage
                     openModal={() => setShowModal(true)}
                     setClose={() => setShowWarning(false)}
@@ -93,10 +92,10 @@ export const Header = () => {
             )}
           </div>
           <div className={style.iconWrapper}>
-            {authData?.login && (
+            {login && (
               <div className={style.header__authText}>
                 <p className={style.authText}>Добро пожаловать,</p>
-                <p className={style.login}>{authData?.login} !</p>
+                <p className={style.login}>{login} !</p>
               </div>
             )}
             <Auth openModal={() => handleOpenModal()} />
@@ -116,7 +115,7 @@ export const Header = () => {
           </div>
         </div>
 
-        {!authData?.login && (
+        {!login && (
           <ModalAuth
             active={showModal}
             closeModal={() => setShowModal(false)}

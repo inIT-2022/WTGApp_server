@@ -5,7 +5,7 @@ import { API_URI, radiuses } from '../../assets/const';
 export const fetchRoutes = createAsyncThunk(
   'routes/fetchRoutes',
   (_, { rejectWithValue, getState }) => {
-    const token = getState().auth.data.token;
+    const token = window.localStorage.getItem('token');
     if (!token) return;
 
     return axios(`${API_URI}/api/v1/routes`, {

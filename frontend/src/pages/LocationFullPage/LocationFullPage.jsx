@@ -22,6 +22,10 @@ export const LocationFullPage = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  React.useEffect(() => {
     if (allEvents.length) return;
     dispatch(fetchEvents());
   }, []);
@@ -73,7 +77,7 @@ export const LocationFullPage = () => {
 
         <div className={style.wrapper}>
           <div className={style.leftContent}>
-            <p className={style.distance}>Расстояние 15,3 км</p>
+            {/* <p className={style.distance}>Расстояние 15,3 км</p> */}
             <div className={style.sliderWrapper}>
               <Slider items={images} />
             </div>

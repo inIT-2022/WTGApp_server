@@ -20,7 +20,7 @@ export const RoutesPage = () => {
   const searchRoutes = useSelector((state) => state.search.searchRoutes);
   const searchValue = useSelector((state) => state.search.searchValue);
 
-  const token = useSelector((state) => state.auth.data.token);
+  const token = window.localStorage.getItem('token');
 
   React.useEffect(() => {
     dispatch(fetchRoutes());

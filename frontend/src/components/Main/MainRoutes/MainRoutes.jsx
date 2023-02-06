@@ -24,7 +24,7 @@ const routeTypes = [
 export const MainRoutes = () => {
   const dispatch = useDispatch();
 
-  const authData = useSelector((state) => state.auth.data);
+  const token = window.localStorage.getItem('token');
   const [isShowMessage, setIsShowMessage] = useState(false);
   const [ShowModal, setShowModal] = useState(false);
 
@@ -43,7 +43,7 @@ export const MainRoutes = () => {
   return (
     <section className={style.routes} id='routes'>
       <Layout>
-        {!authData?.login ? (
+        {!token ? (
           <div className={style.authBlure} onClick={showMessage}>
             {isShowMessage ? (
               <p className={style.message}>Необходимо авторизоваться </p>

@@ -18,6 +18,10 @@ export const EventFullPage = () => {
   const { id } = useParams();
 
   React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  React.useEffect(() => {
     const fetchEventPage = async (page) => {
       const { data } = await axios(`${API_URI}/api/v1/events/${page}`);
       setEventPage(data);
@@ -40,7 +44,7 @@ export const EventFullPage = () => {
   const { startTime, day, year, month } = getDateParameters(startDatetime);
 
   const images = linkImage
-    ? location.linkImage?.split('|')
+    ? linkImage?.split('|')
     : [
         'https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=',
       ];
@@ -62,7 +66,7 @@ export const EventFullPage = () => {
 
         <div className={style.wrapper}>
           <div className={style.leftContent}>
-            <p className={style.distance}>Расстояние 25,7 км</p>
+            {/* <p className={style.distance}>Расстояние 25,7 км</p> */}
             <div className={style.sliderWrapper}>
               <Slider items={images} />
             </div>

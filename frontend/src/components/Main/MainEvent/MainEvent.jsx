@@ -3,7 +3,7 @@ import { Layout } from '../../../Layouts/Layout/Layout';
 import style from './MainEvent.module.css';
 
 export const MainEvent = () => (
-  <section className={style.events}>
+  <section className={style.events} id='events'>
     <Link to='/events' className={style.link} />
     <Layout>
       <div className={style.wrapper}>
