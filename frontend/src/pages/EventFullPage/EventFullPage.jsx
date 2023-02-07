@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Layout } from '../../Layouts/Layout/Layout';
 import Slider from '../../components/Slider/Slider';
@@ -11,9 +12,15 @@ import { getDateParameters } from '../../utils/getDateParameters';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 
+import { resetEvents } from '../../store/events/eventsSlice';
+
 import style from './EventFullPage.module.css';
 
 export const EventFullPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const searchValue = useSelector((state) => state.search.searchValue);
+
   const [eventPage, setEventPage] = React.useState([]);
   const { id } = useParams();
 
@@ -50,15 +57,23 @@ export const EventFullPage = () => {
       ];
 
   const adress = location?.address || '';
+
+  const handleClickTopEvents = () => {
+    if (!searchValue) {
+      dispatch(resetEvents());
+    }
+    navigate('/events');
+  };
+
   return (
     <section className={style.event}>
       <Layout>
         <div className={style.nav}>
           <BtnHome />
 
-          <Link to='/events' className={style.navText}>
+          <button className={style.navText} onClick={handleClickTopEvents}>
             / Top events /
-          </Link>
+          </button>
           <p className={style.navText}> Event</p>
         </div>
 

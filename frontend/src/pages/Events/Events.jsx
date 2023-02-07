@@ -1,7 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchEvents } from '../../store/events/eventsAction';
+import {
+  fetchEvents,
+  fetchSearchEvents,
+} from '../../store/events/eventsAction';
 
 import Skeleton from '../../components/Skeleton/Skeleton';
 import CardEvent from '../../components/CardEvent';
@@ -9,22 +12,30 @@ import Layout from '../../Layouts/Layout';
 import BtnHome from '../../components/BtnHome';
 
 import style from './Events.module.css';
+import { useObserver } from '../../hooks/useObserver';
+import { setCurrentPageEvent } from '../../store/events/eventsSlice';
 
 export const Events = () => {
   const dispatch = useDispatch();
 
-  const searchEvents = useSelector((state) => state.search.searchEvents);
   const searchValue = useSelector((state) => state.search.searchValue);
-
+  const currentPage = useSelector((state) => state.events.currentPage);
   const events = useSelector((state) => state.events.data);
   const loading = useSelector((state) => state.events.loading);
 
-  React.useEffect(() => {
-    dispatch(fetchEvents());
-  }, []);
+  const lastElement = React.useRef();
 
-  const filteredEvents =
-    searchEvents.length || searchValue ? searchEvents : events;
+  useObserver(lastElement, !searchValue && events.length > 9, loading, () => {
+    dispatch(setCurrentPageEvent(currentPage + 1));
+  });
+
+  React.useEffect(() => {
+    if (searchValue && events) return;
+
+    if (searchValue) {
+      dispatch(fetchSearchEvents(searchValue));
+    } else dispatch(fetchEvents());
+  }, [currentPage]);
 
   return (
     <section className={style.events}>
@@ -42,8 +53,8 @@ export const Events = () => {
           </>
         ) : null}
 
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => (
+        {events.length > 0 ? (
+          events.map((event) => (
             <CardEvent
               key={event.id}
               title={event.title}
@@ -59,6 +70,7 @@ export const Events = () => {
             <span>Ничего не найдено</span>
           </>
         )}
+        <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>
   );
