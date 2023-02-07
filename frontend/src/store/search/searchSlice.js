@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSearchEvents, fetchSearchRoutes } from './searchAction';
+import { fetchSearchRoutes } from './searchAction';
 
 const initialState = {
   searchValue: '',
@@ -21,23 +21,6 @@ export const searchSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSearchEvents.pending, (state) => {
-      state.loading = true;
-      state.error = '';
-    });
-
-    builder.addCase(fetchSearchEvents.fulfilled, (state, action) => {
-      state.searchEvents = action.payload;
-      state.loading = false;
-      state.error = '';
-    });
-
-    builder.addCase(fetchSearchEvents.rejected, (state, action) => {
-      state.searchEvents = [];
-      state.loading = false;
-      state.error = action.payload;
-    });
-
     builder.addCase(fetchSearchRoutes.pending, (state) => {
       state.loading = true;
       state.error = '';
