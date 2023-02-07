@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_URI } from '../../assets/const';
 import axios from 'axios';
@@ -12,10 +12,13 @@ import Layout from '../../Layouts/Layout';
 import Slider from '../../components/Slider/Slider';
 
 import style from './LocationFullPage.module.css';
+import { resetLocations } from '../../store/locations/locationsSlice';
 
 export const LocationFullPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const searchValue = useSelector((state) => state.search.searchValue);
   const allEvents = useSelector((state) => state.events.data);
   const [locationPage, setLocationPage] = React.useState([]);
   const [showFullDescr, setShowFullDescr] = React.useState(false);
@@ -61,6 +64,12 @@ export const LocationFullPage = () => {
   const handleShowFullDescr = () => {
     setShowFullDescr(!showFullDescr);
   };
+  const handleClickTopLoc = () => {
+    if (!searchValue) {
+      dispatch(resetLocations());
+    }
+    navigate('/locations');
+  };
 
   return (
     <section className={style.location}>
@@ -68,9 +77,9 @@ export const LocationFullPage = () => {
         <div className={style.nav}>
           <BtnHome />
 
-          <Link to='/locations' className={style.navText}>
+          <button className={style.navText} onClick={handleClickTopLoc}>
             / Top locations /
-          </Link>
+          </button>
           <p className={style.navText}> location</p>
         </div>
         <h4 className={style.title}>{title}</h4>

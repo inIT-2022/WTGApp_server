@@ -1,32 +1,42 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchLocations } from '../../store/locations/locationsAction';
+import {
+  fetchLocations,
+  fetchSearchLocations,
+} from '../../store/locations/locationsAction';
 
 import Layout from '../../Layouts/Layout';
 import Skeleton from '../../components/Skeleton/Skeleton';
 import CardLocation from '../../components/CardLocation';
-import Spinner from '../../components/Spinner/Spinner';
 import BtnHome from '../../components/BtnHome';
 
 import style from './Locations.module.css';
+import { setCurrentPage } from '../../store/locations/locationsSlice';
+import { useObserver } from '../../hooks/useObserver';
 
 export const Locations = () => {
   const dispatch = useDispatch();
 
   const locations = useSelector((state) => state.locations.data);
   const loading = useSelector((state) => state.locations.loading);
-  const loadingSearch = useSelector((state) => state.search.loading);
 
-  const searchLocations = useSelector((state) => state.search.searchLocations);
   const searchValue = useSelector((state) => state.search.searchValue);
 
-  React.useEffect(() => {
-    dispatch(fetchLocations());
-  }, []);
+  const lastElement = React.useRef();
+  const currentPage = useSelector((state) => state.locations.currentPage);
 
-  const filteredLocations =
-    searchLocations.length || searchValue ? searchLocations : locations;
+  useObserver(lastElement, !searchValue, loading, () => {
+    dispatch(setCurrentPage(currentPage + 1));
+  });
+
+  React.useEffect(() => {
+    if (searchValue && locations) return;
+
+    if (searchValue) {
+      dispatch(fetchSearchLocations(searchValue));
+    } else dispatch(fetchLocations());
+  }, [currentPage]);
 
   return (
     <section className={style.locations}>
@@ -44,26 +54,27 @@ export const Locations = () => {
           </>
         ) : null}
 
-        {filteredLocations.length > 0 ? (
-          filteredLocations.map((location) => (
-            <CardLocation
-              key={location.id}
-              title={location.title}
-              description={location.description}
-              fullDescription={location.fullDescription}
-              date={location.workTimeStart}
-              source={location.linkSite}
-              id={location.id}
-              img={location.linkImage}
-            />
-          ))
-        ) : searchValue && loadingSearch ? (
-          <Spinner />
+        {locations.length > 0 ? (
+          <>
+            {locations.map((location) => (
+              <CardLocation
+                key={location.id}
+                title={location.title}
+                description={location.description}
+                fullDescription={location.fullDescription}
+                date={location.workTimeStart}
+                source={location.linkSite}
+                id={location.id}
+                img={location.linkImage}
+              />
+            ))}
+          </>
         ) : (
           <>
             <span>Ничего не найдено</span>
           </>
         )}
+        <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>
   );

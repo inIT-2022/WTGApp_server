@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { resetLocations } from '../../store/locations/locationsSlice';
 import { clearSearch } from '../../store/search/searchSlice';
 import style from './BtnHome.module.css';
 
@@ -10,6 +11,7 @@ export const BtnHome = () => {
   const handleClickHome = () => {
     navigate('/');
     dispatch(clearSearch());
+    dispatch(resetLocations());
   };
   return (
     <button className={style.homeBtn} onClick={handleClickHome}>
