@@ -1,16 +1,17 @@
-import style from './Header.module.css';
-import { Auth } from './Auth/Auth';
-import { Layout } from '../../Layouts/Layout/Layout';
+import { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+
+import Auth from './Auth';
+import Layout from '../../Layouts/Layout';
+import Search from '../Search';
+import ModalAuth from '../ModalAuth';
+import WarningMessage from './WarningMessage';
 import { ReactComponent as BurgerSvg } from './img/burger_menu.svg';
 import { ReactComponent as Notification } from './img/notification.svg';
 import { ReactComponent as Collection } from './img/collection.svg';
 import { ReactComponent as Chat } from './img/chat.svg';
-import { useState } from 'react';
-import { Search } from '../Search/Search';
-import { useLocation, useParams } from 'react-router-dom';
-import { Modal } from '../Modal/Modal';
-import { WarningMessage } from './WarningMessage/WarningMessage';
-import { useSelector } from 'react-redux';
+
+import style from './Header.module.css';
 
 export const Header = () => {
   const [isOpenBurger, setIsOpenBurger] = useState(false);
@@ -20,7 +21,7 @@ export const Header = () => {
   const location = useLocation();
   const { id } = useParams();
 
-  const authData = useSelector((state) => state.auth.data);
+  const login = localStorage.getItem('login');
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -38,8 +39,11 @@ export const Header = () => {
                   отдых, который подойдет именно Вам
                 </p>
                 <span className={style.city}>Краснодар</span>
-                {!authData.login && showWarning && (
-                  <WarningMessage setClose={() => setShowWarning(false)} />
+                {!login && showWarning && (
+                  <WarningMessage
+                    openModal={() => setShowModal(true)}
+                    setClose={() => setShowWarning(false)}
+                  />
                 )}
               </>
             )}
@@ -88,10 +92,10 @@ export const Header = () => {
             )}
           </div>
           <div className={style.iconWrapper}>
-            {authData?.login && (
+            {login && (
               <div className={style.header__authText}>
                 <p className={style.authText}>Добро пожаловать,</p>
-                <p className={style.login}>{authData?.login} !</p>
+                <p className={style.login}>{login} !</p>
               </div>
             )}
             <Auth openModal={() => handleOpenModal()} />
@@ -111,8 +115,11 @@ export const Header = () => {
           </div>
         </div>
 
-        {!authData?.login && (
-          <Modal active={showModal} closeModal={() => setShowModal(false)} />
+        {!login && (
+          <ModalAuth
+            active={showModal}
+            closeModal={() => setShowModal(false)}
+          />
         )}
       </Layout>
     </header>

@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSearchEvents, fetchSearchLocations } from './searchAction';
+import { fetchSearchEvents, fetchSearchRoutes } from './searchAction';
 
 const initialState = {
   searchValue: '',
   searchEvents: [],
-  searchLocations: [],
+  searchRoutess: [],
 };
 
 export const searchSlice = createSlice({
@@ -38,19 +38,19 @@ export const searchSlice = createSlice({
       state.error = action.payload;
     });
 
-    builder.addCase(fetchSearchLocations.pending, (state) => {
+    builder.addCase(fetchSearchRoutes.pending, (state) => {
       state.loading = true;
       state.error = '';
     });
 
-    builder.addCase(fetchSearchLocations.fulfilled, (state, action) => {
-      state.searchLocations = action.payload;
+    builder.addCase(fetchSearchRoutes.fulfilled, (state, action) => {
+      state.searchRoutess = action.payload;
       state.loading = false;
       state.error = '';
     });
 
-    builder.addCase(fetchSearchLocations.rejected, (state, action) => {
-      state.searchLocations = [];
+    builder.addCase(fetchSearchRoutes.rejected, (state, action) => {
+      state.searchRoutess = [];
       state.loading = false;
       state.error = action.payload;
     });

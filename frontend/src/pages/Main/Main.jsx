@@ -5,7 +5,7 @@ import MainEvent from '../../components/Main/MainEvent';
 import Navigation from '../../components/Main/Navigation';
 import { Layout } from '../../Layouts/Layout/Layout';
 import MainLocation from '../../components/Main/MainLocation';
-import Routespage from '../../components/Routespage/Routespage';
+import MainRoutes from '../../components/Main/MainRoutes';
 // import Recreation from '../../components/Main/Recreation';
 import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
 
@@ -15,7 +15,7 @@ const Main = ({ searchValue, setSearchValue }) => {
       <Navigation />
       <MainEvent />
       <MainLocation />
-      <Routespage searchValue={searchValue} setSearchValue={setSearchValue} />
+      <MainRoutes searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <Layout>
         {/* <Recreation /> */}

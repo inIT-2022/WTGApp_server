@@ -1,0 +1,43 @@
+.typeSelect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.text {
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  margin-right: 30px;
+}
+
+.btnsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex: 1 1 auto;
+}
+
+.btnsWrapper button {
+  max-width: 100px;
+  min-width: 70px;
+  width: 100%;
+  height: 24px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+.btnsWrapper button:hover {
+  transform: scale(1.1);
+}
+
+.active {
+  background-color: var(--style-color);
+}
