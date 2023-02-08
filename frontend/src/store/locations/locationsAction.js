@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_URI } from '../../assets/const';
-import { pageSize } from '../../assets/const';
+import { PAGE_SIZE } from '../../assets/const';
 
 export const fetchLocations = createAsyncThunk(
   'locations/fetchLocations',
   (_, { rejectWithValue, getState }) => {
     const page = getState().locations.currentPage;
-    return axios(`${API_URI}/api/v1/locations?page=${page}&${pageSize}`)
+    return axios(`${API_URI}/api/v1/locations?page=${page}&${PAGE_SIZE}`)
       .then(({ data }) => data)
       .catch((err) => rejectWithValue(err));
   },
