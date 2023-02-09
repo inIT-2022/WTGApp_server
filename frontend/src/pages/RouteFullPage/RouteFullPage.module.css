@@ -20,13 +20,43 @@
 }
 
 .interactiveContent {
+  flex-shrink: 0;
+  flex-basis: 50%;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+.wrapperAddress {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.errorAddress {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  color: red;
+  font-size: 14px;
+}
+
+.btnSubmit {
+  border: 1px solid #c4c4c4;
+  border-radius: 50px;
+  height: 40px;
+  padding: 0 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease-in-out;
+}
+
+.btnSubmit:hover {
+  transform: scale(1.1);
+}
+
 .map {
-  flex-basis: 50%;
   height: 360px;
 }
 .map img {
@@ -36,6 +66,7 @@
 }
 
 .content {
+  flex-shrink: 0;
   flex-basis: 50%;
   padding-left: 8px;
 }
@@ -55,6 +86,7 @@
     'length lengthValue';
   row-gap: 16px;
   column-gap: 24px;
+  margin-bottom: 24px;
 }
 .category {
   grid-area: category;
@@ -96,23 +128,6 @@
   cursor: pointer;
 }
 
-.resptab {
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.resptab th,
-.resptab td {
-  margin-bottom: 10px;
-  margin-right: 5px;
-  font-size: 20px;
-}
-
-.resptab th {
-  text-transform: uppercase;
-  text-align: center;
-}
-
 .nav {
   display: flex;
   align-items: center;
@@ -125,8 +140,68 @@
   line-height: 31px;
 }
 
+.message {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 24px;
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    font-size: 32px;
+  }
+}
+
 @media (max-width: 520px) {
   .navText {
     font-size: 20px;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .btnSubmit {
+    padding: 0 10px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 420px) {
+  .title {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+  .btnSubmit {
+    height: 30px;
+  }
+
+  .contentTitle {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 12px;
+  }
+  .routeInfo {
+    row-gap: 12px;
+    margin-bottom: 18px;
+  }
+  .category,
+  .categoryValue,
+  .length,
+  .lengthValue {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 370px) {
+  .wrapperAddress {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 10px;
+  }
+  .btnSubmit {
+    padding: 0 20px;
   }
 }

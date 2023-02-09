@@ -1,32 +1,61 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
-import { ReactComponent as Plus } from './img/Plus.svg';
-import { ReactComponent as Del } from './img/Del.svg';
 import BtnHome from '../../components/BtnHome';
 import Layout from '../../Layouts/Layout';
 import InputTypeRoute from '../../components/InputTypeRoute';
 import InputAddress from '../../components/InputAddress';
 
-import style from './RouteFullPage.module.css';
 import { fetchRouteByLocation } from '../../store/routes/routesAction';
-import { useParams } from 'react-router-dom';
+import { setType } from '../../store/routes/routesSlice';
+import { RouteListItems } from '../../components/RouteListItems/RouteListItems';
+
+import style from './RouteFullPage.module.css';
 
 export const RouteFullPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
   const typeParams = params.type;
+  const categoryParams = params.category;
 
   const address = useSelector((state) => state.routes.location);
-  const category = useSelector((state) => state.routes.category);
   const type = useSelector((state) => state.routes.type);
 
+  const [errorAddress, setErrorAddress] = useState(false);
+
   const routeData = useSelector((state) => state.routes.route);
+
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
 
+  const distance = routeData?.locationDTOList.length
+    ? (routeData?.locationDTOList.length * 0.7).toFixed(1)
+    : 0;
+
   useEffect(() => {
-    !routeData && dispatch(fetchRouteByLocation(type || typeParams));
+    dispatch(setType(typeParams));
+    if (!address) return;
+
+    dispatch(fetchRouteByLocation(type));
   }, []);
+
+  const handleClickBtnSearch = () => {
+    setErrorAddress(false);
+
+    if (!address) {
+      setErrorAddress(true);
+      setTimeout(() => {
+        setErrorAddress(false);
+      }, 3000);
+      return;
+    }
+    dispatch(fetchRouteByLocation(type));
+    navigate(`/routes/${type}/${categoryParams}`);
+  };
+
+  //     красная 143 краснодар
 
   return (
     <section className={style.route}>
@@ -41,9 +70,28 @@ export const RouteFullPage = () => {
         <div className={style.wrapper}>
           <div className={style.interactiveContent}>
             <InputTypeRoute />
-            <InputAddress />
+            <div className={style.wrapperAddress}>
+              {errorAddress ? (
+                <span className={style.errorAddress}>
+                  Выберите местоположение!
+                </span>
+              ) : null}
+              <InputAddress />
+              <button
+                className={style.btnSubmit}
+                onClick={handleClickBtnSearch}
+              >
+                Поиск
+              </button>
+            </div>
             <div className={style.map}>
-              <img src={mapSrc} alt='Карта' />
+              {mapSrc ? (
+                <img src={mapSrc} alt='Карта' />
+              ) : (
+                <p className={style.message}>
+                  Выберите параметры для получения маршрута
+                </p>
+              )}
             </div>
           </div>
 
@@ -54,63 +102,10 @@ export const RouteFullPage = () => {
               <span className={style.categoryValue}>исторический</span>
               <span className={style.length}>Протяженность:</span>
               <span className={style.lengthValue}>
-                <b>4,3</b> км
+                <b>{distance}</b> км
               </span>
             </div>
-
-            <table className={style.resptab}>
-              <tbody>
-                <tr>
-                  <td>Памятник Екатерине II</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Памятник «Собачкина столица»</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Фонтан «Старый Екатеринодар»</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Театральная площадь</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Памятник Шурику и Лидочке</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Театральная площадь</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Шуховская башня</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Парк «Краснодар»</td>
-                  <td className={style.svgWrapper}>
-                    <Del className={style.svg} /> <Plus className={style.svg} />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <RouteListItems points={routeData?.locationDTOList} />
           </div>
         </div>
       </Layout>

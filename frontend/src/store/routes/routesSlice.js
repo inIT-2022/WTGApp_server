@@ -8,7 +8,7 @@ import {
 const initialState = {
   loading: true,
   data: [],
-  location: 'Красная улица, 143, Краснодар, Краснодарский край',
+  location: '',
   type: '',
   category: '',
   route: null,
@@ -28,6 +28,11 @@ export const routesSlice = createSlice({
     },
     setCategory: (state, action) => {
       state.category = action.payload;
+    },
+    deleteRoutePoint: (state, action) => {
+      state.route.locationDTOList = state.route.locationDTOList.filter(
+        (item) => item.id !== action.payload,
+      );
     },
   },
   extraReducers: (builder) => {
@@ -84,6 +89,7 @@ export const routesSlice = createSlice({
   },
 });
 
-export const { setType, setLocation, setCategory } = routesSlice.actions;
+export const { setType, setLocation, setCategory, deleteRoutePoint } =
+  routesSlice.actions;
 
 export default routesSlice.reducer;

@@ -117,7 +117,7 @@ export const LocationFullPage = () => {
                 children={description ? description : fullDescription}
               />
             </div>
-            {description ? (
+            {fullDescription ? (
               <div className={style.moreInfoWrapper}>
                 <button
                   className={style.moreInfo}
