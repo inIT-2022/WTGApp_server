@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 
 .title {
@@ -36,6 +37,21 @@
 }
 .item button:hover {
   transform: scale(1.2);
+}
+
+.number {
+  display: block;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: -3px;
+  left: 10px;
+  background-color: white;
+  border-radius: 50%;
+  border: 0.5px solid #000;
+  font-size: 8px;
+  text-align: center;
+  line-height: 1.6;
 }
 @media (max-width: 520px) {
   .list {

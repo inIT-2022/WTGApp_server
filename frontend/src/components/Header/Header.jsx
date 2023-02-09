@@ -19,7 +19,6 @@ export const Header = () => {
   const [showModal, setShowModal] = useState(false);
 
   const location = useLocation();
-  console.log('location: ', useParams());
   const { id, type, category } = useParams();
 
   const login = localStorage.getItem('login');
