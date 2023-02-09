@@ -19,7 +19,8 @@ export const Header = () => {
   const [showModal, setShowModal] = useState(false);
 
   const location = useLocation();
-  const { id } = useParams();
+  console.log('location: ', useParams());
+  const { id, type, category } = useParams();
 
   const login = localStorage.getItem('login');
 
@@ -83,6 +84,12 @@ export const Header = () => {
                 <p className={style.subtitleEvents}>
                   место, куда вам захочется вернуться :)
                 </p>
+              </>
+            )}
+            {location.pathname === `/routes/${type}/${category}` && (
+              <>
+                <p className={style.events}>маршрутЪ</p>
+                <p className={style.subtitleEvents}>который стоит пройти :)</p>
               </>
             )}
             {location.pathname === `/routespages/${id}` && (

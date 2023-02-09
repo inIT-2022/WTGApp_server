@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_URI, radiuses } from '../../assets/const';
+import { getPointsForMap } from '../../utils/getPointsForMap';
 
 export const fetchRoutes = createAsyncThunk(
   'routes/fetchRoutes',
-  (_, { rejectWithValue, getState }) => {
+  (_, { rejectWithValue }) => {
     const token = window.localStorage.getItem('token');
     if (!token) return;
 
@@ -20,13 +21,17 @@ export const fetchRoutes = createAsyncThunk(
 
 export const fetchRouteMap = createAsyncThunk(
   'route/fetchRouteMap',
-  (data, { rejectWithValue }) => {
+  (data, { rejectWithValue, getState }) => {
+    const type = getState().routes.type;
+    const dataStore = getState().routes.route;
+
+    const routeData = data ? data : dataStore;
+
     const lang = 'en_US';
-    const ll = `${data.longitude},${data.latitude}`;
+    const ll = `${routeData.longitude},${routeData.latitude}`;
     const size = '540,360';
-    const z = '15';
-    const pt =
-      '38.979463,45.044769,pm2rdl1~38.977756,45.045502,pm2rdl2~38.980415,45.044986,pm2rdl3';
+    const z = type === 'Car' ? '15' : type === 'Bicycle' ? '16' : '17';
+    const pt = getPointsForMap(routeData.locationDTOList);
 
     return fetch(
       `https://static-maps.yandex.ru/1.x/?lang=${lang}&ll=${ll}&size=${size}&z=${z}&l=map&pt=${pt}`,
