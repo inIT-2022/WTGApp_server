@@ -2,11 +2,17 @@ import React from 'react';
 import style from './Search.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchSearchEvents,
-  fetchSearchLocations,
-} from '../../store/search/searchAction';
 import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
+import { resetLocations } from '../../store/locations/locationsSlice';
+import {
+  fetchLocations,
+  fetchSearchLocations,
+} from '../../store/locations/locationsAction';
+import {
+  fetchEvents,
+  fetchSearchEvents,
+} from '../../store/events/eventsAction';
+import { resetEvents } from '../../store/events/eventsSlice';
 
 export const Search = ({ searchType }) => {
   const searchValue = useSelector((state) => state.search.searchValue);
@@ -16,17 +22,30 @@ export const Search = ({ searchType }) => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    if (!search) return;
+
     if (searchType === 'events') {
+      dispatch(resetEvents());
       dispatch(fetchSearchEvents(search));
       dispatch(setSearchValue(search));
     }
     if (searchType === 'locations') {
+      dispatch(resetLocations());
       dispatch(fetchSearchLocations(search));
       dispatch(setSearchValue(search));
     }
   };
 
   const handleClickClose = () => {
+    if (searchType === 'events') {
+      dispatch(resetEvents());
+      dispatch(fetchEvents());
+    }
+    if (searchType === 'locations') {
+      dispatch(resetLocations());
+      dispatch(fetchLocations());
+    }
+
     dispatch(clearSearch());
     setSearch('');
   };

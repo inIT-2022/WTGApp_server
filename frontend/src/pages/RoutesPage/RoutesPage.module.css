@@ -1,0 +1,28 @@
+.locations {
+  padding-top: 10px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.navText {
+  font-size: 28px;
+  color: #000000;
+}
+
+.authMessage {
+  height: 70vh;
+  text-align: center;
+  font-size: 36px;
+  padding-top: 100px;
+}
+
+@media (max-width: 520px) {
+  .navText {
+    font-size: 20px;
+  }
+}

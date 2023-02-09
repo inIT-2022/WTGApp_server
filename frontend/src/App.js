@@ -1,12 +1,14 @@
-import Main from './pages/Main/Main';
 import { Route, Routes } from 'react-router-dom';
-import { MainLayout } from './Layouts/MainLayout/MainLayout';
+
+import Main from './pages/Main/Main';
+import MainLayout from './Layouts/MainLayout';
 import NotFound from './pages/NotFound';
-import { Routespages } from './pages/Routespages/Routespages';
-import { Events } from './pages/Events/Events';
-import { EventFullPage } from './pages/EventFullPage/EventFullPage';
-import { LocationFullPage } from './pages/LocationFullPage/LocationFullPage';
-import { Locations } from './pages/Locations/Locations';
+import RouteFullPage from './pages/RouteFullPage';
+import Events from './pages/Events';
+import EventFullPage from './pages/EventFullPage';
+import LocationFullPage from './pages/LocationFullPage';
+import Locations from './pages/Locations';
+import RoutesPage from './pages/RoutesPage';
 
 const App = () => {
   return (
@@ -18,7 +20,8 @@ const App = () => {
           <Route path='events/:id' element={<EventFullPage />} />
           <Route path='locations' element={<Locations />} />
           <Route path='locations/:id' element={<LocationFullPage />} />
-          <Route path='routespages/:id' element={<Routespages />} />
+          <Route path='routes' element={<RoutesPage />} />
+          <Route path='routes/:type/:category' element={<RouteFullPage />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

@@ -13,7 +13,11 @@ export const fetchAuthData = createAsyncThunk(
         'Content-Type': 'application/json',
       },
     })
-      .then(({ data }) => data)
+      .then(({ data }) => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('login', data.login);
+        return data;
+      })
       .catch((err) => rejectWithValue(err));
   },
 );

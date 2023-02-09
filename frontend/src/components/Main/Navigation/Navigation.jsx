@@ -1,10 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Layout } from '../../../Layouts/Layout/Layout';
 import style from './Navigation.module.css';
 
 export const Navigation = () => {
-  const authData = useSelector((state) => state.auth.data);
+  const login = localStorage.getItem('login');
 
   return (
     <section className={style.navigation}>
@@ -19,9 +18,7 @@ export const Navigation = () => {
             </li>
             <li
               key={3}
-              className={
-                !authData?.login ? style.link + ' ' + style.logout : style.link
-              }
+              className={!login ? style.link + ' ' + style.logout : style.link}
             >
               <a href='#routes'>Маршруты</a>
             </li>

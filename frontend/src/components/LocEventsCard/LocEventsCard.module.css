@@ -1,5 +1,12 @@
 .cardWrapper {
-  max-width: 200px;
+  flex-shrink: 0;
+  max-width: 150px;
+  width: 100%;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  object-fit: cover;
 }
