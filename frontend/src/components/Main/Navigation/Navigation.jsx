@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { Layout } from '../../../Layouts/Layout/Layout';
+
 import style from './Navigation.module.css';
 
 export const Navigation = () => {
-  const login = localStorage.getItem('login');
+  const token = useSelector((state) => state.auth.data.token);
 
   return (
     <section className={style.navigation}>
@@ -18,7 +21,7 @@ export const Navigation = () => {
             </li>
             <li
               key={3}
-              className={!login ? style.link + ' ' + style.logout : style.link}
+              className={!token ? style.link + ' ' + style.logout : style.link}
             >
               <a href='#routes'>Маршруты</a>
             </li>

@@ -2,7 +2,7 @@
 export const API_URI = 'http://localhost:8179/wtg';
 
 export const PAGE_SIZE = 'pageSize=10';
-export const monthes = [
+export const MONTHES = [
   'января',
   'февраля',
   'марта',
@@ -17,7 +17,7 @@ export const monthes = [
   'декабря',
 ];
 
-export const radiuses = {
+export const RADIUSES = {
   Walk: 100,
   Bicycle: 200,
   Car: 300,

@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux';
+
 import { ReactComponent as AuthIcon } from './img/auth.svg';
 import { ReactComponent as LoggedIcon } from './img/logged.svg';
 
 import style from './Auth.module.css';
 
 export const Auth = ({ openModal }) => {
-  const login = localStorage.getItem('login');
+  const login = useSelector((state) => state.auth.data.login);
 
   return (
     <>

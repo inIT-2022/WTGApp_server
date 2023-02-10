@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
+
 import { fetchAuthData } from '../../store/auth/authAction';
+
 import style from './FormLogIn.module.css';
 
 export const FormLogIn = ({ closeModal, switchToRegistration }) => {

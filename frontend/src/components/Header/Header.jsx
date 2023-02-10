@@ -12,6 +12,7 @@ import { ReactComponent as Collection } from './img/collection.svg';
 import { ReactComponent as Chat } from './img/chat.svg';
 
 import style from './Header.module.css';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
   const [isOpenBurger, setIsOpenBurger] = useState(false);
@@ -21,7 +22,8 @@ export const Header = () => {
   const location = useLocation();
   const { id, type, category } = useParams();
 
-  const login = localStorage.getItem('login');
+  const token = useSelector((state) => state.auth.data.token);
+  const login = useSelector((state) => state.auth.data.login);
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -39,7 +41,7 @@ export const Header = () => {
                   отдых, который подойдет именно Вам
                 </p>
                 <span className={style.city}>Краснодар</span>
-                {!login && showWarning && (
+                {!token && showWarning && (
                   <WarningMessage
                     openModal={() => setShowModal(true)}
                     setClose={() => setShowWarning(false)}
@@ -121,7 +123,7 @@ export const Header = () => {
           </div>
         </div>
 
-        {!login && (
+        {!token && (
           <ModalAuth
             active={showModal}
             closeModal={() => setShowModal(false)}
