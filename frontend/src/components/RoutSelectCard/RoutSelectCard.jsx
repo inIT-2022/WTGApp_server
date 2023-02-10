@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { useCategories } from '../../hooks/useCategories';
+
 import { fetchRouteByLocation } from '../../store/routes/routesAction';
 import { setCategory } from '../../store/routes/routesSlice';
+
 import { InputAddress } from '../InputAddress/InputAddress';
 import InputTypeRoute from '../InputTypeRoute';
 
@@ -19,6 +23,9 @@ export const RoutSelectCard = ({ closeModal }) => {
   const category = useSelector((state) => state.routes.category);
   const type = useSelector((state) => state.routes.type);
 
+  const categories = useCategories();
+
+  useEffect(() => {}, []);
   const handleSubmit = () => {
     setErrorCategory(false);
     setErrorLocation(false);
@@ -71,8 +78,14 @@ export const RoutSelectCard = ({ closeModal }) => {
             className={style.select}
             onChange={(e) => dispatch(setCategory(e.target.value))}
           >
-            <option value=''>Выбор</option>
-            <option value='historical'>Исторический</option>
+            <option>Выбор</option>
+            {categories.length
+              ? categories.map((obj) => (
+                  <option value={obj.id} key={obj.id}>
+                    {obj.title}
+                  </option>
+                ))
+              : null}
           </select>
           {errorCategory ? (
             <span className={style.errorCategory}>Выберите категорию!</span>
