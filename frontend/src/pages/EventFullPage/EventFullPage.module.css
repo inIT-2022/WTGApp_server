@@ -13,11 +13,6 @@
   color: #000000;
 }
 
-.homeBtn {
-  width: 36px;
-  height: 36px;
-}
-
 .title {
   font-size: 48px;
   text-align: center;
@@ -142,10 +137,6 @@
   }
 }
 @media (max-width: 520px) {
-  .homeBtn {
-    width: 24px;
-    height: 24px;
-  }
   .navText {
     font-size: 20px;
   }

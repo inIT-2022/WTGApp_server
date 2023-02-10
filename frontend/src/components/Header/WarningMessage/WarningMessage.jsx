@@ -1,24 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
-import { Modal } from '../../Modal/Modal';
 import style from './WarningMessage.module.css';
 
-export const WarningMessage = ({ setClose }) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
+export const WarningMessage = ({ setClose, openModal }) => {
   return (
     <div className={style.wrapper}>
-      <span className={style.descr}>
+      <div className={style.descr}>
         Чтобы получить расширенный функционал{' '}
-        <button className={style.registrationBtn} onClick={handleOpenModal}>
+        <button className={style.registrationBtn} onClick={() => openModal()}>
           зарегистрируйтесь
         </button>{' '}
         в приложении WTG
-      </span>
+      </div>
+
       <button className={style.closeBtn} onClick={() => setClose()}>
         <svg
           width='40'
@@ -36,8 +28,6 @@ export const WarningMessage = ({ setClose }) => {
           />
         </svg>
       </button>
-
-      <Modal active={showModal} closeModal={() => setShowModal(false)} />
     </div>
   );
 };

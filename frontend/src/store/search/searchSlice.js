@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSearchEvents, fetchSearchLocations } from './searchAction';
+import { fetchSearchRoutes } from './searchAction';
 
 const initialState = {
   searchValue: '',
   searchEvents: [],
-  searchLocations: [],
+  searchRoutess: [],
 };
 
 export const searchSlice = createSlice({
@@ -21,36 +21,19 @@ export const searchSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchSearchEvents.pending, (state) => {
+    builder.addCase(fetchSearchRoutes.pending, (state) => {
       state.loading = true;
       state.error = '';
     });
 
-    builder.addCase(fetchSearchEvents.fulfilled, (state, action) => {
-      state.searchEvents = action.payload;
+    builder.addCase(fetchSearchRoutes.fulfilled, (state, action) => {
+      state.searchRoutess = action.payload;
       state.loading = false;
       state.error = '';
     });
 
-    builder.addCase(fetchSearchEvents.rejected, (state, action) => {
-      state.searchEvents = [];
-      state.loading = false;
-      state.error = action.payload;
-    });
-
-    builder.addCase(fetchSearchLocations.pending, (state) => {
-      state.loading = true;
-      state.error = '';
-    });
-
-    builder.addCase(fetchSearchLocations.fulfilled, (state, action) => {
-      state.searchLocations = action.payload;
-      state.loading = false;
-      state.error = '';
-    });
-
-    builder.addCase(fetchSearchLocations.rejected, (state, action) => {
-      state.searchLocations = [];
+    builder.addCase(fetchSearchRoutes.rejected, (state, action) => {
+      state.searchRoutess = [];
       state.loading = false;
       state.error = action.payload;
     });

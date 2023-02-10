@@ -93,6 +93,8 @@
 .locEventsWrapper {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   max-height: 150px;
   gap: 20px;
   margin-top: 20px;
@@ -156,10 +158,6 @@
   }
 }
 @media (max-width: 520px) {
-  .homeBtn {
-    width: 24px;
-    height: 24px;
-  }
   .navText {
     font-size: 20px;
   }
