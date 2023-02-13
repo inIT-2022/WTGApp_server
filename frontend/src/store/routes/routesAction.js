@@ -44,8 +44,9 @@ export const fetchRouteMap = createAsyncThunk(
 
 export const fetchRouteByLocation = createAsyncThunk(
   'route/fetchRouteByLocation',
-  (type, { rejectWithValue, getState, dispatch }) => {
+  (_, { rejectWithValue, getState, dispatch }) => {
     const address = getState().routes.location;
+    const type = getState().routes.type;
     const radius = RADIUSES[type];
 
     return axios(

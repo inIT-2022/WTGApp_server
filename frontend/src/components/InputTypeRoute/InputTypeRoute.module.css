@@ -41,3 +41,10 @@
 .active {
   background-color: var(--style-color);
 }
+
+@media (max-width: 640px) {
+  .text {
+    font-size: 16px;
+    line-height: 1.1;
+  }
+}

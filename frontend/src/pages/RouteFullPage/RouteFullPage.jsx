@@ -1,59 +1,40 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import BtnHome from '../../components/BtnHome';
 import Layout from '../../Layouts/Layout';
-import InputTypeRoute from '../../components/InputTypeRoute';
-import InputAddress from '../../components/InputAddress';
+
+import FormRoute from '../../components/FormRoute';
 
 import { fetchRouteByLocation } from '../../store/routes/routesAction';
-import { setType } from '../../store/routes/routesSlice';
+import { setCategory, setType } from '../../store/routes/routesSlice';
 import { RouteListItems } from '../../components/RouteListItems/RouteListItems';
 
 import style from './RouteFullPage.module.css';
 
 export const RouteFullPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const params = useParams();
+
   const typeParams = params.type;
   const categoryParams = params.category;
 
   const address = useSelector((state) => state.routes.location);
-  const type = useSelector((state) => state.routes.type);
-
-  const [errorAddress, setErrorAddress] = useState(false);
-
   const routeData = useSelector((state) => state.routes.route);
-
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
 
-  const distance = routeData?.locationDTOList.length
-    ? (routeData?.locationDTOList.length * 0.7).toFixed(1)
+  const distance = routeData?.locationDTOList?.length
+    ? (routeData.locationDTOList.length * 0.7).toFixed(1)
     : 0;
 
   useEffect(() => {
     dispatch(setType(typeParams));
+    dispatch(setCategory(categoryParams));
     if (!address) return;
 
-    dispatch(fetchRouteByLocation(type));
+    dispatch(fetchRouteByLocation());
   }, []);
-
-  const handleClickBtnSearch = () => {
-    setErrorAddress(false);
-
-    if (!address) {
-      setErrorAddress(true);
-      setTimeout(() => {
-        setErrorAddress(false);
-      }, 3000);
-      return;
-    }
-    dispatch(fetchRouteByLocation(type));
-    navigate(`/routes/${type}/${categoryParams}`);
-  };
 
   //     красная 143 краснодар
 
@@ -69,21 +50,7 @@ export const RouteFullPage = () => {
 
         <div className={style.wrapper}>
           <div className={style.interactiveContent}>
-            <InputTypeRoute />
-            <div className={style.wrapperAddress}>
-              {errorAddress ? (
-                <span className={style.errorAddress}>
-                  Выберите местоположение!
-                </span>
-              ) : null}
-              <InputAddress />
-              <button
-                className={style.btnSubmit}
-                onClick={handleClickBtnSearch}
-              >
-                Поиск
-              </button>
-            </div>
+            <FormRoute />
             <div className={style.map}>
               {mapSrc ? (
                 <img src={mapSrc} alt='Карта' />
