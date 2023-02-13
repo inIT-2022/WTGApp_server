@@ -5,7 +5,6 @@
   max-width: 496px;
   width: 100%;
   height: 40px;
-  font-family: 'Comfortaa', sans-serif;
 }
 
 .search {
@@ -16,12 +15,11 @@
   width: 100%;
   padding-left: 20px;
   padding-right: 65px;
-  font-family: 'Comfortaa-Regular', sans-serif;
 }
+
 .search::placeholder {
   font-size: 20px;
   color: #c4c4c4;
-  font-family: 'Comfortaa-Regular', sans-serif;
 }
 
 .search::-webkit-search-cancel-button {
