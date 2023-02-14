@@ -45,9 +45,12 @@ export const fetchRouteMap = createAsyncThunk(
 export const fetchRouteByLocation = createAsyncThunk(
   'route/fetchRouteByLocation',
   (_, { rejectWithValue, getState, dispatch }) => {
-    const address = getState().routes.location;
+    const addressFromStore = getState().routes.location;
     const type = getState().routes.type;
     const radius = RADIUSES[type];
+    const address = addressFromStore.toLowerCase().includes('краснодар')
+      ? addressFromStore
+      : addressFromStore + ' Краснодар';
 
     return axios(
       `${API_URI}/api/v1/locations/locations-by-sector?radius=${radius}&address=${address}`,

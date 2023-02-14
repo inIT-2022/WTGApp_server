@@ -35,6 +35,14 @@
   color: #c4c4c4;
 }
 
+.errorLocation {
+  position: absolute;
+  top: -14px;
+  left: 30px;
+  font-size: 10px;
+  color: red;
+}
+
 @media (max-width: 420px) {
   .search {
     height: 30px;

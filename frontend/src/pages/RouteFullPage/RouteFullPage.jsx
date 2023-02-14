@@ -7,7 +7,6 @@ import Layout from '../../Layouts/Layout';
 
 import FormRoute from '../../components/FormRoute';
 
-import { fetchRouteByLocation } from '../../store/routes/routesAction';
 import { setCategory, setType } from '../../store/routes/routesSlice';
 import { RouteListItems } from '../../components/RouteListItems/RouteListItems';
 
@@ -20,7 +19,6 @@ export const RouteFullPage = () => {
   const typeParams = params.type;
   const categoryParams = params.category;
 
-  const address = useSelector((state) => state.routes.location);
   const routeData = useSelector((state) => state.routes.route);
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
 
@@ -31,12 +29,7 @@ export const RouteFullPage = () => {
   useEffect(() => {
     dispatch(setType(typeParams));
     dispatch(setCategory(categoryParams));
-    if (!address) return;
-
-    dispatch(fetchRouteByLocation());
   }, []);
-
-  //     красная 143 краснодар
 
   return (
     <section className={style.route}>
