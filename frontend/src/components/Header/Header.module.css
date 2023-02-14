@@ -87,7 +87,8 @@
 .header__burger_svg {
   margin: 0 auto;
   margin-bottom: 15px;
-  cursor: pointer;
+  /* cursor: pointer; */
+  color: rgb(183, 180, 180);
 }
 
 .header__authText {

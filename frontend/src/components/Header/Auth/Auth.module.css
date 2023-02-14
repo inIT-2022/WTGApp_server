@@ -1,8 +1,11 @@
+.auth {
+  position: relative;
+}
+
 .button,
 .buttonLogged {
   position: relative;
-  z-index: 2;
-  cursor: pointer;
+  z-index: 10;
 }
 
 .buttonLogged {
@@ -23,10 +26,28 @@
   line-height: 0;
   text-shadow: 0px 0px 3px #fff;
 }
+.authMenu {
+  position: absolute;
+  width: 56px;
+  top: 0;
+  padding-top: 70px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 56px;
+}
+
+.logoutIcon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
 
 .icon {
   width: 56px;
   height: 56px;
+  cursor: pointer;
 }
 
 .auth__text {

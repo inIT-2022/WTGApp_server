@@ -27,7 +27,10 @@ export const Header = () => {
   const login = useSelector((state) => state.auth.data.login);
 
   useEffect(() => {
-    login && setIsShowGreetings(true);
+    setIsShowGreetings(false);
+    if (!login) return;
+
+    setIsShowGreetings(true);
     const greetingsTimer = setTimeout(() => {
       setIsShowGreetings(false);
     }, 5000);

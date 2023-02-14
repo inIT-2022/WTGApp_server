@@ -47,6 +47,7 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
     }
 
     dispatch(fetchAuthData({ login, password }));
+    closeModal();
   };
 
   return (
