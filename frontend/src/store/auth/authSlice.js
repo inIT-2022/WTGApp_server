@@ -6,6 +6,7 @@ const initialState = {
   data: {
     token: localStorage.getItem('token'),
     login: localStorage.getItem('login'),
+    firstName: localStorage.getItem('firstName'),
   },
   error: '',
 };

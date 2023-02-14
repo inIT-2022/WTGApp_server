@@ -16,6 +16,7 @@ export const fetchAuthData = createAsyncThunk(
       .then(({ data }) => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('login', data.login);
+        localStorage.setItem('firstName', data.firstName);
         return data;
       })
       .catch((err) => rejectWithValue(err));

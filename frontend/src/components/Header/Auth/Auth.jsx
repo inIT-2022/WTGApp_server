@@ -1,18 +1,19 @@
 import { useSelector } from 'react-redux';
 
 import { ReactComponent as AuthIcon } from './img/auth.svg';
-import { ReactComponent as LoggedIcon } from './img/logged.svg';
 
 import style from './Auth.module.css';
 
 export const Auth = ({ openModal }) => {
-  const login = useSelector((state) => state.auth.data.login);
+  const firstName = useSelector((state) => state.auth.data.firstName);
+  const logoLetter = firstName?.charAt(0).toUpperCase();
 
+  const handleClickBtnLogged = () => {};
   return (
     <>
-      {login ? (
-        <button className={style.buttonLogged}>
-          <LoggedIcon className={style.icon} />
+      {firstName ? (
+        <button className={style.buttonLogged} onClick={handleClickBtnLogged}>
+          <span className={style.logoLetter}>{logoLetter}</span>
         </button>
       ) : (
         <button className={style.button} onClick={openModal}>

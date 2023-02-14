@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Auth from './Auth';
 import Layout from '../../Layouts/Layout';
@@ -12,18 +13,29 @@ import { ReactComponent as Collection } from './img/collection.svg';
 import { ReactComponent as Chat } from './img/chat.svg';
 
 import style from './Header.module.css';
-import { useSelector } from 'react-redux';
 
 export const Header = () => {
   const [isOpenBurger, setIsOpenBurger] = useState(false);
   const [showWarning, setShowWarning] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [isShowGreetings, setIsShowGreetings] = useState(false);
 
   const location = useLocation();
   const { id, type, category } = useParams();
 
   const token = useSelector((state) => state.auth.data.token);
   const login = useSelector((state) => state.auth.data.login);
+
+  useEffect(() => {
+    login && setIsShowGreetings(true);
+    const greetingsTimer = setTimeout(() => {
+      setIsShowGreetings(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(greetingsTimer);
+    };
+  }, [login]);
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -100,10 +112,10 @@ export const Header = () => {
             )}
           </div>
           <div className={style.iconWrapper}>
-            {login && (
+            {isShowGreetings && (
               <div className={style.header__authText}>
                 <p className={style.authText}>Добро пожаловать,</p>
-                <p className={style.login}>{login} !</p>
+                <p className={style.login}>{login} </p>
               </div>
             )}
             <Auth openModal={() => handleOpenModal()} />
