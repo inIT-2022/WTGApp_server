@@ -33,10 +33,10 @@ export const RouteListItems = ({ points }) => {
                 ) : i === arr.length - 1 ? (
                   <Finish className={style.marker} />
                 ) : (
-                  <>
-                    <Marker className={style.marker} />
+                  <div className={style.marker}>
+                    <Marker />
                     <span className={style.number}>{i + 1}</span>
-                  </>
+                  </div>
                 )}
                 <Link className={style.title} to={`/locations/${id}`}>
                   {title}

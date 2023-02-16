@@ -1,15 +1,53 @@
-.button,
-.buttonLogged {
+.auth {
   position: relative;
 }
 
+.button,
 .buttonLogged {
-  cursor: default;
+  position: relative;
+  z-index: 10;
+}
+
+.buttonLogged {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(188, 42, 210);
+  box-shadow: 0px 0px 20px 5px #fff;
+}
+.logoLetter {
+  color: #fff;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 0;
+  text-shadow: 0px 0px 3px #fff;
+}
+.authMenu {
+  position: absolute;
+  width: 56px;
+  top: 0;
+  padding-top: 70px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 56px;
+}
+
+.logoutIcon {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
 }
 
 .icon {
   width: 56px;
   height: 56px;
+  cursor: pointer;
 }
 
 .auth__text {
@@ -40,5 +78,13 @@
   .icon {
     width: 32px;
     height: 32px;
+  }
+  .buttonLogged {
+    width: 32px;
+    height: 32px;
+  }
+  .logoLetter {
+    font-size: 18px;
+    text-shadow: 0px 0px 2px #fff;
   }
 }

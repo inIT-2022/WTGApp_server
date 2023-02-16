@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { API_URI, radiuses } from '../../assets/const';
+import { API_URI, RADIUSES } from '../../assets/const';
 import { getPointsForMap } from '../../utils/getPointsForMap';
 
 export const fetchRoutes = createAsyncThunk(
   'routes/fetchRoutes',
-  (_, { rejectWithValue }) => {
-    const token = window.localStorage.getItem('token');
+  (_, { rejectWithValue, getState }) => {
+    const token = getState().auth.data.token;
+
     if (!token) return;
 
     return axios(`${API_URI}/api/v1/routes`, {
@@ -43,9 +44,13 @@ export const fetchRouteMap = createAsyncThunk(
 
 export const fetchRouteByLocation = createAsyncThunk(
   'route/fetchRouteByLocation',
-  (type, { rejectWithValue, getState, dispatch }) => {
-    const address = getState().routes.location;
-    const radius = radiuses[type];
+  (_, { rejectWithValue, getState, dispatch }) => {
+    const addressFromStore = getState().routes.location;
+    const type = getState().routes.type;
+    const radius = RADIUSES[type];
+    const address = addressFromStore.toLowerCase().includes('краснодар')
+      ? addressFromStore
+      : addressFromStore + ' Краснодар';
 
     return axios(
       `${API_URI}/api/v1/locations/locations-by-sector?radius=${radius}&address=${address}`,

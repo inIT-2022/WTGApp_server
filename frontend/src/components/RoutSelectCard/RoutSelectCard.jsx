@@ -1,40 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { fetchRouteByLocation } from '../../store/routes/routesAction';
-import { setCategory } from '../../store/routes/routesSlice';
-import { InputAddress } from '../InputAddress/InputAddress';
-import InputTypeRoute from '../InputTypeRoute';
+import FormRoute from '../FormRoute';
 
 import style from './RoutSelectCard.module.css';
 
 export const RoutSelectCard = ({ closeModal }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [errorCategory, setErrorCategory] = useState(false);
-  const [errorLocation, setErrorLocation] = useState(false);
-
-  const location = useSelector((state) => state.routes.location);
-  const category = useSelector((state) => state.routes.category);
-  const type = useSelector((state) => state.routes.type);
-
-  const handleSubmit = () => {
-    setErrorCategory(false);
-    setErrorLocation(false);
-
-    if (!category) {
-      setErrorCategory(true);
-      return;
-    }
-    if (!location) {
-      setErrorLocation(true);
-      return;
-    }
-    dispatch(fetchRouteByLocation(type));
-    navigate(`/routes/${type}/${category}`);
-  };
-
   return (
     <div className={style.card}>
       <div className={style.header}>
@@ -56,37 +24,7 @@ export const RoutSelectCard = ({ closeModal }) => {
           </svg>
         </button>
       </div>
-
-      <div className={style.form}>
-        {errorLocation ? (
-          <span className={style.errorLocation}>Выберите местоположение!</span>
-        ) : null}
-        <InputAddress />
-
-        <InputTypeRoute />
-
-        <div className={style.category}>
-          <span className={style.text}>Категория</span>
-          <select
-            className={style.select}
-            onChange={(e) => dispatch(setCategory(e.target.value))}
-          >
-            <option value=''>Выбор</option>
-            <option value='historical'>Исторический</option>
-          </select>
-          {errorCategory ? (
-            <span className={style.errorCategory}>Выберите категорию!</span>
-          ) : null}
-        </div>
-
-        <button
-          className={style.btnSubmit}
-          type='button'
-          onClick={handleSubmit}
-        >
-          Подтвердить
-        </button>
-      </div>
+      <FormRoute />
     </div>
   );
 };

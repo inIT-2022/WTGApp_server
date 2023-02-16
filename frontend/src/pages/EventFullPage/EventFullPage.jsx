@@ -7,7 +7,7 @@ import Slider from '../../components/Slider/Slider';
 import BtnHome from '../../components/BtnHome';
 
 import { API_URI } from '../../assets/const';
-import { monthes } from '../../assets/const';
+import { MONTHES } from '../../assets/const';
 import { getDateParameters } from '../../utils/getDateParameters';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
@@ -45,8 +45,6 @@ export const EventFullPage = () => {
     linkImage,
     location,
   } = eventPage;
-
-  const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
 
   const { startTime, day, year, month } = getDateParameters(startDatetime);
 
@@ -87,11 +85,13 @@ export const EventFullPage = () => {
             </div>
             <div className={style.enter}>
               <p className={style.date}>
-                {day || ''} {monthes[month] || ''} {year || ''}
+                {day || ''} {MONTHES[month] || ''} {year || ''}
                 {startTime ? <span> Начало в {startTime}</span> : null}
               </p>
               <p className={style.censure}>Без возростных ограничений</p>
-              <p className={style.price}>{cost}</p>
+              {price ? (
+                <p className={style.price}>Цена: {price} рублей</p>
+              ) : null}
             </div>
           </div>
 

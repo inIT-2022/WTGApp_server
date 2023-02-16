@@ -14,7 +14,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  position: relative;
 }
 
 .title {
@@ -37,6 +36,14 @@
 }
 .item button:hover {
   transform: scale(1.2);
+}
+.marker {
+  flex-shrink: 0;
+  position: relative;
+}
+.marker svg {
+  width: 18px;
+  height: 18px;
 }
 
 .number {

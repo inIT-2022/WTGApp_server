@@ -24,7 +24,7 @@ const routeTypes = [
 export const MainRoutes = () => {
   const dispatch = useDispatch();
 
-  const token = window.localStorage.getItem('token');
+  const token = useSelector((state) => state.auth.data.token);
   const [isShowMessage, setIsShowMessage] = useState(false);
   const [ShowModal, setShowModal] = useState(false);
 

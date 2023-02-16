@@ -4,13 +4,16 @@ import { setLocation } from '../../store/routes/routesSlice';
 
 import style from './InputAddress.module.css';
 
-export const InputAddress = () => {
+export const InputAddress = ({ errorLocation }) => {
   const dispatch = useDispatch();
 
   const location = useSelector((state) => state.routes.location);
 
   return (
     <div className={style.search}>
+      {errorLocation ? (
+        <span className={style.errorLocation}>Выберите местоположение!</span>
+      ) : null}
       <input
         className={style.input}
         type='search'

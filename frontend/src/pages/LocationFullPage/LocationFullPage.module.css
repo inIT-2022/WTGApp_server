@@ -54,7 +54,6 @@
 
 .rightContent {
   flex-basis: 50%;
-  padding-top: 20px;
 }
 
 .adress {
@@ -62,12 +61,23 @@
   line-height: 2;
   margin-bottom: 20px;
 }
+.sourceWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 .source {
-  display: block;
   font-weight: 700;
   font-size: 20px;
-  text-align: right;
-  padding: 20px 115px 33px 0;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px #000;
+  transition: all 0.3s ease-in-out;
+}
+
+.source:hover {
+  background-color: var(--style-color);
 }
 
 .description {
@@ -91,11 +101,9 @@
 }
 
 .locEventsWrapper {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
   justify-content: space-evenly;
-  flex-wrap: wrap;
-  max-height: 150px;
   gap: 20px;
   margin-top: 20px;
 }

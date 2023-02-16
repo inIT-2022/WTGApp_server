@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
+
 import { fetchAuthData } from '../../store/auth/authAction';
+
 import style from './FormLogIn.module.css';
 
 export const FormLogIn = ({ closeModal, switchToRegistration }) => {
@@ -16,9 +17,6 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [passwordDirty, setPasswordDirty] = useState(false);
-
-  const [agreePolicy, setAgreePolicy] = useState(false);
-  const [policyError, setPolicyError] = useState(false);
 
   const [checkErrorForm, setCheckErrorForm] = useState(false);
 
@@ -41,17 +39,15 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
     validPassword(target.value);
   };
 
-  const handleAgreePolicy = ({ target }) => setAgreePolicy(target.checked);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!loginError || !passwordError || !agreePolicy) {
+    if (!loginError || !passwordError) {
       setCheckErrorForm(true);
-      setPolicyError(true);
       return;
     }
 
     dispatch(fetchAuthData({ login, password }));
+    closeModal();
   };
 
   return (
@@ -103,26 +99,9 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
           Зарегистрироваться
         </p>
         <p className={style.navLink}>Восстановить пароль</p>
-
-        <div className={style.wrapCheckbox}>
-          <input
-            className={style.checkbox}
-            type='checkbox'
-            id='save'
-            checked={agreePolicy}
-            onChange={handleAgreePolicy}
-          />
-          <label className={style.labelCheckbox} htmlFor='save'>
-            Ознакомлен c{' '}
-            <Link className={style.policy}>политикой безопасности</Link>
-          </label>
-        </div>
       </div>
 
       <p className={style.errorSubmit}>
-        {!agreePolicy && policyError
-          ? 'Ознакомтесь с политикой безопасности'
-          : ''}
         {Array.isArray(authData) ? 'Неверный логин или пароль' : ''}
       </p>
 
