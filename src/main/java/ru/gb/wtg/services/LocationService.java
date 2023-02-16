@@ -90,6 +90,10 @@ public class LocationService {
         return locationRepository.findAllByManualTitle(manualTitle);
     }
 
+    public Page<Location> findAllByManualTitleAndDescription(String manualTitle, int page, int pageSize ){
+        return locationRepository.findAllByManualTitleAndDescription(manualTitle, PageRequest.of(page-1,pageSize));
+    }
+
     public List<Location> findAllBySector(Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax){
         return locationRepository.findAllByLatitudeGreaterThanAndLatitudeLessThanAndLongitudeGreaterThanAndLongitudeLessThan(latitudeMin,latitudeMax,longitudeMin,longitudeMax);
     }

@@ -137,6 +137,17 @@ public class LocationController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/manual-title-description")
+    public List<LocationDTO> getAllLocationsByManualTitleAndDescription(@RequestParam(name = "manualTitle") String manualTitle,
+                                                                        @RequestParam(name = "page") int page,
+                                                                        @RequestParam(name = "pageSize") int pageSize){
+        return locationService.findAllByManualTitleAndDescription(manualTitle, page, pageSize)
+                .stream()
+                .map(LocationDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
 
     //Метод принимает 2 параметра - адрес и радиус в метрах, а возвращает все локации, которые попали в заданную точку и координаты введенного адреса
     @GetMapping("/locations-by-sector")
