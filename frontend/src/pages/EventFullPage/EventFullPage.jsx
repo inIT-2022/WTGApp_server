@@ -46,8 +46,6 @@ export const EventFullPage = () => {
     location,
   } = eventPage;
 
-  const cost = price ? `Цена: ${price} рублей` : 'Вход бесплатный';
-
   const { startTime, day, year, month } = getDateParameters(startDatetime);
 
   const images = linkImage
