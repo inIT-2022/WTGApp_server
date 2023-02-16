@@ -91,7 +91,9 @@ export const EventFullPage = () => {
                 {startTime ? <span> Начало в {startTime}</span> : null}
               </p>
               <p className={style.censure}>Без возростных ограничений</p>
-              <p className={style.price}>{cost}</p>
+              {price ? (
+                <p className={style.price}>Цена: {price} рублей</p>
+              ) : null}
             </div>
           </div>
 

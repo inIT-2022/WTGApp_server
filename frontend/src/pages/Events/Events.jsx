@@ -65,11 +65,11 @@ export const Events = () => {
               img={event.linkImage}
             />
           ))
-        ) : (
+        ) : !loading ? (
           <>
             <span>Ничего не найдено</span>
           </>
-        )}
+        ) : null}
         <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>

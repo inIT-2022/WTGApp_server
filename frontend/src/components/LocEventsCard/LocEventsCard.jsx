@@ -9,6 +9,8 @@ export const LocEventsCard = ({ event }) => {
         className={style.cardImage}
         src={imgLink ? imgLink : noPhoto}
         alt={event.title}
+        width={150}
+        height={100}
       />
     </Link>
   );

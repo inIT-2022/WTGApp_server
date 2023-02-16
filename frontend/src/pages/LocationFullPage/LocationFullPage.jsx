@@ -53,8 +53,6 @@ export const LocationFullPage = () => {
     linkSite,
   } = locationPage;
 
-  const cost = price ? `${price} рублей` : 'бесплатно';
-
   const images = linkImage
     ? linkImage.split('|').slice(0, 5)
     : [
@@ -95,29 +93,37 @@ export const LocationFullPage = () => {
               <p className={style.date}>График работы: не указан</p>
               <p className={style.censure}>Без возростных ограничений</p>
               <p>
-                <span className={style.price}>Цена: </span>
-                <span>{cost}</span>
+                {price ? (
+                  <>
+                    <span className={style.price}>Цена: </span>
+                    <span>{price} рублей</span>{' '}
+                  </>
+                ) : null}
               </p>
             </div>
           </div>
 
           <div className={style.rightContent}>
             <p className={style.adress}>{address}</p>
-            <a
-              href={linkSite}
-              className={style.source}
-              rel='noreferrer'
-              target='_blank'
-            >
-              Источник
-            </a>
-
-            <div className={style.description}>
-              <ReactMarkdown
-                children={description ? description : fullDescription}
-              />
+            <div className={style.sourceWrapper}>
+              <a
+                href={linkSite}
+                className={style.source}
+                rel='noreferrer'
+                target='_blank'
+              >
+                Источник
+              </a>
             </div>
-            {fullDescription ? (
+
+            {description || fullDescription ? (
+              <div className={style.description}>
+                <ReactMarkdown
+                  children={description ? description : fullDescription}
+                />
+              </div>
+            ) : null}
+            {fullDescription && description ? (
               <div className={style.moreInfoWrapper}>
                 <button
                   className={style.moreInfo}
