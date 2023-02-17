@@ -1,5 +1,7 @@
 package ru.gb.wtg.repositories.location;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,6 +31,9 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
 
     @Query(value = "SELECT * FROM locations  where title ilike %?1%", nativeQuery = true)
     List<Location> findAllByManualTitle(@Param("manualTitle") String manualTitle);
+
+    @Query(value = "SELECT * FROM locations  where title ilike %?1% or description ilike %?1%", nativeQuery = true)
+    Page<Location> findAllByManualTitleAndDescription(@Param("manualTitle") String manualTitle, Pageable pageable);
 
     //выборка локаций попадаюхих в диапазоны долготы и широты
     List<Location> findAllByLatitudeGreaterThanAndLatitudeLessThanAndLongitudeGreaterThanAndLongitudeLessThan(
@@ -60,10 +65,10 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
     //выборка локаций по категориям в заданном секторе
     @Query(value = "select * from locations l " +
             "right join locations_categories lc on l.id = lc.location_id " +
-            "left join categories_for_locations cfl on lc.location_id = cfl.id \n" +
+            "left join categories_for_locations cfl on lc.category_id = cfl.id \n" +
             "where (l.latitude >= :latitudeMin and l.latitude <= :latitudeMax) " +
             "and (l.longitude >= :longitudeMin and l.longitude <= :longitudeMax) " +
-            "and  (cfl.id in (:cat1,:cat2,:cat3,:cat4))",nativeQuery = true)
+            "and  cfl.id in (:cat1,:cat2,:cat3,:cat4)",nativeQuery = true)
     List<Location> findAllByLocationsCategoriesAndSector(
             Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
             long cat1, long cat2, long cat3, long cat4

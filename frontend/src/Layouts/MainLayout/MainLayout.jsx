@@ -5,7 +5,9 @@ import Header from '../../components/Header';
 export const MainLayout = () => (
   <>
     <Header />
-    <Outlet />
+    <main>
+      <Outlet />
+    </main>
     <Footer />
   </>
 );

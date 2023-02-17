@@ -1,6 +1,8 @@
 package ru.gb.wtg.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
 import ru.gb.wtg.models.event.CategoryForEvent;
@@ -26,6 +28,10 @@ public class EventService {
 
     public List<Event> findAll(){
         return eventRepository.findAll();
+    }
+
+    public Page<Event> findAllWithPageAfterCurrentDate(int page, int pageSize){
+        return eventRepository.findAllWithPageAfterCurrentDate( LocalDateTime.now(), PageRequest.of(page-1,pageSize));
     }
 
     public Optional<Event> findById(Long id){
@@ -121,6 +127,11 @@ public class EventService {
     public List<Event> findAllByManualTitle(String manualTitle){
         return eventRepository.findAllByManualTitle(manualTitle);
     }
+
+    public Page<Event> findAllByManualTitleAndDescription(String manualTitle, int page, int pageSize ){
+        return eventRepository.findAllByManualTitleAndDescription(manualTitle,LocalDateTime.now() , PageRequest.of(page-1,pageSize));
+    }
+
 
     public List<CategoryForEvent> findAllCategories(){
         return categoryForEventRepository.findAll();

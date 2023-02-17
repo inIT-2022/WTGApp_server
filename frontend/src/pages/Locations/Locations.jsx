@@ -11,32 +11,34 @@ import Skeleton from '../../components/Skeleton/Skeleton';
 import CardLocation from '../../components/CardLocation';
 import BtnHome from '../../components/BtnHome';
 
-import style from './Locations.module.css';
 import { setCurrentPage } from '../../store/locations/locationsSlice';
 import { useObserver } from '../../hooks/useObserver';
+
+import style from './Locations.module.css';
 
 export const Locations = () => {
   const dispatch = useDispatch();
 
   const locations = useSelector((state) => state.locations.data);
   const loading = useSelector((state) => state.locations.loading);
-
+  const error = useSelector((state) => state.locations.error);
+  const countLocationsLastPage = useSelector(
+    (state) => state.locations.countLocationsLastPage,
+  );
   const searchValue = useSelector((state) => state.search.searchValue);
-
-  const lastElement = React.useRef();
   const currentPage = useSelector((state) => state.locations.currentPage);
 
-  useObserver(lastElement, !searchValue, loading, () => {
+  const lastElement = React.useRef();
+
+  useObserver(lastElement, countLocationsLastPage > 9, loading, () => {
     dispatch(setCurrentPage(currentPage + 1));
   });
 
   React.useEffect(() => {
-    if (searchValue && locations) return;
-
     if (searchValue) {
-      dispatch(fetchSearchLocations(searchValue));
+      dispatch(fetchSearchLocations());
     } else dispatch(fetchLocations());
-  }, [currentPage]);
+  }, [currentPage, searchValue]);
 
   return (
     <section className={style.locations}>
@@ -69,11 +71,13 @@ export const Locations = () => {
               />
             ))}
           </>
-        ) : !loading ? (
+        ) : !error && !loading ? (
           <>
             <span>Ничего не найдено</span>
           </>
         ) : null}
+        {error ? <h2>Упс, что-то пошло не так! Попробуйте позже...</h2> : null}
+
         <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>

@@ -15,10 +15,13 @@ export const fetchLocations = createAsyncThunk(
 
 export const fetchSearchLocations = createAsyncThunk(
   'search/fetchSearchLocations',
-  (search, { rejectWithValue }) => {
-    return axios(
-      `${API_URI}/api/v1/locations/manualTitle?manualTitle=${search}`,
-    )
+  (_, { rejectWithValue, getState }) => {
+    const page = getState().locations.currentPage;
+    const search = getState().search.searchValue;
+
+    return axios(`
+    ${API_URI}/api/v1/locations/manual-title-description?manualTitle=${search}&page=${page}&${PAGE_SIZE}
+    `)
       .then(({ data }) => data)
       .catch((err) => rejectWithValue(err));
   },

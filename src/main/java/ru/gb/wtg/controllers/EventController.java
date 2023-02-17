@@ -46,10 +46,19 @@ public class EventController {
 // todo тестовый метод (удалить в дальнейшем)
     @GetMapping("/eventmodels")
     public List<Event> getAllEventModels(){
-
-
         return eventService.findAll();
     }
+
+    @GetMapping("/after-now")
+    public List<EventDTO> getAllEventsAfterCurrentDate (@RequestParam(name = "page") int page,
+                                                        @RequestParam(name = "pageSize") int pageSize){
+        return eventService.findAllWithPageAfterCurrentDate(page,pageSize)
+                .stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
 
     // todo тестовый метод (удалить в дальнейшем)
     @GetMapping("/model/{id}")
@@ -133,6 +142,18 @@ public class EventController {
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/manual-title-description")
+    public List<EventDTO> getAllEventsByManualTitleAndDescription(@RequestParam(name = "manualTitle") String manualTitle,
+                                                                  @RequestParam(name = "page") int page,
+                                                                  @RequestParam(name = "pageSize") int pageSize){
+        return eventService.findAllByManualTitleAndDescription(manualTitle, page, pageSize)
+                .stream()
+                .map(EventDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
 
     @GetMapping("/by-categories-and-sector")
     public List<EventDTO> getAllByEventsCategoryAndSector(

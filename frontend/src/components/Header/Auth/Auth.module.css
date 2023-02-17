@@ -42,6 +42,10 @@
   width: 32px;
   height: 32px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.logoutIcon:hover {
+  color: rgb(188, 42, 210);
 }
 
 .icon {
@@ -86,5 +90,15 @@
   .logoLetter {
     font-size: 18px;
     text-shadow: 0px 0px 2px #fff;
+  }
+  .authMenu {
+    width: 32px;
+    padding-top: 40px;
+    padding-bottom: 16px;
+    border-radius: 14px;
+  }
+  .logoutIcon {
+    width: 24px;
+    height: 24px;
   }
 }
