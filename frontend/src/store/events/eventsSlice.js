@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   data: [],
   currentPage: 1,
+  countEventLastPage: 10,
   error: '',
 };
 
@@ -18,6 +19,7 @@ export const eventsSlice = createSlice({
     resetEvents: (state) => {
       state.currentPage = 1;
       state.data = [];
+      state.countEventLastPage = 10;
     },
   },
   extraReducers: (builder) => {
@@ -33,6 +35,7 @@ export const eventsSlice = createSlice({
       );
       state.loading = false;
       state.error = '';
+      state.countEventLastPage = action.payload.length;
     });
 
     builder.addCase(fetchEvents.rejected, (state, action) => {
@@ -47,9 +50,13 @@ export const eventsSlice = createSlice({
     });
 
     builder.addCase(fetchSearchEvents.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = [...state.data, ...action.payload].reduce(
+        (arr, el) => (arr.find(({ id }) => el.id === id) || arr.push(el), arr),
+        [],
+      );
       state.loading = false;
       state.error = '';
+      state.countEventLastPage = action.payload.length;
     });
 
     builder.addCase(fetchSearchEvents.rejected, (state, action) => {

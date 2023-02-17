@@ -8,7 +8,7 @@ export const fetchEvents = createAsyncThunk(
   (_, { rejectWithValue, getState }) => {
     const page = getState().events.currentPage;
 
-    return axios(`${API_URI}/api/v1/events?page=${page}&${PAGE_SIZE}`)
+    return axios(`${API_URI}/api/v1/events/after-now?page=${page}&${PAGE_SIZE}`)
       .then(({ data }) => data)
       .catch((err) => rejectWithValue(err));
   },
@@ -16,8 +16,13 @@ export const fetchEvents = createAsyncThunk(
 
 export const fetchSearchEvents = createAsyncThunk(
   'search/fetchSearchEvents',
-  (search, { rejectWithValue }) => {
-    return axios(`${API_URI}/api/v1/events/manualTitle?manualTitle=${search}`)
+  (_, { rejectWithValue, getState }) => {
+    const page = getState().events.currentPage;
+    const search = getState().search.searchValue;
+
+    return axios(`
+    ${API_URI}/api/v1/events/manual-title-description?manualTitle=${search}&page=${page}&${PAGE_SIZE}
+    `)
       .then(({ data }) => data)
       .catch((err) => rejectWithValue(err));
   },

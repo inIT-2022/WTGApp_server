@@ -32,7 +32,7 @@ export const fetchRouteMap = createAsyncThunk(
     const ll = `${routeData.longitude},${routeData.latitude}`;
     const size = '540,360';
     const z = type === 'Car' ? '15' : type === 'Bicycle' ? '16' : '17';
-    const pt = getPointsForMap(routeData.locationDTOList);
+    const pt = getPointsForMap(routeData);
 
     return fetch(
       `https://static-maps.yandex.ru/1.x/?lang=${lang}&ll=${ll}&size=${size}&z=${z}&l=map&pt=${pt}`,

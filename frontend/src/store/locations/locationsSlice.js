@@ -6,6 +6,7 @@ const initialState = {
   data: [],
   currentPage: 1,
   error: '',
+  countLocationsLastPage: 10,
 };
 
 export const locationsSlice = createSlice({
@@ -18,6 +19,7 @@ export const locationsSlice = createSlice({
     resetLocations: (state) => {
       state.currentPage = 1;
       state.data = [];
+      state.countLocationsLastPage = 10;
     },
   },
   extraReducers: (builder) => {
@@ -33,6 +35,7 @@ export const locationsSlice = createSlice({
       );
       state.loading = false;
       state.error = '';
+      state.countLocationsLastPage = action.payload.length;
     });
 
     builder.addCase(fetchLocations.rejected, (state, action) => {
@@ -47,9 +50,13 @@ export const locationsSlice = createSlice({
     });
 
     builder.addCase(fetchSearchLocations.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = [...state.data, ...action.payload].reduce(
+        (arr, el) => (arr.find(({ id }) => el.id === id) || arr.push(el), arr),
+        [],
+      );
       state.loading = false;
       state.error = '';
+      state.countLocationsLastPage = action.payload.length;
     });
 
     builder.addCase(fetchSearchLocations.rejected, (state, action) => {

@@ -11,9 +11,10 @@ import CardEvent from '../../components/CardEvent';
 import Layout from '../../Layouts/Layout';
 import BtnHome from '../../components/BtnHome';
 
-import style from './Events.module.css';
 import { useObserver } from '../../hooks/useObserver';
 import { setCurrentPageEvent } from '../../store/events/eventsSlice';
+
+import style from './Events.module.css';
 
 export const Events = () => {
   const dispatch = useDispatch();
@@ -22,20 +23,22 @@ export const Events = () => {
   const currentPage = useSelector((state) => state.events.currentPage);
   const events = useSelector((state) => state.events.data);
   const loading = useSelector((state) => state.events.loading);
+  const error = useSelector((state) => state.events.error);
+  const countEventLastPage = useSelector(
+    (state) => state.events.countEventLastPage,
+  );
 
   const lastElement = React.useRef();
 
-  useObserver(lastElement, !searchValue && events.length > 9, loading, () => {
+  useObserver(lastElement, countEventLastPage > 9, loading, () => {
     dispatch(setCurrentPageEvent(currentPage + 1));
   });
 
   React.useEffect(() => {
-    if (searchValue && events) return;
-
     if (searchValue) {
-      dispatch(fetchSearchEvents(searchValue));
+      dispatch(fetchSearchEvents());
     } else dispatch(fetchEvents());
-  }, [currentPage]);
+  }, [currentPage, searchValue]);
 
   return (
     <section className={style.events}>
@@ -65,11 +68,12 @@ export const Events = () => {
               img={event.linkImage}
             />
           ))
-        ) : !loading ? (
+        ) : !error && !loading ? (
           <>
             <span>Ничего не найдено</span>
           </>
         ) : null}
+        {error ? <h2>Упс, что-то пошло не так! Попробуйте позже...</h2> : null}
         <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>
