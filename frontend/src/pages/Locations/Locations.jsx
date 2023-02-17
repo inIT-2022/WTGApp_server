@@ -20,6 +20,7 @@ export const Locations = () => {
 
   const locations = useSelector((state) => state.locations.data);
   const loading = useSelector((state) => state.locations.loading);
+  const error = useSelector((state) => state.locations.error);
 
   const searchValue = useSelector((state) => state.search.searchValue);
 
@@ -69,11 +70,13 @@ export const Locations = () => {
               />
             ))}
           </>
-        ) : !loading ? (
+        ) : !error && !loading ? (
           <>
             <span>Ничего не найдено</span>
           </>
         ) : null}
+        {error ? <h2>Упс, что-то пошло не так! Попробуйте позже...</h2> : null}
+
         <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>

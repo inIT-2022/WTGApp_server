@@ -11,9 +11,10 @@ import CardEvent from '../../components/CardEvent';
 import Layout from '../../Layouts/Layout';
 import BtnHome from '../../components/BtnHome';
 
-import style from './Events.module.css';
 import { useObserver } from '../../hooks/useObserver';
 import { setCurrentPageEvent } from '../../store/events/eventsSlice';
+
+import style from './Events.module.css';
 
 export const Events = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export const Events = () => {
   const currentPage = useSelector((state) => state.events.currentPage);
   const events = useSelector((state) => state.events.data);
   const loading = useSelector((state) => state.events.loading);
+  const error = useSelector((state) => state.events.error);
 
   const lastElement = React.useRef();
 
@@ -65,11 +67,12 @@ export const Events = () => {
               img={event.linkImage}
             />
           ))
-        ) : !loading ? (
+        ) : !error && !loading ? (
           <>
             <span>Ничего не найдено</span>
           </>
         ) : null}
+        {error ? <h2>Упс, что-то пошло не так! Попробуйте позже...</h2> : null}
         <div style={{ height: 20 }} ref={lastElement}></div>
       </Layout>
     </section>

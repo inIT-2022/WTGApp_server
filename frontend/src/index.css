@@ -31,6 +31,18 @@ html {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+html,
+body {
+  height: 100%;
+}
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 1 auto;
+}
 
 *,
 *::after,
