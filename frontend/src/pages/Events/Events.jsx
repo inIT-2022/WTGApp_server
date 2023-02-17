@@ -24,20 +24,21 @@ export const Events = () => {
   const events = useSelector((state) => state.events.data);
   const loading = useSelector((state) => state.events.loading);
   const error = useSelector((state) => state.events.error);
+  const countEventLastPage = useSelector(
+    (state) => state.events.countEventLastPage,
+  );
 
   const lastElement = React.useRef();
 
-  useObserver(lastElement, !searchValue && events.length > 9, loading, () => {
+  useObserver(lastElement, countEventLastPage > 9, loading, () => {
     dispatch(setCurrentPageEvent(currentPage + 1));
   });
 
   React.useEffect(() => {
-    if (searchValue && events) return;
-
     if (searchValue) {
-      dispatch(fetchSearchEvents(searchValue));
+      dispatch(fetchSearchEvents());
     } else dispatch(fetchEvents());
-  }, [currentPage]);
+  }, [currentPage, searchValue]);
 
   return (
     <section className={style.events}>
