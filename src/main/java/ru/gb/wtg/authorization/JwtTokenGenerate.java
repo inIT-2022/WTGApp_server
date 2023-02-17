@@ -19,7 +19,7 @@ public class JwtTokenGenerate {
 
     public String generateToken(UserDTO userDTO){
         LocalDateTime issuedDate = LocalDateTime.now();
-        LocalDateTime expiredDate = issuedDate.plusHours(1);
+        LocalDateTime expiredDate = issuedDate.plusDays(15);
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", userDTO.getUserRoleString());

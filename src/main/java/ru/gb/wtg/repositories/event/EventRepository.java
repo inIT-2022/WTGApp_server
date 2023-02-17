@@ -1,6 +1,8 @@
 package ru.gb.wtg.repositories.event;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +22,9 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Optional<Event> findById(Long id);
     Optional<Event> findByTitle(String title);
 
+    @Query("SELECT e FROM Event e   where e.startDatetime >= :dateStart")
+    Page<Event> findAllWithPageAfterCurrentDate(@Param("dateStart") LocalDateTime dateStart, Pageable pageable);
+
     List<Event> findAllByLocation(Location location);
     List<Event> findAllByStartDatetime(LocalDateTime startDateTime);
     List<Event> findAllByPrice(Integer price);
@@ -37,6 +42,12 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     @Query(value = "SELECT * FROM events  where title ilike %?1%", nativeQuery = true)
     List<Event> findAllByManualTitle(@Param("manualTitle") String manualTitle);
+
+    @Query(value = "SELECT * FROM events  where (title ilike %?1% or description ilike %?1%) and start_datetime >= ?2", nativeQuery = true)
+    Page<Event> findAllByManualTitleAndDescription(@Param("manualTitle") String manualTitle,
+                                                   @Param("start_datetime") LocalDateTime start_datetime,
+                                                   Pageable pageable);
+
 
     //выборка событий по категориям, которые находятся в заданном секторе
     @Query(value = "select e from Event e \n" +
