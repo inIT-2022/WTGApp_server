@@ -33,11 +33,7 @@ export const InputCategories = ({ errorCategory }) => {
         </option>
         {categories.length
           ? categories.map((obj) => (
-              <option
-                value={obj.id}
-                key={obj.id}
-                selected={obj.title === categoryParams ? true : false}
-              >
+              <option value={obj.id} key={obj.id}>
                 {obj.title}
               </option>
             ))

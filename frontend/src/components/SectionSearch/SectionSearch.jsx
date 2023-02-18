@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
 import { fetchSearchRoutes } from '../../store/search/searchAction';
 import { useNavigate } from 'react-router-dom';
-import { fetchSearchLocations } from '../../store/locations/locationsAction';
+import { resetLocations } from '../../store/locations/locationsSlice';
 
 export const SectionSearch = ({ text, placeholder, section }) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const SectionSearch = ({ text, placeholder, section }) => {
     if (!searchValue) return;
 
     if (section === 'locations') {
-      dispatch(fetchSearchLocations(searchValue));
+      dispatch(resetLocations());
       navigate('/locations');
     }
     if (section === 'routes') {
