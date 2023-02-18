@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { fetchAuthData } from '../../store/auth/authAction';
 
@@ -8,7 +7,7 @@ import style from './FormLogIn.module.css';
 
 export const FormLogIn = ({ closeModal, switchToRegistration }) => {
   const dispatch = useDispatch();
-  const authData = useSelector((state) => state.auth.data);
+  const error = useSelector((state) => state.auth.error);
 
   const [login, setLogin] = useState('');
   const [loginError, setLoginError] = useState(false);
@@ -39,15 +38,16 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
     validPassword(target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!loginError || !passwordError) {
       setCheckErrorForm(true);
       return;
     }
 
-    dispatch(fetchAuthData({ login, password }));
-    closeModal();
+    const data = await dispatch(fetchAuthData({ login, password }));
+
+    !data.error && closeModal();
   };
 
   return (
@@ -102,7 +102,7 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
       </div>
 
       <p className={style.errorSubmit}>
-        {Array.isArray(authData) ? 'Неверный логин или пароль' : ''}
+        {error ? 'Неверный логин или пароль' : ''}
       </p>
 
       <button className={style.submit} type='submit'>

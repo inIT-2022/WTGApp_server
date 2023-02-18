@@ -1,5 +1,5 @@
-// export const API_URI = 'http://95.163.237.3:8179/wtg';
-export const API_URI = 'http://localhost:8179/wtg';
+export const API_URI = 'http://95.163.237.3:8179/wtg';
+// export const API_URI = 'http://localhost:8179/wtg';
 
 export const PAGE_SIZE = 'pageSize=10';
 export const MONTHES = [

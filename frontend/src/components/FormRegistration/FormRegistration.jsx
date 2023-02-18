@@ -27,6 +27,7 @@ export const FormRegistration = ({ closeModal }) => {
       setShowPolicyError(true);
       return;
     }
+
     dispatch(fetchSignupData(values));
   };
 
