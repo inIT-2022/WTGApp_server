@@ -32,3 +32,6 @@ spring:
       enabled: true
       settings:
         web-allow-others: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
