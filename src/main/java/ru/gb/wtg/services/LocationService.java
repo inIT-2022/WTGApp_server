@@ -27,7 +27,7 @@ public class LocationService {
     }
 
     public Page<Location> findAllWithPage(int page, int pageSize){
-        return locationRepository.findAll( PageRequest.of(page-1,pageSize));
+        return locationRepository.findAllWithImage( PageRequest.of(page-1,pageSize));
     }
 
     public List<CategoryForLocation> findAllCategories(){

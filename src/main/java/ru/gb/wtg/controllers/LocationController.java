@@ -96,7 +96,7 @@ public class LocationController {
     }
 
 
-    @GetMapping("/by-categories-and-sector")
+    @PostMapping("/by-categories-and-sector")
     @ApiOperation(value = "Получение локаций по категории и сектору", response = LocationDTO.class, responseContainer = "list")
     public List<LocationDTO> getAllByLocationsCategoriesAndSector(@RequestBody LocationInSector locationInSector){
 

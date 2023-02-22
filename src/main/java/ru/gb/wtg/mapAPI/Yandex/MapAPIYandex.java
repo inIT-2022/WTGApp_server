@@ -1,5 +1,8 @@
 package ru.gb.wtg.mapAPI.Yandex;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 import ru.gb.wtg.mapAPI.MapAPIInterface;
 
 import java.io.IOException;
@@ -10,17 +13,20 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 
+@Component
+@PropertySource("classpath:values.properties")
 public class MapAPIYandex implements MapAPIInterface {
 
-    private final String apiKey = "56a66ddf-edfc-40a0-b66e-f59f7826e136";
-    private final String baseUrlForCoordinate = "https://search-maps.yandex.ru/v1/?text=%s&type=geo&lang=ru_RU&apikey=%s";
+    @Value("${yandex.apiKey}")
+    private String apiKey;
+
+    @Value("${yandex.baseUrlForCoordinate}")
+    private String baseUrlForCoordinate;
 
     @Override
     public List<Double> getCoordinateByAddress(String address) {
@@ -31,7 +37,7 @@ public class MapAPIYandex implements MapAPIInterface {
         //todo del
         System.out.println("++++URL " + url);
 
-        HttpRequest request = null;
+        HttpRequest request;
         HttpResponse<String> response = null;
         try {
             request = HttpRequest.newBuilder()
@@ -46,31 +52,25 @@ public class MapAPIYandex implements MapAPIInterface {
                     .build()
                     .send(request, HttpResponse.BodyHandlers.ofString());
             //todo del
-            System.out.println(response.body().toString());
+            System.out.println(response.body());
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (URISyntaxException | InterruptedException | IOException e) {
             e.printStackTrace();
         }
 
         List<Double> coordinateList = new ArrayList<>();
-        Pattern p1 = Pattern.compile("(\\\"coordinates\\\")([:][\\[])([0-9.,]*)([\\]][\\}])");
-        Matcher m1 = p1.matcher(response.body().toString());
-            m1.find();
-        String strCoordinate = m1.group();
+        Pattern p1 = Pattern.compile("(\\\"coordinates\\\")([:][\\[])([\\d.,]*)([\\]][\\}])");
+        assert response != null;
+        Matcher m1 = p1.matcher(response.body());
+        String strCoordinate = m1.find() ? m1.group() : "";
 
-        Pattern p2 = Pattern.compile("[0-9.]+");
+        Pattern p2 = Pattern.compile("[\\d.]+");
         Matcher m2 = p2.matcher(strCoordinate);
-            m2.find();
-            coordinateList.add(Double.valueOf(m2.group()));
+        if (m2.find()) coordinateList.add(Double.valueOf(m2.group()));
 
-            m2.find();
-            coordinateList.add(Double.valueOf(m2.group()));
+        if (m2.find()) coordinateList.add(Double.valueOf(m2.group()));
 
-        System.out.println(coordinateList.toString());
+        System.out.println(coordinateList);
 
         return coordinateList;
 
