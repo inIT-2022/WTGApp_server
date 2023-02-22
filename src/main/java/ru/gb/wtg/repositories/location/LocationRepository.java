@@ -29,6 +29,9 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
 
     List<Location> findAllByCategoryForLocations(CategoryForLocation categoryForLocation);
 
+    @Query(value = "select * from locations l where l.link_image is not null and l.link_image !=''", nativeQuery = true)
+    Page<Location> findAllWithImage(Pageable pageable);
+
     @Query(value = "SELECT * FROM locations  where title ilike %?1%", nativeQuery = true)
     List<Location> findAllByManualTitle(@Param("manualTitle") String manualTitle);
 
