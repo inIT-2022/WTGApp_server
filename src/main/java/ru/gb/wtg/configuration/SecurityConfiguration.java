@@ -62,10 +62,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new Sector();
     }
 
-    @Bean()
-    public MapAPIYandex mapAPIYandex(){
-        return new MapAPIYandex();
-    }
+//    @Bean()
+//    public MapAPIYandex mapAPIYandex(){
+//        return new MapAPIYandex();
+//    }
 
 //    @Bean
 //    public AuthenticationManager authenticationManagerBean() throws Exception {
