@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { CATEGORY } from '../../assets/const';
 import { useCategories } from '../../hooks/useCategories';
 
 import { setCategory } from '../../store/routes/routesSlice';
@@ -29,12 +30,12 @@ export const InputCategories = ({ errorCategory }) => {
         onChange={handleChangeCategory}
       >
         <option>
-          {categories.length ? 'Выберите категоию' : 'Загрузка...'}
+          {categories.length ? 'Выберите категорию' : 'Загрузка...'}
         </option>
         {categories.length
           ? categories.map((obj) => (
               <option value={obj.id} key={obj.id}>
-                {obj.title}
+                {CATEGORY[obj.title]}
               </option>
             ))
           : null}

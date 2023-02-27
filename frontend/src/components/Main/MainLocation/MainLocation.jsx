@@ -58,7 +58,7 @@ export const MainLocation = () => {
       <Layout>
         <SectionTitle text={'рекомендуемые локации'} />
         <SectionSearch
-          text={'места куда вам захочется вернуться :)'}
+          text={'места, куда вам захочется вернуться :)'}
           placeholder={'Отыщи свой уголок'}
           section={'locations'}
         />

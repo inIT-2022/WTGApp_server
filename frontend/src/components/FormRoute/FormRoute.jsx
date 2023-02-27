@@ -31,7 +31,7 @@ export const FormRoute = () => {
       setErrorCategory(true);
       return;
     }
-    if (!location) {
+    if (!location || !/^[а-я\s.]+?\d+/i.test(location)) {
       setErrorLocation(true);
       return;
     }

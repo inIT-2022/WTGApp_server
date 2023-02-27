@@ -7,7 +7,7 @@ import { fetchSignupData } from '../../store/signup/signupAction';
 
 import style from './FormRegistration.module.css';
 
-export const FormRegistration = ({ closeModal }) => {
+export const FormRegistration = () => {
   const dispatch = useDispatch();
   const [agree, setAgree] = useState(false);
   const [showPolicyError, setShowPolicyError] = useState(false);
@@ -52,7 +52,7 @@ export const FormRegistration = ({ closeModal }) => {
           })}
         />
         <label className={style.label} htmlFor='login'>
-          Login
+          Логин
         </label>
         <p className={style.error}>{errors.login?.message || ''}</p>
       </div>
@@ -104,7 +104,6 @@ export const FormRegistration = ({ closeModal }) => {
           id='birthdayDate'
           required
           min='1945-01-01'
-          max='2002-01-01'
           aria-invalid={!!errors.birthdayDate}
           {...register('birthdayDate', {
             required: {
@@ -132,7 +131,8 @@ export const FormRegistration = ({ closeModal }) => {
               message: 'Заполните поле',
             },
             pattern: {
-              value: /^.+@.+\..+$/,
+              // value: /^.+@.+\..+$/,
+              value: /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]{2,4}$/,
               message: 'введите корректный email',
             },
           })}

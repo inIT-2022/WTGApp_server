@@ -47,6 +47,7 @@
   padding-left: 200px;
   transition: 0.3s;
 }
+
 .input::placeholder {
   color: #4f4444;
   font-size: 18px;

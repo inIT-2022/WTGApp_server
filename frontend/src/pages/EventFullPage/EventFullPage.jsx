@@ -57,9 +57,6 @@ export const EventFullPage = () => {
   const adress = location?.address || '';
 
   const handleClickTopEvents = () => {
-    if (!searchValue) {
-      dispatch(resetEvents());
-    }
     navigate('/events');
   };
 
@@ -70,9 +67,9 @@ export const EventFullPage = () => {
           <BtnHome />
 
           <button className={style.navText} onClick={handleClickTopEvents}>
-            / Top events /
+            / Топ событий /
           </button>
-          <p className={style.navText}> Event</p>
+          <p className={style.navText}> Событие</p>
         </div>
 
         <h4 className={style.title}>{title}</h4>
@@ -88,7 +85,7 @@ export const EventFullPage = () => {
                 {day || ''} {MONTHES[month] || ''} {year || ''}
                 {startTime ? <span> Начало в {startTime}</span> : null}
               </p>
-              <p className={style.censure}>Без возростных ограничений</p>
+              <p className={style.censure}>Без возрастных ограничений</p>
               {price ? (
                 <p className={style.price}>Цена: {price} рублей</p>
               ) : null}

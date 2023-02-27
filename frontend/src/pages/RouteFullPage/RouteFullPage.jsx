@@ -57,15 +57,17 @@ export const RouteFullPage = () => {
 
           <div className={style.content}>
             <h3 className={style.contentTitle}>О маршруте</h3>
-            <div className={style.routeInfo}>
-              <span className={style.category}>Категория:</span>
-              <span className={style.categoryValue}>исторический</span>
-              <span className={style.length}>Протяженность:</span>
-              <span className={style.lengthValue}>
-                <b>{distance}</b> км
-              </span>
-            </div>
-            <RouteListItems points={routeData?.locationDTOList} />
+            {mapSrc && (
+              <div className={style.routeInfo}>
+                <span className={style.category}>Категория:</span>
+                <span className={style.categoryValue}>исторический</span>
+                <span className={style.length}>Протяженность:</span>
+                <span className={style.lengthValue}>
+                  <b>{distance}</b> км
+                </span>
+              </div>
+            )}
+            {mapSrc && <RouteListItems points={routeData?.locationDTOList} />}
           </div>
         </div>
       </Layout>
