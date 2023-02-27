@@ -46,7 +46,7 @@ export const Events = () => {
         <div className={style.nav}>
           <BtnHome />
 
-          <h2 className={style.navText}>/ Top events /</h2>
+          <h2 className={style.navText}>/ Топ событий /</h2>
         </div>
         {loading ? (
           <>

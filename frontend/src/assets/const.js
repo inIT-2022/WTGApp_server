@@ -22,3 +22,12 @@ export const RADIUSES = {
   Bicycle: 200,
   Car: 300,
 };
+
+export const CATEGORY = {
+  STORY: 'История',
+  FOOD: 'Еда',
+  ART: 'Искусство',
+  ARCHITECTURE: 'Архитектура',
+  RELIGION: 'Религия',
+  ENTERTAINMENT: 'Развлечение',
+};

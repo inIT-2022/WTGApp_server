@@ -46,7 +46,7 @@ export const Locations = () => {
         <div className={style.nav}>
           <BtnHome />
 
-          <h2 className={style.navText}>/ Top locations</h2>
+          <h2 className={style.navText}>/ Топ локаций</h2>
         </div>
         {loading ? (
           <>

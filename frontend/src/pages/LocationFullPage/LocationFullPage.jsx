@@ -63,9 +63,6 @@ export const LocationFullPage = () => {
     setShowFullDescr(!showFullDescr);
   };
   const handleClickTopLoc = () => {
-    if (!searchValue) {
-      dispatch(resetLocations());
-    }
     navigate('/locations');
   };
 
@@ -76,9 +73,9 @@ export const LocationFullPage = () => {
           <BtnHome />
 
           <button className={style.navText} onClick={handleClickTopLoc}>
-            / Top locations /
+            / Топ локаций /
           </button>
-          <p className={style.navText}> location</p>
+          <p className={style.navText}> Локация</p>
         </div>
         <h4 className={style.title}>{title}</h4>
 
@@ -91,7 +88,7 @@ export const LocationFullPage = () => {
 
             <div className={style.enter}>
               <p className={style.date}>График работы: не указан</p>
-              <p className={style.censure}>Без возростных ограничений</p>
+              <p className={style.censure}>Без возрастных ограничений</p>
               <p>
                 {price ? (
                   <>
@@ -123,6 +120,12 @@ export const LocationFullPage = () => {
                 />
               </div>
             ) : null}
+
+            {showFullDescr && (
+              <div className={style.description}>
+                <ReactMarkdown children={fullDescription} />
+              </div>
+            )}
             {fullDescription && description ? (
               <div className={style.moreInfoWrapper}>
                 <button
@@ -133,11 +136,6 @@ export const LocationFullPage = () => {
                 </button>
               </div>
             ) : null}
-            {showFullDescr && (
-              <div className={style.description}>
-                <ReactMarkdown children={fullDescription} />
-              </div>
-            )}
             {locationsEvents.length ? (
               <div className={style.locEvents}>
                 <span>События в данной локации</span>

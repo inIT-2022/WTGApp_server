@@ -64,7 +64,7 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
           onBlur={() => setLoginDirty(true)}
         />
         <label className={style.label} htmlFor='login'>
-          Login
+          Логин
         </label>
         {!loginError && loginDirty && (
           <p className={style.error}>login слишком короткий</p>
