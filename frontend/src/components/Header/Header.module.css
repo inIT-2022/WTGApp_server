@@ -122,6 +122,17 @@
   margin-right: 0;
 }
 
+.logoWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+.logoWrapper:hover {
+  transform: scale(1.1);
+}
+
 @media (max-width: 992px) {
   .title {
     font-size: 44px;
@@ -236,6 +247,10 @@
   }
   .header__burgerMenu svg {
     width: 24px;
+  }
+  .logoWrapper {
+    width: 32px;
+    height: 32px;
   }
 }
 

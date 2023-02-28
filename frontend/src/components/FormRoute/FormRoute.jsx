@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { fetchRouteByLocation } from '../../store/routes/routesAction';
+import {
+  fetchRouteByCategory,
+  fetchRouteByLocation,
+} from '../../store/routes/routesAction';
 
 import InputAddress from '../InputAddress';
-import InputCategories from '../InputCategories';
+import InputCategory from '../InputCategory';
 import InputTypeRoute from '../InputTypeRoute';
 
 import style from './FormRoute.module.css';
@@ -21,13 +24,13 @@ export const FormRoute = () => {
   const category = useSelector((state) => state.routes.category);
   const type = useSelector((state) => state.routes.type);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrorCategory(false);
     setErrorLocation(false);
 
-    if (!category) {
+    if (category.every((item) => item === 0)) {
       setErrorCategory(true);
       return;
     }
@@ -35,8 +38,14 @@ export const FormRoute = () => {
       setErrorLocation(true);
       return;
     }
-    dispatch(fetchRouteByLocation());
-    navigate(`/routes/${type}/${category}`);
+
+    const data = await dispatch(fetchRouteByCategory());
+    console.log('data: ', data);
+
+    if (data) {
+      dispatch(fetchRouteByLocation());
+      navigate(`/routes/${type}`);
+    }
   };
 
   return (
@@ -45,7 +54,7 @@ export const FormRoute = () => {
 
       <InputTypeRoute />
 
-      <InputCategories errorCategory={errorCategory} />
+      <InputCategory errorCategory={errorCategory} />
 
       <button className={style.btnSubmit} type='submit'>
         Подтвердить

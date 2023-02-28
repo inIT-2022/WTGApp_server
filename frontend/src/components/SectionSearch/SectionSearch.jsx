@@ -2,7 +2,6 @@ import style from './SectionSearch.module.css';
 import { ReactComponent as SearchSvg } from './img/search.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
-import { fetchSearchRoutes } from '../../store/search/searchAction';
 import { useNavigate } from 'react-router-dom';
 import { resetLocations } from '../../store/locations/locationsSlice';
 
@@ -21,7 +20,6 @@ export const SectionSearch = ({ text, placeholder, section }) => {
       navigate('/locations');
     }
     if (section === 'routes') {
-      dispatch(fetchSearchRoutes(searchValue));
       navigate('/routes');
     }
   };

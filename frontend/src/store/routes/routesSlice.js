@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  fetchRouteByCategory,
   fetchRouteByLocation,
   fetchRouteMap,
   fetchRoutes,
@@ -10,8 +11,9 @@ const initialState = {
   data: [],
   location: '',
   type: '',
-  category: '',
+  category: [0, 0, 0, 0],
   route: null,
+  locationsByCategory: null,
   routeMapLink: '',
   error: '',
 };
@@ -27,7 +29,18 @@ export const routesSlice = createSlice({
       state.location = action.payload;
     },
     setCategory: (state, action) => {
-      state.category = action.payload;
+      if (!action.payload.isChecked) {
+        state.category = state.category.map((item) =>
+          item === action.payload.value ? 0 : item,
+        );
+      } else {
+        const indexZero = state.category.findIndex((item) => item === 0);
+        if (indexZero !== -1) {
+          state.category = state.category.map((item, i) =>
+            i === indexZero ? action.payload.value : item,
+          );
+        }
+      }
     },
     deleteRoutePoint: (state, action) => {
       state.route.locationDTOList = state.route.locationDTOList.filter(
@@ -83,6 +96,23 @@ export const routesSlice = createSlice({
 
     builder.addCase(fetchRouteMap.rejected, (state, action) => {
       state.routeMapLink = '';
+      state.loading = true;
+      state.error = action.payload;
+    });
+
+    builder.addCase(fetchRouteByCategory.pending, (state) => {
+      state.loading = true;
+      state.error = '';
+    });
+
+    builder.addCase(fetchRouteByCategory.fulfilled, (state, action) => {
+      state.locationsByCategory = action.payload;
+      state.loading = false;
+      state.error = '';
+    });
+
+    builder.addCase(fetchRouteByCategory.rejected, (state, action) => {
+      state.locationsByCategory = null;
       state.loading = true;
       state.error = action.payload;
     });

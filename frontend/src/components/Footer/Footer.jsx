@@ -36,7 +36,7 @@ export const Footer = () => {
 
               <li className={style.contactsItem}>
                 <MailIcon className={style.iconContacts} />
-                <a className={style.contactsLink} href='mailto:wtg.gmail.com'>
+                <a className={style.contactsLink} href='mailto:wtg@gmail.com'>
                   wtg@gmail.com
                 </a>
               </li>

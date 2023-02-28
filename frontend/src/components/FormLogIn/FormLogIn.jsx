@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchAuthData } from '../../store/auth/authAction';
+import {
+  setIsShowModal,
+  setIsShowRegistration,
+} from '../../store/modal/modalSlice';
 
 import style from './FormLogIn.module.css';
 
-export const FormLogIn = ({ closeModal, switchToRegistration }) => {
+export const FormLogIn = () => {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.auth.error);
 
@@ -47,7 +51,7 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
 
     const data = await dispatch(fetchAuthData({ login, password }));
 
-    !data.error && closeModal();
+    !data.error && dispatch(setIsShowModal(false));
   };
 
   return (
@@ -94,11 +98,14 @@ export const FormLogIn = ({ closeModal, switchToRegistration }) => {
       </div>
 
       <div className={style.nav}>
-        <p className={style.navLink} onClick={() => switchToRegistration()}>
+        <p
+          className={style.navLink}
+          onClick={() => dispatch(setIsShowRegistration(true))}
+        >
           {' '}
           Зарегистрироваться
         </p>
-        <p className={style.navLink}>Восстановить пароль</p>
+        {/* <p className={style.navLink}>Восстановить пароль</p> */}
       </div>
 
       <p className={style.errorSubmit}>

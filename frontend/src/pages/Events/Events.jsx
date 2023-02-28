@@ -40,6 +40,10 @@ export const Events = () => {
     } else dispatch(fetchEvents());
   }, [currentPage, searchValue]);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className={style.events}>
       <Layout>

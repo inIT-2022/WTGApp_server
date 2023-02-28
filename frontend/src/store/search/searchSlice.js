@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSearchRoutes } from './searchAction';
 
 const initialState = {
   searchValue: '',
-  searchEvents: [],
-  searchRoutess: [],
+  isSearch: false,
 };
 
 export const searchSlice = createSlice({
@@ -14,32 +12,17 @@ export const searchSlice = createSlice({
     setSearchValue: (state, action) => {
       state.searchValue = action.payload;
     },
+    setIsSearch: (state) => {
+      state.isSearch = true;
+    },
     clearSearch: (state) => {
-      state.searchEvents = [];
+      state.isSearch = false;
       state.searchLocations = [];
       state.searchValue = '';
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(fetchSearchRoutes.pending, (state) => {
-      state.loading = true;
-      state.error = '';
-    });
-
-    builder.addCase(fetchSearchRoutes.fulfilled, (state, action) => {
-      state.searchRoutess = action.payload;
-      state.loading = false;
-      state.error = '';
-    });
-
-    builder.addCase(fetchSearchRoutes.rejected, (state, action) => {
-      state.searchRoutess = [];
-      state.loading = false;
-      state.error = action.payload;
-    });
-  },
 });
 
-export const { clearSearch, setSearchValue } = searchSlice.actions;
+export const { clearSearch, setSearchValue, setIsSearch } = searchSlice.actions;
 
 export default searchSlice.reducer;

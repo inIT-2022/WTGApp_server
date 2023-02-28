@@ -1,10 +1,9 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { API_URI } from '../../assets/const';
-import axios from 'axios';
 import { fetchEvents } from '../../store/events/eventsAction.js';
 import ReactMarkdown from 'react-markdown';
+import { useFullPageById } from '../../hooks/useFullPageById';
 
 import LocEventsCard from '../../components/LocEventsCard';
 import BtnHome from '../../components/BtnHome';
@@ -12,37 +11,16 @@ import Layout from '../../Layouts/Layout';
 import Slider from '../../components/Slider/Slider';
 
 import style from './LocationFullPage.module.css';
-import { resetLocations } from '../../store/locations/locationsSlice';
 
 export const LocationFullPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const searchValue = useSelector((state) => state.search.searchValue);
   const allEvents = useSelector((state) => state.events.data);
-  const [locationPage, setLocationPage] = React.useState([]);
   const [showFullDescr, setShowFullDescr] = React.useState(false);
+
   const { id } = useParams();
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  React.useEffect(() => {
-    if (allEvents.length) return;
-    dispatch(fetchEvents());
-  }, []);
-
-  React.useEffect(() => {
-    const fetchEventPage = async (page) => {
-      const { data } = await axios(`${API_URI}/api/v1/locations/${page}`);
-      setLocationPage(data);
-    };
-    fetchEventPage(id);
-  }, [id]);
-
-  const locationsEvents = allEvents.filter((obj) => obj.location.id === +id);
-
+  const locationPageData = useFullPageById({ id, page: 'locations' });
   const {
     address,
     description,
@@ -51,7 +29,7 @@ export const LocationFullPage = () => {
     title,
     price,
     linkSite,
-  } = locationPage;
+  } = locationPageData;
 
   const images = linkImage
     ? linkImage.split('|').slice(0, 5)
@@ -62,9 +40,20 @@ export const LocationFullPage = () => {
   const handleShowFullDescr = () => {
     setShowFullDescr(!showFullDescr);
   };
+
   const handleClickTopLoc = () => {
     navigate('/locations');
   };
+
+  React.useEffect(() => {
+    if (allEvents.length) return;
+    dispatch(fetchEvents());
+  }, []);
+  const locationsEvents = allEvents.filter((obj) => obj.location.id === +id);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <section className={style.location}>
