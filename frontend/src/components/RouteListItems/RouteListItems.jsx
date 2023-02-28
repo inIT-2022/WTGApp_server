@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as Plus } from './img/add.svg';
+// import { ReactComponent as Plus } from './img/add.svg';
 import { ReactComponent as Del } from './img/delete.svg';
-import { ReactComponent as More } from './img/more.svg';
+// import { ReactComponent as More } from './img/more.svg';
 import { ReactComponent as Start } from './img/play.svg';
 import { ReactComponent as Finish } from './img/stop.svg';
 import { ReactComponent as Marker } from './img/marker.svg';
@@ -20,7 +20,6 @@ export const RouteListItems = ({ points }) => {
     dispatch(deleteRoutePoint(id));
     dispatch(fetchRouteMap());
   };
-  const handleClickMore = (id) => {};
 
   return (
     <ul className={style.list}>
@@ -46,10 +45,10 @@ export const RouteListItems = ({ points }) => {
                 <button onClick={() => handleClickDelete(id)}>
                   <Del />
                 </button>
-                <Plus />
+                {/* <Plus />
                 <button onClick={() => handleClickMore(id)}>
                   <More />
-                </button>
+                </button> */}
               </div>
             </li>
           ))

@@ -1,37 +1,56 @@
 import { useState } from 'react';
 import { useCallback, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearAuth } from '../../store/auth/authSlice';
+import {
+  setIsShowLogin,
+  setIsShowModal,
+  setIsShowRegistration,
+} from '../../store/modal/modalSlice';
+import { clearSignUp } from '../../store/signup/signupSlice';
 
 import { FormLogIn } from '../FormLogIn/FormLogIn';
 import { FormRegistration } from '../FormRegistration/FormRegistration';
 
 import style from './ModalAuth.module.css';
 
-export const ModalAuth = ({ active, closeModal }) => {
+export const ModalAuth = () => {
+  const dispatch = useDispatch();
   const overlayRef = useRef(null);
-  const [showLogIn, setShowLogIn] = useState(true);
-  const [showRegistration, setShowRegistration] = useState(false);
   const [showRestorePassword, setShowRestorePassword] = useState(false);
+
+  const showRegistration = useSelector(
+    (state) => state.modal.isShowRegistration,
+  );
+  const showLogIn = useSelector((state) => state.modal.isShowLogin);
+  const isShowModal = useSelector((state) => state.modal.isShowModal);
 
   const handleClickOverlay = (e) => {
     const target = e.target;
     if (target === overlayRef.current) {
-      closeModal();
-      setShowLogIn(true);
-      setShowRegistration(false);
+      dispatch(clearAuth());
+      dispatch(clearSignUp());
+      dispatch(setIsShowModal(false));
+      dispatch(setIsShowLogin(true));
+      dispatch(setIsShowRegistration(false));
     }
   };
 
   const handleClickClose = useCallback(() => {
-    closeModal();
-    setShowLogIn(true);
-    setShowRegistration(false);
+    dispatch(clearAuth());
+    dispatch(clearSignUp());
+    dispatch(setIsShowModal(false));
+    dispatch(setIsShowLogin(true));
+    dispatch(setIsShowRegistration(false));
   }, []);
 
   const handleEscape = useCallback((event) => {
     if (event.key === 'Escape') {
-      closeModal();
-      setShowLogIn(true);
-      setShowRegistration(false);
+      dispatch(clearAuth());
+      dispatch(clearSignUp());
+      dispatch(setIsShowModal(false));
+      dispatch(setIsShowLogin(true));
+      dispatch(setIsShowRegistration(false));
     }
   }, []);
 
@@ -46,31 +65,28 @@ export const ModalAuth = ({ active, closeModal }) => {
   }, []);
 
   const switchToRegistration = () => {
-    setShowRegistration(true);
-    setShowLogIn(false);
+    dispatch(setIsShowRegistration(true));
+    dispatch(setIsShowLogin(false));
     setShowRestorePassword(false);
   };
 
   return (
     <div
-      className={!active ? style.overlay : style.overlayActive}
+      className={!isShowModal ? style.overlay : style.overlayActive}
       ref={overlayRef}
     >
-      <div className={!active ? style.modal : style.modalActive}>
+      <div className={!isShowModal ? style.modal : style.modalActive}>
         {showLogIn && (
           <>
             <p className={style.title}>Вход</p>
-            <FormLogIn
-              closeModal={closeModal}
-              switchToRegistration={switchToRegistration}
-            />
+            <FormLogIn switchToRegistration={switchToRegistration} />
           </>
         )}
 
         {showRegistration && (
           <>
             <p className={style.title}>Регистрация</p>
-            <FormRegistration closeModal={closeModal} />
+            <FormRegistration />
           </>
         )}
 

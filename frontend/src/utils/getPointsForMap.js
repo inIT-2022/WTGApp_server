@@ -1,8 +1,9 @@
-export const getPointsForMap = ({
-  locationDTOList: arr,
-  longitude,
-  latitude,
-}) => {
+// export const getPointsForMap = ({
+//   locationDTOList: arr,
+//   longitude,
+//   latitude,
+// }) => {
+export const getPointsForMap = ({ routeData, locationsByCategory: arr }) => {
   // Стилизация  метки
   //  https://yandex.ru/dev/maps/staticapi/doc/1.x/dg/concepts/markers.html
 
@@ -25,7 +26,7 @@ export const getPointsForMap = ({
     })
     .join('');
 
-  const pointGeoUser = `~${longitude},${latitude},ya_ru`;
+  const pointGeoUser = `~${routeData.longitude},${routeData.latitude},ya_ru`;
 
   points = points + pointGeoUser;
 

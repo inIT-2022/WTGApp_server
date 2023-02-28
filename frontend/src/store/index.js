@@ -5,6 +5,7 @@ import searchReducer from './search/searchSlice';
 import locationsReducer from './locations/locationsSlice';
 import eventsReducer from './events/eventsSlice';
 import routesReducer from './routes/routesSlice';
+import modalReducer from './modal/modalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     events: eventsReducer,
     locations: locationsReducer,
     routes: routesReducer,
+    modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

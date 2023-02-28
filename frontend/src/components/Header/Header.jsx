@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Auth from './Auth';
 import Layout from '../../Layouts/Layout';
 import Search from '../Search';
 import ModalAuth from '../ModalAuth';
 import WarningMessage from './WarningMessage';
-import { ReactComponent as BurgerSvg } from './img/burger_menu.svg';
-import { ReactComponent as Notification } from './img/notification.svg';
-import { ReactComponent as Collection } from './img/collection.svg';
-import { ReactComponent as Chat } from './img/chat.svg';
 
+import { setIsShowModal } from '../../store/modal/modalSlice';
+
+import logo from '../../img/logo.jpg';
 import style from './Header.module.css';
+import { clearSearch } from '../../store/search/searchSlice';
+import { resetLocations } from '../../store/locations/locationsSlice';
+import { setCategory, setLocation } from '../../store/routes/routesSlice';
 
 export const Header = () => {
-  const [isOpenBurger, setIsOpenBurger] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [showWarning, setShowWarning] = useState(true);
-  const [showModal, setShowModal] = useState(false);
   const [isShowGreetings, setIsShowGreetings] = useState(false);
 
   const location = useLocation();
@@ -41,7 +44,15 @@ export const Header = () => {
   }, [login]);
 
   const handleOpenModal = () => {
-    setShowModal(true);
+    dispatch(setIsShowModal(true));
+  };
+
+  const handleClickLogo = () => {
+    navigate('/');
+    dispatch(clearSearch());
+    dispatch(resetLocations());
+    dispatch(setCategory(''));
+    dispatch(setLocation(''));
   };
 
   return (
@@ -58,7 +69,7 @@ export const Header = () => {
                 <span className={style.city}>Краснодар</span>
                 {!token && showWarning && (
                   <WarningMessage
-                    openModal={() => setShowModal(true)}
+                    openModal={() => dispatch(setIsShowModal(true))}
                     setClose={() => setShowWarning(false)}
                   />
                 )}
@@ -122,28 +133,13 @@ export const Header = () => {
               </div>
             )}
             <Auth openModal={() => handleOpenModal()} />
-            {isOpenBurger && (
-              <div className={style.header__burgerMenu}>
-                <Collection className={style.header__burger_svg} />
-                <Chat className={style.header__burger_svg} />
-                <Notification className={style.header__burger_svg} />
-              </div>
-            )}
-            <button
-              className={style.burgerBtn}
-              onClick={() => setIsOpenBurger(!isOpenBurger)}
-            >
-              <BurgerSvg />
+            <button className={style.logoWrapper} onClick={handleClickLogo}>
+              <img src={logo} alt='логотип' />
             </button>
           </div>
         </div>
 
-        {!token && (
-          <ModalAuth
-            active={showModal}
-            closeModal={() => setShowModal(false)}
-          />
-        )}
+        {!token && <ModalAuth />}
       </Layout>
     </header>
   );

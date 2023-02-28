@@ -6,15 +6,18 @@ import { useRef } from 'react';
 import { fetchSignupData } from '../../store/signup/signupAction';
 
 import style from './FormRegistration.module.css';
+import { setIsAgreePolicy } from '../../store/modal/modalSlice';
 
 export const FormRegistration = () => {
   const dispatch = useDispatch();
-  const [agree, setAgree] = useState(false);
   const [showPolicyError, setShowPolicyError] = useState(false);
   const checkRef = useRef(null);
   const signupData = useSelector((state) => state.signup.data);
+  const agree = useSelector((state) => state.modal.isAgreePolicy);
 
-  const handleAgree = ({ target }) => setAgree(target.checked);
+  const handleAgree = ({ target }) => {
+    dispatch(setIsAgreePolicy(target.checked));
+  };
 
   const {
     register,
@@ -195,13 +198,15 @@ export const FormRegistration = () => {
         />
         <label className={style.labelCheckbox} htmlFor='policy'>
           Ознакомлен c{' '}
-          <Link className={style.policy}>политикой безопасности</Link>
+          <Link to='privacy-policy' className={style.policy}>
+            политикой конфиденциальности
+          </Link>
         </label>
       </div>
 
       <p className={style.errorSubmit}>
         {showPolicyError && !agree
-          ? 'Ознакомтесь с политикой безопасности'
+          ? 'Ознакомтесь с политикой конфеденциальности'
           : ''}
         {signupData?.message ? `${signupData.message}` : ''}
       </p>

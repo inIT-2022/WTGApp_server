@@ -1,6 +1,22 @@
+.wrapper {
+  position: relative;
+}
 .homeBtn {
   width: 36px;
   height: 36px;
+}
+
+.message {
+  position: absolute;
+  background-color: rgb(198, 198, 198);
+  padding: 5px 10px;
+  border-radius: 10px;
+  top: -40px;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+.homeBtn:hover ~ .message {
+  opacity: 1;
 }
 
 @media (max-width: 520px) {

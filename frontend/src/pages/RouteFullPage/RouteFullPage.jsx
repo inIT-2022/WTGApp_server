@@ -7,7 +7,7 @@ import Layout from '../../Layouts/Layout';
 
 import FormRoute from '../../components/FormRoute';
 
-import { setCategory, setType } from '../../store/routes/routesSlice';
+import { setType } from '../../store/routes/routesSlice';
 import { RouteListItems } from '../../components/RouteListItems/RouteListItems';
 
 import style from './RouteFullPage.module.css';
@@ -17,9 +17,11 @@ export const RouteFullPage = () => {
   const params = useParams();
 
   const typeParams = params.type;
-  const categoryParams = params.category;
 
   const routeData = useSelector((state) => state.routes.route);
+  const locationsByCategory = useSelector(
+    (state) => state.routes.locationsByCategory,
+  );
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
 
   const distance = routeData?.locationDTOList?.length
@@ -28,7 +30,6 @@ export const RouteFullPage = () => {
 
   useEffect(() => {
     dispatch(setType(typeParams));
-    dispatch(setCategory(categoryParams));
   }, []);
 
   return (
@@ -57,6 +58,9 @@ export const RouteFullPage = () => {
 
           <div className={style.content}>
             <h3 className={style.contentTitle}>О маршруте</h3>
+            {locationsByCategory && !locationsByCategory.length && (
+              <p>Локаций согласно вашего маршрута не найдено</p>
+            )}
             {mapSrc && (
               <div className={style.routeInfo}>
                 <span className={style.category}>Категория:</span>
