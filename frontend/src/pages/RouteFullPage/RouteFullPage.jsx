@@ -32,6 +32,10 @@ export const RouteFullPage = () => {
     dispatch(setType(typeParams));
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className={style.route}>
       <Layout>

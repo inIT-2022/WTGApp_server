@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { clearSearch, setSearchValue } from '../../store/search/searchSlice';
+import {
+  clearSearch,
+  setIsSearch,
+  setSearchValue,
+} from '../../store/search/searchSlice';
 import { resetLocations } from '../../store/locations/locationsSlice';
 import { resetEvents } from '../../store/events/eventsSlice';
 
@@ -9,6 +13,7 @@ import style from './Search.module.css';
 
 export const Search = ({ searchType }) => {
   const searchValue = useSelector((state) => state.search.searchValue);
+  const isSearch = useSelector((state) => state.search.isSearch);
 
   const [search, setSearch] = React.useState(searchValue);
   const dispatch = useDispatch();
@@ -16,6 +21,8 @@ export const Search = ({ searchType }) => {
   const handlerSubmit = (e) => {
     e.preventDefault();
     if (!search) return;
+
+    dispatch(setIsSearch());
 
     if (searchType === 'events') {
       dispatch(resetEvents());
@@ -28,11 +35,13 @@ export const Search = ({ searchType }) => {
   };
 
   const handleClickClose = () => {
-    if (searchType === 'events') {
-      dispatch(resetEvents());
-    }
-    if (searchType === 'locations') {
-      dispatch(resetLocations());
+    if (isSearch) {
+      if (searchType === 'events') {
+        dispatch(resetEvents());
+      }
+      if (searchType === 'locations') {
+        dispatch(resetLocations());
+      }
     }
 
     dispatch(clearSearch());
@@ -42,6 +51,18 @@ export const Search = ({ searchType }) => {
   const handlerChangeInput = (e) => {
     setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    if (!search && isSearch) {
+      if (searchType === 'events') {
+        dispatch(resetEvents());
+      }
+      if (searchType === 'locations') {
+        dispatch(resetLocations());
+      }
+      dispatch(clearSearch());
+    }
+  }, [search]);
 
   return (
     <form className={style.form} onSubmit={handlerSubmit}>
