@@ -25,6 +25,7 @@ export const fetchRouteMap = createAsyncThunk(
   (data, { rejectWithValue, getState }) => {
     const type = getState().routes.type;
     const dataStore = getState().routes.route;
+    const locationsByCategory = getState().routes.locationsByCategory;
 
     const routeData = data ? data : dataStore;
 
@@ -32,7 +33,8 @@ export const fetchRouteMap = createAsyncThunk(
     const ll = `${routeData.longitude},${routeData.latitude}`;
     const size = '540,360';
     const z = type === 'Car' ? '15' : type === 'Bicycle' ? '16' : '17';
-    const pt = getPointsForMap(routeData);
+
+    const pt = getPointsForMap({ routeData, locationsByCategory });
 
     return fetch(
       `https://static-maps.yandex.ru/1.x/?lang=${lang}&ll=${ll}&size=${size}&z=${z}&l=map&pt=${pt}`,
@@ -58,6 +60,37 @@ export const fetchRouteByLocation = createAsyncThunk(
     )
       .then(({ data }) => {
         dispatch(fetchRouteMap(data));
+        return data;
+      })
+      .catch((err) => rejectWithValue(err));
+  },
+);
+export const fetchRouteByCategory = createAsyncThunk(
+  'route/fetchRouteByCategory',
+  (_, { rejectWithValue, getState, dispatch }) => {
+    const type = getState().routes.type;
+    const radius = RADIUSES[type];
+
+    const addressFromStore = getState().routes.location;
+    const address = addressFromStore.toLowerCase().includes('краснодар')
+      ? addressFromStore
+      : addressFromStore + ' Краснодар';
+
+    const categories = getState().routes.category;
+
+    return axios({
+      method: 'post',
+      url: `${API_URI}/api/v1/locations/by-categories-and-sector`,
+      data: {
+        radius,
+        address,
+        categories,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(({ data }) => {
         return data;
       })
       .catch((err) => rejectWithValue(err));

@@ -10,7 +10,12 @@ const initialState = {
 export const signupSlice = createSlice({
   name: 'signup',
   initialState,
-  reducers: {},
+  reducers: {
+    clearSignUp: (state) => {
+      state.data = {};
+      state.error = '';
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchSignupData.pending, (state) => {
       state.loading = true;
@@ -30,5 +35,7 @@ export const signupSlice = createSlice({
     });
   },
 });
+
+export const { clearSignUp } = signupSlice.actions;
 
 export default signupSlice.reducer;

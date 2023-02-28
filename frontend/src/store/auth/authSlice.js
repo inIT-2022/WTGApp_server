@@ -17,6 +17,7 @@ export const authSlice = createSlice({
   reducers: {
     clearAuth: (state) => {
       state.data = {};
+      state.error = '';
     },
   },
   extraReducers: (builder) => {

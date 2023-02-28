@@ -9,11 +9,13 @@ import EventFullPage from './pages/EventFullPage';
 import LocationFullPage from './pages/LocationFullPage';
 import Locations from './pages/Locations';
 import RoutesPage from './pages/RoutesPage';
+import Policy from './pages/Policy';
 
 const App = () => {
   return (
     <>
       <Routes>
+        <Route path='privacy-policy' element={<Policy />} />
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Main />} />
           <Route path='events' element={<Events />} />
@@ -21,7 +23,7 @@ const App = () => {
           <Route path='locations' element={<Locations />} />
           <Route path='locations/:id' element={<LocationFullPage />} />
           <Route path='routes' element={<RoutesPage />} />
-          <Route path='routes/:type/:category' element={<RouteFullPage />} />
+          <Route path='routes/:type' element={<RouteFullPage />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

@@ -1,41 +1,21 @@
 import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { MONTHES } from '../../assets/const';
+import { getDateParameters } from '../../utils/getDateParameters';
+import ReactMarkdown from 'react-markdown';
+import { useFullPageById } from '../../hooks/useFullPageById';
 
 import { Layout } from '../../Layouts/Layout/Layout';
 import Slider from '../../components/Slider/Slider';
 import BtnHome from '../../components/BtnHome';
 
-import { API_URI } from '../../assets/const';
-import { MONTHES } from '../../assets/const';
-import { getDateParameters } from '../../utils/getDateParameters';
-import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-
-import { resetEvents } from '../../store/events/eventsSlice';
-
 import style from './EventFullPage.module.css';
 
 export const EventFullPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const searchValue = useSelector((state) => state.search.searchValue);
 
-  const [eventPage, setEventPage] = React.useState([]);
   const { id } = useParams();
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  React.useEffect(() => {
-    const fetchEventPage = async (page) => {
-      const { data } = await axios(`${API_URI}/api/v1/events/${page}`);
-      setEventPage(data);
-    };
-    fetchEventPage(id);
-  }, [id]);
-
+  const eventPageData = useFullPageById({ id, page: 'events' });
   const {
     description,
     startDatetime,
@@ -44,7 +24,7 @@ export const EventFullPage = () => {
     linkEventSite,
     linkImage,
     location,
-  } = eventPage;
+  } = eventPageData;
 
   const { startTime, day, year, month } = getDateParameters(startDatetime);
 
@@ -59,6 +39,10 @@ export const EventFullPage = () => {
   const handleClickTopEvents = () => {
     navigate('/events');
   };
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <section className={style.event}>
@@ -76,7 +60,6 @@ export const EventFullPage = () => {
 
         <div className={style.wrapper}>
           <div className={style.leftContent}>
-            {/* <p className={style.distance}>Расстояние 25,7 км</p> */}
             <div className={style.sliderWrapper}>
               <Slider items={images} />
             </div>

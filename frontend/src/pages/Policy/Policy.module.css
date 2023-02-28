@@ -1,0 +1,47 @@
+.wrapper {
+  padding: 50px 0;
+}
+
+.title {
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+ol {
+  list-style-type: none;
+}
+
+.first {
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.first:first-child {
+  margin-top: 20px;
+}
+
+.second {
+  padding-left: 20px;
+}
+
+.third {
+  padding-left: 30px;
+}
+
+.btnAgree {
+  background-color: var(--style-color);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.btnBack {
+  background-color: rgb(197, 193, 193);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.btnWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
