@@ -37,7 +37,7 @@ export const RouteFullPage = () => {
       <Layout>
         <div className={style.nav}>
           <BtnHome />
-          <h2 className={style.navText}>/ Routes / </h2>
+          <h2 className={style.navText}>/ Маршруты / </h2>
         </div>
 
         <h2 className={style.title}>Исторический Краснодар</h2>
