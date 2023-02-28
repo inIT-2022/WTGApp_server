@@ -206,7 +206,7 @@ export const FormRegistration = () => {
 
       <p className={style.errorSubmit}>
         {showPolicyError && !agree
-          ? 'Ознакомтесь с политикой конфеденциальности'
+          ? 'Ознакомтесь с политикой конфиденциальности'
           : ''}
         {signupData?.message ? `${signupData.message}` : ''}
       </p>
