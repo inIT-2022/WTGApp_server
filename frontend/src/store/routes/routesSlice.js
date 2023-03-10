@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { DEFAULT_MAP_SCALES } from '../../assets/const';
 import {
   fetchRouteByCategory,
   fetchRouteByLocation,
@@ -15,6 +16,7 @@ const initialState = {
   route: null,
   locationsByCategory: null,
   routeMapLink: '',
+  mapScale: DEFAULT_MAP_SCALES,
   error: '',
 };
 
@@ -49,6 +51,13 @@ export const routesSlice = createSlice({
       state.route.locationDTOList = state.route.locationDTOList.filter(
         (item) => item.id !== action.payload,
       );
+    },
+
+    changeScale: (state, action) => {
+      state.mapScale = { ...state.mapScale, ...action.payload };
+    },
+    setDefaultScale: (state) => {
+      state.mapScale = DEFAULT_MAP_SCALES;
     },
   },
   extraReducers: (builder) => {
@@ -128,6 +137,8 @@ export const {
   setCategory,
   deleteRoutePoint,
   resetCategory,
+  changeScale,
+  setDefaultScale,
 } = routesSlice.actions;
 
 export default routesSlice.reducer;
