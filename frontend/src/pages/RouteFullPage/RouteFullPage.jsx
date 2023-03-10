@@ -20,16 +20,14 @@ export const RouteFullPage = () => {
 
   const typeParams = params.type;
 
-  const routeData = useSelector((state) => state.routes.route);
+  const routeData = useSelector((state) => state.routes.locationsByCategory);
   const locationsByCategory = useSelector(
     (state) => state.routes.locationsByCategory,
   );
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
   const scale = useSelector((state) => state.routes.mapScale[typeParams]);
 
-  const distance = routeData?.locationDTOList?.length
-    ? (routeData.locationDTOList.length * 0.7).toFixed(1)
-    : 0;
+  const distance = routeData?.length ? (routeData.length * 0.7).toFixed(1) : 0;
 
   useEffect(() => {
     dispatch(setType(typeParams));
@@ -103,7 +101,7 @@ export const RouteFullPage = () => {
                 </span>
               </div>
             )}
-            {mapSrc && <RouteListItems points={routeData?.locationDTOList} />}
+            {mapSrc && <RouteListItems points={routeData} />}
           </div>
         </div>
       </Layout>

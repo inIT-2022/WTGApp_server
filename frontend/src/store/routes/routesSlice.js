@@ -48,7 +48,7 @@ export const routesSlice = createSlice({
       state.category = [0, 0, 0, 0];
     },
     deleteRoutePoint: (state, action) => {
-      state.route.locationDTOList = state.route.locationDTOList.filter(
+      state.locationsByCategory = state.locationsByCategory.filter(
         (item) => item.id !== action.payload,
       );
     },
