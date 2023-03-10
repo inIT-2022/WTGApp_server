@@ -44,7 +44,7 @@ export const RouteFullPage = () => {
           <h2 className={style.navText}>/ Маршруты / </h2>
         </div>
 
-        <h2 className={style.title}>Исторический Краснодар</h2>
+        <h2 className={style.title}>Краснодар</h2>
 
         <div className={style.wrapper}>
           <div className={style.interactiveContent}>
@@ -67,8 +67,6 @@ export const RouteFullPage = () => {
             )}
             {mapSrc && (
               <div className={style.routeInfo}>
-                <span className={style.category}>Категория:</span>
-                <span className={style.categoryValue}>исторический</span>
                 <span className={style.length}>Протяженность:</span>
                 <span className={style.lengthValue}>
                   <b>{distance}</b> км

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { RADIUSES } from '../../assets/const';
 
 import {
   fetchRouteByCategory,
@@ -19,6 +20,7 @@ export const FormRoute = () => {
 
   const [errorCategory, setErrorCategory] = useState(false);
   const [errorLocation, setErrorLocation] = useState(false);
+  const [errorType, setErrorType] = useState(false);
 
   const location = useSelector((state) => state.routes.location);
   const category = useSelector((state) => state.routes.category);
@@ -29,6 +31,7 @@ export const FormRoute = () => {
 
     setErrorCategory(false);
     setErrorLocation(false);
+    setErrorType(false);
 
     if (category.every((item) => item === 0)) {
       setErrorCategory(true);
@@ -39,8 +42,12 @@ export const FormRoute = () => {
       return;
     }
 
+    if (!Object.keys(RADIUSES).some((item) => item === type)) {
+      setErrorType(true);
+      return;
+    }
+
     const data = await dispatch(fetchRouteByCategory());
-    console.log('data: ', data);
 
     if (data) {
       dispatch(fetchRouteByLocation());
@@ -48,17 +55,17 @@ export const FormRoute = () => {
     }
   };
 
+  console.log();
+
   return (
     <form className={style.form} onSubmit={handleSubmit}>
       <InputAddress errorLocation={errorLocation} />
 
-      <InputTypeRoute />
+      <InputTypeRoute errorType={errorType} />
 
       <InputCategory errorCategory={errorCategory} />
 
-      <button className={style.btnSubmit} type='submit'>
-        Подтвердить
-      </button>
+      <button className={style.btnSubmit}>Подтвердить</button>
     </form>
   );
 };

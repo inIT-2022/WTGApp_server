@@ -16,8 +16,10 @@ export const LocationFullPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const allEvents = useSelector((state) => state.events.data);
   const [showFullDescr, setShowFullDescr] = React.useState(false);
+
+  const allEvents = useSelector((state) => state.events.data);
+  const eventsOnLocation = allEvents.filter((obj) => obj.location.id === +id);
 
   const { id } = useParams();
   const locationPageData = useFullPageById({ id, page: 'locations' });
@@ -49,7 +51,6 @@ export const LocationFullPage = () => {
     if (allEvents.length) return;
     dispatch(fetchEvents());
   }, []);
-  const locationsEvents = allEvents.filter((obj) => obj.location.id === +id);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -125,11 +126,11 @@ export const LocationFullPage = () => {
                 </button>
               </div>
             ) : null}
-            {locationsEvents.length ? (
+            {eventsOnLocation.length ? (
               <div className={style.locEvents}>
                 <span>События в данной локации</span>
                 <div className={style.locEventsWrapper}>
-                  {locationsEvents.map((item) => (
+                  {eventsOnLocation.map((item) => (
                     <LocEventsCard key={item.id} event={item} />
                   ))}
                 </div>

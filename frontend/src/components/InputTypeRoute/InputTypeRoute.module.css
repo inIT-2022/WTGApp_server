@@ -1,4 +1,5 @@
 .typeSelect {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,6 +41,14 @@
 
 .active {
   background-color: var(--style-color);
+}
+
+.errorType {
+  position: absolute;
+  top: -10px;
+  left: 0px;
+  font-size: 10px;
+  color: red;
 }
 
 @media (max-width: 640px) {

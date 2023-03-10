@@ -29,7 +29,6 @@ html {
   box-sizing: border-box;
   position: relative;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 html,
 body {

@@ -42,6 +42,9 @@ export const routesSlice = createSlice({
         }
       }
     },
+    resetCategory: (state) => {
+      state.category = [0, 0, 0, 0];
+    },
     deleteRoutePoint: (state, action) => {
       state.route.locationDTOList = state.route.locationDTOList.filter(
         (item) => item.id !== action.payload,
@@ -119,7 +122,12 @@ export const routesSlice = createSlice({
   },
 });
 
-export const { setType, setLocation, setCategory, deleteRoutePoint } =
-  routesSlice.actions;
+export const {
+  setType,
+  setLocation,
+  setCategory,
+  deleteRoutePoint,
+  resetCategory,
+} = routesSlice.actions;
 
 export default routesSlice.reducer;

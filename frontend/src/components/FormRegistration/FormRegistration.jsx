@@ -6,7 +6,10 @@ import { useRef } from 'react';
 import { fetchSignupData } from '../../store/signup/signupAction';
 
 import style from './FormRegistration.module.css';
-import { setIsAgreePolicy } from '../../store/modal/modalSlice';
+import {
+  setIsAgreePolicy,
+  setIsShowRegistration,
+} from '../../store/modal/modalSlice';
 
 export const FormRegistration = () => {
   const dispatch = useDispatch();
@@ -32,6 +35,7 @@ export const FormRegistration = () => {
     }
 
     dispatch(fetchSignupData(values));
+    dispatch(setIsShowRegistration(false));
   };
 
   return (

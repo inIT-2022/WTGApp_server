@@ -4,7 +4,7 @@ import { setType } from '../../store/routes/routesSlice';
 
 import style from './InputTypeRoute.module.css';
 
-export const InputTypeRoute = () => {
+export const InputTypeRoute = ({ errorType }) => {
   const dispatch = useDispatch();
 
   const type = useSelector((state) => state.routes.type);
@@ -12,6 +12,9 @@ export const InputTypeRoute = () => {
   return (
     <div className={style.typeSelect}>
       <span className={style.text}>Тип маршрута:</span>
+      {errorType ? (
+        <span className={style.errorType}>Выберите тип маршрута!</span>
+      ) : null}
       <div className={style.btnsWrapper}>
         <button
           className={type === 'Walk' ? style.active : ''}

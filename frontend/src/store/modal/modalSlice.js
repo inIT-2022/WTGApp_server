@@ -21,20 +21,14 @@ export const modalSlice = createSlice({
       state.isShowRegistration = action.payload;
       state.isShowLogin = !action.payload;
     },
-    setIsShowLogin: (state, action) => {
-      state.isShowLogin = action.payload;
-    },
+
     setIsAgreePolicy: (state, action) => {
       state.isAgreePolicy = action.payload;
     },
   },
 });
 
-export const {
-  setIsShowModal,
-  setIsShowRegistration,
-  setIsShowLogin,
-  setIsAgreePolicy,
-} = modalSlice.actions;
+export const { setIsShowModal, setIsShowRegistration, setIsAgreePolicy } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

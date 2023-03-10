@@ -14,7 +14,11 @@ import logo from '../../img/logo.jpg';
 import style from './Header.module.css';
 import { clearSearch } from '../../store/search/searchSlice';
 import { resetLocations } from '../../store/locations/locationsSlice';
-import { setCategory, setLocation } from '../../store/routes/routesSlice';
+import {
+  resetCategory,
+  setCategory,
+  setLocation,
+} from '../../store/routes/routesSlice';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -53,6 +57,7 @@ export const Header = () => {
     dispatch(resetLocations());
     dispatch(setCategory(''));
     dispatch(setLocation(''));
+    dispatch(resetCategory(''));
   };
 
   return (
