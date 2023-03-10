@@ -4,6 +4,7 @@ import { resetLocations } from '../../store/locations/locationsSlice';
 import {
   resetCategory,
   setCategory,
+  setDefaultScale,
   setLocation,
 } from '../../store/routes/routesSlice';
 import { clearSearch } from '../../store/search/searchSlice';
@@ -20,6 +21,7 @@ export const BtnHome = () => {
     dispatch(setCategory(''));
     dispatch(setLocation(''));
     dispatch(resetCategory(''));
+    dispatch(setDefaultScale());
   };
   return (
     <div className={style.wrapper}>

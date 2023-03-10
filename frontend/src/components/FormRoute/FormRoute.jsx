@@ -7,6 +7,7 @@ import {
   fetchRouteByCategory,
   fetchRouteByLocation,
 } from '../../store/routes/routesAction';
+import { setDefaultScale } from '../../store/routes/routesSlice';
 
 import InputAddress from '../InputAddress';
 import InputCategory from '../InputCategory';
@@ -50,12 +51,11 @@ export const FormRoute = () => {
     const data = await dispatch(fetchRouteByCategory());
 
     if (data) {
+      dispatch(setDefaultScale());
       dispatch(fetchRouteByLocation());
       navigate(`/routes/${type}`);
     }
   };
-
-  console.log();
 
   return (
     <form className={style.form} onSubmit={handleSubmit}>
