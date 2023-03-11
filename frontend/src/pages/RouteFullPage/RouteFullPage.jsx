@@ -20,31 +20,24 @@ export const RouteFullPage = () => {
 
   const typeParams = params.type;
 
-  const routeData = useSelector((state) => state.routes.locationsByCategory);
   const locationsByCategory = useSelector(
     (state) => state.routes.locationsByCategory,
   );
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
   const scale = useSelector((state) => state.routes.mapScale[typeParams]);
 
-  const distance = routeData?.length ? (routeData.length * 0.7).toFixed(1) : 0;
+  const distance = locationsByCategory?.length
+    ? (locationsByCategory.length * 0.7).toFixed(1)
+    : 0;
 
   useEffect(() => {
     dispatch(setType(typeParams));
   }, []);
 
-  const handleZoomMinus = () => {
+  const handleZoom = (isPlus) => {
     dispatch(
       changeScale({
-        [typeParams]: Math.floor(scale * 0.9),
-      }),
-    );
-    dispatch(fetchRouteByLocation());
-  };
-  const handleZoomPlus = () => {
-    dispatch(
-      changeScale({
-        [typeParams]: Math.ceil(scale * 1.1),
+        [typeParams]: Math.ceil(scale * (isPlus ? 1.1 : 0.9)),
       }),
     );
     dispatch(fetchRouteByLocation());
@@ -78,10 +71,16 @@ export const RouteFullPage = () => {
             </div>
             {mapSrc ? (
               <div className={style.scaleWrapper}>
-                <button className={style.scaleButton} onClick={handleZoomMinus}>
+                <button
+                  className={style.scaleButton}
+                  onClick={() => handleZoom(false)}
+                >
                   <ZoomMinus />
                 </button>
-                <button className={style.scaleButton} onClick={handleZoomPlus}>
+                <button
+                  className={style.scaleButton}
+                  onClick={() => handleZoom(true)}
+                >
                   <ZoomPlus />
                 </button>
               </div>
@@ -101,7 +100,7 @@ export const RouteFullPage = () => {
                 </span>
               </div>
             )}
-            {mapSrc && <RouteListItems points={routeData} />}
+            {mapSrc && <RouteListItems />}
           </div>
         </div>
       </Layout>
