@@ -100,7 +100,7 @@ export const RouteFullPage = () => {
                 </span>
               </div>
             )}
-            {mapSrc && <RouteListItems points={locationsByCategory} />}
+            {mapSrc && <RouteListItems />}
           </div>
         </div>
       </Layout>

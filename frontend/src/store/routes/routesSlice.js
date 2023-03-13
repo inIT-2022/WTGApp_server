@@ -59,6 +59,10 @@ export const routesSlice = createSlice({
     setDefaultScale: (state) => {
       state.mapScale = DEFAULT_MAP_SCALES;
     },
+
+    setLocationsByCategory: (state, action) => {
+      state.locationsByCategory = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRoutes.pending, (state) => {
@@ -139,6 +143,7 @@ export const {
   resetCategory,
   changeScale,
   setDefaultScale,
+  setLocationsByCategory,
 } = routesSlice.actions;
 
 export default routesSlice.reducer;
