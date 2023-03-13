@@ -6,7 +6,7 @@ export const WarningMessage = ({ setClose, openModal }) => {
       <div className={style.descr}>
         Чтобы получить расширенный функционал{' '}
         <button className={style.registrationBtn} onClick={() => openModal()}>
-          зарегистрируйтесь
+          авторизуйтесь
         </button>{' '}
         в приложении WTG
       </div>

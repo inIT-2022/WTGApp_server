@@ -53,8 +53,8 @@ export const FormRegistration = () => {
               message: 'Заполните поле',
             },
             pattern: {
-              value: /.{3,}/,
-              message: 'Слишком короткий login',
+              value: /[A-Za-zА-Яа-я0-9-_].{2,}/,
+              message: 'логин минимум 3 символа',
             },
           })}
         />
@@ -76,6 +76,10 @@ export const FormRegistration = () => {
               value: true,
               message: 'Заполните поле',
             },
+            pattern: {
+              value: /[А-Яа-я-]/,
+              message: 'некорректное имя',
+            },
           })}
         />
         <label className={style.label} htmlFor='firstName'>
@@ -96,6 +100,10 @@ export const FormRegistration = () => {
               value: true,
               message: 'Заполните поле',
             },
+            pattern: {
+              value: /[А-Яа-я-]/,
+              message: 'некорректная фамилия',
+            },
           })}
         />
         <label className={style.label} htmlFor='lastName'>
@@ -110,7 +118,8 @@ export const FormRegistration = () => {
           type='date'
           id='birthdayDate'
           required
-          min='1945-01-01'
+          min='1900-01-01'
+          max='3000-01-01'
           aria-invalid={!!errors.birthdayDate}
           {...register('birthdayDate', {
             required: {
@@ -138,7 +147,6 @@ export const FormRegistration = () => {
               message: 'Заполните поле',
             },
             pattern: {
-              // value: /^.+@.+\..+$/,
               value: /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]{2,4}$/,
               message: 'введите корректный email',
             },
@@ -162,7 +170,6 @@ export const FormRegistration = () => {
         <label className={style.label} htmlFor='userRoleString'>
           Роль
         </label>
-        <p className={style.error}>некорректный email</p>
       </div>
 
       <div className={style.wrap}>
@@ -178,8 +185,8 @@ export const FormRegistration = () => {
               message: 'Заполните поле',
             },
             pattern: {
-              value: /.{3,}/,
-              message: 'минимум 3 символа',
+              value: /[A-Za-zА-Яа-я0-9].{2,}/,
+              message: 'минимум 3 цифры или буквы',
               // value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}/,
               // message: 'минимум 6 символов: строчная, прописная буква и цифра',
             },

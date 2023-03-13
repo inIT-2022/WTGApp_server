@@ -1,5 +1,5 @@
 import { ReactComponent as TelegramIcon } from './img/telegram-icon.svg';
-import { ReactComponent as TwitterIcon } from './img/twitter-icon.svg';
+import { ReactComponent as VkIcon } from './img/vk.svg';
 import { ReactComponent as MailIcon } from './img/mail-icon.svg';
 import { ReactComponent as PhoneIcon } from './img/phone-icon.svg';
 import { ReactComponent as Logo } from './img/logo.svg';
@@ -29,8 +29,8 @@ export const Footer = () => {
             <ul className={style.contactsList}>
               <li className={style.contactsItem}>
                 <PhoneIcon className={style.iconContacts} />
-                <a className={style.contactsLink} href='tel:+7800757575'>
-                  +780075757577
+                <a className={style.contactsLink} href='tel:+89189366579'>
+                  +89189366579
                 </a>
               </li>
 
@@ -44,19 +44,29 @@ export const Footer = () => {
 
             <ul className={style.contactsSocial}>
               <li className={style.socialItem}>
-                <a className={style.socialLink} href='#'>
-                  <TwitterIcon className={style.iconSocial} />
+                <a
+                  className={style.socialLink}
+                  href='https://vk.ru/wtg_online'
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  <VkIcon className={style.iconSocial} />
                 </a>
               </li>
               <li className={style.socialItem}>
-                <a className={style.socialLink} href='#'>
+                <a
+                  className={style.socialLink}
+                  href='https://t.me/wtg_online'
+                  rel='noreferrer'
+                  target='_blank'
+                >
                   <TelegramIcon className={style.iconSocial} />
                 </a>
               </li>
             </ul>
           </div>
 
-          <p className={style.copyright}>© City Events, 2023</p>
+          <p className={style.copyright}>© inIT, 2023</p>
         </div>
       </Layout>
     </footer>
