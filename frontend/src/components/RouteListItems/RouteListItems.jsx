@@ -47,9 +47,6 @@ export const RouteListItems = ({ points }) => {
                 <button onClick={() => handleClickDelete(id)}>
                   <Del />
                 </button>
-                <button onClick={() => handleClickAdd(id)}>
-                  <Plus />
-                </button>
               </div>
             </li>
           ))
