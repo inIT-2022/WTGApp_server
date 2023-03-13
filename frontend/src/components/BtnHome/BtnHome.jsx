@@ -1,7 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { resetLocations } from '../../store/locations/locationsSlice';
-import { setCategory, setLocation } from '../../store/routes/routesSlice';
+import {
+  resetCategory,
+  setCategory,
+  setDefaultScale,
+  setLocation,
+} from '../../store/routes/routesSlice';
 import { clearSearch } from '../../store/search/searchSlice';
 import style from './BtnHome.module.css';
 
@@ -15,6 +20,8 @@ export const BtnHome = () => {
     dispatch(resetLocations());
     dispatch(setCategory(''));
     dispatch(setLocation(''));
+    dispatch(resetCategory(''));
+    dispatch(setDefaultScale());
   };
   return (
     <div className={style.wrapper}>

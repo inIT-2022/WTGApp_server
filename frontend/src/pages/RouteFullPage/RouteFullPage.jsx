@@ -4,13 +4,15 @@ import { useParams } from 'react-router-dom';
 
 import BtnHome from '../../components/BtnHome';
 import Layout from '../../Layouts/Layout';
-
+import { ReactComponent as ZoomMinus } from './img/zoomMinus.svg';
+import { ReactComponent as ZoomPlus } from './img/zoomPlus.svg';
 import FormRoute from '../../components/FormRoute';
 
-import { setType } from '../../store/routes/routesSlice';
+import { changeScale, setType } from '../../store/routes/routesSlice';
 import { RouteListItems } from '../../components/RouteListItems/RouteListItems';
 
 import style from './RouteFullPage.module.css';
+import { fetchRouteByLocation } from '../../store/routes/routesAction';
 
 export const RouteFullPage = () => {
   const dispatch = useDispatch();
@@ -18,19 +20,28 @@ export const RouteFullPage = () => {
 
   const typeParams = params.type;
 
-  const routeData = useSelector((state) => state.routes.route);
   const locationsByCategory = useSelector(
     (state) => state.routes.locationsByCategory,
   );
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
+  const scale = useSelector((state) => state.routes.mapScale[typeParams]);
 
-  const distance = routeData?.locationDTOList?.length
-    ? (routeData.locationDTOList.length * 0.7).toFixed(1)
+  const distance = locationsByCategory?.length
+    ? (locationsByCategory.length * 0.7).toFixed(1)
     : 0;
 
   useEffect(() => {
     dispatch(setType(typeParams));
   }, []);
+
+  const handleZoom = (isPlus) => {
+    dispatch(
+      changeScale({
+        [typeParams]: Math.ceil(scale * (isPlus ? 1.1 : 0.9)),
+      }),
+    );
+    dispatch(fetchRouteByLocation());
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -44,7 +55,7 @@ export const RouteFullPage = () => {
           <h2 className={style.navText}>/ Маршруты / </h2>
         </div>
 
-        <h2 className={style.title}>Исторический Краснодар</h2>
+        <h2 className={style.title}>Краснодар</h2>
 
         <div className={style.wrapper}>
           <div className={style.interactiveContent}>
@@ -58,6 +69,22 @@ export const RouteFullPage = () => {
                 </p>
               )}
             </div>
+            {mapSrc ? (
+              <div className={style.scaleWrapper}>
+                <button
+                  className={style.scaleButton}
+                  onClick={() => handleZoom(false)}
+                >
+                  <ZoomMinus />
+                </button>
+                <button
+                  className={style.scaleButton}
+                  onClick={() => handleZoom(true)}
+                >
+                  <ZoomPlus />
+                </button>
+              </div>
+            ) : null}
           </div>
 
           <div className={style.content}>
@@ -67,15 +94,13 @@ export const RouteFullPage = () => {
             )}
             {mapSrc && (
               <div className={style.routeInfo}>
-                <span className={style.category}>Категория:</span>
-                <span className={style.categoryValue}>исторический</span>
                 <span className={style.length}>Протяженность:</span>
                 <span className={style.lengthValue}>
                   <b>{distance}</b> км
                 </span>
               </div>
             )}
-            {mapSrc && <RouteListItems points={routeData?.locationDTOList} />}
+            {mapSrc && <RouteListItems />}
           </div>
         </div>
       </Layout>

@@ -26,13 +26,14 @@ export const fetchRouteMap = createAsyncThunk(
     const type = getState().routes.type;
     const dataStore = getState().routes.route;
     const locationsByCategory = getState().routes.locationsByCategory;
+    const mapScale = getState().routes.mapScale;
 
     const routeData = data ? data : dataStore;
 
     const lang = 'en_US';
     const ll = `${routeData.longitude},${routeData.latitude}`;
     const size = '540,360';
-    const z = type === 'Car' ? '15' : type === 'Bicycle' ? '16' : '17';
+    const z = mapScale[type];
 
     const pt = getPointsForMap({ routeData, locationsByCategory });
 

@@ -14,7 +14,12 @@ import logo from '../../img/logo.jpg';
 import style from './Header.module.css';
 import { clearSearch } from '../../store/search/searchSlice';
 import { resetLocations } from '../../store/locations/locationsSlice';
-import { setCategory, setLocation } from '../../store/routes/routesSlice';
+import {
+  resetCategory,
+  setCategory,
+  setDefaultScale,
+  setLocation,
+} from '../../store/routes/routesSlice';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -24,7 +29,7 @@ export const Header = () => {
   const [isShowGreetings, setIsShowGreetings] = useState(false);
 
   const location = useLocation();
-  const { id, type, category } = useParams();
+  const { id, type } = useParams();
 
   const token = useSelector((state) => state.auth.data.token);
   const login = useSelector((state) => state.auth.data.login);
@@ -53,6 +58,8 @@ export const Header = () => {
     dispatch(resetLocations());
     dispatch(setCategory(''));
     dispatch(setLocation(''));
+    dispatch(resetCategory(''));
+    dispatch(setDefaultScale());
   };
 
   return (
@@ -113,7 +120,7 @@ export const Header = () => {
                 </p>
               </>
             )}
-            {location.pathname === `/routes/${type}/${category}` && (
+            {location.pathname === `/routes/${type}` && (
               <>
                 <p className={style.events}>маршрутЪ</p>
                 <p className={style.subtitleEvents}>который стоит пройти :)</p>

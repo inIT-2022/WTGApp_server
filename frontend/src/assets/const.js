@@ -23,6 +23,12 @@ export const RADIUSES = {
   Car: 300,
 };
 
+export const DEFAULT_MAP_SCALES = {
+  Walk: 17,
+  Bicycle: 16,
+  Car: 15,
+};
+
 export const CATEGORY = {
   STORY: 'История',
   FOOD: 'Еда',

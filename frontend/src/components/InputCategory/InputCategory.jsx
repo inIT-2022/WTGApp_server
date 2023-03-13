@@ -9,8 +9,10 @@ import style from './InputCategory.module.css';
 export const InputCategory = ({ errorCategory }) => {
   const dispatch = useDispatch();
 
+  // Получаем массив с id отмеченных категорий
   const category = useSelector((state) => state.routes.category);
 
+  // Получаем список категорий с сервера
   const categories = useCategories();
 
   const handleChooseCategory = (e) => {
@@ -24,7 +26,7 @@ export const InputCategory = ({ errorCategory }) => {
 
   return (
     <div className={style.category}>
-      <span className={style.text}>Категория</span>
+      <span className={style.text}>Категория:</span>
       <ul className={style.list}>
         {categories &&
           categories.map((obj) => (
