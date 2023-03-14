@@ -66,7 +66,7 @@ export const LocationsList = ({ isRoute = false }) => {
                 img={location.linkImage}
               />
             ) : (
-              <CardRouteLocation location={location} />
+              <CardRouteLocation key={location.id} location={location} />
             ),
           )}
         </ul>

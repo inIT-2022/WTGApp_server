@@ -71,6 +71,11 @@ export const routesSlice = createSlice({
     setIsOpenModalSearchLocation: (state, action) => {
       state.isOpenModalSearchLocation = action.payload;
     },
+    addRoutsLocation: (state, action) => {
+      console.log(action.payload);
+      const index = state.indexForInsert;
+      state.locationsByCategory.splice(index + 1, 0, action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRoutes.pending, (state) => {
@@ -154,6 +159,7 @@ export const {
   setLocationsByCategory,
   setIndexForInsert,
   setIsOpenModalSearchLocation,
+  addRoutsLocation,
 } = routesSlice.actions;
 
 export default routesSlice.reducer;

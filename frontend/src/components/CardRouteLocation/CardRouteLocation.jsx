@@ -1,15 +1,25 @@
+import { useDispatch } from 'react-redux';
 import noPhoto from '../../img/nophoto.jpg';
+import { fetchRouteMap } from '../../store/routes/routesAction';
+import {
+  addRoutsLocation,
+  setIsOpenModalSearchLocation,
+} from '../../store/routes/routesSlice';
 
 import style from './CardRouteLocation.module.css';
 
 export const CardRouteLocation = ({ location }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const { title, linkImage } = location;
 
   const imgLinks = linkImage ? linkImage.split('|') : [];
 
-  const handleAdd = () => {};
+  const handleAdd = () => {
+    dispatch(addRoutsLocation(location));
+    dispatch(setIsOpenModalSearchLocation(false));
+    dispatch(fetchRouteMap());
+  };
   return (
     <li className={style.wrapper}>
       <div className={style.imgWrapper}>
