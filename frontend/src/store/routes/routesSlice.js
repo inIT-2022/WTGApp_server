@@ -17,6 +17,8 @@ const initialState = {
   locationsByCategory: null,
   routeMapLink: '',
   mapScale: DEFAULT_MAP_SCALES,
+  indexForInsert: null,
+  isOpenModalSearchLocation: false,
   error: '',
 };
 
@@ -62,6 +64,17 @@ export const routesSlice = createSlice({
 
     setLocationsByCategory: (state, action) => {
       state.locationsByCategory = action.payload;
+    },
+    setIndexForInsert: (state, action) => {
+      state.indexForInsert = action.payload;
+    },
+    setIsOpenModalSearchLocation: (state, action) => {
+      state.isOpenModalSearchLocation = action.payload;
+    },
+    addRoutsLocation: (state, action) => {
+      console.log(action.payload);
+      const index = state.indexForInsert;
+      state.locationsByCategory.splice(index + 1, 0, action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -144,6 +157,9 @@ export const {
   changeScale,
   setDefaultScale,
   setLocationsByCategory,
+  setIndexForInsert,
+  setIsOpenModalSearchLocation,
+  addRoutsLocation,
 } = routesSlice.actions;
 
 export default routesSlice.reducer;

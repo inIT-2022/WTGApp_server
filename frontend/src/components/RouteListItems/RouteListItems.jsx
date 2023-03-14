@@ -11,7 +11,9 @@ import { ReactComponent as Marker } from './img/marker.svg';
 
 import {
   deleteRoutePoint,
+  setIndexForInsert,
   setLocationsByCategory,
+  setIsOpenModalSearchLocation,
 } from '../../store/routes/routesSlice';
 
 import { fetchRouteMap } from '../../store/routes/routesAction';
@@ -37,6 +39,10 @@ export const RouteListItems = () => {
     dispatch(setLocationsByCategory(points));
     dispatch(fetchRouteMap());
   };
+  const handleClickAdd = (index) => {
+    dispatch(setIndexForInsert(index));
+    dispatch(setIsOpenModalSearchLocation(true));
+  };
 
   useEffect(() => {
     setPoints(locationsByCategory);
@@ -51,7 +57,7 @@ export const RouteListItems = () => {
       className={style.list}
     >
       {points
-        ? points.map((point, i, arr) => (
+        ? points.map((point, index, arr) => (
             <Reorder.Item
               as='li'
               className={style.item}
@@ -61,14 +67,14 @@ export const RouteListItems = () => {
               onDragEnd={handleDrop}
             >
               <div className={style.titleWrapper}>
-                {i === 0 ? (
+                {index === 0 ? (
                   <Start className={style.marker} />
-                ) : i === arr.length - 1 ? (
+                ) : index === arr.length - 1 ? (
                   <Finish className={style.marker} />
                 ) : (
                   <div className={style.marker}>
                     <Marker />
-                    <span className={style.number}>{i + 1}</span>
+                    <span className={style.number}>{index + 1}</span>
                   </div>
                 )}
                 <Link className={style.title} to={`/locations/${point.id}`}>
@@ -78,6 +84,9 @@ export const RouteListItems = () => {
               <div className={style.iconsWrapper}>
                 <button onClick={() => handleClickDelete(point.id)}>
                   <Del />
+                </button>
+                <button onClick={() => handleClickAdd(index)}>
+                  <Plus />
                 </button>
               </div>
             </Reorder.Item>
