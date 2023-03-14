@@ -133,6 +133,14 @@
   transform: scale(1.1);
 }
 
+.searchWrapper {
+  position: absolute;
+  left: 0;
+  top: 170px;
+  max-width: 496px;
+  width: 100%;
+}
+
 @media (max-width: 992px) {
   .title {
     font-size: 44px;
@@ -202,6 +210,10 @@
 }
 
 @media (max-width: 640px) {
+  .searchWrapper {
+    top: 108px;
+  }
+
   .header {
     height: 198px;
     padding-bottom: 30px;

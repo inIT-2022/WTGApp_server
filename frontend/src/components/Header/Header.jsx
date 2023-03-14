@@ -89,7 +89,9 @@ export const Header = () => {
                 <p className={style.subtitleEvents}>
                   все значимые события города и края
                 </p>
-                <Search searchType={'events'} />
+                <div className={style.searchWrapper}>
+                  <Search searchType={'events'} />
+                </div>
               </>
             )}
 
@@ -108,7 +110,9 @@ export const Header = () => {
                 <p className={style.subtitleEvents}>
                   место, куда вам захочется вернуться :)
                 </p>
-                <Search searchType={'locations'} />
+                <div className={style.searchWrapper}>
+                  <Search searchType={'locations'} />
+                </div>
               </>
             )}
 

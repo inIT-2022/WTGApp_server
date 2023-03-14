@@ -15,13 +15,13 @@ import style from './LocationFullPage.module.css';
 export const LocationFullPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [showFullDescr, setShowFullDescr] = React.useState(false);
 
   const allEvents = useSelector((state) => state.events.data);
   const eventsOnLocation = allEvents.filter((obj) => obj.location.id === +id);
 
-  const { id } = useParams();
   const locationPageData = useFullPageById({ id, page: 'locations' });
   const {
     address,
