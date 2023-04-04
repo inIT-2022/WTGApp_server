@@ -19,10 +19,10 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
     Optional<Location> findById(Long id);
     Optional<Location> findByTitle(String title);
 
-    List<Location> findAllByWorkTimeEnd(LocalDateTime workTimeEnd);
-    List<Location> findAllByWorkTimeStart(LocalDateTime workTimeStart);
-    List<Location> findAllByWorkBreakEnd(LocalDateTime workBreakEnd);
-    List<Location> findAllByWorkBreakStart(LocalDateTime workBreakStart);
+//    List<Location> findAllByWorkTimeEnd(LocalDateTime workTimeEnd);
+//    List<Location> findAllByWorkTimeStart(LocalDateTime workTimeStart);
+//    List<Location> findAllByWorkBreakEnd(LocalDateTime workBreakEnd);
+//    List<Location> findAllByWorkBreakStart(LocalDateTime workBreakStart);
 
     List<Location> findAllByAddress(String address);
     List<Location> findAllByLatitudeAndLongitude(Double latitude, Double longitude);
@@ -66,17 +66,27 @@ public interface LocationRepository extends JpaRepository<Location, Long> {
     );*/
 
     //выборка локаций по категориям в заданном секторе
+//    @Query(value = "select * from locations l " +
+//            "right join locations_categories lc on l.id = lc.location_id " +
+//            "left join categories_for_locations cfl on lc.category_id = cfl.id \n" +
+//            "where (l.latitude >= :latitudeMin and l.latitude <= :latitudeMax) " +
+//            "and (l.longitude >= :longitudeMin and l.longitude <= :longitudeMax) " +
+//            "and  cfl.id in (:cat1,:cat2,:cat3,:cat4)",nativeQuery = true)
+//    List<Location> findAllByLocationsCategoriesAndSector(
+//            Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
+//            long cat1, long cat2, long cat3, long cat4
+//    );
+
+
     @Query(value = "select * from locations l " +
-            "right join locations_categories lc on l.id = lc.location_id " +
-            "left join categories_for_locations cfl on lc.category_id = cfl.id \n" +
+            "right join locations_events_categories lec on l.id = lec.location_id " +
             "where (l.latitude >= :latitudeMin and l.latitude <= :latitudeMax) " +
             "and (l.longitude >= :longitudeMin and l.longitude <= :longitudeMax) " +
-            "and  cfl.id in (:cat1,:cat2,:cat3,:cat4)",nativeQuery = true)
+            "and  lec.category_id in (:cat1,:cat2,:cat3,:cat4)",nativeQuery = true)
     List<Location> findAllByLocationsCategoriesAndSector(
             Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
             long cat1, long cat2, long cat3, long cat4
     );
-
 
 
 

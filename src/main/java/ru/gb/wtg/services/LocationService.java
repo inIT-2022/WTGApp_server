@@ -56,21 +56,21 @@ public class LocationService {
         return locationRepository.findAllByLatitudeAndLongitude(latitude, longitude);
     }
 
-    public List<Location> findAllByWorkTimeEnd(LocalDateTime workTimeEnd){
-        return locationRepository.findAllByWorkTimeEnd(workTimeEnd);
-    }
-
-    public List<Location> findAllByWorkTimeStart(LocalDateTime workTimeStart){
-        return locationRepository.findAllByWorkTimeStart(workTimeStart);
-    }
-
-    public List<Location> findAllByWorkBreakEnd(LocalDateTime workBreakEnd){
-        return locationRepository.findAllByWorkBreakEnd(workBreakEnd);
-    }
-
-    public List<Location> findAllByWorkBreakStart(LocalDateTime workBreakStart){
-        return locationRepository.findAllByWorkBreakStart(workBreakStart);
-    }
+//    public List<Location> findAllByWorkTimeEnd(LocalDateTime workTimeEnd){
+//        return locationRepository.findAllByWorkTimeEnd(workTimeEnd);
+//    }
+//
+//    public List<Location> findAllByWorkTimeStart(LocalDateTime workTimeStart){
+//        return locationRepository.findAllByWorkTimeStart(workTimeStart);
+//    }
+//
+//    public List<Location> findAllByWorkBreakEnd(LocalDateTime workBreakEnd){
+//        return locationRepository.findAllByWorkBreakEnd(workBreakEnd);
+//    }
+//
+//    public List<Location> findAllByWorkBreakStart(LocalDateTime workBreakStart){
+//        return locationRepository.findAllByWorkBreakStart(workBreakStart);
+//    }
 
     public List<Location> findAllByCategoryForLocations(CategoryForLocation categoryForLocation){
         return locationRepository.findAllByCategoryForLocations(categoryForLocation);
