@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.wtg.dto.location.CategoryForLocationDTO;
 import ru.gb.wtg.dto.location.LocationDTO;
 import ru.gb.wtg.dto.location.LocationInSector;
+import ru.gb.wtg.dto.locationevent.CategoryDTO;
 import ru.gb.wtg.dto.route.MapsDTO;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
 import ru.gb.wtg.mapAPI.MapAPIInterface;
@@ -89,11 +90,18 @@ public class LocationController {
                 .collect(Collectors.toList());
     }
 
+//    @GetMapping("/get-locations-categories")
+//    @ApiOperation(value = "Получение всех категорий", response = CategoryForLocationDTO.class, responseContainer = "list")
+//    public List<CategoryForLocationDTO> getAllCategories(){
+//        return locationService.findAllCategories().stream().map(CategoryForLocationDTO::new).collect(Collectors.toList());
+//    }
+
     @GetMapping("/get-locations-categories")
     @ApiOperation(value = "Получение всех категорий", response = CategoryForLocationDTO.class, responseContainer = "list")
-    public List<CategoryForLocationDTO> getAllCategories(){
-        return locationService.findAllCategories().stream().map(CategoryForLocationDTO::new).collect(Collectors.toList());
+    public List<CategoryDTO> getAllCategories(){
+        return locationService.findAllCategory().stream().map(CategoryDTO::new).collect(Collectors.toList());
     }
+
 
 
     @PostMapping("/by-categories-and-sector")

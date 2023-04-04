@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import ru.gb.wtg.exceptions.ResourceNotFoundException;
 import ru.gb.wtg.models.location.CategoryForLocation;
 import ru.gb.wtg.models.location.Location;
+import ru.gb.wtg.models.locationevent.Category;
 import ru.gb.wtg.repositories.location.CategoryForLocationRepository;
 import ru.gb.wtg.repositories.location.LocationRepository;
+import ru.gb.wtg.repositories.locationevent.CategoryRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +23,7 @@ public class LocationService {
 
     private final LocationRepository locationRepository;
     private final CategoryForLocationRepository categoryForLocationRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<Location> findAll(){
         return locationRepository.findAll();
@@ -28,6 +31,10 @@ public class LocationService {
 
     public Page<Location> findAllWithPage(int page, int pageSize){
         return locationRepository.findAllWithImage( PageRequest.of(page-1,pageSize));
+    }
+
+    public List<Category> findAllCategory(){
+        return categoryRepository.findAll();
     }
 
     public List<CategoryForLocation> findAllCategories(){
