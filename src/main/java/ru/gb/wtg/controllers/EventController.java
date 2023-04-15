@@ -43,6 +43,19 @@ public class EventController {
                 .map(EventDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("/event-by-location/{id}")
+    @ApiOperation(value="Получение событий для локации по ее id", response = EventDTO.class, responseContainer = "list")
+    public List<EventDTO> getAllEventsById (@PathVariable Long id){
+       return eventService.findAllByLocation(id).stream().map(EventDTO::new).collect(Collectors.toList());
+    }
+
+    @GetMapping("/event-by-location-later/{id}")
+    @ApiOperation(value="Получение событий для локации по ее id с текущего момента", response = EventDTO.class, responseContainer = "list")
+    public List<EventDTO> getAllEventsByIdLater (@PathVariable Long id){
+        return eventService.findAllByLocationLater(id).stream().map(EventDTO::new).collect(Collectors.toList());
+    }
+
     // todo тестовый метод (удалить в дальнейшем)
     @GetMapping("/eventmodels")
     public List<Event> getAllEventModels(){

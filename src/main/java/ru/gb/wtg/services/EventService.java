@@ -42,9 +42,6 @@ public class EventService {
         return eventRepository.findByTitle(title);
     }
 
-    public List<Event> findAllByLocation(Location location){
-        return eventRepository.findAllByLocation(location);
-    }
 
     public List<Event> findAllByEventsCategoryAndSector(Double latitudeMin, Double latitudeMax, Double longitudeMin, Double longitudeMax,
                                                         long cat1, long cat2, long cat3, long cat4){
@@ -54,13 +51,18 @@ public class EventService {
 
     public List<Event> findAllByLocation(Long id){
         Location location = locationService.findById(id).orElseThrow(()-> new ResourceNotFoundException("локация с данным id не найдена"));
-        return eventRepository.findAllByLocation(location);
+        return eventRepository.findAllByLocation(id);
     }
 
-    public List<Event> findAllByLocation(String title){
-        Location location = locationService.findByTitle(title).orElseThrow(()-> new ResourceNotFoundException("локация с данным title не найдена"));
-        return eventRepository.findAllByLocation(location);
+    public List<Event> findAllByLocationLater(Long id){
+        Location location = locationService.findById(id).orElseThrow(()-> new ResourceNotFoundException("локация с данным id не найдена"));
+        return eventRepository.findAllByLocationLater( LocalDateTime.now(), id);
     }
+
+//    public List<Event> findAllByLocation(String title){
+//        Location location = locationService.findByTitle(title).orElseThrow(()-> new ResourceNotFoundException("локация с данным title не найдена"));
+//        return eventRepository.findAllByLocation(location);
+//    }
 
     public List<Event> findAllByStartDatetime(LocalDateTime startDateTime){
         return eventRepository.findAllByStartDatetime(startDateTime);

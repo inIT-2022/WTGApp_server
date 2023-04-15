@@ -25,13 +25,19 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT e FROM Event e   where e.startDatetime >= :dateStart")
     Page<Event> findAllWithPageAfterCurrentDate(@Param("dateStart") LocalDateTime dateStart, Pageable pageable);
 
-    List<Event> findAllByLocation(Location location);
+    @Query(value = "SELECT * FROM events e   where e.location_id = :locationId", nativeQuery = true)
+    List<Event> findAllByLocation(@Param("locationId") Long locationId);
+
     List<Event> findAllByStartDatetime(LocalDateTime startDateTime);
     List<Event> findAllByPrice(Integer price);
     List<Event> findAllByPriceLessThan(Integer price);
     List<Event> findAllByUserCreated(User userCreated);
     List<Event> findAllByCategoryForEvents(CategoryForEvent categoryForEvent);
     List<Event> findAllByUsersEvent(User usersEvent);
+
+    @Query(value = "SELECT * FROM events e   where e.start_datetime >= :dateStart and e.location_id = :locationId", nativeQuery = true)
+    List<Event> findAllByLocationLater(@Param("dateStart") LocalDateTime dateStart,
+                                       @Param("locationId") Long locationId);
 
     @Query("SELECT e FROM Event e   where e.startDatetime >= :dateStart")
     List<Event> findAllByDateLater(@Param("dateStart") LocalDateTime dateStart);
