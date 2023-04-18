@@ -29,15 +29,18 @@ export const Footer = () => {
             <ul className={style.contactsList}>
               <li className={style.contactsItem}>
                 <PhoneIcon className={style.iconContacts} />
-                <a className={style.contactsLink} href='tel:+89189366579'>
-                  +89189366579
+                <a className={style.contactsLink} href='tel:+79189366579'>
+                  +7918-936-65-79
                 </a>
               </li>
 
               <li className={style.contactsItem}>
                 <MailIcon className={style.iconContacts} />
-                <a className={style.contactsLink} href='mailto:wtg@gmail.com'>
-                  wtg@gmail.com
+                <a
+                  className={style.contactsLink}
+                  href='mailto:wtg-online@mail.ru'
+                >
+                  wtg-online@mail.ru
                 </a>
               </li>
             </ul>
