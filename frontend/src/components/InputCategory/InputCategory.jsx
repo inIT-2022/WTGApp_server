@@ -39,7 +39,7 @@ export const InputCategory = ({ errorCategory }) => {
                 checked={!!category.find((item) => item === +obj.id)}
                 onChange={handleChooseCategory}
               />
-              <label htmlFor={obj.title}> {CATEGORY[obj.title]}</label>
+              <label htmlFor={obj.title}> {obj.title}</label>
             </li>
           ))}
       </ul>
