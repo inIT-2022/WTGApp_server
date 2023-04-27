@@ -1,7 +1,5 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchEvents } from '../../store/events/eventsAction.js';
 import ReactMarkdown from 'react-markdown';
 import { useFullPageById } from '../../hooks/useFullPageById';
 
@@ -11,16 +9,15 @@ import Layout from '../../Layouts/Layout';
 import Slider from '../../components/Slider/Slider';
 
 import style from './LocationFullPage.module.css';
+import { useEventsByIdLocation } from '../../hooks/useEventsByIdLocation.js';
 
 export const LocationFullPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
 
   const [showFullDescr, setShowFullDescr] = React.useState(false);
 
-  const allEvents = useSelector((state) => state.events.data);
-  const eventsOnLocation = allEvents.filter((obj) => obj.location.id === +id);
+  const eventsByIdLocation = useEventsByIdLocation({ id });
 
   const locationPageData = useFullPageById({ id, page: 'locations' });
   const {
@@ -46,11 +43,6 @@ export const LocationFullPage = () => {
   const handleClickTopLoc = () => {
     navigate('/locations');
   };
-
-  React.useEffect(() => {
-    if (allEvents.length) return;
-    dispatch(fetchEvents());
-  }, []);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -126,11 +118,11 @@ export const LocationFullPage = () => {
                 </button>
               </div>
             ) : null}
-            {eventsOnLocation.length ? (
+            {eventsByIdLocation.length ? (
               <div className={style.locEvents}>
                 <span>События в данной локации</span>
                 <div className={style.locEventsWrapper}>
-                  {eventsOnLocation.map((item) => (
+                  {eventsByIdLocation.map((item) => (
                     <LocEventsCard key={item.id} event={item} />
                   ))}
                 </div>
