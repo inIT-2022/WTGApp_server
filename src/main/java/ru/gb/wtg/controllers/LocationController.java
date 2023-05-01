@@ -97,17 +97,20 @@ public class LocationController {
 
 
     @PostMapping("/by-categories-and-sector")
-    @ApiOperation(value = "Получение локаций по категории и сектору", response = LocationDTO.class, responseContainer = "list")
-    public List<LocationDTO> getAllByLocationsCategoriesAndSector(@RequestBody LocationInSector locationInSector){
+    @ApiOperation(value = "Получение локаций по категории и сектору", response = MapsDTO.class)
+    public MapsDTO getAllByLocationsCategoriesAndSector(@RequestBody LocationInSector locationInSector){
 
         List<Double> coordinate = mapAPIService.getCoordinateByAddress(locationInSector.getAddress());
         double [][] sc = sector.getSectorByRadius(coordinate.get(0),coordinate.get(1), locationInSector.getRadius());
-        //  latitudeMin,latitudeMax,longitudeMin,longitudeMax
-        return locationService.findAllByLocationsCategoryAndSector(sc[1][1],sc[0][1],sc[0][0],sc[1][0],
+
+        List<LocationDTO> locationDTOList = locationService.findAllByLocationsCategoryAndSector(sc[1][1],sc[0][1],sc[0][0],sc[1][0],
                         locationInSector.getCategories()[0],locationInSector.getCategories()[1],locationInSector.getCategories()[2],locationInSector.getCategories()[3])
                 .stream()
                 .map(LocationDTO::new)
                 .collect(Collectors.toList());
+
+        return new MapsDTO(coordinate.get(0),coordinate.get(1), locationDTOList);
+
     }
 
     @PostMapping("/createLocation")
