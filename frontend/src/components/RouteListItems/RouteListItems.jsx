@@ -25,7 +25,7 @@ export const RouteListItems = () => {
   const dispatch = useDispatch();
 
   const locationsByCategory = useSelector(
-    (state) => state.routes.locationsByCategory,
+    (state) => state.routes.locationsByCategory.locationDTOList,
   );
 
   const [points, setPoints] = useState(locationsByCategory);

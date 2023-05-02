@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_MAP_SCALES } from '../../assets/const';
 import {
   fetchRouteByCategory,
-  fetchRouteByLocation,
   fetchRouteMap,
   fetchRoutes,
 } from './routesAction';
@@ -13,7 +12,6 @@ const initialState = {
   location: '',
   type: '',
   category: [0, 0, 0, 0],
-  route: null,
   locationsByCategory: null,
   routeMapLink: '',
   mapScale: DEFAULT_MAP_SCALES,
@@ -50,9 +48,10 @@ export const routesSlice = createSlice({
       state.category = [0, 0, 0, 0];
     },
     deleteRoutePoint: (state, action) => {
-      state.locationsByCategory = state.locationsByCategory.filter(
-        (item) => item.id !== action.payload,
-      );
+      state.locationsByCategory.locationDTOList =
+        state.locationsByCategory.locationDTOList.filter(
+          (item) => item.id !== action.payload,
+        );
     },
 
     changeScale: (state, action) => {
@@ -63,7 +62,7 @@ export const routesSlice = createSlice({
     },
 
     setLocationsByCategory: (state, action) => {
-      state.locationsByCategory = action.payload;
+      state.locationsByCategory.locationDTOList = action.payload;
     },
     setIndexForInsert: (state, action) => {
       state.indexForInsert = action.payload;
@@ -72,9 +71,12 @@ export const routesSlice = createSlice({
       state.isOpenModalSearchLocation = action.payload;
     },
     addRoutsLocation: (state, action) => {
-      console.log(action.payload);
       const index = state.indexForInsert;
-      state.locationsByCategory.splice(index + 1, 0, action.payload);
+      state.locationsByCategory.locationDTOList.splice(
+        index + 1,
+        0,
+        action.payload,
+      );
     },
   },
   extraReducers: (builder) => {
@@ -91,23 +93,6 @@ export const routesSlice = createSlice({
 
     builder.addCase(fetchRoutes.rejected, (state, action) => {
       state.data = [];
-      state.loading = true;
-      state.error = action.payload;
-    });
-
-    builder.addCase(fetchRouteByLocation.pending, (state) => {
-      state.loading = true;
-      state.error = '';
-    });
-
-    builder.addCase(fetchRouteByLocation.fulfilled, (state, action) => {
-      state.route = action.payload;
-      state.loading = false;
-      state.error = '';
-    });
-
-    builder.addCase(fetchRouteByLocation.rejected, (state, action) => {
-      state.route = null;
       state.loading = true;
       state.error = action.payload;
     });

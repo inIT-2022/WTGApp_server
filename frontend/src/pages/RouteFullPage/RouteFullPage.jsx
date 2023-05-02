@@ -17,7 +17,7 @@ import {
 } from '../../store/routes/routesSlice';
 import { resetLocations } from '../../store/locations/locationsSlice';
 
-import { fetchRouteByLocation } from '../../store/routes/routesAction';
+import { fetchRouteByCategory } from '../../store/routes/routesAction';
 import { FormSearchRotesLocations } from '../../components/FormSearchRotesLocations/FormSearchRotesLocations';
 
 import style from './RouteFullPage.module.css';
@@ -31,6 +31,7 @@ export const RouteFullPage = () => {
   const locationsByCategory = useSelector(
     (state) => state.routes.locationsByCategory,
   );
+
   const mapSrc = useSelector((state) => state.routes.routeMapLink);
   const scale = useSelector((state) => state.routes.mapScale[typeParams]);
 
@@ -57,7 +58,7 @@ export const RouteFullPage = () => {
         [typeParams]: Math.ceil(scale * (isPlus ? 1.1 : 0.9)),
       }),
     );
-    dispatch(fetchRouteByLocation());
+    dispatch(fetchRouteByCategory());
   };
 
   useEffect(() => {
