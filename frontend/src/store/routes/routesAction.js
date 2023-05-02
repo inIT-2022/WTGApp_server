@@ -24,9 +24,9 @@ export const fetchRouteMap = createAsyncThunk(
   'route/fetchRouteMap',
   (data, { rejectWithValue, getState }) => {
     const type = getState().routes.type;
-    const dataStore = getState().routes.route;
-    const locationsByCategory = getState().routes.locationsByCategory;
     const mapScale = getState().routes.mapScale;
+
+    const dataStore = getState().routes.locationsByCategory;
 
     const routeData = data ? data : dataStore;
 
@@ -35,7 +35,7 @@ export const fetchRouteMap = createAsyncThunk(
     const size = '540,360';
     const z = mapScale[type];
 
-    const pt = getPointsForMap({ routeData, locationsByCategory });
+    const pt = getPointsForMap(routeData);
 
     return fetch(
       `https://static-maps.yandex.ru/1.x/?lang=${lang}&ll=${ll}&size=${size}&z=${z}&l=map&pt=${pt}`,
@@ -45,27 +45,6 @@ export const fetchRouteMap = createAsyncThunk(
   },
 );
 
-export const fetchRouteByLocation = createAsyncThunk(
-  'route/fetchRouteByLocation',
-  (_, { rejectWithValue, getState, dispatch }) => {
-    const addressFromStore = getState().routes.location;
-    const type = getState().routes.type;
-    const radius = RADIUSES[type];
-    const address = addressFromStore.toLowerCase().includes('краснодар')
-      ? addressFromStore
-      : addressFromStore + ' Краснодар';
-
-    return axios(
-      `${API_URI}/api/v1/locations/locations-by-sector?radius=${radius}&address=${address}`,
-      {},
-    )
-      .then(({ data }) => {
-        dispatch(fetchRouteMap(data));
-        return data;
-      })
-      .catch((err) => rejectWithValue(err));
-  },
-);
 export const fetchRouteByCategory = createAsyncThunk(
   'route/fetchRouteByCategory',
   (_, { rejectWithValue, getState, dispatch }) => {
@@ -92,6 +71,7 @@ export const fetchRouteByCategory = createAsyncThunk(
       },
     })
       .then(({ data }) => {
+        dispatch(fetchRouteMap(data));
         return data;
       })
       .catch((err) => rejectWithValue(err));
