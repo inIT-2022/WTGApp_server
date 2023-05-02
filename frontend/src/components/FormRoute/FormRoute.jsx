@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RADIUSES } from '../../assets/const';
 
-import {
-  fetchRouteByCategory,
-  fetchRouteByLocation,
-} from '../../store/routes/routesAction';
+import { fetchRouteByCategory } from '../../store/routes/routesAction';
 import { setDefaultScale } from '../../store/routes/routesSlice';
 
 import InputAddress from '../InputAddress';
@@ -52,7 +49,6 @@ export const FormRoute = () => {
 
     if (data) {
       dispatch(setDefaultScale());
-      dispatch(fetchRouteByLocation());
       navigate(`/routes/${type}`);
     }
   };
