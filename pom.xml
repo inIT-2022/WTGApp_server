@@ -94,6 +94,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-test -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-test</artifactId>-->
+<!--            <version>5.7.8</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+
         <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
 <!--        <dependency>-->
 <!--            <groupId>org.flywaydb</groupId>-->
@@ -118,6 +127,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

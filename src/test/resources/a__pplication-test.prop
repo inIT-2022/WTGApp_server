@@ -1,0 +1,37 @@
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.url=jdbc:h2:mem:mydatabase;MODE=PostgreSQL;
+spring.datasource.username=wtg
+spring.datasource.password=
+spring.jpa.database=h2
+spring.jpa.show-sql=true
+spring.jpa.properties.dialect=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+spring.h2.console.settings.web-allow-others=false
+
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL;
+##    # url: jdbc:h2:file:E:/WTG_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+##    #    url: jdbc:h2:file:./src/main/resources/db/WTG_DB;MODE=PostgreSQL;AUTO_SERVER=TRUE;
+#    username: wtg
+#    password:
+##    driver-class-name: org.postgresql.Driver
+##    url: jdbc:postgresql://localhost:5432/WTG
+##    username: postgres
+##    password: 1917
+##    url: jdbc:postgresql://95.163.237.3:5432/wtg_db?currentSchema=public
+##    username: wtg
+##    password: wtg
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+#  h2:
+#    console:
+#      enabled: true
+#      settings:
+#        web-allow-others: false
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher

@@ -41,6 +41,11 @@ public class LocationController {
         return mapAPIService.getCoordinateByAddress(address);
     }
 
+    @GetMapping("/t")
+    public String getTest(){
+        return "Hello";
+    }
+
     @GetMapping("/deprecated")
     public List<LocationDTO> getAllLocations(){
         return locationService.findAll()
@@ -53,6 +58,9 @@ public class LocationController {
     @ApiOperation(value = "Получение списка всех локаций")
     public List<LocationDTO> getAllLocations(@RequestParam(name = "page") int page,
                                              @RequestParam(name = "pageSize") int pageSize){
+
+        System.out.println("locationController page = " + page);
+        System.out.println("locationController pageSize = " + pageSize);
         return locationService.findAllWithPage(page,pageSize)
                 .stream()
                 .map(LocationDTO::new)
