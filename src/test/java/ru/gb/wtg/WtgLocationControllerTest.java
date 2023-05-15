@@ -44,24 +44,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc()
-//@TestPropertySource(locations ="classpath:a__pplication-test.prop", inheritProperties = false, inheritLocations = false)
 @Sql(value = {"classpath:V1_init.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = {"classpath:V2_init.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = {"classpath:V3_init.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-//@WebMvcTest(LocationController.class)
 public class WtgLocationControllerTest {
 
-//    @Value(value="${local.server.port}")
-//    private int port;
-//
-//    @Autowired
-//    private TestRestTemplate restTemplate;
-
-//    @Test
-//    public void greetingShouldReturnDefaultMessage() throws Exception {
-//        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/wtg/api/v1/locations/t",
-//                String.class)).contains("Hello");
-//    }
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
@@ -79,10 +66,6 @@ public class WtgLocationControllerTest {
     @MockBean
     private Sector sector;
 
-//    @Test
-//    public void testInitController(){
-//        assertThat(locationController).isNotNull();
-//    }
 
     @Test
     public void shouldReturnDefaultMessage() throws Exception {
@@ -136,6 +119,7 @@ public class WtgLocationControllerTest {
         System.out.println(result.getResponse().getContentType());
         System.out.println(result.getResponse().getContentAsString());
 
+
         this.mockMvc.perform(get("/api/v1/locations/{id}",1L)
                 )
                 .andDo(print())
@@ -151,6 +135,22 @@ public class WtgLocationControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Скейт парк")));
+    }
+
+
+    @Test
+    public void getAllLocationsByManualTitleAndDescriptionTest() throws Exception {
+        this.mockMvc.perform(get("/api/v1/locations/manual-title-description")
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .param("manualTitle", "Скейт")
+                .param("page", "1")
+                .param("pageSize", "2")
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Скейт парк")));
+
+
     }
 
 }

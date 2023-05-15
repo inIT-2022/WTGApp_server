@@ -41,10 +41,6 @@ public class LocationController {
         return mapAPIService.getCoordinateByAddress(address);
     }
 
-    @GetMapping("/t")
-    public String getTest(){
-        return "Hello";
-    }
 
     @GetMapping("/deprecated")
     public List<LocationDTO> getAllLocations(){
